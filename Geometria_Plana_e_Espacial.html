@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio de Geometria Plana e Espacial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cor-primaria: #059669;
+            --cor-secundaria: #0284c7;
+            --cor-fundo: #f0fdfa;
+            --cor-texto: #1f2937;
+            --cor-sucesso: #10b981;
+            --cor-aviso: #f97316;
+        }
+
+        @media print {
+            body { background: none; font-size: 12pt; }
+            .container { box-shadow: none; margin: 0; max-width: 100%; border-radius: 0; }
+            .header, .print-button-container, .gabarito-container { display: none; }
+            .section, .question { border: 1px solid #ccc; margin-bottom: 15px; padding: 15px; page-break-inside: avoid; }
+            .text-reference { background-color: #f9f9f9 !important; }
+            .question-text { color: black; }
+            .options { display: block; }
+            .option { border: 1px solid #ddd; padding: 8px; }
+            h1, h2, h3 { color: black; }
+            input[type="radio"] { display: none; }
+            .option::before { content: '(  ) '; font-family: sans-serif; }
+             
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background: linear-gradient(135deg, #f0fdfa 0%, #dbeafe 100%); min-height: 100vh; padding: 20px; color: var(--cor-texto); }
+        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { background: linear-gradient(45deg, var(--cor-primaria), var(--cor-secundaria)); color: white; text-align: center; padding: 40px 20px; }
+        .header h1 { font-family: 'Lilita One', cursive; font-size: 3em; text-shadow: 3px 3px 0px rgba(0,0,0,0.2); letter-spacing: 2px; }
+        .print-button-container { text-align: center; padding: 20px; }
+        .print-button { background-color: var(--cor-sucesso); color: white; border: none; padding: 15px 30px; font-size: 1.2em; font-weight: bold; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4); }
+        .print-button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(16, 185, 129, 0.6); }
+        .section { padding: 30px 40px; border-bottom: 2px dashed #d1d5db; }
+        .section:last-of-type { border-bottom: none; }
+        .section-title { font-family: 'Lilita One', cursive; font-size: 2em; color: var(--cor-primaria); text-align: center; margin-bottom: 25px; }
+        .text-reference { background: #fff7ed; padding: 20px; border-radius: 15px; margin-bottom: 30px; border-left: 5px solid var(--cor-aviso); }
+        .text-reference h3 { color: var(--cor-aviso); margin-bottom: 10px; font-size: 1.3em; }
+        .text-content { font-size: 1.1em; line-height: 1.6; color: #9a3412; }
+        .questions-grid { display: grid; gap: 25px; }
+        .question { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 15px; padding: 20px; }
+        .question-number { background: var(--cor-secundaria); color: white; padding: 5px 12px; border-radius: 20px; display: inline-block; font-weight: bold; margin-bottom: 15px; font-size: 1.1em; }
+        .question-text { font-size: 1.1em; margin-bottom: 15px; font-weight: 600; }
+        .shape-figure { text-align: center; margin: 15px 0; }
+        .shape-figure svg { max-width: 120px; height: auto; }
+        .options { display: grid; gap: 10px; }
+        .option { background: white; border: 2px solid #d1d5db; border-radius: 10px; padding: 12px 15px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; }
+        .option:hover { border-color: var(--cor-secundaria); background-color: #dbeafe; }
+        .option input[type="radio"] { margin-right: 12px; transform: scale(1.3); }
+        .gabarito-container { background: #1f2937; padding: 40px; color: white; }
+        .gabarito-container h2 { font-family: 'Lilita One', cursive; font-size: 2.5em; text-align: center; margin-bottom: 30px; }
+        .gabarito-section { margin-bottom: 20px; }
+        .gabarito-section h3 { color: var(--cor-aviso); border-bottom: 2px solid var(--cor-aviso); padding-bottom: 5px; margin-bottom: 15px; }
+        .answers { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏕️ Desafio Geométrico 製造</h1>
+        </div>
+
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">🖨️ Versão para Impressão</button>
+        </div>
+
+        <!-- Grupo 1: O Acampamento Geométrico -->
+        <div class="section">
+            <h2 class="section-title">Grupo 1: O Acampamento Geométrico</h2>
+            <div class="text-reference">
+                <h3>📖 Leia com atenção</h3>
+                <p class="text-content">No Acampamento "Formas da Natureza", as crianças aprendem geometria observando o mundo ao redor. A barraca de Lia, vista de frente, parece um triângulo. A janela do refeitório é um círculo perfeito. Para o jantar, eles usam pratos quadrados. No lago, há uma pequena ponte que, vista de lado, lembra um trapézio.</p>
+            </div>
+            <div class="questions-grid">
+                <!-- Q1 -->
+                <div class="question">
+                    <div class="question-number">1</div>
+                    <div class="question-text">Lia decorou sua barraca triangular com 4 adesivos em cada um dos 3 lados. Quantos adesivos ela usou no total?</div>
+                    <div class="shape-figure"><svg viewBox="0 0 100 100"><polygon points="50,10 90,90 10,90" fill="#f9a8d4" stroke="#be185d" stroke-width="2"/></svg></div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q1">A) 9</label>
+                        <label class="option"><input type="radio" name="q1">B) 12</label>
+                        <label class="option"><input type="radio" name="q1">C) 7</label>
+                        <label class="option"><input type="radio" name="q1">D) 10</label>
+                    </div>
+                </div>
+                <!-- Q2 -->
+                <div class="question">
+                    <div class="question-number">2</div>
+                    <div class="question-text">A janela do refeitório é circular. Se uma mosca pousar bem no centro da janela e andar em linha reta até a borda, que forma o caminho dela descreve?</div>
+                    <div class="shape-figure"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#a5f3fc" stroke="#0891b2" stroke-width="2"/></svg></div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q2">A) Um círculo</label>
+                        <label class="option"><input type="radio" name="q2">B) Um quadrado</label>
+                        <label class="option"><input type="radio" name="q2">C) Uma linha reta (raio)</label>
+                        <label class="option"><input type="radio" name="q2">D) Uma onda</label>
+                    </div>
+                </div>
+                <!-- Q3 -->
+                <div class="question">
+                    <div class="question-number">3</div>
+                    <div class="question-text">O prato do jantar é quadrado. Se você colocar um biscoito em cada um dos 4 cantos, quantos biscoitos usará?</div>
+                    <div class="shape-figure"><svg viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/></svg></div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q3">A) 2</label>
+                        <label class="option"><input type="radio" name="q3">B) 3</label>
+                        <label class="option"><input type="radio" name="q3">C) 4</label>
+                        <label class="option"><input type="radio" name="q3">D) 8</label>
+                    </div>
+                </div>
+                <!-- Q4 -->
+                <div class="question">
+                    <div class="question-number">4</div>
+                    <div class="question-text">A ponte sobre o lago parece um trapézio. Quantos lados paralelos um trapézio geralmente tem?</div>
+                    <div class="shape-figure"><svg viewBox="0 0 100 100"><polygon points="20,30 80,30 90,70 10,70" fill="#d2b48c" stroke="#8c5a2b" stroke-width="2"/></svg></div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q4">A) 0</label>
+                        <label class="option"><input type="radio" name="q4">B) 1</label>
+                        <label class="option"><input type="radio" name="q4">C) 2</label>
+                        <label class="option"><input type="radio" name="q4">D) 4</label>
+                    </div>
+                </div>
+                <!-- Q5 -->
+                <div class="question">
+                    <div class="question-number">5</div>
+                    <div class="question-text">Se você juntar dois triângulos iguais pela base, qual forma geométrica é mais provável que você forme?</div>
+                    <div class="shape-figure"><svg viewBox="0 0 100 100"><polygon points="10,50 50,10 90,50" fill="#a78bfa" stroke="#6d28d9" stroke-width="2"/><polygon points="10,50 90,50 50,90" fill="#a78bfa" stroke="#6d28d9" stroke-width="2"/></svg></div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q5">A) Um círculo</label>
+                        <label class="option"><input type="radio" name="q5">B) Um losango (ou quadrado)</label>
+                        <label class="option"><input type="radio" name="q5">C) Um trapézio</label>
+                        <label class="option"><input type="radio" name="q5">D) Uma linha</label>
+                    </div>
+                </div>
+                <!-- Q6 -->
+                <div class="question">
+                    <div class="question-number">6</div>
+                    <div class="question-text">Uma toalha de piquenique é formada por 9 quadrados coloridos, 3 em cada fileira. Se a fileira do meio for só de quadrados vermelhos, quantos quadrados vermelhos existem?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q6">A) 9</label>
+                        <label class="option"><input type="radio" name="q6">B) 6</label>
+                        <label class="option"><input type="radio" name="q6">C) 3</label>
+                        <label class="option"><input type="radio" name="q6">D) 1</label>
+                    </div>
+                </div>
+                <!-- Q7 -->
+                <div class="question">
+                    <div class="question-number">7</div>
+                    <div class="question-text">Qual das formas mencionadas no texto NÃO tem lados retos?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q7">A) Triângulo</label>
+                        <label class="option"><input type="radio" name="q7">B) Círculo</label>
+                        <label class="option"><input type="radio" name="q7">C) Quadrado</label>
+                        <label class="option"><input type="radio" name="q7">D) Trapézio</label>
+                    </div>
+                </div>
+                <!-- Q8 -->
+                <div class="question">
+                    <div class="question-number">8</div>
+                    <div class="question-text">Se um prato quadrado tem 4 lados, quantos pratos são necessários para ter um total de 20 lados?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q8">A) 4</label>
+                        <label class="option"><input type="radio" name="q8">B) 5</label>
+                        <label class="option"><input type="radio" name="q8">C) 6</label>
+                        <label class="option"><input type="radio" name="q8">D) 20</label>
+                    </div>
+                </div>
+                <!-- Q9 -->
+                <div class="question">
+                    <div class="question-number">9</div>
+                    <div class="question-text">A professora desenhou um triângulo e um quadrado. Se ela somar o número de lados das duas figuras, qual é o resultado?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q9">A) 5</label>
+                        <label class="option"><input type="radio" name="q9">B) 6</label>
+                        <label class="option"><input type="radio" name="q9">C) 7</label>
+                        <label class="option"><input type="radio" name="q9">D) 8</label>
+                    </div>
+                </div>
+                <!-- Q10 -->
+                <div class="question">
+                    <div class="question-number">10</div>
+                    <div class="question-text">Olhando para a figura da ponte (trapézio), qual é a principal diferença entre a parte de cima e a parte de baixo?</div>
+                    <div class="shape-figure"><svg viewBox="0 0 100 100"><polygon points="20,30 80,30 90,70 10,70" fill="#d2b48c" stroke="#8c5a2b" stroke-width="2"/></svg></div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q10">A) A cor</label>
+                        <label class="option"><input type="radio" name="q10">B) O comprimento</label>
+                        <label class="option"><input type="radio" name="q10">C) O número de cantos</label>
+                        <label class="option"><input type="radio" name="q10">D) Não há diferença</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grupo 2: A Fábrica de Brinquedos Mágica -->
+        <div class="section">
+            <h2 class="section-title">Grupo 2: A Fábrica de Brinquedos Mágica</h2>
+            <div class="text-reference">
+                <h3>📖 Leia com atenção</h3>
+                <p class="text-content">Na fábrica do Sr. Cubo, os brinquedos são formas geométricas. As caixas de presente são cubos perfeitos. Os chapéus de festa são cones coloridos. As bolas são esferas saltitantes. E os tambores são cilindros que fazem muito barulho. Todo dia, ele organiza 5 caixas, 8 chapéus, 12 bolas e 6 tambores.</p>
+            </div>
+            <div class="questions-grid">
+                <!-- Q11 -->
+                <div class="question">
+                    <div class="question-number">11</div>
+                    <div class="question-text">Uma caixa de presente tem o formato de um cubo. Quantas faces (lados planos) um cubo tem?</div>
+                    <div class="shape-figure"><svg viewBox="0 0 100 100"><path d="M20 30 L60 30 L60 70 L20 70 Z" fill="#a5f3fc" stroke="#0891b2" stroke-width="2"/><path d="M60 30 L80 10 L80 50 L60 70" fill="#a5f3fc" stroke="#0891b2" stroke-width="2"/><path d="M20 30 L40 10 L80 10 L60 30" fill="#a5f3fc" stroke="#0891b2" stroke-width="2"/></svg></div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q11">A) 4</label>
+                        <label class="option"><input type="radio" name="q11">B) 6</label>
+                        <label class="option"><input type="radio" name="q11">C) 8</label>
+                        <label class="option"><input type="radio" name="q11">D) 12</label>
+                    </div>
+                </div>
+                <!-- Q12 -->
+                <div class="question">
+                    <div class="question-number">12</div>
+                    <div class="question-text">Um chapéu de festa é um cone. Qual forma plana serve como a base de um cone?</div>
+                    <div class="shape-figure"><svg viewBox="0 0 100 100"><polygon points="50,10 90,80 10,80" fill="#f9a8d4" stroke="#be185d" stroke-width="2"/><ellipse cx="50" cy="80" rx="40" ry="10" fill="#f9a8d4" stroke="#be185d" stroke-width="2"/></svg></div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q12">A) Quadrado</label>
+                        <label class="option"><input type="radio" name="q12">B) Triângulo</label>
+                        <label class="option"><input type="radio" name="q12">C) Círculo</label>
+                        <label class="option"><input type="radio" name="q12">D) Retângulo</label>
+                    </div>
+                </div>
+                <!-- Q13 -->
+                <div class="question">
+                    <div class="question-number">13</div>
+                    <div class="question-text">As bolas são esferas. Quantos cantos (vértices) uma esfera tem?</div>
+                    <div class="shape-figure"><svg viewBox="0 0 100 100"><defs><radialGradient id="sphereGrad"><stop offset="0%" stop-color="#fde68a"/><stop offset="100%" stop-color="#f59e0b"/></radialGradient></defs><circle cx="50" cy="50" r="45" fill="url(#sphereGrad)"/></svg></div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q13">A) 0</label>
+                        <label class="option"><input type="radio" name="q13">B) 1</label>
+                        <label class="option"><input type="radio" name="q13">C) 4</label>
+                        <label class="option"><input type="radio" name="q13">D) 8</label>
+                    </div>
+                </div>
+                <!-- Q14 -->
+                <div class="question">
+                    <div class="question-number">14</div>
+                    <div class="question-text">Um tambor é um cilindro. Se você olhar para um cilindro de cima, qual forma plana você vê?</div>
+                    <div class="shape-figure"><svg viewBox="0 0 100 100"><ellipse cx="50" cy="20" rx="30" ry="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="2"/><path d="M20 20 V 80" stroke="#6d28d9" stroke-width="2"/><path d="M80 20 V 80" stroke="#6d28d9" stroke-width="2"/><ellipse cx="50" cy="80" rx="30" ry="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="2"/></svg></div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q14">A) Círculo</label>
+                        <label class="option"><input type="radio" name="q14">B) Quadrado</label>
+                        <label class="option"><input type="radio" name="q14">C) Retângulo</label>
+                        <label class="option"><input type="radio" name="q14">D) Triângulo</label>
+                    </div>
+                </div>
+                <!-- Q15 -->
+                <div class="question">
+                    <div class="question-number">15</div>
+                    <div class="question-text">Se o Sr. Cubo empilhar 3 caixas cúbicas, uma em cima da outra, a pilha se parecerá com qual forma?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q15">A) Um cubo maior</label>
+                        <label class="option"><input type="radio" name="q15">B) Uma pirâmide</label>
+                        <label class="option"><input type="radio" name="q15">C) Um paralelepípedo (bloco retangular)</label>
+                        <label class="option"><input type="radio" name="q15">D) Uma esfera</label>
+                    </div>
+                </div>
+                <!-- Q16 -->
+                <div class="question">
+                    <div class="question-number">16</div>
+                    <div class="question-text">Qual dos brinquedos da fábrica pode rolar mais facilmente em qualquer direção?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q16">A) O cubo (caixa)</label>
+                        <label class="option"><input type="radio" name="q16">B) O cone (chapéu)</label>
+                        <label class="option"><input type="radio" name="q16">C) O cilindro (tambor)</label>
+                        <label class="option"><input type="radio" name="q16">D) A esfera (bola)</label>
+                    </div>
+                </div>
+                <!-- Q17 -->
+                <div class="question">
+                    <div class="question-number">17</div>
+                    <div class="question-text">Quantos brinquedos o Sr. Cubo organiza no total todos os dias? (5 caixas + 8 chapéus + 12 bolas + 6 tambores)</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q17">A) 21</label>
+                        <label class="option"><input type="radio" name="q17">B) 26</label>
+                        <label class="option"><input type="radio" name="q17">C) 31</label>
+                        <label class="option"><input type="radio" name="q17">D) 35</label>
+                    </div>
+                </div>
+                <!-- Q18 -->
+                <div class="question">
+                    <div class="question-number">18</div>
+                    <div class="question-text">Se você "desmontar" um cilindro (tambor), você terá dois círculos e qual outra forma?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q18">A) Um triângulo</label>
+                        <label class="option"><input type="radio" name="q18">B) Um retângulo</label>
+                        <label class="option"><input type="radio" name="q18">C) Outro círculo</label>
+                        <label class="option"><input type="radio" name="q18">D) Um quadrado</label>
+                    </div>
+                </div>
+                <!-- Q19 -->
+                <div class="question">
+                    <div class="question-number">19</div>
+                    <div class="question-text">Qual brinquedo tem exatamente uma ponta (vértice)?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q19">A) O cubo</label>
+                        <label class="option"><input type="radio" name="q19">B) A esfera</label>
+                        <label class="option"><input type="radio" name="q19">C) O cone</label>
+                        <label class="option"><input type="radio" name="q19">D) O cilindro</label>
+                    </div>
+                </div>
+                <!-- Q20 -->
+                <div class="question">
+                    <div class="question-number">20</div>
+                    <div class="question-text">Se o Sr. Cubo vender todas as 12 bolas e 3 das 5 caixas, quantos brinquedos sobram na prateleira?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q20">A) 14</label>
+                        <label class="option"><input type="radio" name="q20">B) 16</label>
+                        <label class="option"><input type="radio" name="q20">C) 20</label>
+                        <label class="option"><input type="radio" name="q20">D) 31</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- GABARITO -->
+        <div class="gabarito-container">
+            <h2>🏆 GABARITO 🏆</h2>
+            <div class="gabarito-section">
+                <h3>Grupo 1: O Acampamento Geométrico</h3>
+                <div class="answers">
+                    <span>1. B) 12</span> <span>2. C) Uma linha reta (raio)</span> <span>3. C) 4</span> <span>4. C) 2</span> <span>5. B) Um losango (ou quadrado)</span>
+                    <span>6. C) 3</span> <span>7. B) Círculo</span> <span>8. B) 5</span> <span>9. C) 7</span> <span>10. B) O comprimento</span>
+                </div>
+            </div>
+            <div class="gabarito-section">
+                <h3>Grupo 2: A Fábrica de Brinquedos Mágica</h3>
+                <div class="answers">
+                    <span>11. B) 6</span> <span>12. C) Círculo</span> <span>13. A) 0</span> <span>14. A) Círculo</span> <span>15. C) Um paralelepípedo (bloco retangular)</span>
+                    <span>16. D) A esfera (bola)</span> <span>17. C) 31</span> <span>18. B) Um retângulo</span> <span>19. C) O cone</span> <span>20. B) 16</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

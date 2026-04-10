@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matemática — Revisão e Aprofundamento | 2º ano</title>
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --paper: #fffef8;
+      --accent: #e63946;
+      --blue: #457b9d;
+      --yellow: #f4d35e;
+      --green: #2a9d8f;
+      --purple: #7b68ee;
+      --muted: #6c757d;
+      --border: #dee2e6;
+      --card: #f8f9fa;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background: #e9ecef;
+      line-height: 1.45;
+      font-size: 11pt;
+    }
+
+    .sheet {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 1rem;
+      background: var(--paper);
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      padding: 12mm 14mm;
+    }
+
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+
+    @media print {
+      body { background: #fff; }
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .sheet {
+        box-shadow: none;
+        margin: 0;
+        max-width: none;
+        min-height: auto;
+        padding: 0;
+      }
+      .no-print { display: none !important; }
+      a[href]:after { content: ""; }
+      .page-break { page-break-before: always; }
+      .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+      /* Seções longas devem poder quebrar entre páginas (evita 1ª página quase vazia) */
+      main.sheet > section {
+        break-inside: auto;
+        page-break-inside: auto;
+      }
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #343a40;
+      color: #fff;
+      padding: 10px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .toolbar button:hover { filter: brightness(1.08); }
+    .toolbar span { font-size: 13px; opacity: .9; }
+
+    h1 {
+      font-size: 1.35rem;
+      margin: 0 0 4px;
+      color: var(--accent);
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+      font-weight: 600;
+      color: var(--blue);
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .header-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      background: linear-gradient(135deg, #fff9e6, #e8f4fc);
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+    }
+    .header-line label {
+      flex: 1;
+      min-width: 140px;
+      font-weight: 600;
+      font-size: 10pt;
+    }
+    .header-line input {
+      border: none;
+      border-bottom: 2px solid var(--blue);
+      background: transparent;
+      width: 100%;
+      min-height: 22px;
+    }
+
+    .intro-box {
+      background: var(--card);
+      border-left: 5px solid var(--green);
+      padding: 10px 14px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 16px;
+      font-size: 10.5pt;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin: 18px 0 10px;
+      padding: 6px 12px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      color: var(--blue);
+      margin: 12px 0 6px;
+    }
+
+    .concept {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 8px 0;
+    }
+
+    .read-box {
+      background: linear-gradient(180deg, #e3f2fd 0%, #fff 100%);
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+    .read-box strong { color: var(--blue); }
+
+    .ordinal-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin: 10px 0;
+    }
+    .ordinal-row span {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 2.2em;
+    }
+    .ordinal-row small { font-size: 0.75rem; color: var(--muted); }
+
+    .mc {
+      margin: 8px 0 4px;
+      padding-left: 0;
+      list-style: none;
+    }
+    .mc li {
+      margin: 4px 0;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .mc li:hover { background: #f1f3f5; }
+
+    .q {
+      margin: 14px 0;
+      padding: 10px 12px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .q-num {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+    .tag {
+      font-size: 9pt;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .tag-mc { background: #cfe2ff; color: #084298; }
+    .tag-w { background: #d1e7dd; color: #0f5132; }
+
+    .line {
+      border-bottom: 1px dotted var(--muted);
+      min-height: 1.4em;
+      display: inline-block;
+      min-width: 120px;
+    }
+    .line.short { min-width: 60px; }
+
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 10pt;
+    }
+    table.data th, table.data td {
+      border: 1px solid var(--border);
+      padding: 8px;
+    }
+    table.data th { background: #e9ecef; }
+
+    /* Contas verticais — dezena sobre dezena, unidade sobre unidade */
+    .vm-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 24px;
+      justify-content: flex-start;
+      margin: 12px 0;
+    }
+    .vm {
+      display: inline-block;
+      vertical-align: top;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .vm table {
+      border-collapse: collapse;
+      margin: 0;
+    }
+    .vm td {
+      min-width: 1em;
+      height: 1.25em;
+      text-align: center;
+      vertical-align: middle;
+      padding: 2px 3px;
+    }
+    /* Coluna do sinal: à frente (à esquerda) dos algarismos */
+    .vm td.vm-op {
+      width: 1.15em;
+      font-weight: 800;
+      text-align: center;
+      vertical-align: middle;
+      padding-right: 3px;
+      line-height: 1;
+      font-size: 1.05em;
+    }
+    .vm td.vm-line {
+      border-top: 2px solid var(--ink);
+      padding-top: 4px;
+      height: 0;
+      line-height: 0;
+    }
+    .vm .lbl {
+      font-size: 0.45rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      height: 0.9em;
+      line-height: 1;
+    }
+    .vm .carry {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--accent);
+      height: 0.85em;
+    }
+    .vm .carry-box {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      min-width: 0.9em;
+      min-height: 0.85em;
+      display: inline-block;
+    }
+    .vm .ans td.vm-ans {
+      border-bottom: 2px dotted var(--muted);
+      min-height: 1.35em;
+    }
+    .vm-sub .borrow {
+      font-size: 0.55rem;
+      color: var(--blue);
+    }
+
+    .geo-2d, .geo-3d {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-end;
+      margin: 10px 0;
+    }
+    .shape {
+      text-align: center;
+      font-size: 9pt;
+      color: var(--muted);
+    }
+    .shape svg { display: block; margin: 0 auto 4px; }
+
+    /* Figuras 3D — sombreamento e profundidade (SVG + gradientes) */
+    .geo-3d-wrap {
+      margin: 14px 0;
+      padding: 14px 12px 16px;
+      background: linear-gradient(160deg, #eef3fb 0%, #e4eaf6 45%, #dce5f2 100%);
+      border-radius: 14px;
+      border: 1px solid #b8c9e0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+    }
+    .geo-3d-wrap > p {
+      margin: 0 0 10px;
+      font-size: 10pt;
+      font-weight: 600;
+      color: var(--blue);
+    }
+    .geo-3d {
+      align-items: flex-end;
+      justify-content: center;
+      gap: 14px 18px;
+    }
+    .shape-3d {
+      text-align: center;
+      font-size: 8.5pt;
+      color: #495057;
+      font-weight: 600;
+      max-width: 88px;
+    }
+    .shape-3d svg {
+      display: block;
+      margin: 0 auto 6px;
+      filter: drop-shadow(3px 4px 6px rgba(30, 40, 60, .22));
+    }
+    .shape-3d .shape-hint {
+      display: block;
+      font-size: 7.5pt;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 2px;
+      line-height: 1.2;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .gabarito {
+      background: #fff8e7;
+      border: 2px solid var(--yellow);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 9.5pt;
+    }
+    .gabarito table { font-size: 9pt; }
+    .gabarito h2 { background: #856404; }
+
+    footer.print-note {
+      margin-top: 16px;
+      font-size: 9pt;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">Imprimir / Salvar em PDF</button>
+    <span>Use Ctrl+P → “Salvar como PDF” para gerar o arquivo. Formato A4.</span>
+  </div>
+
+  <main class="sheet">
+
+    <!-- CAPA -->
+    <header>
+      <h1>Super heróis e heroínas das contas</h1>
+      <p class="subtitle">Matemática — Revisão e aprofundamento | 2º ano do Ensino Fundamental</p>
+      <div class="header-line">
+        <label>Nome: <input type="text" aria-label="Nome do aluno" /></label>
+        <label>Data: <input type="text" aria-label="Data" /></label>
+        <label>Turma: <input type="text" aria-label="Turma" /></label>
+      </div>
+      <div class="intro-box">
+        <strong>Como usar esta atividade:</strong> Leia os textos com calma. Nas questões de múltipla escolha, marque com <strong>X</strong> a alternativa correta.
+        Nas contas de soma e subtração, alinhe sempre <strong>unidade embaixo de unidade</strong> e <strong>dezena embaixo de dezena</strong>.
+        Boa sorte!
+      </div>
+    </header>
+
+    <!-- PARTE 1 — ORDINAIS -->
+    <section>
+      <h2>Parte 1 — Números ordinais</h2>
+      <div class="concept">
+        <p><strong>O que são?</strong> Os <em>números ordinais</em> indicam a <strong>posição</strong> na fila ou na ordem: 1º (primeiro), 2º (segundo)…</p>
+        <p style="margin:8px 0 4px;font-size:10pt;"><strong>De 1º a 10º por extenso:</strong> primeiro, segundo, terceiro, quarto, quinto, sexto, sétimo, oitavo, nono, décimo.</p>
+      </div>
+
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>No parque, as crianças fizeram uma corrida de carrinhos. O carrinho vermelho chegou primeiro, o azul em segundo, o verde em terceiro e o amarelo em quarto. A professora colocou medalhas só para os três primeiros lugares.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">1</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual carrinho ganhou a medalha de <strong>3º lugar</strong>?</p>
+        <ul class="mc">
+          <li>( ) A) O vermelho</li>
+          <li>( ) B) O azul</li>
+          <li>( ) C) O verde</li>
+          <li>( ) D) O amarelo</li>
+        </ul>
+      </div>
+
+      <div class="ordinal-row avoid-break" aria-hidden="true">
+        <span>🐢<small>1º</small></span><span>🐇<small>2º</small></span><span>🐸<small>3º</small></span><span>🦊<small>4º</small></span><span>🐻<small>5º</small></span>
+        <span>🐨<small>6º</small></span><span>🐼<small>7º</small></span><span>🦁<small>8º</small></span><span>🐯<small>9º</small></span><span>🐮<small>10º</small></span>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">2</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Na corrida dos bichos acima, quem ficou em <strong>sétimo</strong> lugar?</p>
+        <ul class="mc">
+          <li>( ) A) 🐨 Coala</li>
+          <li>( ) B) 🦁 Leão</li>
+          <li>( ) C) 🐼 Panda</li>
+          <li>( ) D) 🐯 Tigre</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">3</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Na fila do lanche, o 5º da fila é o último a receber suco hoje. Quantas crianças recebem suco antes dele?</p>
+        <ul class="mc">
+          <li>( ) A) 5</li>
+          <li>( ) B) 4</li>
+          <li>( ) C) 3</li>
+          <li>( ) D) 6</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">4</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Complete com o ordinal por extenso:</p>
+        <table class="data">
+          <tr><th>Ordinal</th><th>Por extenso</th></tr>
+          <tr><td>2º</td><td><span class="line"></span></td></tr>
+          <tr><td>4º</td><td><span class="line"></span></td></tr>
+          <tr><td>7º</td><td><span class="line"></span></td></tr>
+          <tr><td>10º</td><td><span class="line"></span></td></tr>
+        </table>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">5</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Escreva o ordinal que falta na sequência: 1º, 2º, 3º, ___, 5º, 6º.</p>
+        <p>Resposta: <span class="line"></span></p>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- PARTE 2 — DÚZIA -->
+    <section>
+      <h2>Parte 2 — Dúzia e meia dúzia</h2>
+      <div class="concept">
+        <p><strong>Uma dúzia</strong> são <strong>12</strong> unidades juntas (como 12 ovos na bandeja). <strong>Meia dúzia</strong> são <strong>6</strong> unidades.</p>
+        <p><strong>2 dúzias</strong> = 12 + 12 = <strong>24</strong>. &nbsp; <strong>3 meias dúzias</strong> = 6 + 6 + 6 = <strong>18</strong> (ou 1 dúzia e meia).</p>
+      </div>
+
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>Na feira, a tia vende rosas em maços. Um maço com 12 rosas é uma dúzia. Um maço com 6 rosas é meia dúzia. O Sr. João comprou 1 dúzia de rosas vermelhas e meia dúzia de rosas brancas para a festa.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">6</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Quantas rosas vermelhas o Sr. João comprou?</p>
+        <ul class="mc">
+          <li>( ) A) 6</li>
+          <li>( ) B) 10</li>
+          <li>( ) C) 12</li>
+          <li>( ) D) 24</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">7</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A padaria assou <strong>2 dúzias</strong> de pãezinhos. Quantos pães foram assados no total?</p>
+        <ul class="mc">
+          <li>( ) A) 6</li>
+          <li>( ) B) 12</li>
+          <li>( ) C) 18</li>
+          <li>( ) D) 24</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">8</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Maria comprou <strong>meia dúzia</strong> de bananas. Quantas bananas ela levou?</p>
+        <ul class="mc">
+          <li>( ) A) 3</li>
+          <li>( ) B) 6</li>
+          <li>( ) C) 12</li>
+          <li>( ) D) 18</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">9</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Complete:</p>
+        <p>a) 1 dúzia de lápis = _______ lápis &nbsp; b) Meia dúzia de balas = _______ balas</p>
+        <p>c) 3 meias dúzias = _______ (Isso é o mesmo que _______ dúzia e meia)</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">10</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Luiz fez 1 dúzia de brigadeiros e deu meia dúzia para a vizinha.</p>
+        <p>a) Quantos brigadeiros ele fez? _______ &nbsp; b) Quantos deu? _______ &nbsp; c) Quantos sobraram? _______</p>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- PARTE 3 — NÚMEROS ATÉ 99 -->
+    <section>
+      <h2>Parte 3 — Números até 99 (dezenas e unidades)</h2>
+      <div class="concept">
+        <p>No número <strong>47</strong>, o <strong>4</strong> vale 4 dezenas (40) e o <strong>7</strong> vale 7 unidades. Escrevemos: <em>quarenta e sete</em>.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">11</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual número representa <strong>oitenta e três</strong>?</p>
+        <ul class="mc">
+          <li>( ) A) 38</li>
+          <li>( ) B) 83</li>
+          <li>( ) C) 80</li>
+          <li>( ) D) 85</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">12</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>No número 65, o algarismo 6 representa:</p>
+        <ul class="mc">
+          <li>( ) A) 6 unidades</li>
+          <li>( ) B) 6 dezenas</li>
+          <li>( ) C) 60 unidades e 6 dezenas ao mesmo tempo</li>
+          <li>( ) D) 65 dezenas</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">13</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Decomponha como na sala de aula: 58 = _______ dezenas e _______ unidades.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">14</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Escreva por extenso: 91 = <span class="line"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">15</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Qual é o maior número de dois algarismos que você pode formar usando <strong>3</strong> e <strong>7</strong> uma vez cada? _______</p>
+      </div>
+    </section>
+
+    <!-- PARTE 4 — OPERAÇÕES -->
+    <section>
+      <h2>Parte 4 — Adição e subtração (até 99)</h2>
+      <p class="concept">Nas somas, você pode anotar o <strong>vai 1</strong> no quadradinho acima da coluna das dezenas. Nas subtrações, preste atenção se precisa <strong>emprestar 1 dezena</strong>.</p>
+
+      <div class="q avoid-break">
+        <span class="q-num">16</span> <span class="tag tag-w">Resposta escrita</span>
+        <p><strong>Resolva as contas no papel.</strong> Use os quadradinhos para o “vai 1”, se precisar. Letras:</p>
+        <p><strong>a)</strong> soma &nbsp; <strong>b)</strong> soma &nbsp; <strong>c)</strong> soma &nbsp; <strong>d)</strong> soma &nbsp; <strong>e)</strong> soma</p>
+        <p><strong>f)</strong> subtração &nbsp; <strong>g)</strong> subtração &nbsp; <strong>h)</strong> subtração &nbsp; <strong>i)</strong> subtração &nbsp; <strong>j)</strong> subtração</p>
+      </div>
+
+      <h3>Contas no papel — alinhe dezena com dezena e unidade com unidade</h3>
+      <div class="vm-grid">
+        <!-- Somas: sinal à esquerda do segundo parcela -->
+        <div class="vm" aria-label="Soma 25 mais 15">
+          <table>
+            <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+            <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+            <tr><td></td><td>2</td><td>5</td></tr>
+            <tr><td class="vm-op">+</td><td>1</td><td>5</td></tr>
+            <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+            <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+          </table>
+        </div>
+        <div class="vm">
+          <table>
+            <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+            <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+            <tr><td></td><td>3</td><td>6</td></tr>
+            <tr><td class="vm-op">+</td><td>3</td><td>6</td></tr>
+            <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+            <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+          </table>
+        </div>
+        <div class="vm">
+          <table>
+            <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+            <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+            <tr><td></td><td>5</td><td>7</td></tr>
+            <tr><td class="vm-op">+</td><td>1</td><td>8</td></tr>
+            <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+            <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+          </table>
+        </div>
+        <div class="vm">
+          <table>
+            <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+            <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+            <tr><td></td><td>2</td><td>9</td></tr>
+            <tr><td class="vm-op">+</td><td>4</td><td>4</td></tr>
+            <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+            <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+          </table>
+        </div>
+        <div class="vm">
+          <table>
+            <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+            <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+            <tr><td></td><td>7</td><td>8</td></tr>
+            <tr><td class="vm-op">+</td><td></td><td>8</td></tr>
+            <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+            <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="vm-grid">
+        <div class="vm vm-sub">
+          <table>
+            <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+            <tr><td></td><td class="borrow"></td><td class="borrow"></td></tr>
+            <tr><td></td><td>3</td><td>3</td></tr>
+            <tr><td class="vm-op">−</td><td>2</td><td>2</td></tr>
+            <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+            <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+          </table>
+        </div>
+        <div class="vm vm-sub">
+          <table>
+            <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td>4</td><td>5</td></tr>
+            <tr><td class="vm-op">−</td><td>1</td><td>5</td></tr>
+            <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+            <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+          </table>
+        </div>
+        <div class="vm vm-sub">
+          <table>
+            <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td>5</td><td>4</td></tr>
+            <tr><td class="vm-op">−</td><td>2</td><td>3</td></tr>
+            <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+            <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+          </table>
+        </div>
+        <div class="vm vm-sub">
+          <table>
+            <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td>7</td><td>9</td></tr>
+            <tr><td class="vm-op">−</td><td>5</td><td>5</td></tr>
+            <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+            <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+          </table>
+        </div>
+        <div class="vm vm-sub">
+          <table>
+            <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td>8</td><td>5</td></tr>
+            <tr><td class="vm-op">−</td><td>4</td><td>5</td></tr>
+            <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+            <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">17</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>O resultado de <strong>34 + 25</strong> é:</p>
+        <ul class="mc">
+          <li>( ) A) 59</li>
+          <li>( ) B) 49</li>
+          <li>( ) C) 69</li>
+          <li>( ) D) 58</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">18</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Na biblioteca havia <strong>76</strong> livros. Emprestaram <strong>23</strong>. Quantos livros ficaram?</p>
+        <ul class="mc">
+          <li>( ) A) 53</li>
+          <li>( ) B) 99</li>
+          <li>( ) C) 43</li>
+          <li>( ) D) 63</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">19</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Um ônibus tinha 48 passageiros. Desceram 15 no primeiro ponto. Quantos passageiros continuaram no ônibus? Mostre a conta: <span class="line" style="min-width:200px;"></span> Resposta: _______</p>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- PARTE 5 — MAIOR / MENOR -->
+    <section>
+      <h2>Parte 5 — Maior que (&gt;), menor que (&lt;) e igual (=)</h2>
+      <div class="concept">
+        <p>Usamos <strong>&gt;</strong> quando o primeiro número é <em>maior</em>, <strong>&lt;</strong> quando é <em>menor</em>, e <strong>=</strong> quando são <em>iguais</em>.
+        <br /><em>Dica:</em> pense no “bocão do jacaré” abrindo para o número maior!</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">20</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual sinal completa: <strong>57</strong> ___ <strong>75</strong>?</p>
+        <ul class="mc">
+          <li>( ) A) &gt;</li>
+          <li>( ) B) &lt;</li>
+          <li>( ) C) =</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">21</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual alternativa está <strong>correta</strong>?</p>
+        <ul class="mc">
+          <li>( ) A) 99 &lt; 89</li>
+          <li>( ) B) 45 &gt; 54</li>
+          <li>( ) C) 62 &lt; 72</li>
+          <li>( ) D) 38 = 83</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">22</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Use &gt;, &lt; ou = :</p>
+        <p>a) 34 ___ 43 &nbsp; b) 78 ___ 78 &nbsp; c) 65 ___ 56 &nbsp; d) 19 ___ 91</p>
+        <p>e) 20 + 10 ___ 30 &nbsp; f) 50 − 10 ___ 35</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">23</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Ordene do <strong>menor para o maior</strong>: 72 — 27 — 45 — 90 — 38 — 63</p>
+        <p>Resposta: <span class="line" style="min-width:280px;"></span></p>
+      </div>
+    </section>
+
+    <!-- PARTE 6 — GEOMETRIA estilo PDF -->
+    <section>
+      <h2>Parte 6 — Figuras planas e figuras espaciais</h2>
+      <div class="concept two-col">
+        <div>
+          <strong>Figuras planas (2D)</strong> — ficam “no papel”: têm comprimento e largura. Ex.: círculo, triângulo, quadrado, retângulo.
+        </div>
+        <div>
+          <strong>Figuras espaciais (3D)</strong> — ocupam espaço, têm volume. Ex.: cubo, esfera, cone, cilindro, pirâmide, bloco retangular (paralelepípedo).
+        </div>
+      </div>
+
+      <p style="margin:10px 0 4px;font-size:10pt;font-weight:600;color:var(--ink);">Figuras planas (amostras):</p>
+      <div class="geo-2d">
+        <div class="shape"><svg width="56" height="56" viewBox="0 0 56 56"><rect x="6" y="6" width="44" height="44" fill="#f4d35e" stroke="#333" stroke-width="2"/></svg>Quadrado</div>
+        <div class="shape"><svg width="70" height="48" viewBox="0 0 70 48"><rect x="4" y="8" width="62" height="32" fill="#a8dadc" stroke="#333" stroke-width="2"/></svg>Retângulo</div>
+        <div class="shape"><svg width="56" height="52" viewBox="0 0 56 52"><polygon points="28,4 52,48 4,48" fill="#cdb4db" stroke="#333" stroke-width="2"/></svg>Triângulo</div>
+        <div class="shape"><svg width="56" height="56" viewBox="0 0 56 56"><circle cx="28" cy="28" r="22" fill="#ffccd5" stroke="#333" stroke-width="2"/></svg>Círculo</div>
+      </div>
+
+      <div class="geo-3d-wrap">
+        <p>Figuras espaciais (3D) — têm volume. O sombreamento (luz e sombra) ajuda a “enxergar” a profundidade:</p>
+        <div class="geo-3d">
+          <!-- Cubo -->
+          <div class="shape-3d">
+            <svg width="76" height="76" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="geo3d_cu_top" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff3a3"/><stop offset="100%" stop-color="#e6c200"/></linearGradient>
+                <linearGradient id="geo3d_cu_left" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#d9b018"/><stop offset="100%" stop-color="#8a6a00"/></linearGradient>
+                <linearGradient id="geo3d_cu_right" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f0c84a"/><stop offset="100%" stop-color="#b88900"/></linearGradient>
+              </defs>
+              <polygon points="36,8 58,22 36,36 14,22" fill="url(#geo3d_cu_top)" stroke="#5a4a10" stroke-width="1.2"/>
+              <polygon points="14,22 36,36 36,60 14,46" fill="url(#geo3d_cu_left)" stroke="#5a4a10" stroke-width="1.2"/>
+              <polygon points="36,36 58,22 58,46 36,60" fill="url(#geo3d_cu_right)" stroke="#5a4a10" stroke-width="1.2"/>
+            </svg>
+            Cubo
+            <span class="shape-hint">6 faces quadradas</span>
+          </div>
+          <!-- Bloco retangular -->
+          <div class="shape-3d">
+            <svg width="84" height="72" viewBox="0 0 80 68" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="geo3d_br_top" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#b8d4ea"/><stop offset="100%" stop-color="#7eb3d6"/></linearGradient>
+                <linearGradient id="geo3d_br_l" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#5a8eb8"/><stop offset="100%" stop-color="#2d5a78"/></linearGradient>
+                <linearGradient id="geo3d_br_r" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7eb3d6"/><stop offset="100%" stop-color="#4a7fa5"/></linearGradient>
+              </defs>
+              <polygon points="8,18 52,8 68,22 24,32" fill="url(#geo3d_br_top)" stroke="#2d5570" stroke-width="1"/>
+              <polygon points="8,18 24,32 24,62 8,48" fill="url(#geo3d_br_l)" stroke="#2d5570" stroke-width="1"/>
+              <polygon points="24,32 68,22 68,52 24,62" fill="url(#geo3d_br_r)" stroke="#2d5570" stroke-width="1"/>
+            </svg>
+            Bloco retangular
+            <span class="shape-hint">caixa, tijolo</span>
+          </div>
+          <!-- Pirâmide -->
+          <div class="shape-3d">
+            <svg width="76" height="76" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="geo3d_py_base" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c9a86c"/><stop offset="100%" stop-color="#8b6914"/></linearGradient>
+                <linearGradient id="geo3d_py_face" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#f4e4b8"/><stop offset="100%" stop-color="#c49a3a"/></linearGradient>
+                <linearGradient id="geo3d_py_side" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#d4b060"/><stop offset="100%" stop-color="#9a7020"/></linearGradient>
+              </defs>
+              <polygon points="8,52 28,58 52,48 32,42" fill="url(#geo3d_py_base)" stroke="#5c4a20" stroke-width="1"/>
+              <polygon points="36,12 8,52 28,58 36,52" fill="url(#geo3d_py_face)" stroke="#5c4a20" stroke-width="1"/>
+              <polygon points="36,12 52,48 28,58 36,52" fill="url(#geo3d_py_side)" stroke="#5c4a20" stroke-width="1"/>
+            </svg>
+            Pirâmide
+            <span class="shape-hint">base + vértice</span>
+          </div>
+          <!-- Cone -->
+          <div class="shape-3d">
+            <svg width="72" height="78" viewBox="0 0 72 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="geo3d_co_body" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#a83850"/><stop offset="50%" stop-color="#e8889e"/><stop offset="100%" stop-color="#7a2840"/></linearGradient>
+                <linearGradient id="geo3d_co_base" x1="30%" y1="0%" x2="70%" y2="100%"><stop offset="0%" stop-color="#e8a8b8"/><stop offset="100%" stop-color="#6b2030"/></linearGradient>
+              </defs>
+              <ellipse cx="36" cy="64" rx="27" ry="9" fill="url(#geo3d_co_base)" stroke="#4a1824" stroke-width="1"/>
+              <path d="M 36 12 L 63 64 L 9 64 Z" fill="url(#geo3d_co_body)" stroke="#5c2030" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>
+            Cone
+            <span class="shape-hint">base circular</span>
+          </div>
+          <!-- Cilindro -->
+          <div class="shape-3d">
+            <svg width="72" height="78" viewBox="0 0 72 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="geo3d_cy_top" x1="25%" y1="20%" x2="75%" y2="80%"><stop offset="0%" stop-color="#d4f0fc"/><stop offset="100%" stop-color="#4a9ebc"/></linearGradient>
+                <linearGradient id="geo3d_cy_side" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1a4a5e"/><stop offset="40%" stop-color="#5cb0d0"/><stop offset="100%" stop-color="#0d3040"/></linearGradient>
+                <linearGradient id="geo3d_cy_bot" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#3d7a94"/><stop offset="100%" stop-color="#0f2530"/></linearGradient>
+              </defs>
+              <ellipse cx="36" cy="58" rx="24" ry="8" fill="url(#geo3d_cy_bot)" stroke="#0f2530" stroke-width="1"/>
+              <path d="M 12 24 L 12 58 L 60 58 L 60 24 Z" fill="url(#geo3d_cy_side)" stroke="#1a4a5e" stroke-width="1"/>
+              <ellipse cx="36" cy="24" rx="24" ry="8" fill="url(#geo3d_cy_top)" stroke="#1a4a5e" stroke-width="1"/>
+              <path d="M 12 24 A 24 8 0 0 1 60 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1"/>
+            </svg>
+            Cilindro
+            <span class="shape-hint">latas, tambores</span>
+          </div>
+          <!-- Esfera -->
+          <div class="shape-3d">
+            <svg width="76" height="76" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <radialGradient id="geo3d_sp_main" cx="32%" cy="28%" r="68%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="25%" stop-color="#a8e6ff"/>
+                  <stop offset="55%" stop-color="#4ab3d9"/>
+                  <stop offset="100%" stop-color="#0d4a66"/>
+                </radialGradient>
+                <radialGradient id="geo3d_sp_hi" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <circle cx="36" cy="38" r="28" fill="url(#geo3d_sp_main)" stroke="#0a3550" stroke-width="1.3"/>
+              <ellipse cx="28" cy="28" rx="10" ry="6" fill="url(#geo3d_sp_hi)" transform="rotate(-25 28 28)"/>
+            </svg>
+            Esfera
+            <span class="shape-hint">bolas, bolinhas</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>Grupo A — No parque</h3>
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>No parque, a placa de “proibido pisar na grama” tem formato de triângulo. O relógio na torre é um círculo. O tapete do picnic é um retângulo. A caixa de brinquedos parece um cubo.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">24</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual objeto do texto é citado como tendo formato de <strong>cubo</strong>?</p>
+        <ul class="mc">
+          <li>( ) A) O relógio</li>
+          <li>( ) B) A caixa de brinquedos</li>
+          <li>( ) C) O tapete</li>
+          <li>( ) D) A placa</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">25</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual figura <strong>plana</strong> aparece no texto?</p>
+        <ul class="mc">
+          <li>( ) A) Cubo</li>
+          <li>( ) B) Esfera</li>
+          <li>( ) C) Triângulo (placa)</li>
+          <li>( ) D) Cilindro</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">26</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Uma <strong>lata de leite</strong> costuma ter o formato de:</p>
+        <ul class="mc">
+          <li>( ) A) Cubo</li>
+          <li>( ) B) Esfera</li>
+          <li>( ) C) Cilindro</li>
+          <li>( ) D) Pirâmide</li>
+        </ul>
+      </div>
+
+      <h3>Grupo B — Na fábrica de brinquedos</h3>
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>Na fábrica, as caixas de presente são cubos. Os chapéus de festa são cones. As bolas são esferas. Os tambores são cilindros barulhentos.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">27</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Quantas <strong>faces</strong> (lados planos) tem um cubo?</p>
+        <ul class="mc">
+          <li>( ) A) 4</li>
+          <li>( ) B) 6</li>
+          <li>( ) C) 8</li>
+          <li>( ) D) 12</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">28</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A base de um <strong>cone</strong> (como o chapéu) lembra qual figura plana?</p>
+        <ul class="mc">
+          <li>( ) A) Quadrado</li>
+          <li>( ) B) Triângulo</li>
+          <li>( ) C) Círculo</li>
+          <li>( ) D) Retângulo</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">29</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual brinquedo <strong>rola com facilidade</strong> em qualquer direção?</p>
+        <ul class="mc">
+          <li>( ) A) Cubo</li>
+          <li>( ) B) Cone</li>
+          <li>( ) C) Cilindro</li>
+          <li>( ) D) Esfera (bola)</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">30</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Escreva <strong>plana</strong> ou <strong>espacial</strong> para cada uma:</p>
+        <table class="data">
+          <tr><th>Figura / objeto</th><th>Plana ou espacial?</th></tr>
+          <tr><td>Folha de papel com desenho de círculo</td><td><span class="line"></span></td></tr>
+          <tr><td>Bola de futebol</td><td><span class="line"></span></td></tr>
+          <tr><td>Caixa de sapatos</td><td><span class="line"></span></td></tr>
+          <tr><td>Desenho de triângulo no caderno</td><td><span class="line"></span></td></tr>
+        </table>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">31</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Cite <strong>um objeto real</strong> da sua casa para cada forma espacial:</p>
+        <p>a) Esfera: <span class="line"></span> &nbsp; b) Cilindro: <span class="line"></span></p>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- DESAFIO -->
+    <section>
+      <h2>Desafio final — Use tudo!</h2>
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>Na festa da escola havia 1 dúzia de sanduíches e meia dúzia de sucos. Os convidados formaram uma fila. O 6º convidado ganhou um brinde. Na mesa havia caixas: a maior era um cubo azul, a do meio um bloco retangular vermelho e a menor uma pirâmide amarela.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">32</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>a) Quantos sanduíches havia? _______ &nbsp; b) Quantos sucos? _______</p>
+        <p>c) Quantos convidados vieram <strong>depois</strong> do 6º na fila de 10 pessoas? _______</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">33</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual caixa era a do <strong>tamanho médio</strong> (a do meio)?</p>
+        <ul class="mc">
+          <li>( ) A) Cubo azul</li>
+          <li>( ) B) Pirâmide amarela</li>
+          <li>( ) C) Bloco retangular vermelho</li>
+          <li>( ) D) Nenhuma</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">34</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Se sobraram 7 sanduíches depois da festa, isso é maior ou menor que 8? Complete com &gt;, &lt; ou = : _______ 8</p>
+      </div>
+    </section>
+
+    <!-- GABARITO -->
+    <section class="gabarito page-break">
+      <h2>Gabarito (professor)</h2>
+      <p style="font-size:9pt;margin-top:0;">Referências de habilidades BNCC (2º ano): comparação e ordenação de números (EF02MA01); fatos básicos e problemas de adição/subtração (EF02MA05, EF02MA06); figuras espaciais e planas (EF02MA14, EF02MA15).</p>
+      <table class="data">
+        <tr><th>Q.</th><th>Resposta</th></tr>
+        <tr><td>1</td><td>C) Verde (3º)</td></tr>
+        <tr><td>2</td><td>C) Panda</td></tr>
+        <tr><td>3</td><td>B) 4 (crianças nas posições 1º a 4º, antes do 5º)</td></tr>
+        <tr><td>4</td><td>segundo; quarto; sétimo; décimo</td></tr>
+        <tr><td>5</td><td>4º (quarto)</td></tr>
+        <tr><td>6</td><td>C) 12</td></tr>
+        <tr><td>7</td><td>D) 24</td></tr>
+        <tr><td>8</td><td>B) 6</td></tr>
+        <tr><td>9</td><td>a) 12 &nbsp; b) 6 &nbsp; c) 18; 1</td></tr>
+        <tr><td>10</td><td>a) 12 &nbsp; b) 6 &nbsp; c) 6</td></tr>
+        <tr><td>11</td><td>B) 83</td></tr>
+        <tr><td>12</td><td>B) 6 dezenas</td></tr>
+        <tr><td>13</td><td>5 dezenas e 8 unidades</td></tr>
+        <tr><td>14</td><td>noventa e um</td></tr>
+        <tr><td>15</td><td>73</td></tr>
+        <tr><td>16 a–j</td><td>a) 40 &nbsp; b) 72 &nbsp; c) 75 &nbsp; d) 73 &nbsp; e) 86 &nbsp; f) 11 &nbsp; g) 30 &nbsp; h) 31 &nbsp; i) 24 &nbsp; j) 40</td></tr>
+        <tr><td>17</td><td>A) 59</td></tr>
+        <tr><td>18</td><td>A) 53</td></tr>
+        <tr><td>19</td><td>48 − 15 = 33 passageiros</td></tr>
+        <tr><td>20</td><td>B) &lt;</td></tr>
+        <tr><td>21</td><td>C) 62 &lt; 72</td></tr>
+        <tr><td>22</td><td>a)&lt; b)= c)&gt; d)&lt; e)= f)&gt;</td></tr>
+        <tr><td>23</td><td>27, 38, 45, 63, 72, 90</td></tr>
+        <tr><td>24</td><td>B) Caixa de brinquedos</td></tr>
+        <tr><td>25</td><td>C) Triângulo</td></tr>
+        <tr><td>26</td><td>C) Cilindro</td></tr>
+        <tr><td>27</td><td>B) 6</td></tr>
+        <tr><td>28</td><td>C) Círculo</td></tr>
+        <tr><td>29</td><td>D) Esfera</td></tr>
+        <tr><td>30</td><td>plana; espacial; espacial; plana</td></tr>
+        <tr><td>31</td><td>Respostas pessoais (ex.: bola; lata)</td></tr>
+        <tr><td>32</td><td>a) 12 &nbsp; b) 6 &nbsp; c) 4</td></tr>
+        <tr><td>33</td><td>C) Bloco retangular vermelho</td></tr>
+        <tr><td>34</td><td>7 &lt; 8</td></tr>
+      </table>
+    </section>
+
+    <footer class="print-note">
+      Documento otimizado para impressão A4. BNCC — MEC; planos por habilidade — Nova Escola (EF02MA01, EF02MA14).
+    </footer>
+  </main>
+
+</body>
+</html>

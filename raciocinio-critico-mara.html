@@ -1,0 +1,1450 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>O Mistério de Mara - Raciocínio Crítico</title>
+    <style>
+      :root {
+        --bg: #f3f6fb;
+        --paper: #ffffff;
+        --ink: #1a2332;
+        --muted: #6b7280;
+        --accent: #2563eb;
+        --accent-dark: #1e40af;
+        --border: #dbe3ef;
+        --assumption: #3b82f6;
+        --weaken: #ef4444;
+        --strengthen: #10b981;
+        --inference: #8b5cf6;
+        --paradox: #f97316;
+        --highlight: #fbbf24;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+        background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+        color: var(--ink);
+        line-height: 1.7;
+      }
+
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        padding: 16px;
+        background: rgba(244, 247, 251, 0.98);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(8px);
+        flex-wrap: wrap;
+      }
+
+      .button {
+        border: none;
+        border-radius: 999px;
+        padding: 10px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+
+      .button-primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .button-primary:hover {
+        background: var(--accent-dark);
+        transform: translateY(-1px);
+      }
+
+      .button-secondary {
+        background: #fff;
+        color: var(--ink);
+        border: 1px solid var(--border);
+      }
+
+      .button-secondary:hover {
+        background: #f8fafc;
+        transform: translateY(-1px);
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 24px auto 40px;
+        padding: 22mm 20mm;
+        background: var(--paper);
+        box-shadow: 0 20px 60px rgba(37, 99, 235, 0.12);
+        border-radius: 12px;
+      }
+
+      h1 {
+        margin: 0 0 6px;
+        font-size: 32px;
+        color: #0f172a;
+        font-weight: 700;
+      }
+
+      .subtitle {
+        margin: 0 0 24px;
+        color: var(--muted);
+        font-size: 16px;
+        font-style: italic;
+      }
+
+      h2 {
+        margin-top: 32px;
+        margin-bottom: 16px;
+        font-size: 24px;
+        color: #0f172a;
+        font-weight: 700;
+      }
+
+      h3 {
+        margin: 20px 0 12px;
+        font-size: 18px;
+        color: var(--ink);
+      }
+
+      p {
+        margin: 0 0 16px;
+        font-size: 17px;
+        text-align: justify;
+      }
+
+      .narrative {
+        background: linear-gradient(135deg, #f0f9ff 0%, #f3e8ff 100%);
+        border-left: 4px solid var(--accent);
+        padding: 18px;
+        border-radius: 6px;
+        margin-bottom: 24px;
+      }
+
+      .narrative p {
+        margin-bottom: 12px;
+        font-style: italic;
+      }
+
+      .narrative p:last-child {
+        margin-bottom: 0;
+      }
+
+      .question-section {
+        margin-bottom: 28px;
+        page-break-inside: avoid;
+      }
+
+      .question-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .question-number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        background: var(--ink);
+        color: #fff;
+        border-radius: 50%;
+        font-weight: 700;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #fff;
+      }
+
+      .badge-assumption {
+        background: var(--assumption);
+      }
+
+      .badge-weaken {
+        background: var(--weaken);
+      }
+
+      .badge-strengthen {
+        background: var(--strengthen);
+      }
+
+      .badge-inference {
+        background: var(--inference);
+      }
+
+      .badge-paradox {
+        background: var(--paradox);
+      }
+
+      .detective-icon {
+        font-size: 20px;
+        margin-right: 4px;
+      }
+
+      .question-text {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--ink);
+      }
+
+      .option {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 8px;
+        font-size: 16px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .option:hover {
+        background: #f1f5f9;
+        border-color: var(--accent);
+      }
+
+      .option input[type="radio"] {
+        margin-top: 4px;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+
+      .option-label {
+        flex: 1;
+        cursor: pointer;
+      }
+
+      .tip-box {
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        border-left: 4px solid var(--highlight);
+        border-radius: 6px;
+        padding: 12px 14px;
+        margin-top: 12px;
+        font-size: 15px;
+        color: #78350f;
+        font-weight: 500;
+      }
+
+      .tip-box strong {
+        color: #92400e;
+      }
+
+      .tip-icon {
+        font-size: 16px;
+        margin-right: 6px;
+      }
+
+      .diagram {
+        background: #f9fafb;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 16px;
+        margin: 12px 0;
+        text-align: center;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .diagram-simple {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .diagram-box {
+        background: var(--accent);
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 13px;
+      }
+
+      .diagram-arrow {
+        font-size: 20px;
+        color: var(--accent);
+      }
+
+      .answer-space {
+        min-height: 4.2em;
+        margin-top: 12px;
+        border-bottom: 1px solid #cbd5e1;
+        border-top: 1px solid #cbd5e1;
+        background-image: linear-gradient(
+          to bottom,
+          transparent calc(33.33% - 1px),
+          #e2e8f0 calc(33.33% - 1px),
+          #e2e8f0 33.33%,
+          transparent 33.33%,
+          transparent calc(66.66% - 1px),
+          #e2e8f0 calc(66.66% - 1px),
+          #e2e8f0 66.66%,
+          transparent 66.66%
+        );
+        background-size: 100% 100%;
+      }
+
+      .legend {
+        margin-top: 32px;
+        padding: 16px;
+        background: #f9fafb;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+      }
+
+      .legend-title {
+        font-weight: 700;
+        font-size: 15px;
+        margin-bottom: 12px;
+        color: var(--ink);
+      }
+
+      .legend-items {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        font-size: 14px;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .legend-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .footer-note {
+        margin-top: 28px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .answer-key {
+        margin-top: 40px;
+        padding: 24px;
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        border: 2px solid var(--strengthen);
+        border-radius: 10px;
+        page-break-before: always;
+      }
+
+      .answer-key h2 {
+        margin-top: 0;
+        color: var(--strengthen);
+        border-bottom: 3px solid var(--strengthen);
+        padding-bottom: 12px;
+      }
+
+      .answer-item {
+        margin-bottom: 24px;
+        padding: 16px;
+        background: #fff;
+        border-left: 4px solid var(--ink);
+        border-radius: 6px;
+        page-break-inside: avoid;
+      }
+
+      .answer-item-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+
+      .answer-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        background: var(--strengthen);
+        color: #fff;
+        border-radius: 50%;
+        font-weight: 700;
+        font-size: 13px;
+        flex-shrink: 0;
+      }
+
+      .answer-correct {
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--strengthen);
+      }
+
+      .answer-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #fff;
+        margin-left: auto;
+      }
+
+      .answer-explanation {
+        margin-top: 10px;
+        padding: 12px;
+        background: #f9fafb;
+        border-radius: 4px;
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--ink);
+      }
+
+      .answer-explanation strong {
+        color: var(--strengthen);
+      }
+
+      @page {
+        size: A4;
+        margin: 12mm;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .toolbar {
+          display: none;
+        }
+
+        .page {
+          width: auto;
+          min-height: auto;
+          margin: 0;
+          padding: 0;
+          box-shadow: none;
+          border-radius: 0;
+        }
+
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        .question-section {
+          page-break-inside: avoid;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .page {
+          width: auto;
+          min-height: auto;
+          margin: 16px;
+          padding: 20px;
+        }
+
+        p,
+        li {
+          font-size: 16px;
+        }
+
+        h1 {
+          font-size: 26px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+
+        .legend-items {
+          grid-template-columns: 1fr;
+        }
+
+        .answer-key {
+          padding: 16px;
+        }
+
+        .answer-item-header {
+          flex-wrap: wrap;
+        }
+
+        .answer-badge {
+          margin-left: 0;
+          margin-top: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <button class="button button-primary" onclick="window.print()">
+        🖨️ Imprimir
+      </button>
+      <button
+        class="button button-secondary"
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      >
+        ⬆️ Topo
+      </button>
+    </div>
+
+    <main class="page">
+      <h1>🔍 O Mistério de Mara</h1>
+      <p class="subtitle">
+        Uma história de investigação lógica para treinar o raciocínio crítico
+      </p>
+
+      <!-- SEÇÃO: Narrativa -->
+      <h2>A História</h2>
+
+      <div class="narrative">
+        <p>
+          Sofia e Mara eram inseparáveis. Desde o quinto ano, faziam
+          <em>tudo</em> juntas: corridas no parque, desafios de bicicleta,
+          competições de skate, aulas de natação. Mara era rápida. Sofia era
+          criativa. Juntas, eram imbatíveis.
+        </p>
+
+        <p>Mas uma segunda-feira, algo estranho aconteceu.</p>
+
+        <p>
+          Sofia chegou à casa de Mara com o skateboard debaixo do braço, como
+          faziam todo fim de semana. Mara abriu a porta, mas dessa vez tinha um
+          sorriso fraco.
+        </p>
+
+        <p>"Oi, Sof. Não... não quero sair hoje."</p>
+
+        <p>
+          "Quê? Mas combinamos de ir à ladeira! O Miguel e a Jéssica vão estar
+          lá!"
+        </p>
+
+        <p>
+          "Eu sei, mas..." Mara olhou para o chão. "Tô cansada. Preciso ficar em
+          casa."
+        </p>
+
+        <p>Sofia sentiu um frio.</p>
+
+        <p>
+          Mas alguns dias depois, Sofia viu Mara no corredor da escola rindo com
+          a Juliana. Se não fosse ser amiga de Sofia, por que estaria buscando
+          outra? Nos dias seguintes, Mara recusou natação, correr, pega-pega…
+          <em>tudo</em> com esportes. Estranhíssimo. Sofia repassava
+          mentalmente: brigaram? Disseram uma à outra algo horrível? Ela
+          lembrou-se vagamente de uma discussão sobre videogames semanas atrás,
+          mas tinha sido bobagem.
+        </p>
+
+        <p>
+          Então, numa quinta-feira, a mãe de Sofia encontrou a mãe de Mara no
+          supermercado. "Mara quebrou o braço em um acidente de bicicleta,
+          semana passada. Está em um gesso. Prometeu a Sofia que contaria quando
+          saísse, mas acho que está envergonhada."
+        </p>
+
+        <p><strong>Quebrou o braço.</strong></p>
+
+        <p>
+          Tudo fez sentido de uma vez. Recusar skateboarding — impossível com um
+          gesso. Recusar natação — água e gesso não combinam. Recusar corrida —
+          difícil equilibrar com o braço imobilizado. Mas rir com a Juliana?
+          Conversa normal? Esses ela <em>podia</em> fazer.
+        </p>
+
+        <p>
+          Sofia percebeu algo importante:
+          <strong
+            >ela tinha construído uma história inteira dentro da cabeça, baseada
+            em pistas incompletas.</strong
+          >
+          Havia assumido coisas que não eram verdadeiras. Criado vilões onde
+          havia apenas uma amiga com medo de contar.
+        </p>
+
+        <p>
+          No dia seguinte, Sofia foi até a casa de Mara com uma caixa de
+          chocolates e um adesivo brilhante para o gesso. "Você tinha que me
+          contar!" disse Sofia, rindo.
+        </p>
+
+        <p>
+          Mara sorriu de verdade, pela primeira vez em semanas. "Eu sabia que
+          você iria descobrir. Você é uma detetive."
+        </p>
+
+        <p>
+          E Sofia aprendeu que às vezes, a melhor investigação não é sobre
+          procurar respostas. <strong>É sobre parar de inventá-las.</strong>
+        </p>
+      </div>
+
+      <!-- SEÇÃO: Questões -->
+      <h2>🧠 Desafios de Raciocínio Crítico</h2>
+
+      <p style="margin-bottom: 24px; font-size: 16px">
+        Agora é sua vez de pensar como uma detetive! Cada pergunta testa um tipo
+        diferente de raciocínio. Não se preocupe com errar — o importante é
+        <strong>auditar sua própria lógica</strong>. 💭
+      </p>
+
+      <!-- QUESTÃO 1 -->
+      <div class="question-section">
+        <div class="question-header">
+          <div class="question-number">1</div>
+          <span class="badge badge-assumption">SUPOSIÇÃO OCULTA</span>
+        </div>
+        <div class="question-text">
+          <span class="detective-icon">🔍</span> Sofia concluiu:
+          <strong>"Mara não quer mais ser minha amiga"</strong> porque Mara
+          recusou sair com ela.
+        </div>
+        <p style="font-size: 15px; margin-bottom: 14px; color: var(--muted)">
+          Qual é o <strong>segredo invisível</strong> que Sofia está acreditando
+          para chegar a essa conclusão?
+        </p>
+
+        <div class="option">
+          <input type="radio" name="q1" id="q1a" value="a" />
+          <label for="q1a" class="option-label"
+            ><strong>A)</strong> Mara só ama alguém se aceitar sair para brincar
+            em esportes radicais.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q1" id="q1b" value="b" />
+          <label for="q1b" class="option-label"
+            ><strong>B)</strong> Se alguém ama você, ela sempre quer fazer
+            exatamente o que você propõe no mesmo dia.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q1" id="q1c" value="c" />
+          <label for="q1c" class="option-label"
+            ><strong>C)</strong> Quando uma amiga diz "não" uma vez, ela acabou
+            com a amizade para sempre.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q1" id="q1d" value="d" />
+          <label for="q1d" class="option-label"
+            ><strong>D)</strong> Se Mara tivesse uma razão boa, ela teria
+            contado a verdade para Sofia.</label
+          >
+        </div>
+
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <strong>Dica de Detetive:</strong> Uma suposição é algo que a pessoa
+          <em>acredita</em> sem dizer em voz alta. Para usar o "não" de Mara
+          como prova, Sofia <em>precisa</em> estar acreditando que "dizer não"
+          sempre significa que a pessoa não ama mais. Procure a resposta que é
+          <strong>fundamental para o argumento fazer sentido</strong>.
+        </div>
+        <div class="answer-space"></div>
+      </div>
+
+      <!-- QUESTÃO 2 -->
+      <div class="question-section">
+        <div class="question-header">
+          <div class="question-number">2</div>
+          <span class="badge badge-assumption">SUPOSIÇÃO OCULTA</span>
+        </div>
+        <div class="question-text">
+          <span class="detective-icon">🔍</span> Quando Sofia viu Mara rindo com
+          a Juliana, ela pensou:
+          <strong
+            >"Se ela está rindo com outra pessoa, então ela não quer mais nada
+            comigo."</strong
+          >
+        </div>
+        <p style="font-size: 15px; margin-bottom: 14px; color: var(--muted)">
+          Qual é a suposição oculta nesse pensamento?
+        </p>
+
+        <div class="option">
+          <input type="radio" name="q2" id="q2a" value="a" />
+          <label for="q2a" class="option-label"
+            ><strong>A)</strong> Rir com alguém significa que você não gosta de
+            ninguém mais no mundo.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q2" id="q2b" value="b" />
+          <label for="q2b" class="option-label"
+            ><strong>B)</strong> A diversão e a amizade só podem existir com uma
+            única pessoa por vez.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q2" id="q2c" value="c" />
+          <label for="q2c" class="option-label"
+            ><strong>C)</strong> Amigos que se amam nunca brincam com outras
+            pessoas.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q2" id="q2d" value="d" />
+          <label for="q2d" class="option-label"
+            ><strong>D)</strong> Mara trocou Sofia pela Juliana.</label
+          >
+        </div>
+
+        <div class="tip-box">
+          <span class="tip-icon">💡</span> <strong>Dica de Detetive:</strong> Se
+          a suposição fosse falsa, o argumento caía por terra. Qual crença sobre
+          a "exclusividade" Sofia está mantendo para achar que ver Mara rindo =
+          Mara não ama mais?
+        </div>
+        <div class="answer-space"></div>
+      </div>
+
+      <!-- QUESTÃO 3 -->
+      <div class="question-section">
+        <div class="question-header">
+          <div class="question-number">3</div>
+          <span class="badge badge-weaken">ENFRAQUECER ARGUMENTO</span>
+        </div>
+        <div class="question-text">
+          <span class="detective-icon">🔍</span> Sofia acreditava:
+          <strong
+            >"Mara não quer mais ser minha amiga, por isso recusa sair."</strong
+          >
+        </div>
+        <p style="font-size: 15px; margin-bottom: 14px; color: var(--muted)">
+          Qual fato, se fosse verdade,
+          <strong>destruiria completamente</strong> essa conclusão?
+        </p>
+
+        <div class="option">
+          <input type="radio" name="q3" id="q3a" value="a" />
+          <label for="q3a" class="option-label"
+            ><strong>A)</strong> Mara recusa outras atividades também (natação,
+            corrida, pega-pega).</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q3" id="q3b" value="b" />
+          <label for="q3b" class="option-label"
+            ><strong>B)</strong> Mara e Sofia tiveram uma discussão sobre
+            videogames.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q3" id="q3c" value="c" />
+          <label for="q3c" class="option-label"
+            ><strong>C)</strong> Mara tem uma razão <strong>física</strong> pela
+            qual não consegue fazer esportes, mas quer muito estar perto de
+            Sofia.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q3" id="q3d" value="d" />
+          <label for="q3d" class="option-label"
+            ><strong>D)</strong> A mãe de Mara a viu conversando com a Juliana
+            na escola.</label
+          >
+        </div>
+
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <strong>Dica de Detetive:</strong> Para enfraquecer um argumento, você
+          <strong>muda a explicação</strong>. Se a recusa for por causa de uma
+          lesão (não por desamizade), então toda a conclusão de Sofia cai.
+          Procure a resposta que
+          <strong>oferece uma razão diferente</strong> para os mesmos fatos.
+        </div>
+        <div class="answer-space"></div>
+      </div>
+
+      <!-- QUESTÃO 4 -->
+      <div class="question-section">
+        <div class="question-header">
+          <div class="question-number">4</div>
+          <span class="badge badge-weaken">ENFRAQUECER ARGUMENTO</span>
+        </div>
+        <div class="question-text">
+          <span class="detective-icon">🔍</span> Sofia pensou:
+          <strong
+            >"Mara tem medo de skateboarding agora, por isso não quer
+            sair."</strong
+          >
+        </div>
+        <p style="font-size: 15px; margin-bottom: 14px; color: var(--muted)">
+          Qual informação <strong>enfraqueceria</strong> mais essa hipótese?
+        </p>
+
+        <div class="option">
+          <input type="radio" name="q4" id="q4a" value="a" />
+          <label for="q4a" class="option-label"
+            ><strong>A)</strong> Mara recusou natação, corrida e pega-pega
+            <strong>também</strong> (não só skateboarding).</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q4" id="q4b" value="b" />
+          <label for="q4b" class="option-label"
+            ><strong>B)</strong> Mara está evitando Sofia
+            especificamente.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q4" id="q4c" value="c" />
+          <label for="q4c" class="option-label"
+            ><strong>C)</strong> Sofia imaginou que Mara tinha medo.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q4" id="q4d" value="d" />
+          <label for="q4d" class="option-label"
+            ><strong>D)</strong> A natação é mais fácil que
+            skateboarding.</label
+          >
+        </div>
+
+        <div class="tip-box">
+          <span class="tip-icon">💡</span> <strong>Dica de Detetive:</strong> Se
+          Mara tivesse medo <strong>só de skateboard</strong>, ela recusaria
+          <strong>só skateboard</strong>. Mas ela recusa <strong>tudo</strong>.
+          Isso muda a explicação completamente!
+        </div>
+        <div class="answer-space"></div>
+      </div>
+
+      <!-- QUESTÃO 5 -->
+      <div class="question-section">
+        <div class="question-header">
+          <div class="question-number">5</div>
+          <span class="badge badge-weaken">ENFRAQUECER ARGUMENTO</span>
+        </div>
+        <div class="question-text">
+          <span class="detective-icon">🔍</span> Sofia hipotesizou:
+          <strong
+            >"Mara está brava comigo desde aquela discussão sobre
+            videogames."</strong
+          >
+        </div>
+        <p style="font-size: 15px; margin-bottom: 14px; color: var(--muted)">
+          Qual descoberta <strong>enfraqueceria</strong> mais essa crença?
+        </p>
+
+        <div class="option">
+          <input type="radio" name="q5" id="q5a" value="a" />
+          <label for="q5a" class="option-label"
+            ><strong>A)</strong> Mara riu e brincou normalmente com a Juliana
+            dias depois.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q5" id="q5b" value="b" />
+          <label for="q5b" class="option-label"
+            ><strong>B)</strong> A discussão sobre videogames aconteceu semanas
+            antes.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q5" id="q5c" value="c" />
+          <label for="q5c" class="option-label"
+            ><strong>C)</strong> Mara voltou a conversar normalmente com Sofia
+            no intervalo.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q5" id="q5d" value="d" />
+          <label for="q5d" class="option-label"
+            ><strong>D)</strong> Qualquer amiga sentiria raiva por uma briga
+            sobre videogames.</label
+          >
+        </div>
+
+        <div class="tip-box">
+          <span class="tip-icon">💡</span> <strong>Dica de Detetive:</strong> Se
+          Mara estivesse brava (raiva), ela não estaria rindo e brincando
+          normalmente com ninguém. O humor dela desmentiria a raiva. Procure por
+          algo que <strong>contradiz</strong> a emoção negativa.
+        </div>
+        <div class="answer-space"></div>
+      </div>
+
+      <!-- QUESTÃO 6 -->
+      <div class="question-section">
+        <div class="question-header">
+          <div class="question-number">6</div>
+          <span class="badge badge-strengthen">FORTALECER ARGUMENTO</span>
+        </div>
+        <div class="question-text">
+          <span class="detective-icon">🔍</span> Sofia ACERTOU ao final:
+          <strong
+            >"Mara tem um gesso no braço; por isso não quer fazer
+            esportes."</strong
+          >
+        </div>
+        <p style="font-size: 15px; margin-bottom: 14px; color: var(--muted)">
+          Qual informação <strong>MAIS fortaleceria</strong> essa conclusão?
+        </p>
+
+        <div class="option">
+          <input type="radio" name="q6" id="q6a" value="a" />
+          <label for="q6a" class="option-label"
+            ><strong>A)</strong> Mara sorriu com a Juliana.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q6" id="q6b" value="b" />
+          <label for="q6b" class="option-label"
+            ><strong>B)</strong> Água danifica gessos, então natação é
+            impossível com um gesso.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q6" id="q6c" value="c" />
+          <label for="q6c" class="option-label"
+            ><strong>C)</strong> Sofia gosta de skateboarding.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q6" id="q6d" value="d" />
+          <label for="q6d" class="option-label"
+            ><strong>D)</strong> A discussão sobre videogames foi há
+            semanas.</label
+          >
+        </div>
+
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <strong>Dica de Detetive:</strong> Fortalecer = adicionar uma razão
+          que torna a conclusão mais lógica. O gesso explica por que recusar
+          <strong>esportes</strong>, mas qual resposta conecta o gesso a
+          <strong>uma atividade específica que Mara recusou</strong>?
+        </div>
+        <div class="answer-space"></div>
+      </div>
+
+      <!-- QUESTÃO 7 -->
+      <div class="question-section">
+        <div class="question-header">
+          <div class="question-number">7</div>
+          <span class="badge badge-strengthen">FORTALECER ARGUMENTO</span>
+        </div>
+        <div class="question-text">
+          <span class="detective-icon">🔍</span> A conclusão era:
+          <strong
+            >"As recusas de Mara fazem sentido se ela tem um braço
+            quebrado."</strong
+          >
+        </div>
+        <p style="font-size: 15px; margin-bottom: 14px; color: var(--muted)">
+          Qual padrão nas recusas <strong>MAIS prova</strong> isso?
+        </p>
+
+        <div class="option">
+          <input type="radio" name="q7" id="q7a" value="a" />
+          <label for="q7a" class="option-label"
+            ><strong>A)</strong> Mara recusou atividades aleatórias (sem nenhuma
+            conexão).</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q7" id="q7b" value="b" />
+          <label for="q7b" class="option-label"
+            ><strong>B)</strong> Mara recusou <strong>EXATAMENTE</strong> os
+            esportes que exigem dois braços ou equilíbrio.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q7" id="q7c" value="c" />
+          <label for="q7c" class="option-label"
+            ><strong>C)</strong> Mara recusou tudo menos falar.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q7" id="q7d" value="d" />
+          <label for="q7d" class="option-label"
+            ><strong>D)</strong> Mara disse "não" em uma segunda-feira.</label
+          >
+        </div>
+
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <strong>Dica de Detetive:</strong> Não é ao acaso. O padrão é muito
+          <strong>específico</strong>. Se o gesso fosse a causa, as recusas
+          seguiram um padrão? Ou foram aleatórias? Procure por uma resposta que
+          mostre <strong>coerência lógica</strong>.
+        </div>
+        <div class="answer-space"></div>
+      </div>
+
+      <!-- QUESTÃO 8 -->
+      <div class="question-section">
+        <div class="question-header">
+          <div class="question-number">8</div>
+          <span class="badge badge-inference">CONCLUSÃO LÓGICA</span>
+        </div>
+        <div class="question-text">
+          <span class="detective-icon">🔍</span> Baseado
+          <strong>APENAS na história</strong> (sem conhecimento externo), qual
+          conclusão você <strong>PRECISA</strong> aceitar como verdadeira?
+        </div>
+
+        <div class="option">
+          <input type="radio" name="q8" id="q8a" value="a" />
+          <label for="q8a" class="option-label"
+            ><strong>A)</strong> Mara é preguiçosa.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q8" id="q8b" value="b" />
+          <label for="q8b" class="option-label"
+            ><strong>B)</strong> Sofia é a melhor detetive da escola.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q8" id="q8c" value="c" />
+          <label for="q8c" class="option-label"
+            ><strong>C)</strong> Mara tinha uma razão importante para não poder
+            fazer certos esportes.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q8" id="q8d" value="d" />
+          <label for="q8d" class="option-label"
+            ><strong>D)</strong> Videogames são chatos.</label
+          >
+        </div>
+
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <strong>Dica de Detetive:</strong> Uma conclusão lógica é algo que
+          <strong>precisa ser verdade</strong> pelos fatos. Os outros itens vêm
+          de opinião ou informação externa. Qual é a única conclusão que não
+          pode ser falsa, baseado no que lemos?
+        </div>
+        <div class="answer-space"></div>
+      </div>
+
+      <!-- QUESTÃO 9 -->
+      <div class="question-section">
+        <div class="question-header">
+          <div class="question-number">9</div>
+          <span class="badge badge-inference">CONCLUSÃO LÓGICA</span>
+        </div>
+        <div class="question-text">
+          <span class="detective-icon">🔍</span> Quando a mãe de Sofia disse que
+          Mara quebrou o braço, qual conclusão é
+          <strong>LOGICAMENTE obrigada</strong>?
+        </div>
+
+        <div class="option">
+          <input type="radio" name="q9" id="q9a" value="a" />
+          <label for="q9a" class="option-label"
+            ><strong>A)</strong> Mara é desajeitada.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q9" id="q9b" value="b" />
+          <label for="q9b" class="option-label"
+            ><strong>B)</strong> Sofia havia interpretado corretamente os
+            <strong>sinais</strong>, mas com explicação
+            <strong>errada</strong>.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q9" id="q9c" value="c" />
+          <label for="q9c" class="option-label"
+            ><strong>C)</strong> Sofia deveria ter descoberto sozinha.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q9" id="q9d" value="d" />
+          <label for="q9d" class="option-label"
+            ><strong>D)</strong> Quebrar o braço é sempre um segredo.</label
+          >
+        </div>
+
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <strong>Dica de Detetive:</strong> Sofia viu os padrões certos (as
+          recusas de esportes). Mas qual era o <strong>motivo</strong> que ela
+          inventou? E qual é o motivo <strong>real</strong>? Esta questão trata
+          sobre a diferença entre sinais e explicação.
+        </div>
+        <div class="answer-space"></div>
+      </div>
+
+      <!-- QUESTÃO 10 -->
+      <div class="question-section">
+        <div class="question-header">
+          <div class="question-number">10</div>
+          <span class="badge badge-paradox">PARADOXO</span>
+        </div>
+        <div class="question-text">
+          <span class="detective-icon">🔍</span> Isso parecia
+          <strong>impossível</strong> ao mesmo tempo:
+        </div>
+        <div class="diagram">
+          <div class="diagram-simple">
+            <div class="diagram-box">Mara evita todos os esportes</div>
+            <div class="diagram-arrow">MAS</div>
+            <div class="diagram-box">Mara ri com a Juliana</div>
+          </div>
+        </div>
+        <p
+          style="
+            font-size: 15px;
+            margin-bottom: 14px;
+            color: var(--muted);
+            margin-top: 14px;
+          "
+        >
+          Se Mara estivesse <em>brava</em> ou <em>assustada</em>, não faria
+          sentido rir. Como é possível ela fazer <strong>ambas</strong>?
+        </p>
+
+        <div class="option">
+          <input type="radio" name="q10" id="q10a" value="a" />
+          <label for="q10a" class="option-label"
+            ><strong>A)</strong> Mara está fingindo estar feliz.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q10" id="q10b" value="b" />
+          <label for="q10b" class="option-label"
+            ><strong>B)</strong> Mara consegue fazer atividades
+            <strong>leves</strong> (conversa, risada), mas não atividades que
+            exigem dois braços ou equilíbrio.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q10" id="q10c" value="c" />
+          <label for="q10c" class="option-label"
+            ><strong>C)</strong> A Juliana é mais legal que Sofia.</label
+          >
+        </div>
+        <div class="option">
+          <input type="radio" name="q10" id="q10d" value="d" />
+          <label for="q10d" class="option-label"
+            ><strong>D)</strong> Mara está mentindo para a Juliana.</label
+          >
+        </div>
+
+        <div class="tip-box">
+          <span class="tip-icon">💡</span> <strong>Dica de Detetive:</strong> Um
+          paradoxo é quando duas coisas parecem contradizer, mas na verdade não.
+          Qual é a <strong>única explicação</strong> que permite que AMBOS os
+          fatos sejam verdadeiros ao mesmo tempo? Pense: o que não é um esporte
+          radical?
+        </div>
+        <div class="answer-space"></div>
+      </div>
+
+      <!-- LEGENDA -->
+      <div class="legend">
+        <div class="legend-title">📚 O que significam essas categorias?</div>
+        <div class="legend-items">
+          <div class="legend-item">
+            <div class="legend-dot" style="background: var(--assumption)"></div>
+            <span
+              ><strong>SUPOSIÇÃO OCULTA:</strong> Encontrar a crença invisível
+              que sustenta um argumento.</span
+            >
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background: var(--weaken)"></div>
+            <span
+              ><strong>ENFRAQUECER:</strong> Que fato derrubaria essa
+              conclusão?</span
+            >
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background: var(--strengthen)"></div>
+            <span
+              ><strong>FORTALECER:</strong> Que informação tornaria isso ainda
+              mais certeiro?</span
+            >
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background: var(--inference)"></div>
+            <span
+              ><strong>CONCLUSÃO LÓGICA:</strong> O que <em>precisa</em> ser
+              verdade pelos fatos apresentados?</span
+            >
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background: var(--paradox)"></div>
+            <span
+              ><strong>PARADOXO:</strong> Como dois fatos contraditórios são na
+              verdade compatíveis?</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        <strong>🎯 Dica Final:</strong> Depois de responder, releia a história e
+        veja se sua resposta faz sentido. O raciocínio crítico é um
+        <strong>exercício de autoauditoria</strong> — você é o juiz do seu
+        próprio pensamento! Use o botão "Imprimir" para salvar em PDF e estudar
+        depois.
+      </div>
+
+      <!-- GABARITO COM EXPLICAÇÕES -->
+      <div class="answer-key">
+        <h2>✅ Gabarito com Explicações</h2>
+
+        <div class="answer-item">
+          <div class="answer-item-header">
+            <div class="answer-num">1</div>
+            <span class="answer-correct">Resposta: <strong>B</strong></span>
+            <span class="answer-badge" style="background: var(--assumption)"
+              >SUPOSIÇÃO OCULTA</span
+            >
+          </div>
+          <div class="answer-explanation">
+            <strong>Por que B é correta:</strong> Sofia conclui que Mara não
+            quer mais ser sua amiga porque Mara recusou sair. Para isso fazer
+            sentido, Sofia está acreditando (inconscientemente) que
+            <strong
+              >uma pessoa que ama você sempre quer fazer o que você propõe no
+              mesmo momento em que você propõe</strong
+            >. Se essa suposição fosse falsa (ou seja, se alguém pudesse amar
+            você E recusar um convite), o argumento inteiro desmorona.<br /><br />
+            <strong>Por que as outras estão erradas:</strong> A, C e D não são
+            fundamentais para o raciocínio. A suposição oculta MAIS essencial é
+            a ideia de que "dizer sim sempre" = "amar".
+          </div>
+        </div>
+
+        <div class="answer-item">
+          <div class="answer-item-header">
+            <div class="answer-num">2</div>
+            <span class="answer-correct">Resposta: <strong>B</strong></span>
+            <span class="answer-badge" style="background: var(--assumption)"
+              >SUPOSIÇÃO OCULTA</span
+            >
+          </div>
+          <div class="answer-explanation">
+            <strong>Por que B é correta:</strong> Sofia vê Mara rindo com
+            Juliana e conclui que Mara não quer nada com ela. Isso só faz
+            sentido se Sofia acredita que
+            <strong
+              >a diversão e a amizade podem existir com apenas uma
+              pessoa</strong
+            >
+            — que alegria é exclusiva. Se essa crença fosse falsa (se uma pessoa
+            pudesse rir com várias pessoas sem deixar de amar outras), a
+            conclusão não teria lógica.<br /><br />
+            <strong>Por que as outras estão erradas:</strong> A diz "não gosta
+            de ninguém mais" (muito extremo), C e D são consequências, não
+            suposições fundamentais.
+          </div>
+        </div>
+
+        <div class="answer-item">
+          <div class="answer-item-header">
+            <div class="answer-num">3</div>
+            <span class="answer-correct">Resposta: <strong>C</strong></span>
+            <span class="answer-badge" style="background: var(--weaken)"
+              >ENFRAQUECER ARGUMENTO</span
+            >
+          </div>
+          <div class="answer-explanation">
+            <strong>Por que C é correta:</strong> A conclusão de Sofia era "Mara
+            não quer ser minha amiga". Se descobríssemos que Mara tem uma razão
+            <strong>física</strong> para não sair (não emocional), a conclusão
+            inteira desaba. O fato de Mara querer estar perto de Sofia, mas não
+            poder fazer esportes, muda completamente a explicação da recusa.<br /><br />
+            <strong>Por que as outras estão erradas:</strong> A (outras recusas)
+            na verdade <strong>reforça</strong> a suposição de Sofia, não
+            enfraquece. B (discussão sobre videogames) é muito antiga. D (ver
+            com Juliana) ela já sabia.
+          </div>
+        </div>
+
+        <div class="answer-item">
+          <div class="answer-item-header">
+            <div class="answer-num">4</div>
+            <span class="answer-correct">Resposta: <strong>A</strong></span>
+            <span class="answer-badge" style="background: var(--weaken)"
+              >ENFRAQUECER ARGUMENTO</span
+            >
+          </div>
+          <div class="answer-explanation">
+            <strong>Por que A é correta:</strong> Sofia pensava que Mara tinha
+            <strong>medo só de skateboard</strong>. Se isso fosse verdade, Mara
+            recusaria apenas skateboard. Mas Sofia descobre que Mara recusa
+            natação, corrida, pega-pega — <strong>tudo</strong>. Isso enfraquece
+            a hipótese porque mostra um padrão diferente (não é sobre medo
+            específico, é sobre algo que afeta múltiplas atividades).<br /><br />
+            <strong>Por que as outras estão erradas:</strong> B não enfraquece a
+            hipótese do medo. C e D não são informações relevantes.
+          </div>
+        </div>
+
+        <div class="answer-item">
+          <div class="answer-item-header">
+            <div class="answer-num">5</div>
+            <span class="answer-correct">Resposta: <strong>A</strong></span>
+            <span class="answer-badge" style="background: var(--weaken)"
+              >ENFRAQUECER ARGUMENTO</span
+            >
+          </div>
+          <div class="answer-explanation">
+            <strong>Por que A é correta:</strong> Sofia acredita que Mara está
+            <strong>brava</strong>. Mas se Mara está rindo e brincando
+            normalmente com a Juliana, isso é uma contradição com a raiva.
+            Ninguém que está genuinamente brava fica rindo e brincando. Essa
+            descoberta <strong>destrói</strong> a hipótese de que a razão é
+            raiva.<br /><br />
+            <strong>Por que as outras estão erradas:</strong> B é contexto
+            histórico (semanas atrás). C mostra que ela conversa normalmente,
+            mas não é tão forte quanto ver ela rindo (raiva desmentida). D é uma
+            generalização falsa.
+          </div>
+        </div>
+
+        <div class="answer-item">
+          <div class="answer-item-header">
+            <div class="answer-num">6</div>
+            <span class="answer-correct">Resposta: <strong>B</strong></span>
+            <span class="answer-badge" style="background: var(--strengthen)"
+              >FORTALECER ARGUMENTO</span
+            >
+          </div>
+          <div class="answer-explanation">
+            <strong>Por que B é correta:</strong> Sofia conclui que o gesso é a
+            razão para recusar esportes. Para <strong>fortalecer</strong> essa
+            conclusão, precisamos de uma evidência que
+            <strong>conecte</strong> o gesso a uma atividade específica. Saber
+            que "água danifica gessos" explica por que natação é impossível —
+            isso reforça o link entre o gesso e a recusa da natação
+            especificamente.<br /><br />
+            <strong>Por que as outras estão erradas:</strong> A é irrelevante. C
+            (Sofia gosta) não prova nada sobre Mara. D (discussão antiga) não
+            tem conexão com o gesso.
+          </div>
+        </div>
+
+        <div class="answer-item">
+          <div class="answer-item-header">
+            <div class="answer-num">7</div>
+            <span class="answer-correct">Resposta: <strong>B</strong></span>
+            <span class="answer-badge" style="background: var(--strengthen)"
+              >FORTALECER ARGUMENTO</span
+            >
+          </div>
+          <div class="answer-explanation">
+            <strong>Por que B é correta:</strong> Se o gesso é a
+            <strong>verdadeira razão</strong>, as recusas devem seguir um
+            <strong>padrão lógico</strong>. Mara recusa
+            <strong>especificamente</strong> atividades que exigem dois braços
+            ou equilíbrio — não aleatoriamente qualquer coisa. Esse padrão
+            <strong>específico</strong> e <strong>coerente</strong> prova que há
+            uma razão física real, não emoções aleatórias.<br /><br />
+            <strong>Por que as outras estão erradas:</strong> A (aleatórias)
+            contradiz a conclusão. C (tudo menos falar) é vago. D
+            (segunda-feira) não tem relevância lógica.
+          </div>
+        </div>
+
+        <div class="answer-item">
+          <div class="answer-item-header">
+            <div class="answer-num">8</div>
+            <span class="answer-correct">Resposta: <strong>C</strong></span>
+            <span class="answer-badge" style="background: var(--inference)"
+              >CONCLUSÃO LÓGICA</span
+            >
+          </div>
+          <div class="answer-explanation">
+            <strong>Por que C é correta:</strong> Uma conclusão lógica é algo
+            que <strong>precisa ser verdadeira</strong> pelos fatos
+            apresentados. A história mostra que Mara recusou certos esportes.
+            Disso, podemos <strong>obrigatoriamente</strong> concluir que ela
+            tinha uma razão importante (mesmo que não soubéssemos qual era no
+            início). Não há outra explicação possível para o padrão de
+            recusas.<br /><br />
+            <strong>Por que as outras estão erradas:</strong> A (preguiçosa) é
+            opinião, não fato. B (melhor detetive) é exagerado e subjetivo. D
+            (videogames chatos) é completamente infundado.
+          </div>
+        </div>
+
+        <div class="answer-item">
+          <div class="answer-item-header">
+            <div class="answer-num">9</div>
+            <span class="answer-correct">Resposta: <strong>B</strong></span>
+            <span class="answer-badge" style="background: var(--inference)"
+              >CONCLUSÃO LÓGICA</span
+            >
+          </div>
+          <div class="answer-explanation">
+            <strong>Por que B é correta:</strong> Sofia viu os
+            <strong>sinais corretamente</strong> (as recusas dos esportes) — ela
+            não se enganou nos padrões. Mas ela
+            <strong>explicou errado</strong> (pensou em desamizade, medo,
+            raiva). Quando descobriu a verdade (gesso), percebeu que vira os
+            sinais certos mas com a causa errada. Isso é uma conclusão
+            <strong>logicamente necessária</strong>.<br /><br />
+            <strong>Por que as outras estão erradas:</strong> A (desajeitada) é
+            opinião sobre Mara. C (deveria ter descoberto) é julgamento, não
+            conclusão. D (segredo sempre) é generalização falsa.
+          </div>
+        </div>
+
+        <div class="answer-item">
+          <div class="answer-item-header">
+            <div class="answer-num">10</div>
+            <span class="answer-correct">Resposta: <strong>B</strong></span>
+            <span class="answer-badge" style="background: var(--paradox)"
+              >PARADOXO</span
+            >
+          </div>
+          <div class="answer-explanation">
+            <strong>Por que B é correta:</strong> O paradoxo era: "Mara evita
+            esportes MAS ri com a Juliana". Isso só faz sentido se entendermos
+            que <strong>não há contradição real</strong>. Mara pode fazer
+            atividades <strong>leves</strong> (risadas, conversas) que não
+            exigem braço quebrado. Mas não pode fazer atividades que exigem
+            <strong>dois braços ou equilíbrio</strong>. Essa é a única
+            explicação que permite que AMBOS os fatos sejam verdadeiros.<br /><br />
+            <strong>Por que as outras estão erradas:</strong> A (fingindo)
+            adicionaria desonestidade sem necessidade. C (Juliana é melhor) não
+            resolve nada. D (mentindo) também é desnecessário e falso.
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

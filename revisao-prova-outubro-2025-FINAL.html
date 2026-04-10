@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caderno de Revisão - Matemática 1º Ano</title>
+    <style>
+      @media print {
+        @page {
+          size: A4;
+          margin: 12mm;
+        }
+        .page-break {
+          page-break-before: always;
+        }
+        body {
+          margin: 0;
+          padding: 15mm;
+        }
+        .question {
+          page-break-inside: avoid;
+        }
+        /* Garantir melhor contraste e evitar mudanças de cor na impressão */
+        * {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
+
+      body {
+        font-family: "Comic Sans MS", "Arial", sans-serif;
+        max-width: 210mm;
+        margin: 0 auto;
+        padding: 15px;
+        background: white;
+        line-height: 1.4;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+        border-bottom: 3px solid #ff6b9d;
+        padding-bottom: 10px;
+      }
+
+      .header h1 {
+        color: #ff6b9d;
+        font-size: 24px;
+        margin: 5px 0;
+      }
+
+      .header h2 {
+        font-size: 16px;
+        color: #333;
+        margin: 0;
+      }
+
+      .info-box {
+        border: 2px dashed #4ecdc4;
+        padding: 10px;
+        margin: 15px 0;
+        border-radius: 8px;
+        background: #f0f9ff;
+        font-size: 14px;
+      }
+
+      .question {
+        margin: 12px 0;
+        padding: 10px;
+        background: #fff9e6;
+        border-left: 4px solid #ffb347;
+        border-radius: 4px;
+      }
+
+      .question-number {
+        color: #ff6b9d;
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .answer-space {
+        margin: 8px 0;
+        padding: 12px;
+        border: 2px dashed #95e1d3;
+        min-height: 30px;
+        background: white;
+      }
+
+      .section-title {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px;
+        margin: 20px 0 12px 0;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      table {
+        border-collapse: collapse;
+        margin: 15px auto;
+      }
+
+      table td {
+        border: 2px solid #333;
+        padding: 10px;
+        min-width: 60px;
+        text-align: center;
+      }
+
+      .gabarito {
+        background: #e8f5e9;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 8px;
+        border: 3px solid #4caf50;
+      }
+
+      .gabarito h2 {
+        color: #2e7d32;
+        text-align: center;
+        margin: 0 0 15px 0;
+        font-size: 22px;
+      }
+
+      .section-gabarito {
+        background: #fff;
+        padding: 12px;
+        margin: 12px 0;
+        border-radius: 6px;
+        border-left: 4px solid #ff9800;
+      }
+
+      .section-gabarito h3 {
+        margin: 0 0 10px 0;
+        color: #ff9800;
+        font-size: 15px;
+      }
+
+      .answer-explanation {
+        margin: 8px 0;
+        padding: 10px;
+        background: #fafafa;
+        border-radius: 4px;
+        font-size: 13px;
+      }
+
+      .answer-explanation strong {
+        color: #333;
+      }
+
+      .answer-explanation em {
+        color: #666;
+        font-size: 12px;
+      }
+
+      p {
+        margin: 8px 0;
+      }
+
+      svg {
+        display: block;
+        margin: 10px auto;
+        max-width: 100%;
+      }
+
+      .emoji {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>🌟 Caderno de Revisão - Matemática 🌟</h1>
+      <h2>1º Ano do Ensino Fundamental - Outubro 2025</h2>
+    </div>
+
+    <div class="info-box">
+      <p>
+        <strong>Nome:</strong>
+        ___________________________________________________
+      </p>
+      <p>
+        <strong>Data:</strong> ____/____/______ &nbsp; &nbsp;
+        <strong>Professora:</strong> ____________________
+      </p>
+    </div>
+
+    <div
+      style="
+        text-align: center;
+        margin: 15px 0;
+        padding: 12px;
+        background: #ffe5e5;
+        border-radius: 8px;
+      "
+    >
+      <p style="font-size: 15px; color: #d32f2f; margin: 0">
+        <strong>📚 Instruções:</strong> Leia com atenção cada questão e faça seu
+        melhor!
+      </p>
+    </div>
+
+    <!-- SEÇÃO 1: FIGURAS GEOMÉTRICAS -->
+    <div class="section-title">
+      🔷 Figuras Geométricas Planas e Não Planas 🔷
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 1</div>
+      <p>Observe as figuras e pinte apenas as figuras PLANAS:</p>
+      <svg width="100%" height="100" viewBox="0 0 600 100">
+        <circle
+          cx="50"
+          cy="50"
+          r="30"
+          fill="none"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <text x="50" y="85" text-anchor="middle" font-size="12">A</text>
+        <rect
+          x="110"
+          y="25"
+          width="50"
+          height="50"
+          fill="none"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <text x="135" y="85" text-anchor="middle" font-size="12">B</text>
+        <polygon
+          points="180,70 210,20 240,70"
+          fill="none"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <text x="210" y="85" text-anchor="middle" font-size="12">C</text>
+        <ellipse
+          cx="300"
+          cy="50"
+          rx="25"
+          ry="15"
+          fill="none"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <line
+          x1="275"
+          y1="50"
+          x2="275"
+          y2="70"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <line
+          x1="325"
+          y1="50"
+          x2="325"
+          y2="70"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <ellipse
+          cx="300"
+          cy="70"
+          rx="25"
+          ry="8"
+          fill="none"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <text x="300" y="85" text-anchor="middle" font-size="12">D</text>
+        <rect
+          x="350"
+          y="35"
+          width="40"
+          height="30"
+          fill="none"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <rect
+          x="365"
+          y="20"
+          width="40"
+          height="30"
+          fill="none"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <text x="390" y="85" text-anchor="middle" font-size="12">E</text>
+      </svg>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 2</div>
+      <p>Desenhe um QUADRADO e um CÍRCULO:</p>
+      <div class="answer-space" style="min-height: 80px"></div>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 3</div>
+      <p>Quantos lados tem um TRIÂNGULO? _______</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 4</div>
+      <p>Ligue a forma ao seu nome:</p>
+      <p style="margin-left: 20px">
+        ⭕ . . . . . . . . TRIÂNGULO<br />
+        🔷 . . . . . . . . CÍRCULO<br />
+        △ . . . . . . . . RETÂNGULO<br />
+        ▭ . . . . . . . . QUADRADO
+      </p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 5</div>
+      <p>Marque X nas figuras NÃO PLANAS (que ocupam espaço):</p>
+      <p style="margin-left: 20px">
+        ( ) Bola de futebol &nbsp; &nbsp; ( ) Folha de papel<br />
+        ( ) Caixa de sapato &nbsp; &nbsp; ( ) Círculo desenhado
+      </p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 6</div>
+      <p>Um RETÂNGULO tem _______ lados.</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 7</div>
+      <p>Quantas arestas tem um CUBO? _______</p>
+    </div>
+
+    <!-- SEÇÃO 2: GRÁFICOS -->
+    <div class="page-break"></div>
+    <div class="section-title">📊 Leitura de Gráficos 📊</div>
+
+    <div class="question">
+      <div class="question-number">Questão 8</div>
+      <p><strong>Frutas Favoritas</strong></p>
+      <svg width="100%" height="150" viewBox="0 0 500 150">
+        <line
+          x1="40"
+          y1="120"
+          x2="480"
+          y2="120"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <line x1="40" y1="20" x2="40" y2="120" stroke="#333" stroke-width="2" />
+        <rect x="60" y="60" width="60" height="60" fill="#FF6B9D" />
+        <text x="90" y="135" text-anchor="middle" font-size="12">Maçã (6)</text>
+        <rect x="150" y="40" width="60" height="80" fill="#FFD93D" />
+        <text x="180" y="135" text-anchor="middle" font-size="12">
+          Banana (8)
+        </text>
+        <rect x="240" y="80" width="60" height="40" fill="#95E1D3" />
+        <text x="270" y="135" text-anchor="middle" font-size="12">Uva (4)</text>
+        <rect x="330" y="100" width="60" height="20" fill="#FFA07A" />
+        <text x="360" y="135" text-anchor="middle" font-size="12">
+          Laranja (2)
+        </text>
+      </svg>
+      <p>a) Qual fruta foi a mais escolhida? _____________</p>
+      <p>b) Qual teve menos votos? _____________</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 9</div>
+      <p>Animais de Estimação: Cachorro (5), Gato (3), Pássaro (1)</p>
+      <p>Quantas crianças têm CACHORRO? _______</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 10</div>
+      <p>Qual animal tem mais donos? _____________</p>
+    </div>
+
+    <!-- SEÇÃO 3: CONSTRUÇÃO DE GRÁFICOS -->
+    <div class="section-title">📈 Construção de Gráficos 📈</div>
+
+    <div class="question">
+      <div class="question-number">Questão 11</div>
+      <p>Complete o gráfico pintando um quadradinho para cada criança:</p>
+      <p>
+        <strong
+          >Bola: 3 &nbsp; &nbsp; Boneca: 5 &nbsp; &nbsp; Carrinho: 2</strong
+        >
+      </p>
+      <svg width="100%" height="120" viewBox="0 0 450 120">
+        <line
+          x1="30"
+          y1="100"
+          x2="430"
+          y2="100"
+          stroke="#333"
+          stroke-width="1"
+        />
+        <line x1="30" y1="10" x2="30" y2="100" stroke="#333" stroke-width="1" />
+        <rect x="50" y="80" width="15" height="20" fill="none" stroke="#999" />
+        <rect x="50" y="60" width="15" height="20" fill="none" stroke="#999" />
+        <rect x="50" y="40" width="15" height="20" fill="none" stroke="#999" />
+        <text x="57" y="115" text-anchor="middle" font-size="11">Bola</text>
+        <rect x="150" y="80" width="15" height="20" fill="none" stroke="#999" />
+        <rect x="150" y="60" width="15" height="20" fill="none" stroke="#999" />
+        <rect x="150" y="40" width="15" height="20" fill="none" stroke="#999" />
+        <rect x="150" y="20" width="15" height="20" fill="none" stroke="#999" />
+        <rect x="150" y="0" width="15" height="20" fill="none" stroke="#999" />
+        <text x="157" y="115" text-anchor="middle" font-size="11">Boneca</text>
+        <rect x="250" y="80" width="15" height="20" fill="none" stroke="#999" />
+        <rect x="250" y="60" width="15" height="20" fill="none" stroke="#999" />
+        <text x="257" y="115" text-anchor="middle" font-size="11">
+          Carrinho
+        </text>
+      </svg>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 12</div>
+      <p>Faça um gráfico simples com 4 cores favoritas de seus amigos:</p>
+      <div class="answer-space" style="min-height: 60px"></div>
+    </div>
+
+    <!-- SEÇÃO 4: NÚMEROS ATÉ 50 -->
+    <div class="page-break"></div>
+    <div class="section-title">🔢 Números até 50 🔢</div>
+
+    <div class="question">
+      <div class="question-number">Questão 13</div>
+      <p>Escreva os números que faltam: 15 - __ - 17 - __ - 19 - __ - 21</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 14</div>
+      <p>Conte as estrelas: ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</p>
+      <p>Total: _____ estrelas</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 15</div>
+      <p>
+        Escreva por extenso: 32 = ________________ &nbsp; 45 = ________________
+      </p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 16</div>
+      <p>Coloque em ordem crescente: 28 - 15 - 42 - 9 - 33</p>
+      <p>___ - ___ - ___ - ___ - ___</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 17</div>
+      <p>Complete: a) 5 - 10 - 15 - ___ - ___ - ___</p>
+      <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b)
+        40 - 42 - 44 - ___ - ___ - ___
+      </p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 18</div>
+      <p>Qual número vem ANTES e DEPOIS?</p>
+      <p>___ - 25 - ___ &nbsp; &nbsp; &nbsp; ___ - 39 - ___</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 19</div>
+      <p>
+        Resolva: a) 20 + 15 = ___ &nbsp; b) 30 + 12 = ___ &nbsp; c) 25 - 10 =
+        ___
+      </p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 20</div>
+      <p>Circule o MAIOR número:</p>
+      <p>a) 23 - 31 - 19 - 27 &nbsp; &nbsp; b) 45 - 48 - 42 - 50</p>
+    </div>
+
+    <!-- SEÇÃO 5: DEZENAS -->
+    <div class="section-title">🎯 Dezenas Inteiras 🎯</div>
+
+    <div class="question">
+      <div class="question-number">Questão 21</div>
+      <p>Complete: 10 - 20 - ___ - 40 - ___ - ___</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 22</div>
+      <p>Quantas dezenas tem o número 30? _____ dezenas</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 23</div>
+      <p>
+        Desenhe 2 grupos de 10 bolinhas. Total: _____ bolinhas = _____ dezenas
+      </p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 24</div>
+      <p>
+        a) 1 dezena = _____ unidades &nbsp; b) 2 dezenas = _____ unidades &nbsp;
+        c) 5 dezenas = _____
+      </p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 25</div>
+      <p>Pinte as dezenas inteiras: 15 - 20 - 33 - 40 - 27 - 50 - 18 - 30</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 26</div>
+      <p>Complete: 10 + 10 = ___ &nbsp; 20 + 10 = ___ &nbsp; 30 + 10 = ___</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 27</div>
+      <p>Ligue o número às suas dezenas:</p>
+      <p>
+        47 • ........... • 3 dezenas<br />
+        32 • ........... • 5 dezenas<br />
+        50 • ........... • 4 dezenas
+      </p>
+    </div>
+
+    <!-- SEÇÃO 6: RETA NUMÉRICA -->
+    <div class="page-break"></div>
+    <div class="section-title">➡️ Reta Numérica ➡️</div>
+
+    <div class="question">
+      <div class="question-number">Questão 28</div>
+      <p>Complete a reta numérica:</p>
+      <svg width="100%" height="60" viewBox="0 0 500 60">
+        <line x1="30" y1="30" x2="470" y2="30" stroke="#333" stroke-width="2" />
+        <line x1="30" y1="20" x2="30" y2="40" stroke="#333" stroke-width="2" />
+        <text x="30" y="55" text-anchor="middle" font-size="12">0</text>
+        <line
+          x1="250"
+          y1="20"
+          x2="250"
+          y2="40"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <text x="250" y="55" text-anchor="middle" font-size="12">5</text>
+        <line
+          x1="470"
+          y1="20"
+          x2="470"
+          y2="40"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <text x="470" y="55" text-anchor="middle" font-size="12">10</text>
+      </svg>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 29</div>
+      <p>Marque com uma seta onde fica o número 8 nesta reta (0 a 10):</p>
+      <svg width="100%" height="60" viewBox="0 0 500 60">
+        <line x1="30" y1="30" x2="470" y2="30" stroke="#333" stroke-width="2" />
+        <line x1="30" y1="20" x2="30" y2="40" stroke="#333" stroke-width="2" />
+        <text x="30" y="55" text-anchor="middle" font-size="12">0</text>
+        <line
+          x1="470"
+          y1="20"
+          x2="470"
+          y2="40"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <text x="470" y="55" text-anchor="middle" font-size="12">10</text>
+      </svg>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 30</div>
+      <p>Na reta 12 - 13 - 14, qual número está entre 12 e 14? _______</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 31</div>
+      <p>Desenhe sua própria reta numérica de 0 até 10:</p>
+      <div class="answer-space" style="min-height: 50px"></div>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 32</div>
+      <p>Marque com X onde fica o 25 nesta reta (20 - 30):</p>
+      <svg width="100%" height="60" viewBox="0 0 500 60">
+        <line x1="30" y1="30" x2="470" y2="30" stroke="#333" stroke-width="2" />
+        <line x1="30" y1="20" x2="30" y2="40" stroke="#333" stroke-width="2" />
+        <text x="30" y="55" text-anchor="middle" font-size="12">20</text>
+        <line
+          x1="250"
+          y1="20"
+          x2="250"
+          y2="40"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <text x="250" y="55" text-anchor="middle" font-size="12">25</text>
+        <line
+          x1="470"
+          y1="20"
+          x2="470"
+          y2="40"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <text x="470" y="55" text-anchor="middle" font-size="12">30</text>
+      </svg>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 33</div>
+      <p>Complete a reta: 35 - ___ - ___ - 38</p>
+      <div class="answer-space"></div>
+    </div>
+
+    <!-- SEÇÃO 7: MEDIDAS -->
+    <div class="page-break"></div>
+    <div class="section-title">📏 Grandezas e Medidas 📏</div>
+
+    <div class="question">
+      <div class="question-number">Questão 34</div>
+      <p>Circule o objeto MAIS COMPRIDO em cada par:</p>
+      <p>Lápis A (20 cm visual) X Lápis B (12 cm visual)</p>
+      <p>Fita A (18 cm visual) X Fita B (22 cm visual)</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 35</div>
+      <p>Marque X o objeto MAIS PESADO:</p>
+      <p>( ) Uma pena &nbsp; ( ) Uma mochila com livros &nbsp; ( ) Um lápis</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 36</div>
+      <p>Qual recipiente cabe MAIS água? Copo ou Jarra? _____________</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 37</div>
+      <p>
+        Use seu palmo para medir sua mesa. Tem aproximadamente _____ palmos.
+      </p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 38</div>
+      <p>Ordene do MENOR para o MAIOR: Formiga - Cachorro - Elefante</p>
+      <p>1º _________ &nbsp; 2º _________ &nbsp; 3º _________</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 39</div>
+      <p>Para medir uma borracha, usamos:</p>
+      <p>( ) Metros &nbsp; ( ) Centímetros &nbsp; ( ) Quilômetros</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 40</div>
+      <p>Desenhe algo ALTO e algo BAIXO:</p>
+      <div class="answer-space" style="min-height: 60px"></div>
+    </div>
+
+    <!-- QUESTÕES GERAIS -->
+    <div class="section-title">🌟 Revisão Geral e Desafios 🌟</div>
+
+    <div class="question">
+      <div class="question-number">Questão 41</div>
+      <p>Ana tem 12 balas e ganhou 8 de sua avó. Quantas tem agora? _______</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 42</div>
+      <p>Qual forma tem o formato de uma bola? _____________</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 43</div>
+      <p>Escreva os números de 40 até 50:</p>
+      <p>________________________________________________________</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 44</div>
+      <p>
+        Pedro tem 1m 20cm. João tem 1m 30cm. Quem é mais alto? _____________
+      </p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 45</div>
+      <p>Complete de 5 em 5: 5 - ___ - 15 - ___ - 25 - ___ - 35</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 46</div>
+      <p>Quantos triângulos você vê nesta figura?</p>
+      <svg width="200" height="150" viewBox="0 0 200 150">
+        <polygon
+          points="100,20 30,130 170,130"
+          fill="none"
+          stroke="#333"
+          stroke-width="2"
+        />
+        <line
+          x1="100"
+          y1="20"
+          x2="100"
+          y2="130"
+          stroke="#333"
+          stroke-width="1"
+        />
+        <line x1="65" y1="75" x2="135" y2="75" stroke="#333" stroke-width="1" />
+      </svg>
+      <p>Total: _______</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 47</div>
+      <p>
+        Se você tem 2 copos de suco e seu irmão tem 1 copo, quem tem mais?
+        _______
+      </p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 48</div>
+      <p>Qual é o ANTECESSOR de 30? _______ Qual é o SUCESSOR? _______</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 49</div>
+      <p>Resolva: (15 + 10) - 5 = _______</p>
+    </div>
+
+    <div class="question">
+      <div class="question-number">Questão 50 - DESAFIO! 🏆</div>
+      <p>
+        Maria tem 3 caixas. 1ª com 10 lápis, 2ª com 15 lápis, 3ª com 8 lápis.
+      </p>
+      <p>Quantos lápis no total? 10 + 15 + 8 = _______</p>
+    </div>
+
+    <div
+      style="
+        text-align: center;
+        margin: 30px 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #ffd93d 0%, #ff6b9d 100%);
+        border-radius: 8px;
+        color: white;
+      "
+    >
+      <h2 style="font-size: 22px; margin: 0">🎉 Parabéns! 🎉</h2>
+      <p style="margin: 10px 0 0 0; font-size: 14px">
+        Você completou todas as questões!
+      </p>
+    </div>
+
+    <!-- GABARITO COMENTADO -->
+    <div class="page-break"></div>
+    <div class="gabarito">
+      <h2>📝 GABARITO COMENTADO 📝</h2>
+    </div>
+
+    <div class="section-gabarito">
+      <h3>🔷 Figuras Geométricas (Questões 1-7)</h3>
+      <div class="answer-explanation">
+        <strong>Q1:</strong> A, B, C (planas)
+      </div>
+      <div class="answer-explanation">
+        <strong>Q2:</strong> Desenho de quadrado e círculo
+      </div>
+      <div class="answer-explanation"><strong>Q3:</strong> 3 lados</div>
+      <div class="answer-explanation">
+        <strong>Q4:</strong> Ligue corretamente cada figura ao nome
+      </div>
+      <div class="answer-explanation">
+        <strong>Q5:</strong> X em bola de futebol e caixa de sapato
+      </div>
+      <div class="answer-explanation"><strong>Q6:</strong> 4 lados</div>
+      <div class="answer-explanation"><strong>Q7:</strong> 12 arestas</div>
+    </div>
+
+    <div class="section-gabarito">
+      <h3>📊 Gráficos (Questões 8-12)</h3>
+      <div class="answer-explanation">
+        <strong>Q8:</strong> a) Banana b) Laranja
+      </div>
+      <div class="answer-explanation"><strong>Q9:</strong> 5 crianças</div>
+      <div class="answer-explanation"><strong>Q10:</strong> Cachorro</div>
+      <div class="answer-explanation">
+        <strong>Q11:</strong> Bola (3), Boneca (5), Carrinho (2) pintados
+      </div>
+      <div class="answer-explanation">
+        <strong>Q12:</strong> Resposta livre - gráfico próprio do aluno
+      </div>
+    </div>
+
+    <div class="section-gabarito">
+      <h3>🔢 Números até 50 (Questões 13-20)</h3>
+      <div class="answer-explanation"><strong>Q13:</strong> 16, 18, 20</div>
+      <div class="answer-explanation"><strong>Q14:</strong> 23 estrelas</div>
+      <div class="answer-explanation">
+        <strong>Q15:</strong> trinta e dois; quarenta e cinco
+      </div>
+      <div class="answer-explanation">
+        <strong>Q16:</strong> 9 - 15 - 28 - 33 - 42
+      </div>
+      <div class="answer-explanation">
+        <strong>Q17:</strong> a) 20, 25, 30 b) 46, 48, 50
+      </div>
+      <div class="answer-explanation">
+        <strong>Q18:</strong> 24-25-26 e 38-39-40
+      </div>
+      <div class="answer-explanation">
+        <strong>Q19:</strong> a) 35 b) 42 c) 15
+      </div>
+      <div class="answer-explanation"><strong>Q20:</strong> a) 31 b) 50</div>
+    </div>
+
+    <div class="section-gabarito">
+      <h3>🎯 Dezenas (Questões 21-27)</h3>
+      <div class="answer-explanation"><strong>Q21:</strong> 30, 50, 60</div>
+      <div class="answer-explanation"><strong>Q22:</strong> 3 dezenas</div>
+      <div class="answer-explanation">
+        <strong>Q23:</strong> 20 bolinhas = 2 dezenas
+      </div>
+      <div class="answer-explanation">
+        <strong>Q24:</strong> a) 10 b) 20 c) 50
+      </div>
+      <div class="answer-explanation"><strong>Q25:</strong> 20, 40, 50, 30</div>
+      <div class="answer-explanation"><strong>Q26:</strong> 20, 30, 40</div>
+      <div class="answer-explanation">
+        <strong>Q27:</strong> 47→4 dezenas; 32→3 dezenas; 50→5 dezenas
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+    <div class="section-gabarito">
+      <h3>➡️ Reta Numérica (Questões 28-33)</h3>
+      <div class="answer-explanation">
+        <strong>Q28:</strong> Completar reta com 0, 5, 10 vistos
+      </div>
+      <div class="answer-explanation">
+        <strong>Q29:</strong> Marcar seta em 8 (entre 0 e 10)
+      </div>
+      <div class="answer-explanation"><strong>Q30:</strong> 13</div>
+      <div class="answer-explanation">
+        <strong>Q31:</strong> Desenho próprio de reta 0-10
+      </div>
+      <div class="answer-explanation"><strong>Q32:</strong> Marcar X em 25</div>
+      <div class="answer-explanation"><strong>Q33:</strong> 36 e 37</div>
+    </div>
+
+    <div class="section-gabarito">
+      <h3>📏 Medidas (Questões 34-40)</h3>
+      <div class="answer-explanation">
+        <strong>Q34:</strong> Lápis A; Fita B
+      </div>
+      <div class="answer-explanation">
+        <strong>Q35:</strong> X em mochila com livros
+      </div>
+      <div class="answer-explanation"><strong>Q36:</strong> Jarra</div>
+      <div class="answer-explanation">
+        <strong>Q37:</strong> Resposta variável (medir com palmo)
+      </div>
+      <div class="answer-explanation">
+        <strong>Q38:</strong> 1º Formiga, 2º Cachorro, 3º Elefante
+      </div>
+      <div class="answer-explanation">
+        <strong>Q39:</strong> X em Centímetros
+      </div>
+      <div class="answer-explanation">
+        <strong>Q40:</strong> Exemplos: Alto (árvore), Baixo (formiga)
+      </div>
+    </div>
+
+    <div class="section-gabarito">
+      <h3>🌟 Revisão Geral (Questões 41-50)</h3>
+      <div class="answer-explanation">
+        <strong>Q41:</strong> 20 balas (12 + 8)
+      </div>
+      <div class="answer-explanation"><strong>Q42:</strong> Esfera</div>
+      <div class="answer-explanation">
+        <strong>Q43:</strong> 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50
+      </div>
+      <div class="answer-explanation">
+        <strong>Q44:</strong> João (1m 30cm > 1m 20cm)
+      </div>
+      <div class="answer-explanation">
+        <strong>Q45:</strong> 10, 20, 30 (faltam)
+      </div>
+      <div class="answer-explanation"><strong>Q46:</strong> 5 triângulos</div>
+      <div class="answer-explanation">
+        <strong>Q47:</strong> Você tem mais (2 > 1)
+      </div>
+      <div class="answer-explanation">
+        <strong>Q48:</strong> Antecessor: 29; Sucessor: 31
+      </div>
+      <div class="answer-explanation">
+        <strong>Q49:</strong> 20 (15+10=25; 25-5=20)
+      </div>
+      <div class="answer-explanation">
+        <strong>Q50:</strong> 33 lápis (10+15+8=33)
+      </div>
+    </div>
+
+    <div
+      style="
+        background: #e0f2f1;
+        padding: 12px;
+        margin: 20px 0;
+        border-radius: 8px;
+        border: 3px solid #00695c;
+      "
+    >
+      <h3 style="color: #00695c; margin: 0 0 10px 0">📌 Dicas para os Pais</h3>
+      <p style="font-size: 13px; margin: 0">
+        ✓ Estude 15-20 minutos diariamente &nbsp; ✓ Use objetos reais para
+        aprender<br />
+        ✓ Jogue com números e formas &nbsp; ✓ Elogie o esforço, não só
+        acertos<br />
+        ✓ Revise antes de aprender coisa nova &nbsp; ✓ Seja paciente e
+        divertido!
+      </p>
+    </div>
+
+    <!-- OBJETIVOS BNCC E REFERÊNCIAS -->
+    <div
+      style="
+        background: #f7f7ff;
+        padding: 14px;
+        margin: 20px 0;
+        border-radius: 8px;
+        border: 3px solid #667eea;
+      "
+    >
+      <h3 style="color: #4a57d1; margin: 0 0 10px 0">
+        🎯 Objetivos de Aprendizagem (alinhados à BNCC – 1º ano)
+      </h3>
+      <p style="font-size: 13px; margin: 6px 0">
+        - Reconhecer e nomear figuras geométricas planas (círculo, quadrado,
+        triângulo, retângulo) e não planas (cubo, esfera, cilindro, pirâmide).
+      </p>
+      <p style="font-size: 13px; margin: 6px 0">
+        - Ler e interpretar gráficos simples (colunas/pictogramas) e responder
+        perguntas a partir de dados apresentados.
+      </p>
+      <p style="font-size: 13px; margin: 6px 0">
+        - Construir gráficos simples a partir de pequenas pesquisas/tabelas do
+        cotidiano.
+      </p>
+      <p style="font-size: 13px; margin: 6px 0">
+        - Contar, ordenar, comparar e escrever números até 50; identificar
+        antecessor e sucessor.
+      </p>
+      <p style="font-size: 13px; margin: 6px 0">
+        - Compreender dezenas inteiras como agrupamentos de 10 unidades e
+        realizar composições simples (dezenas + unidades).
+      </p>
+      <p style="font-size: 13px; margin: 6px 0">
+        - Utilizar a reta numérica para localizar, avançar/retornar e completar
+        sequências.
+      </p>
+      <p style="font-size: 13px; margin: 6px 0">
+        - Comparar comprimentos, capacidades e massas com unidades não
+        padronizadas e reconhecer instrumentos usuais de medida.
+      </p>
+
+      <h3 style="color: #4a57d1; margin: 14px 0 8px 0">
+        🔎 Referências consultadas
+      </h3>
+      <p style="font-size: 12px; margin: 6px 0">
+        - Base Nacional Comum Curricular (BNCC) – Matemática, Ensino Fundamental
+        – Anos Iniciais (documentos oficiais MEC).
+      </p>
+      <p style="font-size: 12px; margin: 6px 0">
+        - Materiais e sequências didáticas de redes públicas e coleções
+        didáticas alinhadas à BNCC (1º ano).
+      </p>
+      <p style="font-size: 12px; margin: 6px 0">
+        - Bancos de atividades educacionais voltados ao 1º ano com gráficos,
+        figuras geométricas, dezenas e medidas.
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura do Aprendizado - 50 Questões de Português e Matemática</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Gerais */
+        :root {
+            --cor-primaria: #8e44ad;
+            --cor-secundaria: #3498db;
+            --cor-fundo: #ecf0f1;
+            --cor-texto: #34495e;
+            --cor-sucesso: #2ecc71;
+            --cor-aviso: #f1c40f;
+            --cor-destaque: #e74c3c;
+        }
+
+        @media print {
+            body {
+                background: none;
+                font-size: 12pt;
+            }
+            .container {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .header, .print-button-container, .gabarito-container, .tips {
+                display: none;
+            }
+            .section, .question {
+                border: 1px solid #ccc;
+                margin-bottom: 15px;
+                padding: 15px;
+                page-break-inside: avoid;
+            }
+            .text-reference {
+                background-color: #f9f9f9 !important;
+            }
+            .question-text {
+                color: black;
+            }
+            .options {
+                display: block;
+            }
+            .option {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+            h1, h2, h3 {
+                color: black;
+            }
+            input[type="radio"] {
+                display: none; /* Esconde o radio button na impressão */
+            }
+            .option::before {
+                content: '(  ) '; /* Adiciona um espaço para marcar */
+                font-family: sans-serif;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--cor-texto);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, var(--cor-primaria), var(--cor-secundaria));
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: 'Lilita One', cursive;
+            font-size: 3em;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+
+        .print-button-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .print-button {
+            background-color: var(--cor-sucesso);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .print-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.6);
+        }
+
+        .section {
+            padding: 30px 40px;
+            border-bottom: 2px dashed #bdc3c7;
+        }
+        .section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-family: 'Lilita One', cursive;
+            font-size: 2em;
+            color: var(--cor-primaria);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .text-reference {
+            background: #fdfaf1;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--cor-aviso);
+        }
+
+        .text-reference h3 {
+            color: var(--cor-aviso);
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .text-content {
+            font-size: 1.2em;
+            line-height: 1.7;
+            font-weight: bold;
+            color: #574b33;
+        }
+
+        .questions-grid {
+            display: grid;
+            gap: 25px;
+        }
+
+        .question {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        .question-number {
+            background: var(--cor-secundaria);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            border-color: var(--cor-secundaria);
+            background-color: #eaf5fc;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.3);
+        }
+
+        .gabarito-container {
+            background: #485461;
+            background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+            padding: 40px;
+            color: white;
+        }
+        .gabarito-container h2 {
+            font-family: 'Lilita One', cursive;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .gabarito-section {
+            margin-bottom: 20px;
+        }
+        .gabarito-section h3 {
+            color: var(--cor-aviso);
+            border-bottom: 2px solid var(--cor-aviso);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .answers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 AVENTURA DO APRENDIZADO 📚</h1>
+        </div>
+
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">🖨️ Versão para Impressão</button>
+        </div>
+
+        <!-- AVENTURA 1: A FESTA NO JARDIM -->
+        <div class="section">
+            <h2 class="section-title">🍓 AVENTURA 1: A FESTA NO JARDIM</h2>
+            <div class="text-reference">
+                <h3>📖 LEIA COM ATENÇÃO</h3>
+                <div class="text-content">
+                    A FORMIGA ZIZI DECIDIU FAZER UMA FESTA. ELA COLHEU 12 MORANGOS VERMELHINHOS. SUA AMIGA, A JOANINHA LILI, TROUXE 7 FOLHAS VERDINHAS PARA DECORAR. O CARACOL TICO CHEGOU COM 5 GOTAS DE ORVALHO PARA BEBER. AO TODO, 15 BICHINHOS FORAM CONVIDADOS, MAS 4 NÃO PUDERAM IR. ZIZI É UMA ÓTIMA AMIGA.
+                </div>
+            </div>
+            <div class="questions-grid">
+                <div class="question">
+                    <div class="question-number">1</div>
+                    <div class="question-text">QUANTOS MORANGOS A FORMIGA ZIZI COLHEU?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q1"> a) 7</label>
+                        <label class="option"><input type="radio" name="q1"> b) 12</label>
+                        <label class="option"><input type="radio" name="q1"> c) 5</label>
+                        <label class="option"><input type="radio" name="q1"> d) 15</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">2</div>
+                    <div class="question-text">QUEM TROUXE AS FOLHAS VERDINHAS?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q2"> a) A formiga Zizi</label>
+                        <label class="option"><input type="radio" name="q2"> b) O caracol Tico</label>
+                        <label class="option"><input type="radio" name="q2"> c) A joaninha Lili</label>
+                        <label class="option"><input type="radio" name="q2"> d) Uma abelha</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">3</div>
+                    <div class="question-text">QUANTOS ITENS A JOANINHA LILI E O CARACOL TICO TROUXERAM JUNTOS? (FOLHAS + GOTAS)</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q3"> a) 12</label>
+                        <label class="option"><input type="radio" name="q3"> b) 7</label>
+                        <label class="option"><input type="radio" name="q3"> c) 5</label>
+                        <label class="option"><input type="radio" name="q3"> d) 19</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">4</div>
+                    <div class="question-text">QUAL É O NOME DO CARACOL?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q4"> a) Zizi</label>
+                        <label class="option"><input type="radio" name="q4"> b) Lili</label>
+                        <label class="option"><input type="radio" name="q4"> c) Tico</label>
+                        <label class="option"><input type="radio" name="q4"> d) Fifi</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">5</div>
+                    <div class="question-text">QUANTOS BICHINHOS FORAM NA FESTA? (CONVIDADOS - OS QUE FALTARAM)</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q5"> a) 15</label>
+                        <label class="option"><input type="radio" name="q5"> b) 4</label>
+                        <label class="option"><input type="radio" name="q5"> c) 19</label>
+                        <label class="option"><input type="radio" name="q5"> d) 11</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">6</div>
+                    <div class="question-text">O QUE O CARACOL TICO TROUXE PARA BEBER?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q6"> a) Morangos</label>
+                        <label class="option"><input type="radio" name="q6"> b) Gotas de orvalho</label>
+                        <label class="option"><input type="radio" name="q6"> c) Folhas</label>
+                        <label class="option"><input type="radio" name="q6"> d) Suco de amora</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">7</div>
+                    <div class="question-text">SE ZIZI COMESSE 3 MORANGOS, QUANTOS SOBRARIAM?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q7"> a) 12</label>
+                        <label class="option"><input type="radio" name="q7"> b) 15</label>
+                        <label class="option"><input type="radio" name="q7"> c) 9</label>
+                        <label class="option"><input type="radio" name="q7"> d) 3</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">8</div>
+                    <div class="question-text">QUANTOS BICHINHOS FORAM CONVIDADOS NO TOTAL?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q8"> a) 15</label>
+                        <label class="option"><input type="radio" name="q8"> b) 11</label>
+                        <label class="option"><input type="radio" name="q8"> c) 4</label>
+                        <label class="option"><input type="radio" name="q8"> d) 12</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">9</div>
+                    <div class="question-text">QUEM DEU A IDEIA DE FAZER A FESTA?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q9"> a) O caracol Tico</label>
+                        <label class="option"><input type="radio" name="q9"> b) A joaninha Lili</label>
+                        <label class="option"><input type="radio" name="q9"> c) A formiga Zizi</label>
+                        <label class="option"><input type="radio" name="q9"> d) Todos os bichos</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">10</div>
+                    <div class="question-text">JUNTANDO OS MORANGOS DA ZIZI E AS FOLHAS DA LILI, QUANTOS ITENS ELAS TÊM?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q10"> a) 19</label>
+                        <label class="option"><input type="radio" name="q10"> b) 17</label>
+                        <label class="option"><input type="radio" name="q10"> c) 12</label>
+                        <label class="option"><input type="radio" name="q10"> d) 7</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AVENTURA 2: A VIAGEM ESPACIAL DO LÉO -->
+        <div class="section">
+            <h2 class="section-title">⭐ AVENTURA 2: A VIAGEM ESPACIAL DO LÉO</h2>
+            <div class="text-reference">
+                <h3>📖 LEIA COM ATENÇÃO</h3>
+                <div class="text-content">
+                    O ASTRONAUTA LÉO VIAJOU EM SEU FOGUETE AZUL. ELE VIU 18 ESTRELAS BRILHANTES. EM UM PLANETA VERMELHO, ELE COLETOU 9 PEDRAS ESPECIAIS. DEPOIS, EM UM PLANETA AMARELO, COLETOU MAIS 8 PEDRAS. SEU AMIGO ROBÔ, O BEEP, AJUDOU A GUARDAR TUDO. A VIAGEM DE LÉO DUROU 20 DIAS.
+                </div>
+            </div>
+            <div class="questions-grid">
+                <div class="question">
+                    <div class="question-number">11</div>
+                    <div class="question-text">QUAL É A COR DO FOGUETE DO LÉO?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q11"> a) Vermelho</label>
+                        <label class="option"><input type="radio" name="q11"> b) Amarelo</label>
+                        <label class="option"><input type="radio" name="q11"> c) Azul</label>
+                        <label class="option"><input type="radio" name="q11"> d) Prata</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">12</div>
+                    <div class="question-text">QUANTAS PEDRAS ESPECIAIS LÉO COLETOU NO TOTAL?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q12"> a) 9</label>
+                        <label class="option"><input type="radio" name="q12"> b) 8</label>
+                        <label class="option"><input type="radio" name="q12"> c) 1</label>
+                        <label class="option"><input type="radio" name="q12"> d) 17</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">13</div>
+                    <div class="question-text">QUEM É O AMIGO ROBÔ DO LÉO?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q13"> a) Léo</label>
+                        <label class="option"><input type="radio" name="q13"> b) Beep</label>
+                        <label class="option"><input type="radio" name="q13"> c) Robô X</label>
+                        <label class="option"><input type="radio" name="q13"> d) Tagarela</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">14</div>
+                    <div class="question-text">SE 5 ESTRELAS SE APAGASSEM, QUANTAS CONTINUARIAM BRILHANDO?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q14"> a) 13</label>
+                        <label class="option"><input type="radio" name="q14"> b) 18</label>
+                        <label class="option"><input type="radio" name="q14"> c) 5</label>
+                        <label class="option"><input type="radio" name="q14"> d) 23</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">15</div>
+                    <div class="question-text">QUANTOS DIAS DUROU A VIAGEM?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q15"> a) 18 dias</label>
+                        <label class="option"><input type="radio" name="q15"> b) 9 dias</label>
+                        <label class="option"><input type="radio" name="q15"> c) 20 dias</label>
+                        <label class="option"><input type="radio" name="q15"> d) 8 dias</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">16</div>
+                    <div class="question-text">QUAL A DIFERENÇA ENTRE O NÚMERO DE DIAS DA VIAGEM E O NÚMERO DE ESTRELAS?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q16"> a) 2</label>
+                        <label class="option"><input type="radio" name="q16"> b) 20</label>
+                        <label class="option"><input type="radio" name="q16"> c) 18</label>
+                        <label class="option"><input type="radio" name="q16"> d) 38</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">17</div>
+                    <div class="question-text">EM QUAL PLANETA LÉO ACHOU 9 PEDRAS?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q17"> a) No planeta amarelo</label>
+                        <label class="option"><input type="radio" name="q17"> b) No planeta azul</label>
+                        <label class="option"><input type="radio" name="q17"> c) No planeta vermelho</label>
+                        <label class="option"><input type="radio" name="q17"> d) Na Lua</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">18</div>
+                    <div class="question-text">QUANTAS ESTRELAS LÉO VIU?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q18"> a) 20</label>
+                        <label class="option"><input type="radio" name="q18"> b) 18</label>
+                        <label class="option"><input type="radio" name="q18"> c) 9</label>
+                        <label class="option"><input type="radio" name="q18"> d) 8</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">19</div>
+                    <div class="question-text">QUAL É A PROFISSÃO DO LÉO?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q19"> a) Piloto</label>
+                        <label class="option"><input type="radio" name="q19"> b) Cientista</label>
+                        <label class="option"><input type="radio" name="q19"> c) Robô</label>
+                        <label class="option"><input type="radio" name="q19"> d) Astronauta</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">20</div>
+                    <div class="question-text">SE LÉO DESSE 6 PEDRAS PARA O ROBÔ BEEP, COM QUANTAS PEDRAS ELE FICARIA?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q20"> a) 17</label>
+                        <label class="option"><input type="radio" name="q20"> b) 6</label>
+                        <label class="option"><input type="radio" name="q20"> c) 11</label>
+                        <label class="option"><input type="radio" name="q20"> d) 23</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AVENTURA 3: O TESOURO DO PIRATA BARBA-ROXA -->
+        <div class="section">
+            <h2 class="section-title">🏴‍☠️ AVENTURA 3: O TESOURO DO PIRATA</h2>
+            <div class="text-reference">
+                <h3>📖 LEIA COM ATENÇÃO</h3>
+                <div class="text-content">
+                    O PIRATA BARBA-ROXA ENCONTROU UM BAÚ. DENTRO DELE HAVIA 25 MOEDAS DE OURO. ELE GASTOU 8 MOEDAS COMPRANDO UM MAPA NOVO. SEU PAPAGAIO, TAGARELA, ENCONTROU MAIS 4 MOEDAS BRILHANTES. O NAVIO DO PIRATA CHAMA-SE "MAR BRAVO" E TEM 13 CANHÕES.
+                </div>
+            </div>
+            <div class="questions-grid">
+                <div class="question">
+                    <div class="question-number">21</div>
+                    <div class="question-text">QUANTAS MOEDAS DE OURO HAVIA NO BAÚ INICIALMENTE?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q21"> a) 8</label>
+                        <label class="option"><input type="radio" name="q21"> b) 4</label>
+                        <label class="option"><input type="radio" name="q21"> c) 25</label>
+                        <label class="option"><input type="radio" name="q21"> d) 13</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">22</div>
+                    <div class="question-text">QUAL É O NOME DO PAPAGAIO?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q22"> a) Barba-Roxa</label>
+                        <label class="option"><input type="radio" name="q22"> b) Tagarela</label>
+                        <label class="option"><input type="radio" name="q22"> c) Mar Bravo</label>
+                        <label class="option"><input type="radio" name="q22"> d) Pirata</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">23</div>
+                    <div class="question-text">COM QUANTAS MOEDAS O PIRATA FICOU DEPOIS DE COMPRAR O MAPA?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q23"> a) 25</label>
+                        <label class="option"><input type="radio" name="q23"> b) 8</label>
+                        <label class="option"><input type="radio" name="q23"> c) 33</label>
+                        <label class="option"><input type="radio" name="q23"> d) 17</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">24</div>
+                    <div class="question-text">QUAL É O NOME DO NAVIO DO PIRATA?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q24"> a) Tagarela</label>
+                        <label class="option"><input type="radio" name="q24"> b) Pérola Negra</label>
+                        <label class="option"><input type="radio" name="q24"> c) Mar Bravo</label>
+                        <label class="option"><input type="radio" name="q24"> d) Barba-Roxa</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">25</div>
+                    <div class="question-text">QUANTAS MOEDAS O PIRATA TEM AGORA, DEPOIS QUE O PAPAGAIO ACHOU MAIS ALGUMAS?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q25"> a) 17</label>
+                        <label class="option"><input type="radio" name="q25"> b) 21</label>
+                        <label class="option"><input type="radio" name="q25"> c) 4</label>
+                        <label class="option"><input type="radio" name="q25"> d) 13</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">26</div>
+                    <div class="question-text">QUANTOS CANHÕES O NAVIO "MAR BRAVO" TEM?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q26"> a) 25</label>
+                        <label class="option"><input type="radio" name="q26"> b) 8</label>
+                        <label class="option"><input type="radio" name="q26"> c) 13</label>
+                        <label class="option"><input type="radio" name="q26"> d) 4</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">27</div>
+                    <div class="question-text">O QUE O PIRATA COMPROU COM 8 MOEDAS?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q27"> a) Um mapa novo</label>
+                        <label class="option"><input type="radio" name="q27"> b) Um navio</label>
+                        <label class="option"><input type="radio" name="q27"> c) Comida</label>
+                        <label class="option"><input type="radio" name="q27"> d) Um papagaio</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">28</div>
+                    <div class="question-text">JUNTANDO AS MOEDAS INICIAIS COM OS CANHÕES DO NAVIO, QUAL SERIA O TOTAL?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q28"> a) 25</label>
+                        <label class="option"><input type="radio" name="q28"> b) 13</label>
+                        <label class="option"><input type="radio" name="q28"> c) 38</label>
+                        <label class="option"><input type="radio" name="q28"> d) 12</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">29</div>
+                    <div class="question-text">QUEM ENCONTROU O BAÚ DE TESOURO?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q29"> a) O papagaio</label>
+                        <label class="option"><input type="radio" name="q29"> b) O Pirata Barba-Roxa</label>
+                        <label class="option"><input type="radio" name="q29"> c) O rei</label>
+                        <label class="option"><input type="radio" name="q29"> d) Outro pirata</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">30</div>
+                    <div class="question-text">SE O PIRATA PERDESSE 2 CANHÕES EM UMA BATALHA, QUANTOS RESTARIAM?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q30"> a) 13</label>
+                        <label class="option"><input type="radio" name="q30"> b) 15</label>
+                        <label class="option"><input type="radio" name="q30"> c) 2</label>
+                        <label class="option"><input type="radio" name="q30"> d) 11</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AVENTURA 4: A LOJA DE BRINQUEDOS MÁGICA -->
+        <div class="section">
+            <h2 class="section-title">🧸 AVENTURA 4: A LOJA DE BRINQUEDOS MÁGICA</h2>
+            <div class="text-reference">
+                <h3>📖 LEIA COM ATENÇÃO</h3>
+                <div class="text-content">
+                    NA LOJA DO SENHOR ALFREDO, OS BRINQUEDOS CRIAM VIDA À NOITE. HAVIA 14 BONECAS NA PRATELEIRA ROSA E 11 CARRINHOS NA PISTA AZUL. DURANTE O DIA, A MENINA BIA COMPROU 5 BONECAS. O MENINO CAIO COMPROU 6 CARRINHOS. O BRINQUEDO MAIS CARO É UM URSO DE PELÚCIA GIGANTE.
+                </div>
+            </div>
+            <div class="questions-grid">
+                <div class="question">
+                    <div class="question-number">31</div>
+                    <div class="question-text">QUANTOS BRINQUEDOS (BONECAS E CARRINHOS) HAVIA NA LOJA NO INÍCIO?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q31"> a) 14</label>
+                        <label class="option"><input type="radio" name="q31"> b) 11</label>
+                        <label class="option"><input type="radio" name="q31"> c) 25</label>
+                        <label class="option"><input type="radio" name="q31"> d) 3</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">32</div>
+                    <div class="question-text">QUAL É O NOME DO DONO DA LOJA?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q32"> a) Senhor Alfredo</label>
+                        <label class="option"><input type="radio" name="q32"> b) Bia</label>
+                        <label class="option"><input type="radio" name="q32"> c) Caio</label>
+                        <label class="option"><input type="radio" name="q32"> d) Senhor Urso</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">33</div>
+                    <div class="question-text">QUANTAS BONECAS SOBRARAM NA PRATELEIRA ROSA?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q33"> a) 14</label>
+                        <label class="option"><input type="radio" name="q33"> b) 5</label>
+                        <label class="option"><input type="radio" name="q33"> c) 19</label>
+                        <label class="option"><input type="radio" name="q33"> d) 9</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">34</div>
+                    <div class="question-text">QUEM COMPROU OS CARRINHOS?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q34"> a) A menina Bia</label>
+                        <label class="option"><input type="radio" name="q34"> b) O menino Caio</label>
+                        <label class="option"><input type="radio" name="q34"> c) Senhor Alfredo</label>
+                        <label class="option"><input type="radio" name="q34"> d) Ninguém</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">35</div>
+                    <div class="question-text">QUANTOS CARRINHOS RESTARAM NA PISTA AZUL?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q35"> a) 11</label>
+                        <label class="option"><input type="radio" name="q35"> b) 6</label>
+                        <label class="option"><input type="radio" name="q35"> c) 5</label>
+                        <label class="option"><input type="radio" name="q35"> d) 17</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">36</div>
+                    <div class="question-text">QUAL É O BRINQUEDO MAIS CARO DA LOJA?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q36"> a) Boneca</label>
+                        <label class="option"><input type="radio" name="q36"> b) Carrinho</label>
+                        <label class="option"><input type="radio" name="q36"> c) Urso de pelúcia gigante</label>
+                        <label class="option"><input type="radio" name="q36"> d) Bola</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">37</div>
+                    <div class="question-text">QUANTOS BRINQUEDOS FORAM VENDIDOS NO TOTAL? (BONECAS + CARRINHOS)</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q37"> a) 5</label>
+                        <label class="option"><input type="radio" name="q37"> b) 11</label>
+                        <label class="option"><input type="radio" name="q37"> c) 6</label>
+                        <label class="option"><input type="radio" name="q37"> d) 1</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">38</div>
+                    <div class="question-text">EM QUAL PRATELEIRA ESTAVAM AS BONECAS?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q38"> a) Na prateleira rosa</label>
+                        <label class="option"><input type="radio" name="q38"> b) Na pista azul</label>
+                        <label class="option"><input type="radio" name="q38"> c) Na caixa</label>
+                        <label class="option"><input type="radio" name="q38"> d) No chão</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">39</div>
+                    <div class="question-text">O QUE ACONTECE COM OS BRINQUEDOS À NOITE?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q39"> a) Dormem</label>
+                        <label class="option"><input type="radio" name="q39"> b) Desaparecem</label>
+                        <label class="option"><input type="radio" name="q39"> c) Criam vida</label>
+                        <label class="option"><input type="radio" name="q39"> d) Ficam tristes</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">40</div>
+                    <div class="question-text">QUANTOS BRINQUEDOS (BONECAS E CARRINHOS) SOBRARAM NA LOJA NO FINAL DO DIA?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q40"> a) 25</label>
+                        <label class="option"><input type="radio" name="q40"> b) 14</label>
+                        <label class="option"><input type="radio" name="q40"> c) 11</label>
+                        <label class="option"><input type="radio" name="q40"> d) 4</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AVENTURA 5: O RESGATE NA MONTANHA COLORIDA -->
+        <div class="section">
+            <h2 class="section-title">🏔️ AVENTURA 5: O RESGATE NA MONTANHA</h2>
+            <div class="text-reference">
+                <h3>📖 LEIA COM ATENÇÃO</h3>
+                <div class="text-content">
+                    O ESQUILO TITO FICOU PRESO NO ALTO DA MONTANHA COLORIDA. SUA IRMÃ, A ESQUILA LILA, CHAMOU AJUDA. VEIO O URSO GUTO, QUE É MUITO FORTE, E A CORUJA PIA, QUE ENXERGA LONGE. ELES LEVARAM UMA CORDA DE 10 METROS E UMA LANTERNA. PARA CHEGAR ATÉ TITO, ELES SUBIRAM 22 DEGRAUS DE PEDRA. NA VOLTA, DESCERAM OS MESMOS 22 DEGRAUS.
+                </div>
+            </div>
+            <div class="questions-grid">
+                <div class="question">
+                    <div class="question-number">41</div>
+                    <div class="question-text">QUEM FICOU PRESO NA MONTANHA?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q41"> a) A esquila Lila</label>
+                        <label class="option"><input type="radio" name="q41"> b) O urso Guto</label>
+                        <label class="option"><input type="radio" name="q41"> c) O esquilo Tito</label>
+                        <label class="option"><input type="radio" name="q41"> d) A coruja Pia</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">42</div>
+                    <div class="question-text">QUANTOS DEGRAUS ELES SUBIRAM E DESCERAM NO TOTAL?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q42"> a) 22</label>
+                        <label class="option"><input type="radio" name="q42"> b) 44</label>
+                        <label class="option"><input type="radio" name="q42"> c) 0</label>
+                        <label class="option"><input type="radio" name="q42"> d) 2</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">43</div>
+                    <div class="question-text">QUEM FOI CHAMAR AJUDA?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q43"> a) A esquila Lila</label>
+                        <label class="option"><input type="radio" name="q43"> b) O esquilo Tito</label>
+                        <label class="option"><input type="radio" name="q43"> c) O urso Guto</label>
+                        <label class="option"><input type="radio" name="q43"> d) A coruja Pia</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">44</div>
+                    <div class="question-text">SE A CORDA TIVESSE 3 METROS A MENOS, QUAL SERIA SEU TAMANHO?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q44"> a) 10 metros</label>
+                        <label class="option"><input type="radio" name="q44"> b) 13 metros</label>
+                        <label class="option"><input type="radio" name="q44"> c) 3 metros</label>
+                        <label class="option"><input type="radio" name="q44"> d) 7 metros</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">45</div>
+                    <div class="question-text">QUANTOS AMIGOS FORAM AJUDAR NO RESGATE?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q45"> a) 1</label>
+                        <label class="option"><input type="radio" name="q45"> b) 2</label>
+                        <label class="option"><input type="radio" name="q45"> c) 3</label>
+                        <label class="option"><input type="radio" name="q45"> d) 4</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">46</div>
+                    <div class="question-text">QUAL É O NOME DO URSO FORTE?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q46"> a) Tito</label>
+                        <label class="option"><input type="radio" name="q46"> b) Guto</label>
+                        <label class="option"><input type="radio" name="q46"> c) Pia</label>
+                        <label class="option"><input type="radio" name="q46"> d) Fofo</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">47</div>
+                    <div class="question-text">QUANTOS ANIMAIS APARECEM NA HISTÓRIA NO TOTAL?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q47"> a) 2</label>
+                        <label class="option"><input type="radio" name="q47"> b) 3</label>
+                        <label class="option"><input type="radio" name="q47"> c) 4</label>
+                        <label class="option"><input type="radio" name="q47"> d) 1</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">48</div>
+                    <div class="question-text">O QUE A CORUJA PIA FAZ BEM?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q48"> a) É muito forte</label>
+                        <label class="option"><input type="radio" name="q48"> b) Enxerga longe</label>
+                        <label class="option"><input type="radio" name="q48"> c) Corre rápido</label>
+                        <label class="option"><input type="radio" name="q48"> d) Sabe nadar</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">49</div>
+                    <div class="question-text">SE PRECISASSEM DE UMA CORDA COM 5 METROS A MAIS, QUAL SERIA O TAMANHO NECESSÁRIO?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q49"> a) 10 metros</label>
+                        <label class="option"><input type="radio" name="q49"> b) 5 metros</label>
+                        <label class="option"><input type="radio" name="q49"> c) 15 metros</label>
+                        <label class="option"><input type="radio" name="q49"> d) 20 metros</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <div class="question-number">50</div>
+                    <div class="question-text">ONDE O ESQUILO TITO FICOU PRESO?</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q50"> a) No pé da montanha</label>
+                        <label class="option"><input type="radio" name="q50"> b) Em uma caverna</label>
+                        <label class="option"><input type="radio" name="q50"> c) Em uma árvore</label>
+                        <label class="option"><input type="radio" name="q50"> d) No alto da montanha</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- GABARITO -->
+        <div class="gabarito-container">
+            <h2>🏆 GABARITO 🏆</h2>
+            <div class="gabarito-section">
+                <h3>🍓 Respostas da Aventura 1:</h3>
+                <div class="answers">
+                    <span>1. b) 12</span> <span>2. c) Joaninha Lili</span> <span>3. a) 12 (7+5)</span> <span>4. c) Tico</span> <span>5. d) 11 (15-4)</span>
+                    <span>6. b) Gotas de orvalho</span> <span>7. c) 9 (12-3)</span> <span>8. a) 15</span> <span>9. c) Formiga Zizi</span> <span>10. a) 19 (12+7)</span>
+                </div>
+            </div>
+            <div class="gabarito-section">
+                <h3>⭐ Respostas da Aventura 2:</h3>
+                <div class="answers">
+                    <span>11. c) Azul</span> <span>12. d) 17 (9+8)</span> <span>13. b) Beep</span> <span>14. a) 13 (18-5)</span> <span>15. c) 20 dias</span>
+                    <span>16. a) 2 (20-18)</span> <span>17. c) No planeta vermelho</span> <span>18. b) 18</span> <span>19. d) Astronauta</span> <span>20. c) 11 (17-6)</span>
+                </div>
+            </div>
+            <div class="gabarito-section">
+                <h3>🏴‍☠️ Respostas da Aventura 3:</h3>
+                <div class="answers">
+                    <span>21. c) 25</span> <span>22. b) Tagarela</span> <span>23. d) 17 (25-8)</span> <span>24. c) Mar Bravo</span> <span>25. b) 21 (17+4)</span>
+                    <span>26. c) 13</span> <span>27. a) Um mapa novo</span> <span>28. c) 38 (25+13)</span> <span>29. b) O Pirata Barba-Roxa</span> <span>30. d) 11 (13-2)</span>
+                </div>
+            </div>
+            <div class="gabarito-section">
+                <h3>🧸 Respostas da Aventura 4:</h3>
+                <div class="answers">
+                    <span>31. c) 25 (14+11)</span> <span>32. a) Senhor Alfredo</span> <span>33. d) 9 (14-5)</span> <span>34. b) O menino Caio</span> <span>35. c) 5 (11-6)</span>
+                    <span>36. c) Urso de pelúcia</span> <span>37. b) 11 (5+6)</span> <span>38. a) Na prateleira rosa</span> <span>39. c) Criam vida</span> <span>40. b) 14 (9+5)</span>
+                </div>
+            </div>
+            <div class="gabarito-section">
+                <h3>🏔️ Respostas da Aventura 5:</h3>
+                <div class="answers">
+                    <span>41. c) O esquilo Tito</span> <span>42. b) 44 (22+22)</span> <span>43. a) A esquila Lila</span> <span>44. d) 7 metros (10-3)</span> <span>45. b) 2 (Urso e Coruja)</span>
+                    <span>46. b) Guto</span> <span>47. c) 4</span> <span>48. b) Enxerga longe</span> <span>49. c) 15 metros (10+5)</span> <span>50. d) No alto da montanha</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

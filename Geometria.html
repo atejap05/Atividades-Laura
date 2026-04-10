@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Educativa - 50 Questões de Lógica e Matemática</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cor-primaria: #4F46E5;
+            --cor-secundaria: #3B82F6;
+            --cor-fundo: #F3F4F6;
+            --cor-texto: #1F2937;
+            --cor-sucesso: #10B981;
+            --cor-aviso: #F59E0B;
+        }
+
+        @media print {
+            body { background: none; font-size: 12pt; }
+            .container { box-shadow: none; margin: 0; max-width: 100%; border-radius: 0; }
+            .header, .print-button-container, .gabarito-container { display: none; }
+            .section, .question { border: 1px solid #ccc; margin-bottom: 15px; padding: 15px; page-break-inside: avoid; }
+            .text-reference { background-color: #f9f9f9 !important; }
+            .question-text { color: black; }
+            .options { display: block; }
+            .option { border: 1px solid #ddd; padding: 8px; }
+            h1, h2, h3 { color: black; }
+            input[type="radio"] { display: none; }
+            .option::before { content: '(  ) '; font-family: sans-serif; }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%); min-height: 100vh; padding: 20px; color: var(--cor-texto); }
+        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { background: linear-gradient(45deg, var(--cor-primaria), var(--cor-secundaria)); color: white; text-align: center; padding: 40px 20px; }
+        .header h1 { font-family: 'Lilita One', cursive; font-size: 3em; text-shadow: 3px 3px 0px rgba(0,0,0,0.2); letter-spacing: 2px; }
+        .print-button-container { text-align: center; padding: 20px; }
+        .print-button { background-color: var(--cor-sucesso); color: white; border: none; padding: 15px 30px; font-size: 1.2em; font-weight: bold; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4); }
+        .print-button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(16, 185, 129, 0.6); }
+        .section { padding: 30px 40px; border-bottom: 2px dashed #D1D5DB; }
+        .section:last-of-type { border-bottom: none; }
+        .section-title { font-family: 'Lilita One', cursive; font-size: 2em; color: var(--cor-primaria); text-align: center; margin-bottom: 25px; }
+        .text-reference { background: #FEF3C7; padding: 20px; border-radius: 15px; margin-bottom: 30px; border-left: 5px solid var(--cor-aviso); }
+        .text-reference h3 { color: var(--cor-aviso); margin-bottom: 10px; font-size: 1.3em; }
+        .text-content { font-size: 1.1em; line-height: 1.6; color: #92400E; }
+        .questions-grid { display: grid; gap: 25px; }
+        .question { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 15px; padding: 20px; }
+        .question-number { background: var(--cor-secundaria); color: white; padding: 5px 12px; border-radius: 20px; display: inline-block; font-weight: bold; margin-bottom: 15px; font-size: 1.1em; }
+        .question-text { font-size: 1.1em; margin-bottom: 15px; font-weight: 600; }
+        .options { display: grid; gap: 10px; }
+        .option { background: white; border: 2px solid #D1D5DB; border-radius: 10px; padding: 12px 15px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; }
+        .option:hover { border-color: var(--cor-secundaria); background-color: #DBEAFE; }
+        .option input[type="radio"] { margin-right: 12px; transform: scale(1.3); }
+        .gabarito-container { background: #1F2937; padding: 40px; color: white; }
+        .gabarito-container h2 { font-family: 'Lilita One', cursive; font-size: 2.5em; text-align: center; margin-bottom: 30px; }
+        .gabarito-section { margin-bottom: 20px; }
+        .gabarito-section h3 { color: var(--cor-aviso); border-bottom: 2px solid var(--cor-aviso); padding-bottom: 5px; margin-bottom: 15px; }
+        .answers { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Atividade Educativa 🧠</h1>
+        </div>
+
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">🖨️ Versão para Impressão</button>
+        </div>
+
+        <!-- Grupo 1 -->
+        <div class="section">
+            <h2 class="section-title">A Aventura dos Números Mágicos</h2>
+            <div class="text-reference">
+                <h3>📖 Texto de Referência:</h3>
+                <p class="text-content">Era uma vez uma menina chamada Ana que descobriu um jardim mágico cheio de flores coloridas. Neste jardim especial, as flores cresciam seguindo padrões misteriosos. Ana percebeu que as flores vermelhas apareciam sempre em grupos de 2, 4, 6, 8... As flores azuis seguiam a sequência 1, 3, 5, 7... E as flores amarelas cresciam de forma muito especial: 1, 1, 2, 3, 5, 8... Ana ficou curiosa e decidiu estudar esses padrões para desvendar o segredo do jardim mágico. Ela contou 12 flores vermelhas na primeira fileira, 8 flores azuis na segunda fileira e 13 flores amarelas na terceira fileira.</p>
+            </div>
+            <div class="questions-grid">
+                <div class="question"><div class="question-number">1</div><div class="question-text">Qual é o próximo número na sequência das flores vermelhas: 2, 4, 6, 8, __?</div><div class="options"><label class="option"><input type="radio" name="q1">A) 9</label><label class="option"><input type="radio" name="q1">B) 10</label><label class="option"><input type="radio" name="q1">C) 11</label><label class="option"><input type="radio" name="q1">D) 12</label></div></div>
+                <div class="question"><div class="question-number">2</div><div class="question-text">Quantas flores azuis Ana encontrará se a sequência continuar: 1, 3, 5, 7, __?</div><div class="options"><label class="option"><input type="radio" name="q2">A) 8</label><label class="option"><input type="radio" name="q2">B) 9</label><label class="option"><input type="radio" name="q2">C) 10</label><label class="option"><input type="radio" name="q2">D) 11</label></div></div>
+                <div class="question"><div class="question-number">3</div><div class="question-text">Na sequência das flores amarelas (1, 1, 2, 3, 5, 8), qual será o próximo número?</div><div class="options"><label class="option"><input type="radio" name="q3">A) 11</label><label class="option"><input type="radio" name="q3">B) 12</label><label class="option"><input type="radio" name="q3">C) 13</label><label class="option"><input type="radio" name="q3">D) 14</label></div></div>
+                <div class="question"><div class="question-number">4</div><div class="question-text">Se Ana plantar mais 5 flores vermelhas além das 12 que já tem, quantas flores vermelhas terá no total?</div><div class="options"><label class="option"><input type="radio" name="q4">A) 15</label><label class="option"><input type="radio" name="q4">B) 16</label><label class="option"><input type="radio" name="q4">C) 17</label><label class="option"><input type="radio" name="q4">D) 18</label></div></div>
+                <div class="question"><div class="question-number">5</div><div class="question-text">Qual é a diferença entre o número de flores vermelhas (12) e flores azuis (8)?</div><div class="options"><label class="option"><input type="radio" name="q5">A) 2</label><label class="option"><input type="radio" name="q5">B) 3</label><label class="option"><input type="radio" name="q5">C) 4</label><label class="option"><input type="radio" name="q5">D) 5</label></div></div>
+                <div class="question"><div class="question-number">6</div><div class="question-text">Se as flores crescem em fileiras e Ana quer fazer 3 grupos iguais com suas 12 flores vermelhas, quantas flores terá cada grupo?</div><div class="options"><label class="option"><input type="radio" name="q6">A) 3</label><label class="option"><input type="radio" name="q6">B) 4</label><label class="option"><input type="radio" name="q6">C) 5</label><label class="option"><input type="radio" name="q6">D) 6</label></div></div>
+                <div class="question"><div class="question-number">7</div><div class="question-text">Na sequência 10, 8, 6, 4, __, qual número vem a seguir?</div><div class="options"><label class="option"><input type="radio" name="q7">A) 1</label><label class="option"><input type="radio" name="q7">B) 2</label><label class="option"><input type="radio" name="q7">C) 3</label><label class="option"><input type="radio" name="q7">D) 0</label></div></div>
+                <div class="question"><div class="question-number">8</div><div class="question-text">Se Ana encontrou 13 flores amarelas e der 4 para sua amiga, com quantas flores amarelas ficará?</div><div class="options"><label class="option"><input type="radio" name="q8">A) 7</label><label class="option"><input type="radio" name="q8">B) 8</label><label class="option"><input type="radio" name="q8">C) 9</label><label class="option"><input type="radio" name="q8">D) 10</label></div></div>
+                <div class="question"><div class="question-number">9</div><div class="question-text">Qual padrão Ana descobriu nas flores azuis?</div><div class="options"><label class="option"><input type="radio" name="q9">A) Números pares</label><label class="option"><input type="radio" name="q9">B) Números ímpares</label><label class="option"><input type="radio" name="q9">C) Números que dobram</label><label class="option"><input type="radio" name="q9">D) Números que diminuem</label></div></div>
+                <div class="question"><div class="question-number">10</div><div class="question-text">Se Ana somar todas as suas flores (12 vermelhas + 8 azuis + 13 amarelas), quantas flores terá?</div><div class="options"><label class="option"><input type="radio" name="q10">A) 31</label><label class="option"><input type="radio" name="q10">B) 32</label><label class="option"><input type="radio" name="q10">C) 33</label><label class="option"><input type="radio" name="q10">D) 34</label></div></div>
+            </div>
+        </div>
+
+        <!-- Grupo 2 -->
+        <div class="section">
+            <h2 class="section-title">As Formas Geométricas da Cidade Encantada</h2>
+            <div class="text-reference">
+                <h3>📖 Texto de Referência:</h3>
+                <p class="text-content">Na cidade encantada de Geometrópolis, todas as casas têm formatos especiais. A casa do Círculo tem janelas redondas e uma porta em formato de círculo. A casa do Quadrado tem 4 paredes iguais e 4 cantos retos. A casa do Triângulo tem um telhado pontudo com 3 lados. O prefeito da cidade, Sr. Retângulo, mora numa casa comprida com 4 cantos retos, mas com lados de tamanhos diferentes. As crianças da cidade adoram brincar no parque, onde há uma gangorra triangular, um carrossel circular e uma caixa de areia quadrada. No centro da praça, existe uma fonte em formato de hexágono com 6 lados iguais.</p>
+            </div>
+            <div class="questions-grid">
+                <div class="question"><div class="question-number">11</div><div class="question-text">Quantos lados tem a casa do Triângulo?</div><div class="options"><label class="option"><input type="radio" name="q11">A) 2</label><label class="option"><input type="radio" name="q11">B) 3</label><label class="option"><input type="radio" name="q11">C) 4</label><label class="option"><input type="radio" name="q11">D) 5</label></div></div>
+                <div class="question"><div class="question-number">12</div><div class="question-text">Qual forma tem todos os lados iguais e 4 cantos retos?</div><div class="options"><label class="option"><input type="radio" name="q12">A) Círculo</label><label class="option"><input type="radio" name="q12">B) Triângulo</label><label class="option"><input type="radio" name="q12">C) Quadrado</label><label class="option"><input type="radio" name="q12">D) Retângulo</label></div></div>
+                <div class="question"><div class="question-number">13</div><div class="question-text">Quantos cantos tem a casa do Sr. Retângulo?</div><div class="options"><label class="option"><input type="radio" name="q13">A) 2</label><label class="option"><input type="radio" name="q13">B) 3</label><label class="option"><input type="radio" name="q13">C) 4</label><label class="option"><input type="radio" name="q13">D) 6</label></div></div>
+                <div class="question"><div class="question-number">14</div><div class="question-text">A fonte da praça tem formato de hexágono. Quantos lados tem um hexágono?</div><div class="options"><label class="option"><input type="radio" name="q14">A) 5</label><label class="option"><input type="radio" name="q14">B) 6</label><label class="option"><input type="radio" name="q14">C) 7</label><label class="option"><input type="radio" name="q14">D) 8</label></div></div>
+                <div class="question"><div class="question-number">15</div><div class="question-text">Qual objeto do parque tem formato circular?</div><div class="options"><label class="option"><input type="radio" name="q15">A) Gangorra</label><label class="option"><input type="radio" name="q15">B) Carrossel</label><label class="option"><input type="radio" name="q15">C) Caixa de areia</label><label class="option"><input type="radio" name="q15">D) Escorregador</label></div></div>
+                <div class="question"><div class="question-number">16</div><div class="question-text">Se você desenhar um quadrado e depois desenhar uma linha de um canto ao canto oposto, quantos triângulos formará?</div><div class="options"><label class="option"><input type="radio" name="q16">A) 1</label><label class="option"><input type="radio" name="q16">B) 2</label><label class="option"><input type="radio" name="q16">C) 3</label><label class="option"><input type="radio" name="q16">D) 4</label></div></div>
+                <div class="question"><div class="question-number">17</div><div class="question-text">Qual é a diferença entre um quadrado e um retângulo?</div><div class="options"><label class="option"><input type="radio" name="q17">A) O número de lados</label><label class="option"><input type="radio" name="q17">B) O número de cantos</label><label class="option"><input type="radio" name="q17">C) O tamanho dos lados</label><label class="option"><input type="radio" name="q17">D) A cor</label></div></div>
+                <div class="question"><div class="question-number">18</div><div class="question-text">Se uma roda é circular, quantos cantos ela tem?</div><div class="options"><label class="option"><input type="radio" name="q18">A) 0</label><label class="option"><input type="radio" name="q18">B) 1</label><label class="option"><input type="radio" name="q18">C) 2</label><label class="option"><input type="radio" name="q18">D) 4</label></div></div>
+                <div class="question"><div class="question-number">19</div><div class="question-text">Em Geometrópolis, qual casa seria mais fácil de rolar?</div><div class="options"><label class="option"><input type="radio" name="q19">A) Casa do Triângulo</label><label class="option"><input type="radio" name="q19">B) Casa do Quadrado</label><label class="option"><input type="radio" name="q19">C) Casa do Círculo</label><label class="option"><input type="radio" name="q19">D) Casa do Retângulo</label></div></div>
+                <div class="question"><div class="question-number">20</div><div class="question-text">Se você somar os lados de um triângulo + os lados de um quadrado, quantos lados terá no total?</div><div class="options"><label class="option"><input type="radio" name="q20">A) 6</label><label class="option"><input type="radio" name="q20">B) 7</label><label class="option"><input type="radio" name="q20">C) 8</label><label class="option"><input type="radio" name="q20">D) 9</label></div></div>
+            </div>
+        </div>
+
+        <!-- Grupo 3 -->
+        <div class="section">
+            <h2 class="section-title">O Mistério da Biblioteca dos Bichos</h2>
+            <div class="text-reference">
+                <h3>📖 Texto de Referência:</h3>
+                <p class="text-content">Na floresta havia uma biblioteca muito especial, dirigida pela sábia coruja Professora Olivia. Todos os animais vinham até lá para aprender e se divertir. O coelho Bento adorava livros de aventura e sempre pegava emprestado 3 livros por semana. A raposa Rita preferia histórias de mistério e levava 2 livros a cada 5 dias. O urso Bruno era fã de receitas e pegava 1 livro de culinária toda segunda-feira. Um dia, a Professora Olivia percebeu que alguns livros estavam desaparecendo. Ela decidiu investigar e descobriu que os livros não estavam sendo devolvidos no prazo certo. Bento devia devolver 6 livros, Rita devia 4 livros e Bruno devia 2 livros. A coruja então criou um sistema de pontos: cada livro devolvido no prazo valia 5 pontos, e cada livro atrasado perdia 2 pontos.</p>
+            </div>
+            <div class="questions-grid">
+                <div class="question"><div class="question-number">21</div><div class="question-text">Quem é a diretora da biblioteca?</div><div class="options"><label class="option"><input type="radio" name="q21">A) Raposa Rita</label><label class="option"><input type="radio" name="q21">B) Coelho Bento</label><label class="option"><input type="radio" name="q21">C) Professora Olivia</label><label class="option"><input type="radio" name="q21">D) Urso Bruno</label></div></div>
+                <div class="question"><div class="question-number">22</div><div class="question-text">Quantos livros Bento pega emprestado por semana?</div><div class="options"><label class="option"><input type="radio" name="q22">A) 2</label><label class="option"><input type="radio" name="q22">B) 3</label><label class="option"><input type="radio" name="q22">C) 4</label><label class="option"><input type="radio" name="q22">D) 5</label></div></div>
+                <div class="question"><div class="question-number">23</div><div class="question-text">Que tipo de livro o urso Bruno prefere?</div><div class="options"><label class="option"><input type="radio" name="q23">A) Aventura</label><label class="option"><input type="radio" name="q23">B) Mistério</label><label class="option"><input type="radio" name="q23">C) Culinária</label><label class="option"><input type="radio" name="q23">D) Poesia</label></div></div>
+                <div class="question"><div class="question-number">24</div><div class="question-text">Quantos livros Rita pega a cada 5 dias?</div><div class="options"><label class="option"><input type="radio" name="q24">A) 1</label><label class="option"><input type="radio" name="q24">B) 2</label><label class="option"><input type="radio" name="q24">C) 3</label><label class="option"><input type="radio" name="q24">D) 4</label></div></div>
+                <div class="question"><div class="question-number">25</div><div class="question-text">Quantos livros no total os três animais devem devolver?</div><div class="options"><label class="option"><input type="radio" name="q25">A) 10</label><label class="option"><input type="radio" name="q25">B) 11</label><label class="option"><input type="radio" name="q25">C) 12</label><label class="option"><input type="radio" name="q25">D) 13</label></div></div>
+                <div class="question"><div class="question-number">26</div><div class="question-text">Se Bento devolver todos os seus 6 livros no prazo, quantos pontos ganhará?</div><div class="options"><label class="option"><input type="radio" name="q26">A) 25</label><label class="option"><input type="radio" name="q26">B) 30</label><label class="option"><input type="radio" name="q26">C) 35</label><label class="option"><input type="radio" name="q26">D) 40</label></div></div>
+                <div class="question"><div class="question-number">27</div><div class="question-text">Qual animal deve devolver o menor número de livros?</div><div class="options"><label class="option"><input type="radio" name="q27">A) Bento</label><label class="option"><input type="radio" name="q27">B) Rita</label><label class="option"><input type="radio" name="q27">C) Bruno</label><label class="option"><input type="radio" name="q27">D) Todos devem o mesmo</label></div></div>
+                <div class="question"><div class="question-number">28</div><div class="question-text">Se Rita atrasar a devolução de 2 livros, quantos pontos perderá?</div><div class="options"><label class="option"><input type="radio" name="q28">A) 2</label><label class="option"><input type="radio" name="q28">B) 4</label><label class="option"><input type="radio" name="q28">C) 6</label><label class="option"><input type="radio" name="q28">D) 8</label></div></div>
+                <div class="question"><div class="question-number">29</div><div class="question-text">Em que dia da semana Bruno pega livros emprestado?</div><div class="options"><label class="option"><input type="radio" name="q29">A) Domingo</label><label class="option"><input type="radio" name="q29">B) Segunda-feira</label><label class="option"><input type="radio" name="q29">C) Terça-feira</label><label class="option"><input type="radio" name="q29">D) Quarta-feira</label></div></div>
+                <div class="question"><div class="question-number">30</div><div class="question-text">Qual foi o problema que a Professora Olivia descobriu?</div><div class="options"><label class="option"><input type="radio" name="q30">A) Livros rasgados</label><label class="option"><input type="radio" name="q30">B) Livros perdidos</label><label class="option"><input type="radio" name="q30">C) Livros não devolvidos no prazo</label><label class="option"><input type="radio" name="q30">D) Livros molhados</label></div></div>
+            </div>
+        </div>
+
+        <!-- Grupo 4 -->
+        <div class="section">
+            <h2 class="section-title">A Festa das Medidas na Vila Alegre</h2>
+            <div class="text-reference">
+                <h3>📖 Texto de Referência:</h3>
+                <p class="text-content">Na Vila Alegre estava acontecendo a famosa Festa das Medidas! Todos os moradores estavam se preparando para as competições. Dona Maria fez um bolo gigante de 50 centímetros de comprimento para o concurso de doces. Seu João construiu uma mesa quadrada onde cada lado media 1 metro. As crianças da vila organizaram uma corrida: Pedro correu 200 metros, Laura correu 150 metros e Tomás correu 300 metros. Para a decoração, penduraram bandeirinhas coloridas: 15 bandeirinhas verdes, 20 bandeirinhas azuis e 25 bandeirinhas vermelhas. O prefeito da vila mediu a altura da árvore central da praça e descobriu que ela tinha 8 metros de altura. No final do dia, todos se reuniram para contar os pontos: cada metro corrido valia 1 ponto, cada bandeirinha valia 2 pontos, e cada centímetro do bolo valia meio ponto.</p>
+            </div>
+            <div class="questions-grid">
+                <div class="question"><div class="question-number">31</div><div class="question-text">Quantos centímetros tem o bolo da Dona Maria?</div><div class="options"><label class="option"><input type="radio" name="q31">A) 40</label><label class="option"><input type="radio" name="q31">B) 50</label><label class="option"><input type="radio" name="q31">C) 60</label><label class="option"><input type="radio" name="q31">D) 70</label></div></div>
+                <div class="question"><div class="question-number">32</div><div class="question-text">Cada lado da mesa do Seu João mede 1 metro. Quantos centímetros isso representa?</div><div class="options"><label class="option"><input type="radio" name="q32">A) 10</label><label class="option"><input type="radio" name="q32">B) 50</label><label class="option"><input type="radio" name="q32">C) 100</label><label class="option"><input type="radio" name="q32">D) 1000</label></div></div>
+                <div class="question"><div class="question-number">33</div><div class="question-text">Quem correu a maior distância na corrida?</div><div class="options"><label class="option"><input type="radio" name="q33">A) Pedro</label><label class="option"><input type="radio" name="q33">B) Laura</label><label class="option"><input type="radio" name="q33">C) Tomás</label><label class="option"><input type="radio" name="q33">D) Todos correram igual</label></div></div>
+                <div class="question"><div class="question-number">34</div><div class="question-text">Quantas bandeirinhas foram usadas na decoração no total?</div><div class="options"><label class="option"><input type="radio" name="q34">A) 50</label><label class="option"><input type="radio" name="q34">B) 55</label><label class="option"><input type="radio" name="q34">C) 60</label><label class="option"><input type="radio" name="q34">D) 65</label></div></div>
+                <div class="question"><div class="question-number">35</div><div class="question-text">A árvore da praça tem 8 metros de altura. Isso equivale a quantos centímetros?</div><div class="options"><label class="option"><input type="radio" name="q35">A) 80</label><label class="option"><input type="radio" name="q35">B) 800</label><label class="option"><input type="radio" name="q35">C) 8000</label><label class="option"><input type="radio" name="q35">D) 80000</label></div></div>
+                <div class="question"><div class="question-number">36</div><div class="question-text">Se Pedro correu 200 metros, quantos pontos ele ganhou na corrida?</div><div class="options"><label class="option"><input type="radio" name="q36">A) 100</label><label class="option"><input type="radio" name="q36">B) 150</label><label class="option"><input type="radio" name="q36">C) 200</label><label class="option"><input type="radio" name="q36">D) 250</label></div></div>
+                <div class="question"><div class="question-number">37</div><div class="question-text">Quantos pontos valem todas as bandeirinhas juntas (60 bandeirinhas × 2 pontos cada)?</div><div class="options"><label class="option"><input type="radio" name="q37">A) 110</label><label class="option"><input type="radio" name="q37">B) 120</label><label class="option"><input type="radio" name="q37">C) 130</label><label class="option"><input type="radio" name="q37">D) 140</label></div></div>
+                <div class="question"><div class="question-number">38</div><div class="question-text">O bolo de 50 centímetros vale quantos pontos (cada centímetro vale meio ponto)?</div><div class="options"><label class="option"><input type="radio" name="q38">A) 20</label><label class="option"><input type="radio" name="q38">B) 25</label><label class="option"><input type="radio" name="q38">C) 30</label><label class="option"><input type="radio" name="q38">D) 35</label></div></div>
+                <div class="question"><div class="question-number">39</div><div class="question-text">Qual é a diferença entre a distância que Tomás correu (300m) e Laura correu (150m)?</div><div class="options"><label class="option"><input type="radio" name="q39">A) 100m</label><label class="option"><input type="radio" name="q39">B) 150m</label><label class="option"><input type="radio" name="q39">C) 200m</label><label class="option"><input type="radio" name="q39">D) 250m</label></div></div>
+                <div class="question"><div class="question-number">40</div><div class="question-text">Se a mesa é quadrada com 1 metro de lado, qual é o perímetro da mesa?</div><div class="options"><label class="option"><input type="radio" name="q40">A) 2 metros</label><label class="option"><input type="radio" name="q40">B) 3 metros</label><label class="option"><input type="radio" name="q40">C) 4 metros</label><label class="option"><input type="radio" name="q40">D) 5 metros</label></div></div>
+            </div>
+        </div>
+
+        <!-- Grupo 5 -->
+        <div class="section">
+            <h2 class="section-title">O Tesouro Escondido do Pirata Matemático</h2>
+            <div class="text-reference">
+                <h3>📖 Texto de Referência:</h3>
+                <p class="text-content">O famoso pirata Capitão Números escondeu seu tesouro numa ilha misteriosa. Antes de partir para sua última aventura, ele deixou um mapa especial com pistas matemáticas para quem fosse corajoso o suficiente para encontrar o tesouro. O mapa dizia: "Caminhe 15 passos para o norte, depois 20 passos para o leste. Encontrará uma pedra em formato de cubo. Cada face do cubo tem um número: 10, 15, 20, 25, 30 e 35. Some todos esses números. Depois, procure três árvores dispostas em triângulo. A primeira árvore tem 24 cocos, a segunda tem metade disso, e a terceira tem o dobro da segunda. Finalmente, cave um buraco com 2 metros de profundidade e 3 metros de largura." Um grupo de crianças aventureiras encontrou o mapa e decidiu seguir as pistas para descobrir o tesouro do Capitão Números.</p>
+            </div>
+            <div class="questions-grid">
+                <div class="question"><div class="question-number">41</div><div class="question-text">Quantos passos no total as crianças devem caminhar (15 para o norte + 20 para o leste)?</div><div class="options"><label class="option"><input type="radio" name="q41">A) 30</label><label class="option"><input type="radio" name="q41">B) 35</label><label class="option"><input type="radio" name="q41">C) 40</label><label class="option"><input type="radio" name="q41">D) 45</label></div></div>
+                <div class="question"><div class="question-number">42</div><div class="question-text">A soma de todos os números nas faces do cubo (10+15+20+25+30+35) é:</div><div class="options"><label class="option"><input type="radio" name="q42">A) 125</label><label class="option"><input type="radio" name="q42">B) 130</label><label class="option"><input type="radio" name="q42">C) 135</label><label class="option"><input type="radio" name="q42">D) 140</label></div></div>
+                <div class="question"><div class="question-number">43</div><div class="question-text">A segunda árvore tem metade dos cocos da primeira. Se a primeira tem 24 cocos, quantos cocos tem a segunda?</div><div class="options"><label class="option"><input type="radio" name="q43">A) 10</label><label class="option"><input type="radio" name="q43">B) 12</label><label class="option"><input type="radio" name="q43">C) 14</label><label class="option"><input type="radio" name="q43">D) 16</label></div></div>
+                <div class="question"><div class="question-number">44</div><div class="question-text">A terceira árvore tem o dobro de cocos da segunda árvore. Quantos cocos ela tem?</div><div class="options"><label class="option"><input type="radio" name="q44">A) 20</label><label class="option"><input type="radio" name="q44">B) 22</label><label class="option"><input type="radio" name="q44">C) 24</label><label class="option"><input type="radio" name="q44">D) 26</label></div></div>
+                <div class="question"><div class="question-number">45</div><div class="question-text">Quantos cocos há no total nas três árvores (24 + 12 + 24)?</div><div class="options"><label class="option"><input type="radio" name="q45">A) 58</label><label class="option"><input type="radio" name="q45">B) 60</label><label class="option"><input type="radio" name="q45">C) 62</label><label class="option"><input type="radio" name="q45">D) 64</label></div></div>
+                <div class="question"><div class="question-number">46</div><div class="question-text">O buraco deve ter 2 metros de profundidade e 3 metros de largura. Qual é a área da superfície do buraco?</div><div class="options"><label class="option"><input type="radio" name="q46">A) 5 m²</label><label class="option"><input type="radio" name="q46">B) 6 m²</label><label class="option"><input type="radio" name="q46">C) 7 m²</label><label class="option"><input type="radio" name="q46">D) 8 m²</label></div></div>
+                <div class="question"><div class="question-number">47</div><div class="question-text">Quantas faces tem o cubo mencionado no mapa?</div><div class="options"><label class="option"><input type="radio" name="q47">A) 4</label><label class="option"><input type="radio" name="q47">B) 5</label><label class="option"><input type="radio" name="q47">C) 6</label><label class="option"><input type="radio" name="q47">D) 8</label></div></div>
+                <div class="question"><div class="question-number">48</div><div class="question-text">Se as crianças caminharem 15 passos para o norte e depois voltarem 8 passos, a quantos passos do ponto inicial estarão?</div><div class="options"><label class="option"><input type="radio" name="q48">A) 5</label><label class="option"><input type="radio" name="q48">B) 6</label><label class="option"><input type="radio" name="q48">C) 7</label><label class="option"><input type="radio" name="q48">D) 8</label></div></div>
+                <div class="question"><div class="question-number">49</div><div class="question-text">Qual é a forma geométrica das três árvores mencionadas no mapa?</div><div class="options"><label class="option"><input type="radio" name="q49">A) Quadrado</label><label class="option"><input type="radio" name="q49">B) Retângulo</label><label class="option"><input type="radio" name="q49">C) Triângulo</label><label class="option"><input type="radio" name="q49">D) Círculo</label></div></div>
+                <div class="question"><div class="question-number">50</div><div class="question-text">Se o Capitão Números escondeu 100 moedas de ouro e as crianças encontraram o tesouro, quantas moedas cada uma ganhará se dividirem igualmente entre 4 crianças?</div><div class="options"><label class="option"><input type="radio" name="q50">A) 20</label><label class="option"><input type="radio" name="q50">B) 25</label><label class="option"><input type="radio" name="q50">C) 30</label><label class="option"><input type="radio" name="q50">D) 35</label></div></div>
+            </div>
+        </div>
+
+        <!-- GABARITO -->
+        <div class="gabarito-container">
+            <h2>🏆 GABARITO 🏆</h2>
+            <div class="gabarito-section">
+                <h3>Grupo 1: A Aventura dos Números Mágicos</h3>
+                <div class="answers">
+                    <span>1. B) 10</span> <span>2. B) 9</span> <span>3. C) 13</span> <span>4. C) 17</span> <span>5. C) 4</span>
+                    <span>6. B) 4</span> <span>7. B) 2</span> <span>8. C) 9</span> <span>9. B) Números ímpares</span> <span>10. C) 33</span>
+                </div>
+            </div>
+            <div class="gabarito-section">
+                <h3>Grupo 2: As Formas Geométricas da Cidade Encantada</h3>
+                <div class="answers">
+                    <span>11. B) 3</span> <span>12. C) Quadrado</span> <span>13. C) 4</span> <span>14. B) 6</span> <span>15. B) Carrossel</span>
+                    <span>16. B) 2</span> <span>17. C) O tamanho dos lados</span> <span>18. A) 0</span> <span>19. C) Casa do Círculo</span> <span>20. B) 7</span>
+                </div>
+            </div>
+            <div class="gabarito-section">
+                <h3>Grupo 3: O Mistério da Biblioteca dos Bichos</h3>
+                <div class="answers">
+                    <span>21. C) Professora Olivia</span> <span>22. B) 3</span> <span>23. C) Culinária</span> <span>24. B) 2</span> <span>25. C) 12</span>
+                    <span>26. B) 30</span> <span>27. C) Bruno</span> <span>28. B) 4</span> <span>29. B) Segunda-feira</span> <span>30. C) Livros não devolvidos no prazo</span>
+                </div>
+            </div>
+            <div class="gabarito-section">
+                <h3>Grupo 4: A Festa das Medidas na Vila Alegre</h3>
+                <div class="answers">
+                    <span>31. B) 50</span> <span>32. C) 100</span> <span>33. C) Tomás</span> <span>34. C) 60</span> <span>35. B) 800</span>
+                    <span>36. C) 200</span> <span>37. B) 120</span> <span>38. B) 25</span> <span>39. B) 150m</span> <span>40. C) 4 metros</span>
+                </div>
+            </div>
+            <div class="gabarito-section">
+                <h3>Grupo 5: O Tesouro Escondido do Pirata Matemático</h3>
+                <div class="answers">
+                    <span>41. B) 35</span> <span>42. C) 135</span> <span>43. B) 12</span> <span>44. C) 24</span> <span>45. B) 60</span>
+                    <span>46. B) 6 m²</span> <span>47. C) 6</span> <span>48. C) 7</span> <span>49. C) Triângulo</span> <span>50. B) 25</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

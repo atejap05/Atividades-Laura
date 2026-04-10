@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turma da Matemágica – Tabuada & Atividades (A4)</title>
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --muted: #6c757d;
+    --border: #dee2e6;
+    --paper: #fff;
+    --accent: #e63946;
+    --blue: #457b9d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    color: var(--ink);
+    background: #fff;
+    line-height: 1.45;
+    font-size: 10.5pt;
+  }
+
+  @page { size: A4; margin: 12mm; }
+
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #343a40;
+    color: #fff;
+    padding: 10px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .toolbar button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .toolbar span { font-size: 13px; opacity: .9; }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto 12px;
+    background: var(--paper);
+    padding: 12mm 14mm;
+    position: relative;
+    box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  }
+
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .page-header .badge {
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    background: #fff;
+  }
+  .page-header h1 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--ink);
+  }
+
+  .header-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 8px 10px;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    font-size: 10pt;
+    font-weight: 600;
+  }
+  .header-line label {
+    flex: 1;
+    min-width: 140px;
+  }
+  .header-line input {
+    border: none;
+    border-bottom: 2px solid var(--blue);
+    background: transparent;
+    width: 100%;
+    min-height: 22px;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--ink);
+    margin-bottom: 10px;
+    opacity: .35;
+  }
+
+  h2 {
+    font-size: 1rem;
+    margin: 10px 0 8px;
+    padding: 6px 12px;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 8px;
+    display: inline-block;
+  }
+  h3 {
+    font-size: 0.92rem;
+    color: var(--blue);
+    margin: 10px 0 6px;
+    font-weight: 700;
+  }
+
+  .concept {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin: 8px 0;
+    font-size: 10pt;
+  }
+
+  /* Tabuadas tradicionais — grade 5×2 */
+  .tab-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px 8px;
+    margin-top: 8px;
+  }
+  .tab-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 6px 8px;
+    background: #fff;
+  }
+  .tab-card-title {
+    text-align: center;
+    font-weight: 800;
+    font-size: 0.75rem;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-list {
+    list-style: none;
+    font-size: 0.62rem;
+    font-weight: 600;
+    line-height: 1.35;
+    font-family: "Consolas", "Courier New", monospace;
+  }
+
+  /* Exercícios em grade */
+  .exercises-grid {
+    display: grid;
+    gap: 8px 10px;
+    margin: 10px 0;
+  }
+  .exercises-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .exercises-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .exercises-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+  .ex-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 8px 10px;
+    background: #fff;
+    position: relative;
+  }
+  .ex-number {
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: var(--muted);
+    position: absolute;
+    top: 4px;
+    right: 6px;
+  }
+  .ex-problem {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 4px 0 6px;
+  }
+  .ex-answer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.78rem;
+  }
+  .answer-box {
+    width: 48px;
+    height: 20px;
+    border: 1px dashed var(--muted);
+    background: #fff;
+    border-radius: 4px;
+  }
+
+  /* Contas verticais — até 3 dígitos */
+  .vm-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 18px;
+    justify-content: flex-start;
+    margin: 10px 0;
+  }
+  .vm {
+    display: inline-block;
+    vertical-align: top;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+  .vm table { border-collapse: collapse; margin: 0; }
+  .vm td {
+    min-width: 0.95em;
+    height: 1.2em;
+    text-align: center;
+    vertical-align: middle;
+    padding: 1px 2px;
+  }
+  .vm td.vm-op {
+    width: 1.1em;
+    font-weight: 800;
+    text-align: center;
+    vertical-align: middle;
+    padding-right: 2px;
+  }
+  .vm td.vm-line {
+    border-top: 2px solid var(--ink);
+    padding-top: 3px;
+    height: 0;
+    line-height: 0;
+  }
+  .vm .lbl {
+    font-size: 0.42rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    height: 0.85em;
+    line-height: 1;
+  }
+  .vm .carry {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--accent);
+    height: 0.75em;
+  }
+  .vm .carry-box {
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    min-width: 0.85em;
+    min-height: 0.75em;
+    display: inline-block;
+  }
+  .vm .ans td.vm-ans {
+    border-bottom: 2px dotted var(--muted);
+    min-height: 1.25em;
+  }
+
+  .q {
+    margin: 12px 0;
+    padding: 10px 12px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 10pt;
+  }
+  .q-num {
+    display: inline-block;
+    background: #f4d35e;
+    color: var(--ink);
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-right: 6px;
+    font-size: 0.88rem;
+  }
+
+  .trail-section {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    background: #fff;
+  }
+  .trail-section h3 { margin-top: 0; color: var(--ink); }
+  .trail {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .trail-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.8rem;
+  }
+  .trail-op { font-weight: 800; font-size: 0.95rem; }
+  .trail-blank {
+    width: 32px;
+    height: 28px;
+    border-radius: 6px;
+    border: 2px dashed var(--muted);
+    background: #fff;
+  }
+  .trail-arrow { font-size: 0.85rem; color: var(--muted); }
+
+  .challenge-box {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-top: 10px;
+    background: #fff;
+  }
+  .challenge-box h3 { margin-bottom: 8px; color: var(--ink); }
+  .challenge-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .ch-item {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.88rem;
+  }
+  .ch-item .ans {
+    margin-top: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .ans-line { display: inline-block; width: 44px; border-bottom: 2px dashed var(--muted); }
+
+  .word-problems { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+  .wp-card {
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    font-size: 9.5pt;
+    line-height: 1.5;
+    background: #fff;
+  }
+  .wp-card .emoji { font-size: 1.2rem; display: block; margin-bottom: 4px; }
+  .wp-card p { font-weight: 600; }
+  .wp-card .wp-ans {
+    margin-top: 8px;
+    font-weight: 700;
+    font-size: 0.72rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+  }
+  .wp-ans-line { flex: 1; border-bottom: 1.5px dashed var(--muted); }
+
+  .stars {
+    text-align: right;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+
+  @media print {
+    .toolbar { display: none !important; }
+    body { background: #fff; }
+    * {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      margin: 0;
+      box-shadow: none;
+      width: 100%;
+      min-height: auto;
+      padding: 0;
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar no-print">
+  <button type="button" onclick="window.print()">Imprimir / Salvar em PDF</button>
+  <span>Ctrl+P → “Salvar como PDF”. Formato A4, fundo branco para economizar tinta.</span>
+</div>
+
+<!-- ══════════ PÁGINA 1 — TABUADA DE MULTIPLICAÇÃO ══════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="badge">Pág. 1</span>
+    <h1>Turma da Matemágica — Tabuada de multiplicar</h1>
+  </div>
+  <div class="header-line">
+    <label>Nome: <input type="text" aria-label="Nome" /></label>
+    <label>Data: <input type="text" aria-label="Data" /></label>
+    <label>Turma: <input type="text" aria-label="Turma" /></label>
+  </div>
+  <div class="divider"></div>
+  <p class="concept">Estude cada coluna: o número da tabuada multiplica de 1 a 10. Use como consulta nas próximas páginas.</p>
+  <h2>Tabuadas do 1 ao 10 (formato tradicional)</h2>
+  <div class="tab-cards-grid" id="tab-mult"></div>
+  <div class="stars">Consulta — não precisa entregar esta página preenchida.</div>
+</div>
+<script>
+(function(){
+  const el = document.getElementById('tab-mult');
+  if(!el) return;
+  for(let n=1;n<=10;n++){
+    let html = '<div class="tab-card"><div class="tab-card-title">× ' + n + '</div><ul class="tab-list">';
+    for(let k=1;k<=10;k++) html += '<li>' + n + ' × ' + k + ' = ' + (n*k) + '</li>';
+    html += '</ul></div>';
+    el.insertAdjacentHTML('beforeend', html);
+  }
+})();
+</script>
+
+<!-- ══════════ PÁGINA 2 — TABUADA DE SOMA ══════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="badge">Pág. 2</span>
+    <h1>Turma da Matemágica — Tabuada de somar</h1>
+  </div>
+  <div class="header-line">
+    <label>Nome: <input type="text" aria-label="Nome" /></label>
+    <label>Data: <input type="text" aria-label="Data" /></label>
+    <label>Turma: <input type="text" aria-label="Turma" /></label>
+  </div>
+  <div class="divider"></div>
+  <p class="concept">Em cada caixa, o número da esquerda soma de 1 a 10. Memorize os resultados que mais aparecem nas contas.</p>
+  <h2>Tabuadas de soma do 1 ao 10</h2>
+  <div class="tab-cards-grid" id="tab-soma"></div>
+  <div class="stars">Consulta — não precisa entregar esta página preenchida.</div>
+</div>
+<script>
+(function(){
+  const el = document.getElementById('tab-soma');
+  if(!el) return;
+  for(let n=1;n<=10;n++){
+    let html = '<div class="tab-card"><div class="tab-card-title">+ ' + n + '</div><ul class="tab-list">';
+    for(let k=1;k<=10;k++) html += '<li>' + n + ' + ' + k + ' = ' + (n+k) + '</li>';
+    html += '</ul></div>';
+    el.insertAdjacentHTML('beforeend', html);
+  }
+})();
+</script>
+
+<!-- ══════════ PÁGINA 3 — NÍVEL INICIAL: FATOS BÁSICOS ══════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="badge">Pág. 3</span>
+    <h1>Multiplicação e soma — nível 1</h1>
+  </div>
+  <div class="header-line">
+    <label>Nome: <input type="text" aria-label="Nome" /></label>
+    <label>Data: <input type="text" aria-label="Data" /></label>
+  </div>
+  <div class="divider"></div>
+  <h2>Parte A — Multiplicação (fatos até 10)</h2>
+  <div class="exercises-grid cols-4">
+    <script>
+      (function(){
+        const p = [[3,4],[5,2],[6,3],[4,5],[7,2],[8,1],[9,2],[5,5],[4,7],[3,8],[6,4],[2,9],[10,2],[4,4],[5,3],[6,2],[7,3],[8,2],[9,3],[5,4]];
+        p.forEach(([a,b],i)=>{
+          document.write('<div class="ex-card"><span class="ex-number">#'+(i+1)+'</span><div class="ex-problem">'+a+' × '+b+' =</div><div class="ex-answer">R: <div class="answer-box"></div></div></div>');
+        });
+      })();
+    </script>
+  </div>
+  <h2>Parte B — Soma mental (até 20)</h2>
+  <div class="exercises-grid cols-4">
+    <script>
+      (function(){
+        const p = [[8,7],[6,9],[5,8],[7,6],[4,9],[9,5],[10,4],[6,8],[7,8],[5,9],[8,6],[9,7],[4,8],[3,9],[10,9],[6,7],[8,5],[7,7],[9,6],[5,7]];
+        p.forEach(([a,b],i)=>{
+          document.write('<div class="ex-card"><span class="ex-number">'+(i+1)+'</span><div class="ex-problem">'+a+' + '+b+' =</div><div class="ex-answer">R: <div class="answer-box"></div></div></div>');
+        });
+      })();
+    </script>
+  </div>
+  <div class="stars">Como fui hoje? ⭐ ⭐ ⭐</div>
+</div>
+
+<!-- ══════════ PÁGINA 4 ══════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="badge">Pág. 4</span>
+    <h1>Multiplicação e soma — nível 1 (continuação)</h1>
+  </div>
+  <div class="header-line">
+    <label>Nome: <input type="text" aria-label="Nome" /></label>
+    <label>Data: <input type="text" aria-label="Data" /></label>
+  </div>
+  <div class="divider"></div>
+  <h2>Parte A — Multiplicação</h2>
+  <div class="exercises-grid cols-4">
+    <script>
+      (function(){
+        const p = [[6,6],[7,4],[8,3],[9,4],[5,6],[4,9],[3,7],[10,3],[6,5],[7,5],[8,4],[9,5],[4,6],[6,7],[5,8],[7,7],[8,5],[9,6],[10,4],[6,8]];
+        p.forEach(([a,b],i)=>{
+          document.write('<div class="ex-card"><span class="ex-number">#'+(i+1)+'</span><div class="ex-problem">'+a+' × '+b+' =</div><div class="ex-answer">R: <div class="answer-box"></div></div></div>');
+        });
+      })();
+    </script>
+  </div>
+  <h2>Parte B — Soma (até 20)</h2>
+  <div class="exercises-grid cols-4">
+    <script>
+      (function(){
+        const p = [[11,4],[12,5],[13,3],[9,9],[10,8],[7,11],[6,10],[8,9],[14,2],[5,12],[9,8],[10,7],[11,5],[12,4],[13,4],[8,10],[9,10],[6,11],[7,9],[4,11]];
+        p.forEach(([a,b],i)=>{
+          document.write('<div class="ex-card"><span class="ex-number">'+(i+1)+'</span><div class="ex-problem">'+a+' + '+b+' =</div><div class="ex-answer">R: <div class="answer-box"></div></div></div>');
+        });
+      })();
+    </script>
+  </div>
+  <div class="stars">Como fui hoje? ⭐ ⭐ ⭐</div>
+</div>
+
+<!-- ══════════ PÁGINA 5 ══════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="badge">Pág. 5</span>
+    <h1>Revisão rápida — nível 1</h1>
+  </div>
+  <div class="header-line">
+    <label>Nome: <input type="text" aria-label="Nome" /></label>
+    <label>Data: <input type="text" aria-label="Data" /></label>
+  </div>
+  <div class="divider"></div>
+  <h2>Misture multiplicação e soma</h2>
+  <div class="exercises-grid cols-4">
+    <script>
+      (function(){
+        const mult = [[4,8],[9,2],[7,6],[5,7],[10,5],[6,9],[8,7],[3,6],[5,9],[8,8]];
+        const soma = [[15,5],[12,8],[14,6],[11,9],[13,7],[16,4],[10,10],[9,11],[8,12],[7,13]];
+        mult.forEach(([a,b],i)=>{
+          document.write('<div class="ex-card"><span class="ex-number">#'+(i+1)+'</span><div class="ex-problem">'+a+' × '+b+' =</div><div class="ex-answer">R: <div class="answer-box"></div></div></div>');
+        });
+        soma.forEach(([a,b],i)=>{
+          document.write('<div class="ex-card"><span class="ex-number">#'+(i+11)+'</span><div class="ex-problem">'+a+' + '+b+' =</div><div class="ex-answer">R: <div class="answer-box"></div></div></div>');
+        });
+      })();
+    </script>
+  </div>
+  <div class="trail-section avoid-break">
+    <h3>Complete a sequência de × 4</h3>
+    <div class="trail">
+      <div class="trail-num">4</div><span class="trail-arrow">→</span>
+      <div class="trail-num">8</div><span class="trail-arrow">→</span>
+      <div class="trail-blank"></div><span class="trail-arrow">→</span>
+      <div class="trail-blank"></div><span class="trail-arrow">→</span>
+      <div class="trail-blank"></div><span class="trail-arrow">→</span>
+      <div class="trail-blank"></div><span class="trail-arrow">→</span>
+      <div class="trail-blank"></div><span class="trail-arrow">→</span>
+      <div class="trail-blank"></div><span class="trail-arrow">→</span>
+      <div class="trail-blank"></div>
+    </div>
+  </div>
+  <div class="trail-section avoid-break">
+    <h3>Complete a sequência somando 6 (comece no 0)</h3>
+    <div class="trail">
+      <div class="trail-num">0</div><span class="trail-arrow">→</span>
+      <div class="trail-num">6</div><span class="trail-arrow">→</span>
+      <div class="trail-blank"></div><span class="trail-arrow">→</span>
+      <div class="trail-blank"></div><span class="trail-arrow">→</span>
+      <div class="trail-blank"></div><span class="trail-arrow">→</span>
+      <div class="trail-blank"></div><span class="trail-arrow">→</span>
+      <div class="trail-blank"></div>
+    </div>
+  </div>
+  <div class="stars">Como fui hoje? ⭐ ⭐ ⭐</div>
+</div>
+
+<!-- ══════════ PÁGINA 6 — NÍVEL 2 ══════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="badge">Pág. 6</span>
+    <h1>Multiplicação maior — nível 2</h1>
+  </div>
+  <div class="header-line">
+    <label>Nome: <input type="text" aria-label="Nome" /></label>
+    <label>Data: <input type="text" aria-label="Data" /></label>
+  </div>
+  <div class="divider"></div>
+  <p class="concept">Agora aparecem fatores até 12 e produtos um pouco maiores. Calcule com calma.</p>
+  <h2>Multiplicação (um fator de 11 ou 12)</h2>
+  <div class="exercises-grid cols-3">
+    <script>
+      (function(){
+        const p = [[11,3],[11,4],[11,5],[12,2],[12,3],[12,4],[11,6],[12,5],[11,7],[12,6],[11,8],[10,11],[9,11],[8,12],[7,11],[6,12],[11,9],[12,7],[11,10],[12,8]];
+        p.forEach(([a,b],i)=>{
+          document.write('<div class="ex-card"><span class="ex-number">#'+(i+1)+'</span><div class="ex-problem">'+a+' × '+b+' =</div><div class="ex-answer">R: <div class="answer-box" style="width:56px"></div></div></div>');
+        });
+      })();
+    </script>
+  </div>
+  <h2>Somas até 100 (horizontal)</h2>
+  <div class="exercises-grid cols-3">
+    <script>
+      (function(){
+        const p = [[28,35],[42,19],[56,24],[33,48],[61,18],[45,37],[52,29],[74,16],[38,45],[67,22],[49,31],[55,36],[44,52],[63,28],[71,19],[58,25],[46,47],[39,54],[82,14],[65,26]];
+        p.forEach(([a,b],i)=>{
+          document.write('<div class="ex-card"><span class="ex-number">'+(i+1)+'</span><div class="ex-problem">'+a+' + '+b+' =</div><div class="ex-answer">R: <div class="answer-box" style="width:56px"></div></div></div>');
+        });
+      })();
+    </script>
+  </div>
+  <div class="stars">Como fui hoje? ⭐ ⭐ ⭐</div>
+</div>
+
+<!-- ══════════ PÁGINA 7 — SOMA VERTICAL 2 DÍGITOS ══════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="badge">Pág. 7</span>
+    <h1>Soma no papel — 2 dígitos</h1>
+  </div>
+  <div class="header-line">
+    <label>Nome: <input type="text" aria-label="Nome" /></label>
+    <label>Data: <input type="text" aria-label="Data" /></label>
+  </div>
+  <div class="divider"></div>
+  <p class="concept">Alinhe unidade embaixo de unidade e dezena embaixo de dezena. Use os quadradinhos para o “vai 1”, se precisar.</p>
+  <h2>Resolva no papel (conta vertical)</h2>
+  <div class="vm-grid">
+    <div class="vm avoid-break" aria-label="Soma"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>2</td><td>5</td></tr>
+      <tr><td class="vm-op">+</td><td>1</td><td>5</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>3</td><td>6</td></tr>
+      <tr><td class="vm-op">+</td><td>3</td><td>6</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>4</td><td>7</td></tr>
+      <tr><td class="vm-op">+</td><td>2</td><td>8</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>5</td><td>9</td></tr>
+      <tr><td class="vm-op">+</td><td>3</td><td>4</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>6</td><td>8</td></tr>
+      <tr><td class="vm-op">+</td><td>1</td><td>9</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>7</td><td>4</td></tr>
+      <tr><td class="vm-op">+</td><td>1</td><td>6</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+  </div>
+  <div class="vm-grid">
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>8</td><td>1</td></tr>
+      <tr><td class="vm-op">+</td><td>1</td><td>9</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>4</td><td>5</td></tr>
+      <tr><td class="vm-op">+</td><td>4</td><td>8</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>9</td><td>2</td></tr>
+      <tr><td class="vm-op">+</td><td></td><td>8</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>3</td><td>8</td></tr>
+      <tr><td class="vm-op">+</td><td>5</td><td>5</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+  </div>
+  <div class="stars">Como fui hoje? ⭐ ⭐ ⭐</div>
+</div>
+
+<!-- ══════════ PÁGINA 8 ══════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="badge">Pág. 8</span>
+    <h1>Soma vertical — 2 dígitos (continuação)</h1>
+  </div>
+  <div class="header-line">
+    <label>Nome: <input type="text" aria-label="Nome" /></label>
+    <label>Data: <input type="text" aria-label="Data" /></label>
+  </div>
+  <div class="divider"></div>
+  <div class="vm-grid">
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>5</td><td>6</td></tr>
+      <tr><td class="vm-op">+</td><td>3</td><td>7</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>6</td><td>7</td></tr>
+      <tr><td class="vm-op">+</td><td>2</td><td>5</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>7</td><td>9</td></tr>
+      <tr><td class="vm-op">+</td><td>1</td><td>4</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>8</td><td>8</td></tr>
+      <tr><td class="vm-op">+</td><td></td><td>6</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>9</td><td>1</td></tr>
+      <tr><td class="vm-op">+</td><td>1</td><td>9</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>4</td><td>4</td></tr>
+      <tr><td class="vm-op">+</td><td>5</td><td>6</td></tr>
+      <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+  </div>
+  <h2>Multiplicação (revisão)</h2>
+  <div class="exercises-grid cols-4">
+    <script>
+      (function(){
+        const p = [[12,5],[11,11],[9,12],[8,11],[12,9],[10,12],[11,12],[12,10],[7,12],[12,11]];
+        p.forEach(([a,b],i)=>{
+          document.write('<div class="ex-card"><span class="ex-number">#'+(i+1)+'</span><div class="ex-problem">'+a+' × '+b+' =</div><div class="ex-answer">R: <div class="answer-box" style="width:52px"></div></div></div>');
+        });
+      })();
+    </script>
+  </div>
+  <div class="stars">Como fui hoje? ⭐ ⭐ ⭐</div>
+</div>
+
+<!-- ══════════ PÁGINA 9 — SOMA VERTICAL 3 DÍGITOS ══════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="badge">Pág. 9</span>
+    <h1>Soma no papel — até 3 dígitos</h1>
+  </div>
+  <div class="header-line">
+    <label>Nome: <input type="text" aria-label="Nome" /></label>
+    <label>Data: <input type="text" aria-label="Data" /></label>
+  </div>
+  <div class="divider"></div>
+  <p class="concept">Alinhe centena, dezena e unidade. O sinal + fica à esquerda da segunda parcela.</p>
+  <h2>Duas parcelas (2 e 3 dígitos)</h2>
+  <div class="vm-grid">
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>&nbsp;</td><td>6</td><td>3</td></tr>
+      <tr><td class="vm-op">+</td><td>2</td><td>2</td><td>8</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>&nbsp;</td><td>4</td><td>5</td></tr>
+      <tr><td class="vm-op">+</td><td>2</td><td>3</td><td>7</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>1</td><td>2</td><td>5</td></tr>
+      <tr><td class="vm-op">+</td><td></td><td>6</td><td>7</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>&nbsp;</td><td>8</td><td>9</td></tr>
+      <tr><td class="vm-op">+</td><td>1</td><td>5</td><td>6</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+  </div>
+  <div class="vm-grid">
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>2</td><td>3</td><td>5</td></tr>
+      <tr><td class="vm-op">+</td><td>4</td><td>7</td><td>5</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>1</td><td>4</td><td>8</td></tr>
+      <tr><td class="vm-op">+</td><td>3</td><td>6</td><td>2</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>&nbsp;</td><td>9</td><td>2</td></tr>
+      <tr><td class="vm-op">+</td><td>4</td><td>0</td><td>8</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>3</td><td>0</td><td>7</td></tr>
+      <tr><td class="vm-op">+</td><td>1</td><td>8</td><td>5</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+  </div>
+  <div class="stars">Como fui hoje? ⭐ ⭐ ⭐</div>
+</div>
+
+<!-- ══════════ PÁGINA 10 ══════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="badge">Pág. 10</span>
+    <h1>Soma vertical — 3 dígitos (continuação)</h1>
+  </div>
+  <div class="header-line">
+    <label>Nome: <input type="text" aria-label="Nome" /></label>
+    <label>Data: <input type="text" aria-label="Data" /></label>
+  </div>
+  <div class="divider"></div>
+  <h2>Duas parcelas com centenas</h2>
+  <div class="vm-grid">
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>4</td><td>5</td><td>6</td></tr>
+      <tr><td class="vm-op">+</td><td>2</td><td>8</td><td>9</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>6</td><td>7</td><td>1</td></tr>
+      <tr><td class="vm-op">+</td><td>1</td><td>5</td><td>8</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>3</td><td>9</td><td>4</td></tr>
+      <tr><td class="vm-op">+</td><td>4</td><td>0</td><td>6</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>5</td><td>2</td><td>0</td></tr>
+      <tr><td class="vm-op">+</td><td>3</td><td>7</td><td>9</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+  </div>
+  <div class="vm-grid">
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>7</td><td>1</td><td>6</td></tr>
+      <tr><td class="vm-op">+</td><td>2</td><td>4</td><td>5</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>8</td><td>0</td><td>8</td></tr>
+      <tr><td class="vm-op">+</td><td>1</td><td>9</td><td>2</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>2</td><td>9</td><td>9</td></tr>
+      <tr><td class="vm-op">+</td><td>5</td><td>0</td><td>1</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>4</td><td>6</td><td>3</td></tr>
+      <tr><td class="vm-op">+</td><td>3</td><td>5</td><td>7</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+  </div>
+  <div class="stars">Como fui hoje? ⭐ ⭐ ⭐</div>
+</div>
+
+<!-- ══════════ PÁGINA 11 — TRÊS PARCELAS ══════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="badge">Pág. 11</span>
+    <h1>Soma de três parcelas — alinhadas</h1>
+  </div>
+  <div class="header-line">
+    <label>Nome: <input type="text" aria-label="Nome" /></label>
+    <label>Data: <input type="text" aria-label="Data" /></label>
+  </div>
+  <div class="divider"></div>
+  <p class="concept">Some as três linhas: você pode somar duas parcelas e depois somar o resultado com a terceira.</p>
+  <div class="vm-grid">
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>4</td><td>8</td><td>3</td></tr>
+      <tr><td class="vm-op">+</td><td>2</td><td>1</td><td>0</td></tr>
+      <tr><td></td><td>1</td><td>7</td><td>9</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>1</td><td>2</td><td>5</td></tr>
+      <tr><td class="vm-op">+</td><td>3</td><td>4</td><td>6</td></tr>
+      <tr><td></td><td>2</td><td>0</td><td>8</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>2</td><td>0</td><td>5</td></tr>
+      <tr><td class="vm-op">+</td><td>1</td><td>9</td><td>0</td></tr>
+      <tr><td></td><td>1</td><td>6</td><td>4</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>3</td><td>1</td><td>4</td></tr>
+      <tr><td class="vm-op">+</td><td>2</td><td>5</td><td>5</td></tr>
+      <tr><td></td><td>1</td><td>8</td><td>0</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+  </div>
+  <div class="vm-grid">
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>5</td><td>0</td><td>0</td></tr>
+      <tr><td class="vm-op">+</td><td>1</td><td>2</td><td>5</td></tr>
+      <tr><td></td><td>3</td><td>7</td><td>5</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>6</td><td>2</td><td>8</td></tr>
+      <tr><td class="vm-op">+</td><td>1</td><td>4</td><td>0</td></tr>
+      <tr><td></td><td>1</td><td>3</td><td>2</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>2</td><td>7</td><td>6</td></tr>
+      <tr><td class="vm-op">+</td><td>3</td><td>0</td><td>8</td></tr>
+      <tr><td></td><td>4</td><td>1</td><td>5</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>1</td><td>9</td><td>9</td></tr>
+      <tr><td class="vm-op">+</td><td>2</td><td>0</td><td>1</td></tr>
+      <tr><td></td><td>5</td><td>9</td><td>9</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+  </div>
+  <div class="stars">Como fui hoje? ⭐ ⭐ ⭐</div>
+</div>
+
+<!-- ══════════ PÁGINA 12 — MISTO ══════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="badge">Pág. 12</span>
+    <h1>Desafio misto — vertical e multiplicação</h1>
+  </div>
+  <div class="header-line">
+    <label>Nome: <input type="text" aria-label="Nome" /></label>
+    <label>Data: <input type="text" aria-label="Data" /></label>
+  </div>
+  <div class="divider"></div>
+  <h2>Somas verticais (duas parcelas)</h2>
+  <div class="vm-grid">
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>9</td><td>8</td><td>7</td></tr>
+      <tr><td class="vm-op">+</td><td></td><td>6</td><td>5</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>5</td><td>5</td><td>5</td></tr>
+      <tr><td class="vm-op">+</td><td>4</td><td>4</td><td>5</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>1</td><td>1</td><td>1</td></tr>
+      <tr><td class="vm-op">+</td><td>8</td><td>8</td><td>8</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+    <div class="vm avoid-break"><table>
+      <tr><td></td><td class="lbl">C</td><td class="lbl">D</td><td class="lbl">U</td></tr>
+      <tr><td></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td><td class="carry"><span class="carry-box"></span></td></tr>
+      <tr><td></td><td>4</td><td>0</td><td>0</td></tr>
+      <tr><td class="vm-op">+</td><td>3</td><td>9</td><td>9</td></tr>
+      <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+      <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+    </table></div>
+  </div>
+  <h2>Multiplicação</h2>
+  <div class="exercises-grid cols-3">
+    <script>
+      (function(){
+        const p = [[15,6],[14,7],[13,8],[16,5],[12,12],[11,9],[18,4],[20,5],[25,4],[24,3],[17,5],[19,4],[22,4],[21,5],[30,3],[40,2],[50,2],[35,2]];
+        p.forEach(([a,b],i)=>{
+          document.write('<div class="ex-card"><span class="ex-number">#'+(i+1)+'</span><div class="ex-problem">'+a+' × '+b+' =</div><div class="ex-answer">R: <div class="answer-box" style="width:56px"></div></div></div>');
+        });
+      })();
+    </script>
+  </div>
+  <div class="stars">Como fui hoje? ⭐ ⭐ ⭐</div>
+</div>

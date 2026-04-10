@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lia e Pip - História Bilíngue</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --border: #dbe3ef;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(244, 247, 251, 0.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+
+    .button {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .button-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .button-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--border);
+    }
+
+    .button-secondary:hover {
+      background: #f8fafc;
+      transform: translateY(-1px);
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 24px auto 40px;
+      padding: 22mm 20mm;
+      background: var(--paper);
+      box-shadow: 0 20px 60px rgba(37, 99, 235, 0.12);
+      border-radius: 12px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      color: #0f172a;
+    }
+
+    .subtitle {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    h2 {
+      margin-top: 28px;
+      margin-bottom: 10px;
+      font-size: 22px;
+      color: #0f172a;
+    }
+
+    p {
+      margin: 0 0 14px;
+      font-size: 17px;
+      text-align: justify;
+    }
+
+    .term {
+      color: var(--accent-dark);
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    ol {
+      margin: 12px 0 0 22px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .question {
+      margin-bottom: 18px;
+      break-inside: avoid;
+    }
+
+    .answer-space {
+      min-height: 4.8em;
+      margin-top: 8px;
+      border-bottom: 1px solid #cbd5e1;
+      border-top: 1px solid #cbd5e1;
+      background-image: linear-gradient(to bottom, transparent calc(33.33% - 1px), #e2e8f0 calc(33.33% - 1px), #e2e8f0 33.33%, transparent 33.33%, transparent calc(66.66% - 1px), #e2e8f0 calc(66.66% - 1px), #e2e8f0 66.66%, transparent 66.66%);
+      background-size: 100% 100%;
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .toolbar {
+        display: none;
+      }
+
+      .page {
+        width: auto;
+        min-height: auto;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        width: auto;
+        min-height: auto;
+        margin: 16px;
+        padding: 24px 20px;
+      }
+
+      p,
+      li {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="button button-primary" onclick="window.print()">Imprimir</button>
+    <button class="button button-secondary" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Voltar ao topo</button>
+  </div>
+
+  <main class="page">
+    <h1>Lia e Pip</h1>
+    <p class="subtitle">História infantil bilíngue com foco em alfabetização em Português e Inglês.</p>
+
+    <p>Lia tinha oito anos e uma curiosidade que parecia não caber no peito. Ela queria descobrir tudo: por que as formigas andavam em fila, para onde ia a água da chuva e se as estrelas piscavam de verdade. Numa tarde de sábado, enquanto brincava no <span class="term">garden</span> de sua avó, ela encontrou uma caixa redonda, brilhante e azul, meio escondida atrás de um vaso de flores.</p>
+
+    <p>A caixa fez um barulhinho: "pi-pi-pi". Depois, a tampa se abriu devagar. De dentro pulou um robozinho prateado, do tamanho de uma lancheira. Ele tinha olhos verdes que acendiam como lanterninhas.</p>
+
+    <p>O robô levantou a mão metálica e disse: "<span class="term">Hello! My name is</span> Pip."</p>
+
+    <p>Lia arregalou os olhos.</p>
+
+    <p>"Oi! Eu sou Lia!"</p>
+
+    <p>Pip girou uma rodinha no peito e repetiu, com voz alegre: "<span class="term">Hello! My name is</span> Pip. <span class="term">Nice to meet you!</span>"</p>
+
+    <p>Lia riu. "Ah! Você quer dizer que seu nome é Pip. <span class="term">Nice to meet you</span> também!"</p>
+
+    <p>Pip parecia muito <span class="term">happy</span>. Seus olhos verdes piscaram mais forte. Então ele apontou para a casa da avó de Lia e falou: "<span class="term">House mission!</span>"</p>
+
+    <p>Lia adorou aquilo. Uma missão dentro de casa! Ela abriu a porta e chamou: "Mãe! Quer dizer... minha <span class="term">mother</span>! Pai, meu <span class="term">father</span>! Venham ver!"</p>
+
+    <p>Mas sua mãe estava na feira com seu pai, e seu irmão Caio, seu <span class="term">brother</span>, jogava bola na rua. Então Lia decidiu apresentar a casa sozinha.</p>
+
+    <p>Primeiro, levou Pip até a <span class="term">kitchen</span>. Em cima da mesa havia uma maçã <span class="term">red</span>, uma caneca <span class="term">blue</span> e um prato <span class="term">yellow</span> com fatias de bolo.</p>
+
+    <p>Pip apontou e falou devagar: "<span class="term">Red apple. Blue cup. Yellow plate.</span>"</p>
+
+    <p>Lia repetiu, curiosa: "<span class="term">Red apple. Blue cup. Yellow plate.</span>"</p>
+
+    <p>Ela gostou de ouvir aquelas palavras. Pareciam pequenas chaves abrindo portas novas na cabeça.</p>
+
+    <p>De repente, Pip fez "bip-bip" mais fraco. "<span class="term">Hungry</span>", ele disse, colocando a mão na barriga de lata.</p>
+
+    <p>"Você está com fome! <span class="term">Hungry</span> é com fome!", Lia percebeu. Então ofereceu uma migalha de bolo. Pip não comeu, mas puxou a energia do cheiro doce e ficou brilhando outra vez.</p>
+
+    <p>Depois, os dois foram ao <span class="term">bedroom</span> da avó. Lá havia um travesseiro <span class="term">white</span>, um livro <span class="term">red</span> na cadeira e uma caixa <span class="term">blue</span> de botões antigos. Pip olhou tudo com atenção, mas logo bocejou um som mecânico: "<span class="term">Tired... tired...</span>"</p>
+
+    <p>"Você está cansado! <span class="term">Tired</span> é cansado!", disse Lia.</p>
+
+    <p>Ela o levou até a janela, onde o vento fresco entrava do <span class="term">garden</span>. Assim que sentiu o ar e o cheiro das flores, Pip sorriu. "<span class="term">Happy! Happy!</span>"</p>
+
+    <p>Lia bateu palmas. "<span class="term">Happy</span> é feliz! Você está feliz no <span class="term">garden</span>!"</p>
+
+    <p>Naquele momento, Caio entrou correndo. "Quem é esse?"</p>
+
+    <p>Lia respondeu, orgulhosa: "Ele é Pip. Só fala inglês, mas eu já entendo um montão!"</p>
+
+    <p>Caio se aproximou, meio tímido. Pip levantou a mãozinha. "<span class="term">Hello! My name is</span> Pip. <span class="term">Nice to meet you!</span>"</p>
+
+    <p>Caio sorriu e respondeu, com cuidado: "<span class="term">Hello</span>, Pip. <span class="term">Nice to meet you.</span>"</p>
+
+    <p>Quando a <span class="term">mother</span> e o <span class="term">father</span> de Lia chegaram, encontraram os três no quintal, dizendo cores e nomes de objetos, entre risadas e flores balançando.</p>
+
+    <p>Naquela noite, Lia percebeu que aprender inglês podia ser uma aventura. Bastava ouvir, repetir e descobrir. E, antes de dormir, ela cochichou para o novo amigo metálico: "<span class="term">Good night</span>, Pip."</p>
+
+    <p>Os olhos verdes do robô brilharam baixinho. "<span class="term">Happy</span>", ele respondeu.</p>
+
+    <p>E Lia dormiu feliz também.</p>
+
+    <h2>Perguntas de compreensão</h2>
+    <ol>
+      <li class="question">Onde Lia encontrou Pip pela primeira vez?<div class="answer-space"></div></li>
+      <li class="question">Qual foi a primeira frase que Pip disse em inglês?<div class="answer-space"></div></li>
+      <li class="question">O que significa a expressão "My name is" na história?<div class="answer-space"></div></li>
+      <li class="question">Quem era Caio na família de Lia?<div class="answer-space"></div></li>
+      <li class="question">Qual palavra em inglês foi usada para "irmão"?<div class="answer-space"></div></li>
+      <li class="question">Em que parte da casa havia a maçã, a caneca e o prato com bolo?<div class="answer-space"></div></li>
+      <li class="question">Quais foram as três cores em inglês repetidas na história?<div class="answer-space"></div></li>
+      <li class="question">Quando Pip disse "<span class="term">hungry</span>", como Lia entendeu essa palavra?<div class="answer-space"></div></li>
+      <li class="question">Qual palavra em inglês foi usada para mostrar que Pip estava cansado?<div class="answer-space"></div></li>
+      <li class="question">Em que lugar Pip ficou mais <span class="term">happy</span>: na <span class="term">kitchen</span>, no <span class="term">bedroom</span> ou no <span class="term">garden</span>?<div class="answer-space"></div></li>
+    </ol>
+
+    <p class="footer-note">Dica: use o botão "Imprimir" para gerar a versão em papel ou salvar em PDF.</p>
+  </main>
+</body>
+</html>
