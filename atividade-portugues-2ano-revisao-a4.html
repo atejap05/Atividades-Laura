@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Português — Revisão e Aprofundamento | 2º ano</title>
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --paper: #fffef8;
+      --accent: #e63946;
+      --blue: #457b9d;
+      --yellow: #f4d35e;
+      --green: #2a9d8f;
+      --teal: #2a9d8f;
+      --muted: #6c757d;
+      --border: #dee2e6;
+      --card: #f8f9fa;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background: #e9ecef;
+      line-height: 1.45;
+      font-size: 11pt;
+    }
+
+    .sheet {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 1rem;
+      background: var(--paper);
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      padding: 12mm 14mm;
+    }
+
+    @page { size: A4; margin: 12mm; }
+
+    @media print {
+      body { background: #fff; }
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .sheet {
+        box-shadow: none;
+        margin: 0;
+        max-width: none;
+        min-height: auto;
+        padding: 0;
+      }
+      .no-print { display: none !important; }
+      a[href]:after { content: ""; }
+      .page-break { page-break-before: always; }
+      .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+      main.sheet > section {
+        break-inside: auto;
+        page-break-inside: auto;
+      }
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #343a40;
+      color: #fff;
+      padding: 10px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar button {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .toolbar button:hover { filter: brightness(1.08); }
+    .toolbar span { font-size: 13px; opacity: .9; }
+
+    h1 {
+      font-size: 1.35rem;
+      margin: 0 0 4px;
+      color: var(--green);
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+      font-weight: 600;
+      color: var(--blue);
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .header-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      background: linear-gradient(135deg, #e8f8f5, #e8f4fc);
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+    }
+    .header-line label {
+      flex: 1;
+      min-width: 140px;
+      font-weight: 600;
+      font-size: 10pt;
+    }
+    .header-line input {
+      border: none;
+      border-bottom: 2px solid var(--blue);
+      background: transparent;
+      width: 100%;
+      min-height: 22px;
+    }
+
+    .intro-box {
+      background: var(--card);
+      border-left: 5px solid var(--green);
+      padding: 10px 14px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 16px;
+      font-size: 10.5pt;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin: 18px 0 10px;
+      padding: 6px 12px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      color: var(--blue);
+      margin: 12px 0 6px;
+    }
+
+    .concept {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 8px 0;
+    }
+
+    .read-box {
+      background: linear-gradient(180deg, #e3f2fd 0%, #fff 100%);
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+    .read-box strong { color: var(--blue); }
+
+    .parlenda-box {
+      background: linear-gradient(180deg, #fff9e6 0%, #fff 100%);
+      border: 2px solid #c9a227;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 10px 0;
+      font-size: 10.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1.65;
+    }
+    .parlenda-box cite {
+      display: block;
+      margin-top: 8px;
+      font-size: 9pt;
+      font-style: normal;
+      color: var(--muted);
+      text-transform: none;
+    }
+
+    .dica {
+      border: 2px dashed var(--teal);
+      border-radius: 10px;
+      padding: 8px 12px;
+      margin: 10px 0;
+      font-size: 10pt;
+      background: #f0fffc;
+    }
+    .dica::before {
+      content: "Dica: ";
+      font-weight: 800;
+      color: var(--teal);
+    }
+
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      padding: 10px 12px;
+      background: #e7f1ff;
+      border: 2px solid var(--blue);
+      border-radius: 10px;
+      margin: 10px 0;
+      font-weight: 700;
+      font-size: 10pt;
+    }
+    .word-bank span {
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #fff;
+      border: 1px solid #b8d4f0;
+    }
+
+    .mc {
+      margin: 8px 0 4px;
+      padding-left: 0;
+      list-style: none;
+    }
+    .mc li {
+      margin: 4px 0;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .mc li:hover { background: #f1f3f5; }
+
+    .q {
+      margin: 14px 0;
+      padding: 10px 12px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .q-num {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+    .tag {
+      font-size: 9pt;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .tag-mc { background: #cfe2ff; color: #084298; }
+    .tag-w { background: #d1e7dd; color: #0f5132; }
+
+    .line {
+      border-bottom: 1px dotted var(--muted);
+      min-height: 1.4em;
+      display: inline-block;
+      min-width: 120px;
+    }
+    .line.short { min-width: 48px; }
+    .line.long { min-width: 90%; display: block; margin: 6px 0; }
+
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 10pt;
+    }
+    table.data th, table.data td {
+      border: 1px solid var(--border);
+      padding: 8px;
+      vertical-align: top;
+    }
+    table.data th { background: #e9ecef; }
+    table.data .cell-write { min-height: 2.2em; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .sticky-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 10px 0;
+    }
+    @media (max-width: 700px) {
+      .sticky-grid { grid-template-columns: 1fr; }
+    }
+    .sticky {
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 10pt;
+      font-weight: 600;
+      min-height: 5.5em;
+      box-shadow: 2px 3px 0 rgba(0,0,0,.08);
+    }
+    .sticky-fv { background: #ffe4ec; }
+    .sticky-bp { background: #d9ecff; }
+    .sticky-dt { background: #fff8d6; }
+
+    .envelope {
+      border: 3px solid #2d6a4f;
+      border-image: repeating-linear-gradient(
+        135deg,
+        #2d6a4f 0 8px,
+        #f4d35e 8px 16px
+      ) 3;
+      border-radius: 4px;
+      padding: 14px;
+      margin: 12px 0;
+      background: #fff;
+    }
+    .envelope .stamp {
+      float: right;
+      width: 64px;
+      height: 72px;
+      border: 2px dashed var(--border);
+      font-size: 8pt;
+      text-align: center;
+      padding-top: 24px;
+      color: var(--muted);
+      margin-left: 10px;
+    }
+    .envelope::after { content: ""; display: table; clear: both; }
+
+    .writing-block {
+      min-height: 7em;
+      background: #fffdf5;
+      border: 1px solid #e0d4a8;
+      border-radius: 8px;
+      margin: 8px 0;
+      background-image: repeating-linear-gradient(
+        transparent,
+        transparent 1.35em,
+        #e8e0c8 1.35em,
+        #e8e0c8 calc(1.35em + 1px)
+      );
+    }
+
+    .gabarito {
+      background: #fff8e7;
+      border: 2px solid var(--yellow);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 9.5pt;
+    }
+    .gabarito table { font-size: 9pt; }
+    .gabarito h2 { background: #856404; }
+
+    footer.print-note {
+      margin-top: 16px;
+      font-size: 9pt;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .refs {
+      font-size: 9pt;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    .refs a { color: var(--blue); }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">Imprimir / Salvar em PDF</button>
+    <span>Use Ctrl+P → “Salvar como PDF”. Formato A4. Resolva sozinho e revise com calma.</span>
+  </div>
+
+  <main class="sheet">
+
+    <header>
+      <h1>Letras que se parecem no som</h1>
+      <p class="subtitle">Língua Portuguesa — Revisão e aprofundamento | 2º ano do Ensino Fundamental</p>
+      <div class="header-line">
+        <label>Nome: <input type="text" aria-label="Nome do aluno" /></label>
+        <label>Data: <input type="text" aria-label="Data" /></label>
+        <label>Turma: <input type="text" aria-label="Turma" /></label>
+      </div>
+      <div class="intro-box">
+        <strong>Como usar esta atividade:</strong> Muitas crianças confundem <strong>F</strong> com <strong>V</strong>, <strong>B</strong> com <strong>P</strong> e <strong>D</strong> com <strong>T</strong> na escrita.
+        Leia com calma, <strong>preste atenção ao som</strong> e <strong>à letra</strong>. Nas questões de múltipla escolha, marque com <strong>X</strong> a alternativa correta.
+        Escreva com letra de forma legível. A repetição ajuda a fixar a ortografia correta.
+      </div>
+      <p class="refs"><strong>Referências pedagógicas:</strong> Base Nacional Comum Curricular (BNCC) — Português nos anos iniciais (leitura, escrita e ortografia);
+        materiais de alfabetização com <em>pares mínimos</em> e atividades de consciência fonológica (ex.: parlendas, classificação de palavras e autocorreção guiada), como os usados em coleções didáticas e em portais como <a href="https://novaescola.org.br/">Nova Escola</a> e <a href="https://www.gov.br/inep/pt-br">Inep / Saeb</a> (leitura de textos curtos).</p>
+    </header>
+
+    <!-- PARTE 1 — ORTOGRAFIA -->
+    <section>
+      <h2>Parte 1 — Ortografia: F e V, B e P, D e T</h2>
+
+      <div class="concept">
+        <p><strong>F e V:</strong> <em>Foca</em> (animal) e <em>voca</em> (do verbo “vocar”) têm sons parecidos, mas letras diferentes. Observe a boca: em <strong>F</strong> o ar passa suave; em <strong>V</strong> há vibração nos lábios.</p>
+        <p><strong>B e P:</strong> <em>Bola</em> e <em>pola</em> (se existisse assim) — em <strong>B</strong> as cordas vibram; em <strong>P</strong> é uma explosão de ar, sem vibração.</p>
+        <p><strong>D e T:</strong> <em>Dedo</em> e <em>teto</em> — <strong>D</strong> vibra; <strong>T</strong> é seco, sem vibração na garganta.</p>
+      </div>
+
+      <div class="dica">Leia duas vezes cada palavra antes de escrever. Depois confira se você não trocou as letras no caderno.</div>
+
+      <div class="q avoid-break">
+        <span class="q-num">1</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual grafia nomeia o <strong>animal</strong> que dá leite?</p>
+        <ul class="mc">
+          <li>( ) A) vaca</li>
+          <li>( ) B) faca</li>
+          <li>( ) C) vaka</li>
+          <li>( ) D) baca</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">2</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Complete: “Eu vi uma ___ no céu.” (água que cai das nuvens)</p>
+        <ul class="mc">
+          <li>( ) A) chuva</li>
+          <li>( ) B) chufa</li>
+          <li>( ) C) xuva</li>
+          <li>( ) D) shuva</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">3</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual palavra está certa?</p>
+        <ul class="mc">
+          <li>( ) A) pipoca</li>
+          <li>( ) B) biboca</li>
+          <li>( ) C) pipoka</li>
+          <li>( ) D) pioca</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">4</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Escolha a grafia do <strong>brinquedo</strong> redondo que a gente chuta ou quica:</p>
+        <ul class="mc">
+          <li>( ) A) bola</li>
+          <li>( ) B) pola</li>
+          <li>( ) C) bora</li>
+          <li>( ) D) bolha</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">5</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>“Minha ___ está doendo depois da queda.” (parte da mão)</p>
+        <ul class="mc">
+          <li>( ) A) dedo</li>
+          <li>( ) B) tedo</li>
+          <li>( ) C) dedu</li>
+          <li>( ) D) deto</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">6</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>“O ___ da sala é branco.” (parte de cima)</p>
+        <ul class="mc">
+          <li>( ) A) teto</li>
+          <li>( ) B) dedo</li>
+          <li>( ) C) deto</li>
+          <li>( ) D) tetu</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">7</span> <span class="tag tag-w">Complete com F ou V</span>
+        <p>Escolha <strong>F</strong> ou <strong>V</strong> para formar a palavra correta:</p>
+        <p>a) ___ela (acende com fogo) &nbsp; b) ___iolete (cor) &nbsp; c) ___ento (oposto de cheio)</p>
+        <p>d) ___olão (instrumento) &nbsp; e) ___elicidade (alegria)</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">8</span> <span class="tag tag-w">Complete com B ou P</span>
+        <p>a) ___ato (ave que nada no lago) &nbsp; b) ___olo (doce de festa)</p>
+        <p>c) ___ente (objeto para pentear o cabelo) &nbsp; d) ___anana (fruta amarela)</p>
+        <p>e) ___ode (bichinho da fazenda que tem barba)</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">9</span> <span class="tag tag-w">Complete com D ou T</span>
+        <p>a) ___edo (da mão) &nbsp; b) ___arde (depois do almoço, faz…) &nbsp; c) ___ia (claro e com sol)</p>
+        <p>d) ___eto (lá em cima da sala) &nbsp; e) ___atu (animal que cava toca e tem casco)</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">10</span> <span class="tag tag-w">Escreva a palavra completa</span>
+        <p>Complete as palavras corretamente (sem trocar letras):</p>
+        <table class="data">
+          <tr><th>Começo dado</th><th>Escreva a palavra inteira</th></tr>
+          <tr><td>fa___</td><td class="cell-write"><span class="line long"></span></td></tr>
+          <tr><td>va___</td><td class="cell-write"><span class="line long"></span></td></tr>
+          <tr><td>pe___</td><td class="cell-write"><span class="line long"></span></td></tr>
+          <tr><td>be___</td><td class="cell-write"><span class="line long"></span></td></tr>
+          <tr><td>do___</td><td class="cell-write"><span class="line long"></span></td></tr>
+          <tr><td>to___</td><td class="cell-write"><span class="line long"></span></td></tr>
+        </table>
+      </div>
+
+      <h3>Leia e localize</h3>
+      <div class="read-box avoid-break">
+        <strong>Texto para ler em voz alta</strong>
+        <p style="text-transform:none;font-size:10.5pt;">
+          A <strong>professora</strong> pediu uma <strong>festa</strong> no <strong>parque</strong>. O <strong>Pedro</strong> trouxe <strong>pipoca</strong>. A <strong>Bianca</strong> trouxe <strong>bolo</strong>. A <strong>Dalva</strong> trouxe <strong>doce</strong>. O <strong>Bruno</strong> trouxe <strong>bola</strong>. A <strong>Vilma</strong> trouxe <strong>violão</strong>. A <strong>Tatiana</strong> trouxe <strong>torta</strong>. A <strong>Fernanda</strong> trouxe <strong>fruta</strong>. Todos <strong>beberam</strong> <strong>água</strong> fresca.
+        </p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">11</span> <span class="tag tag-w">Classificação</span>
+        <p>Volte ao texto acima. Escolha <strong>6 palavras</strong> que tenham <strong>P</strong> e copie no quadro. Depois escolha <strong>6 palavras</strong> com <strong>B</strong>.</p>
+        <table class="data">
+          <tr><th>Palavras com P</th><th>Palavras com B</th></tr>
+          <tr><td class="cell-write"><span class="line long"></span></td><td class="cell-write"><span class="line long"></span></td></tr>
+          <tr><td class="cell-write"><span class="line long"></span></td><td class="cell-write"><span class="line long"></span></td></tr>
+          <tr><td class="cell-write"><span class="line long"></span></td><td class="cell-write"><span class="line long"></span></td></tr>
+        </table>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">12</span> <span class="tag tag-w">Classificação</span>
+        <p>Escreva <strong>4 palavras do texto</strong> com <strong>F</strong> e <strong>4 com V</strong>.</p>
+        <table class="data">
+          <tr><th>Com F</th><th>Com V</th></tr>
+          <tr><td class="cell-write"><span class="line long"></span></td><td class="cell-write"><span class="line long"></span></td></tr>
+          <tr><td class="cell-write"><span class="line long"></span></td><td class="cell-write"><span class="line long"></span></td></tr>
+        </table>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">13</span> <span class="tag tag-w">Classificação</span>
+        <p>Escreva <strong>4 palavras do texto</strong> com <strong>D</strong> e <strong>4 com T</strong>.</p>
+        <table class="data">
+          <tr><th>Com D</th><th>Com T</th></tr>
+          <tr><td class="cell-write"><span class="line long"></span></td><td class="cell-write"><span class="line long"></span></td></tr>
+          <tr><td class="cell-write"><span class="line long"></span></td><td class="cell-write"><span class="line long"></span></td></tr>
+        </table>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">14</span> <span class="tag tag-w">Qual não combina?</span>
+        <p>Em cada grupo, uma palavra foi escrita com a letra “errada” para a brincadeira. <strong>Circule</strong> a intrusa (a que não segue o mesmo padrão de som/letra que as outras três — F, B ou D no início).</p>
+        <div class="sticky-grid">
+          <div class="sticky sticky-fv">FELIZ — FAROL — <strong>VOTO</strong> — FADA</div>
+          <div class="sticky sticky-bp">BONECA — BANANA — <strong>PATO</strong> — BOLA</div>
+          <div class="sticky sticky-dt">DENTE — DADO — <strong>TIGRE</strong> — DEDO</div>
+        </div>
+        <p style="font-size:9.5pt;">Obs.: a intrusa é a que começa com a letra “do outro grupo” (V, P, T).</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">15</span> <span class="tag tag-w">Liste mais palavras</span>
+        <p>a) Três frutas com <strong>B</strong>: <span class="line" style="min-width:70%;"></span></p>
+        <p>b) Três animais com <strong>T</strong>: <span class="line" style="min-width:70%;"></span></p>
+        <p>c) Três cores com <strong>V</strong>: <span class="line" style="min-width:70%;"></span></p>
+        <p>d) Três objetos com <strong>P</strong>: <span class="line" style="min-width:70%;"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">16</span> <span class="tag tag-w">Corrija</span>
+        <p>Reescreva cada frase trocando só a palavra errada pela certa:</p>
+        <p>a) O gato bebeu <strong>lete</strong>. → <span class="line" style="min-width:75%;"></span></p>
+        <p>b) Comi uma <strong>faca</strong> no pasto. (animal) → <span class="line" style="min-width:75%;"></span></p>
+        <p>c) Vi uma <strong>borboleta</strong> no jardim. (se estiver certo, escreva “está certo”) → <span class="line" style="min-width:75%;"></span></p>
+        <p>d) O <strong>peto</strong> da casa é alto. → <span class="line" style="min-width:75%;"></span></p>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- PARTE 2 — PARLENDAS -->
+    <section>
+      <h2>Parte 2 — Parlendas e rimas</h2>
+
+      <div class="parlenda-box avoid-break">
+        CHOVE, CHUVA, CHUVISQUINHO,<br />
+        SUA CALÇA TEM FURINHOS.<br />
+        CHOVE, CHUVA, CHUVARADA,<br />
+        SUA CALÇA ESTÁ FURADA.<br />
+        <cite>— Da tradição popular.</cite>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">17</span> <span class="tag tag-w">Separação F / V</span>
+        <p>Copie as palavras em que aparece a <strong>letra F</strong> num grupo e as em que aparece a <strong>letra V</strong> no outro (atenção: <em>ch</em> é outro som).</p>
+        <table class="data">
+          <tr><th>Letra F</th><th>Letra V</th></tr>
+          <tr><td class="cell-write"><span class="line long"></span></td><td class="cell-write"><span class="line long"></span></td></tr>
+          <tr><td class="cell-write"><span class="line long"></span></td><td class="cell-write"><span class="line long"></span></td></tr>
+        </table>
+      </div>
+
+      <div class="parlenda-box avoid-break">
+        QUEM COCHICHA / O RABO ESPICHA!<br />
+        QUEM ESCUTA / O RABO ENCURTA!<br />
+        QUEM RECLAMA / O RABO INFLAMA!<br />
+        <cite>— Da tradição popular.</cite>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">18</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual palavra <strong>se repete</strong> em todos os versos acima?</p>
+        <ul class="mc">
+          <li>( ) A) rabicho</li>
+          <li>( ) B) rabo</li>
+          <li>( ) C) reclama</li>
+          <li>( ) D) cochicha</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">19</span> <span class="tag tag-w">Crie versos no mesmo modelo</span>
+        <p>Crie seus versos rimando e usando palavras com F/V, B/P ou D/T:</p>
+        <p>QUEM <span class="line short"></span> / O RABO <span class="line short"></span></p>
+        <p>QUEM <span class="line short"></span> / O RABO <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">20</span> <span class="tag tag-w">Passe a limpo</span>
+        <p>Reescreva os dois versos que você criou, com letra bem bonita:</p>
+        <div class="writing-block" aria-hidden="true"></div>
+      </div>
+
+      <div class="parlenda-box avoid-break">
+        UM, DOIS, FEIJÃO COM ARROZ.<br />
+        TRÊS, QUATRO, FEIJÃO NO PRATO…<br />
+        <cite>— Da tradição popular (trecho).</cite>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">21</span> <span class="tag tag-w">Rimas</span>
+        <p>Escreva dois pares de palavras que <strong>rimam</strong> no trecho (ex.: dois — arroz):</p>
+        <p>Par 1: <span class="line" style="min-width:40%;"></span> &nbsp; Par 2: <span class="line" style="min-width:40%;"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">22</span> <span class="tag tag-w">Continue a brincadeira numérica</span>
+        <p>Invente um verso que rime (use palavras com <strong>B</strong>, <strong>P</strong>, <strong>D</strong> ou <strong>T</strong> se puder):</p>
+        <p>ONZE, DOZE, <span class="line" style="min-width:65%;"></span></p>
+        <p>TREZE, CATORZE, <span class="line" style="min-width:65%;"></span></p>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- PARTE 3 — CARTAS -->
+    <section>
+      <h2>Parte 3 — Carta e envelope</h2>
+
+      <div class="q avoid-break">
+        <span class="q-num">23</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Quem <strong>recebe</strong> a carta é o:</p>
+        <ul class="mc">
+          <li>( ) A) remetente</li>
+          <li>( ) B) destinatário</li>
+          <li>( ) C) selo</li>
+          <li>( ) D) envelope</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">24</span> <span class="tag tag-w">Complete com as palavras corretas</span>
+        <p style="font-size:9.5pt;margin-top:0;">Use: <strong>remetente</strong>, <strong>destinatário</strong>, <strong>selo</strong>, <strong>envelope</strong>.</p>
+        <p>a) Indica quem manda a carta: <span class="line" style="min-width:50%;"></span></p>
+        <p>b) Indica quem vai ler a carta: <span class="line" style="min-width:50%;"></span></p>
+        <p>c) Colamos no canto do envelope: <span class="line" style="min-width:50%;"></span></p>
+        <p>d) O papel que cobre a carta para enviar pelos correios: <span class="line" style="min-width:50%;"></span></p>
+      </div>
+
+      <div class="read-box avoid-break">
+        <strong>Leia a carta</strong>
+        <p style="text-transform:none;font-size:10.5pt;">
+          SERRA DOURADA, 10 DE ABRIL DE 2026.<br /><br />
+          QUERIDA LETÍCIA,<br /><br />
+          TUDO BEM POR AÍ? AQUI ESTÁ TUDO <strong>TRANQUILO</strong>. HOJE FEZ <strong>DIA</strong> DE SOL E BRINCAMOS DE <strong>BOLA</strong> NO <strong>PÁTIO</strong>. DEPOIS TOMAMOS <strong>SUCO</strong> DE <strong>BETERRABA</strong> E COMEMOS <strong>TORTA</strong> DE <strong>FRUTA</strong>.<br /><br />
+          UM <strong>BEIJO</strong> DA SUA AMIGA<br />
+          <strong>PATRÍCIA</strong>
+        </p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">25</span> <span class="tag tag-w">Busca no texto</span>
+        <p>Escreva <strong>cinco</strong> palavras da carta que tenham <strong>P</strong> ou <strong>B</strong> (misturadas): <span class="line" style="min-width:85%;"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">26</span> <span class="tag tag-w">Complete a carta (F/V, B/P, D/T)</span>
+        <p>Reescreva as frases com a palavra certa:</p>
+        <p>a) Hoje fez ___ de sol. (dia / tia) → <span class="line" style="min-width:70%;"></span></p>
+        <p>b) Brincamos de ___ no pátio. (bola / pola) → <span class="line" style="min-width:70%;"></span></p>
+        <p>c) Tomamos suco de beterraba e comemos ___ de fruta. (torta / dorta) → <span class="line" style="min-width:70%;"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">27</span> <span class="tag tag-w">Envelope</span>
+        <p>Complete o envelope (pode usar dados fictícios de brincadeira):</p>
+        <div class="envelope">
+          <div class="stamp">SELO</div>
+          <p style="margin:0 0 8px;font-weight:700;">DESTINATÁRIO(A):</p>
+          <p>Nome: <span class="line" style="min-width:85%;"></span></p>
+          <p>Endereço: <span class="line" style="min-width:85%;"></span></p>
+          <p>Cidade — UF: <span class="line" style="min-width:60%;"></span> &nbsp; CEP: <span class="line" style="min-width:30%;"></span></p>
+          <hr style="border:none;border-top:1px dashed var(--border);margin:12px 0;" />
+          <p style="margin:0;font-weight:700;">REMETENTE:</p>
+          <p>Nome: <span class="line" style="min-width:85%;"></span></p>
+          <p>CEP: <span class="line" style="min-width:40%;"></span></p>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">28</span> <span class="tag tag-w">Produção</span>
+        <p>Escreva uma carta curta para um amigo ou amiga. Use pelo menos <strong>6 palavras</strong> que tenham <strong>F, V, B, P, D ou T</strong> (pode misturar). Depois, sublinhe essas palavras.</p>
+        <div class="writing-block"></div>
+        <div class="writing-block" style="min-height:5em;"></div>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- PARTE 4 — ADIVINHAS -->
+    <section>
+      <h2>Parte 4 — Adivinhas e charadas</h2>
+
+      <div class="q avoid-break">
+        <span class="q-num">29</span> <span class="tag tag-w">Leia e responda</span>
+        <p><strong>O que é, o que é:</strong> Está cheia de furinhos e, mesmo assim, segura água na hora do banho?</p>
+        <p>Resposta: <span class="line" style="min-width:50%;"></span> (Dica: começa com E…)</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">30</span> <span class="tag tag-w">Leia e responda</span>
+        <p><strong>O que é, o que é:</strong> Repete tudo o que a gente fala e tem penas?</p>
+        <p>Resposta: <span class="line" style="min-width:50%;"></span> (Dica: começa com P…)</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">31</span> <span class="tag tag-w">Complete só a letra inicial (B ou P)</span>
+        <p>a) RESPOSTA: ___OTÃO (de camisa) &nbsp; b) RESPOSTA: ___APAGAIO</p>
+        <p>c) RESPOSTA: ___ÃO (de sal) &nbsp; d) RESPOSTA: ___ANELA (de fogo)</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">32</span> <span class="tag tag-w">Complete só a letra inicial (F ou V)</span>
+        <p>a) RESPOSTA: ___ENTO (oposto de cheio) &nbsp; b) RESPOSTA: ___ELA (acende)</p>
+        <p>c) RESPOSTA: ___IOLETA (cor) &nbsp; d) RESPOSTA: ___OLÃO (música)</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">33</span> <span class="tag tag-w">Complete só a letra inicial (D ou T)</span>
+        <p>a) RESPOSTA: ___IA (manhã e noite) &nbsp; b) RESPOSTA: ___ENTADURA</p>
+        <p>c) RESPOSTA: ___ETO (da casa) &nbsp; d) RESPOSTA: ___ENTE (na boca, para mastigar)</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">34</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual resposta completa a charada? “Tenho dentes mas não mordo. Corto o papel.”</p>
+        <ul class="mc">
+          <li>( ) A) tesoura</li>
+          <li>( ) B) desoura</li>
+          <li>( ) C) faca</li>
+          <li>( ) D) vaca</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">35</span> <span class="tag tag-w">Invente</span>
+        <p>Escreva uma adivinha sua (3 a 5 versos) e a resposta em uma linha. Use pelo menos duas palavras com <strong>B/P</strong> e duas com <strong>F/V</strong> ou <strong>D/T</strong>.</p>
+        <div class="writing-block" style="min-height:6em;"></div>
+        <p>Resposta: <span class="line" style="min-width:70%;"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">36</span> <span class="tag tag-w">Desafio de troca mínima</span>
+        <p>Escreva <strong>três pares</strong> de palavras que mudam só a primeira letra (exemplo: <em>faca</em> / <em>vaca</em>):</p>
+        <p>a) <span class="line" style="min-width:35%;"></span> / <span class="line" style="min-width:35%;"></span></p>
+        <p>b) <span class="line" style="min-width:35%;"></span> / <span class="line" style="min-width:35%;"></span></p>
+        <p>c) <span class="line" style="min-width:35%;"></span> / <span class="line" style="min-width:35%;"></span></p>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- REVISÃO EXTRA -->
+    <section>
+      <h2>Revisão extra — Leitura e escrita autônoma</h2>
+      <p class="concept">Leia as pistas e escreva a palavra correta com atenção às letras F/V, B/P e D/T.</p>
+
+      <div class="q avoid-break">
+        <span class="q-num">37</span> <span class="tag tag-w">Nomes de objetos</span>
+        <table class="data">
+          <tr><th>Pista</th><th>Você escreve</th></tr>
+          <tr><td>Móvel da sala para sentar.</td><td><span class="line long"></span></td></tr>
+          <tr><td>Fica no céu e parece algodão.</td><td><span class="line long"></span></td></tr>
+          <tr><td>Talher usado para espetar comida.</td><td><span class="line long"></span></td></tr>
+          <tr><td>Acende no aniversário.</td><td><span class="line long"></span></td></tr>
+          <tr><td>Objeto para pentear o cabelo.</td><td><span class="line long"></span></td></tr>
+          <tr><td>Assento comprido de praça/sala.</td><td><span class="line long"></span></td></tr>
+          <tr><td>Calçado usado para correr.</td><td><span class="line long"></span></td></tr>
+          <tr><td>Parte da mão.</td><td><span class="line long"></span></td></tr>
+        </table>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">38</span> <span class="tag tag-w">Frases curtas</span>
+        <p>Reescreva corrigindo:</p>
+        <p>1) A <strong>vaca</strong> está no <strong>fogo</strong>. (se a frase não faz sentido, troque uma palavra para fazer sentido e ficar correta) → <span class="line long"></span></p>
+        <p>2) Comprei <strong>pão</strong> na <strong>padaria</strong>. (está certa?) → <span class="line long"></span></p>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- PARTE 5 — POEMAS E CORDEL -->
+    <section>
+      <h2>Parte 5 — Poema e cordel: leitura e interpretação</h2>
+
+      <div class="read-box avoid-break">
+        <strong>Texto 1 — Poema “Bilhete do Vento”</strong>
+        <p style="text-transform:none;font-size:10.5pt;">
+          O vento varreu o pátio devagar,<br />
+          levou uma folha para passear.<br />
+          Passou pela ponte, voltou pelo chão,<br />
+          fez festa na fita do meu balão.<br /><br />
+          De tarde, no banco da velha avenida,<br />
+          vi pomba e pardal brigando por comida.<br />
+          Depois veio a chuva, bem fina, de leve,<br />
+          e o vidro da venda ficou todo em neve.<br /><br />
+          No fim da janela, brilhando sem pressa,<br />
+          um fio de violeta pintou a conversa.
+        </p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">39</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>No poema, o vento primeiro:</p>
+        <ul class="mc">
+          <li>( ) A) apagou a vela</li>
+          <li>( ) B) varreu o pátio</li>
+          <li>( ) C) fechou a janela</li>
+          <li>( ) D) molhou a rua</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">40</span> <span class="tag tag-w">Interpretação</span>
+        <p>Onde o eu lírico se sentou na parte da tarde?</p>
+        <p>Resposta: <span class="line" style="min-width:80%;"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">41</span> <span class="tag tag-w">Rimas no texto</span>
+        <p>Retire do poema dois pares de palavras que rimam:</p>
+        <p>Par 1: <span class="line" style="min-width:40%;"></span> &nbsp; Par 2: <span class="line" style="min-width:40%;"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">42</span> <span class="tag tag-w">Ortografia no poema</span>
+        <p>Copie do poema:</p>
+        <p>a) Duas palavras com <strong>V</strong>: <span class="line" style="min-width:70%;"></span></p>
+        <p>b) Duas palavras com <strong>P</strong> ou <strong>B</strong>: <span class="line" style="min-width:70%;"></span></p>
+        <p>c) Uma palavra com <strong>D</strong> e uma com <strong>T</strong>: <span class="line" style="min-width:70%;"></span></p>
+      </div>
+
+      <div class="read-box avoid-break">
+        <strong>Texto 2 — Cordel “Carta na Estrada”</strong>
+        <p style="text-transform:none;font-size:10.5pt;">
+          No bolso do paletó,<br />
+          uma carta vai ligeira,<br />
+          passa ponte, passa vila,<br />
+          vai batendo a tarde inteira.<br /><br />
+          Dentro dela tem notícia<br />
+          de um menino brincalhão:<br />
+          “Tenho bola, tenho pipa,<br />
+          tenho fruta no quintalão.”<br /><br />
+          O carteiro bate palma,<br />
+          dona Bia vem correndo;<br />
+          lê baixinho e dá risada,<br />
+          diz que o neto está crescendo.
+        </p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">43</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual é o assunto principal do cordel?</p>
+        <ul class="mc">
+          <li>( ) A) Uma corrida de bicicleta</li>
+          <li>( ) B) A entrega e leitura de uma carta</li>
+          <li>( ) C) Uma briga no quintal</li>
+          <li>( ) D) Uma receita de bolo</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">44</span> <span class="tag tag-w">Interpretação</span>
+        <p>Por que dona Bia dá risada no final do texto?</p>
+        <p>Resposta: <span class="line" style="min-width:80%;"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">45</span> <span class="tag tag-w">Partes do gênero carta</span>
+        <p>Com base no cordel, escreva duas pistas de que o texto fala de uma carta:</p>
+        <p>a) <span class="line" style="min-width:80%;"></span></p>
+        <p>b) <span class="line" style="min-width:80%;"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">46</span> <span class="tag tag-w">Produção curta</span>
+        <p>Escreva uma quadra (4 versos) em forma de cordel sobre “uma mensagem que viaja”. Tente rimar os versos 2 e 4.</p>
+        <div class="writing-block" style="min-height:6em;"></div>
+      </div>
+    </section>
+
+    <!-- GABARITO -->
+    <section class="gabarito page-break">
+      <h2>Gabarito para correção</h2>
+      <p style="font-size:9pt;margin-top:0;">Itens abertos podem aceitar respostas válidas além das sugestões. BNCC (referência geral): leitura e escrita de palavras/frases; reconhecimento de gêneros (cartas, parlendas); ortografia alfabética nos anos iniciais.</p>
+      <table class="data">
+        <tr><th>Q.</th><th>Sugestão de resposta</th></tr>
+        <tr><td>1</td><td>A) vaca</td></tr>
+        <tr><td>2</td><td>chuva</td></tr>
+        <tr><td>3</td><td>pipoca</td></tr>
+        <tr><td>4</td><td>bola</td></tr>
+        <tr><td>5</td><td>dedo</td></tr>
+        <tr><td>6</td><td>teto</td></tr>
+        <tr><td>7</td><td>a) vela b) violeta c) vazio d) violão e) felicidade</td></tr>
+        <tr><td>8</td><td>a) pato &nbsp; b) bolo &nbsp; c) pente &nbsp; d) banana &nbsp; e) bode</td></tr>
+        <tr><td>9</td><td>a) dedo &nbsp; b) tarde &nbsp; c) dia &nbsp; d) teto &nbsp; e) tatu</td></tr>
+        <tr><td>10</td><td>Resposta esperada: faca, vaca, pedra, beijo, doce, torta.</td></tr>
+        <tr><td>11–13</td><td>Conferir no texto do piquenique (Pedro, pipoca, parque, festa… / Bianca, bolo, beberam… / Fernanda, fruta, festa… / Dalva, doce, de… / Tatiana, torta, tranquilo… etc.)</td></tr>
+        <tr><td>14</td><td>Intrúsas: VOTO, PATO, TIGRE</td></tr>
+        <tr><td>15</td><td>Ex.: banana, abacate, abacaxi / tartaruga, gato, borboleta / verde, violeta, vermelho / pipa, patins, patinete</td></tr>
+        <tr><td>16</td><td>a) leite b) vaca c) está certo d) teto</td></tr>
+        <tr><td>17</td><td>F: furinhos, furada. V: chuvisquinho. Conversar sobre palavras com CH no começo.</td></tr>
+        <tr><td>18</td><td>B) rabo</td></tr>
+        <tr><td>19–20</td><td>Pessoal (rimar com coerência e manter estrutura dos versos).</td></tr>
+        <tr><td>21</td><td>dois/arroz; quatro/prato (e outros pares se discutidos)</td></tr>
+        <tr><td>22</td><td>Pessoal</td></tr>
+        <tr><td>23</td><td>B) destinatário</td></tr>
+        <tr><td>24</td><td>remetente; destinatário; selo; envelope</td></tr>
+        <tr><td>25–26</td><td>Conferir na carta</td></tr>
+        <tr><td>27–28</td><td>Pessoal</td></tr>
+        <tr><td>29</td><td>esponja</td></tr>
+        <tr><td>30</td><td>papagaio</td></tr>
+        <tr><td>31</td><td>BOTÃO; PAPAGAIO; PÃO; PANELA</td></tr>
+        <tr><td>32</td><td>VAZIO; VELA; VIOLETA; VIOLÃO</td></tr>
+        <tr><td>33</td><td>DIA; DENTADURA; TETO; DENTE</td></tr>
+        <tr><td>34</td><td>A) tesoura</td></tr>
+        <tr><td>35</td><td>Pessoal</td></tr>
+        <tr><td>36</td><td>Pessoal. Exemplos válidos: faca/vaca; dia/tia; bote/pote.</td></tr>
+        <tr><td>37</td><td>sofá, nuvem, garfo, vela, pente, banco, tênis, dedo</td></tr>
+        <tr><td>38</td><td>1) Ex.: A vaca está no pasto. / O fogo está na lareira. 2) Está certa.</td></tr>
+        <tr><td>39</td><td>B) varreu o pátio</td></tr>
+        <tr><td>40</td><td>No banco da velha avenida.</td></tr>
+        <tr><td>41</td><td>Exemplos: devagar/passear; chão/balão; leve/neve; pressa/conversa.</td></tr>
+        <tr><td>42</td><td>Exemplos: V = vento, varreu, voltou, vidro, violeta; P/B = pátio, ponte, banco, brigando; D/T = tarde, devagar, dentro.</td></tr>
+        <tr><td>43</td><td>B) A entrega e leitura de uma carta</td></tr>
+        <tr><td>44</td><td>Porque recebeu notícia boa do neto e ficou feliz.</td></tr>
+        <tr><td>45</td><td>Exemplos: aparece “carta”; existe carteiro; há notícia escrita dentro.</td></tr>
+        <tr><td>46</td><td>Pessoal (avaliar 4 versos, tema e tentativa de rima).</td></tr>
+      </table>
+      <p style="font-size:8.5pt;margin-top:10px;"><strong>Nota:</strong> A atividade foi estruturada para resolução individual do aluno, com correção posterior orientada pelo professor.</p>
+    </section>
+
+    <footer class="print-note">
+      Documento A4 — Português, revisão de ortografia (F/V, B/P, D/T), parlendas, cartas, adivinhas, poema e cordel.
+    </footer>
+  </main>
+
+</body>
+</html>
