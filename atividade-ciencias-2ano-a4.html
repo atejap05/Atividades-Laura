@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atividade de Ciências – 2º Ano</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --paper: #fffef8;
+      --muted: #6c757d;
+      --border: #dee2e6;
+      --card: #f8f9fa;
+      --green: #2e7d32;
+      --green-light: #e8f5e9;
+      --orange: #e65100;
+      --orange-light: #fff3e0;
+      --purple: #6a1b9a;
+      --purple-light: #f3e5f5;
+      --blue: #0277bd;
+      --blue-light: #e1f5fe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      color: var(--ink);
+      background: #e9ecef;
+      line-height: 1.5;
+      font-size: 11pt;
+    }
+
+    .sheet {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 1rem;
+      background: var(--paper);
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      padding: 12mm 14mm;
+    }
+
+    @page {
+      size: A4;
+      margin: 1.5cm;
+    }
+
+    @media print {
+      body { background: #fff; }
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .sheet {
+        box-shadow: none;
+        margin: 0;
+        max-width: none;
+        min-height: auto;
+        padding: 0;
+      }
+      .no-print { display: none !important; }
+      .page-break { page-break-before: always; }
+      .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+      main.sheet > section {
+        break-inside: auto;
+        page-break-inside: auto;
+      }
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #343a40;
+      color: #fff;
+      padding: 10px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar button {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: 'Nunito', sans-serif;
+    }
+    .toolbar button:hover { filter: brightness(1.1); }
+    .toolbar span { font-size: 13px; opacity: .9; }
+
+    h1 {
+      font-size: 1.4rem;
+      margin: 0 0 4px;
+      color: var(--green);
+      text-align: center;
+      font-weight: 800;
+    }
+    .subtitle {
+      text-align: center;
+      font-weight: 600;
+      color: var(--blue);
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .header-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      background: linear-gradient(135deg, var(--green-light), var(--blue-light));
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+    }
+    .header-line label {
+      flex: 1;
+      min-width: 140px;
+      font-weight: 700;
+      font-size: 10pt;
+    }
+    .header-line .field {
+      border-bottom: 2px solid var(--blue);
+      min-height: 22px;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .intro-box {
+      background: var(--card);
+      border-left: 5px solid var(--green);
+      padding: 10px 14px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 16px;
+      font-size: 10.5pt;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      margin: 18px 0 12px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .section-header .num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1;
+      opacity: .9;
+    }
+    .section-header .title { flex: 1; }
+
+    .header-green { background: linear-gradient(135deg, #2e7d32, #43a047); }
+    .header-orange { background: linear-gradient(135deg, #e65100, #ef6c00); }
+    .header-purple { background: linear-gradient(135deg, #6a1b9a, #8e24aa); }
+    .header-blue { background: linear-gradient(135deg, #0277bd, #0288d1); }
+
+    .intro-text {
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin: 8px 0 14px;
+      font-size: 10.5pt;
+      line-height: 1.6;
+    }
+    .intro-green { background: var(--green-light); border-left: 4px solid var(--green); }
+    .intro-orange { background: var(--orange-light); border-left: 4px solid var(--orange); }
+    .intro-purple { background: var(--purple-light); border-left: 4px solid var(--purple); }
+    .intro-blue { background: var(--blue-light); border-left: 4px solid var(--blue); }
+
+    .q {
+      margin: 14px 0;
+      padding: 10px 14px;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .q-num {
+      display: inline-block;
+      color: #fff;
+      font-weight: 800;
+      padding: 2px 10px;
+      border-radius: 8px;
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+    .q-green { background: var(--green); }
+    .q-orange { background: var(--orange); }
+    .q-purple { background: var(--purple); }
+    .q-blue { background: var(--blue); }
+
+    .q-label {
+      font-size: 9pt;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+    .ql-green { background: var(--green-light); color: var(--green); }
+    .ql-orange { background: var(--orange-light); color: var(--orange); }
+    .ql-purple { background: var(--purple-light); color: var(--purple); }
+    .ql-blue { background: var(--blue-light); color: var(--blue); }
+
+    .line {
+      border-bottom: 2px dashed var(--muted);
+      min-height: 1.5em;
+      display: inline-block;
+      min-width: 120px;
+    }
+    .line.long { min-width: 90%; display: block; margin: 6px 0; }
+    .line.medium { min-width: 200px; }
+    .line.short { min-width: 50px; }
+
+    .answer-font {
+      font-size: 18px;
+      color: #424242;
+    }
+
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 10.5pt;
+    }
+    table.data th, table.data td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+    table.data th {
+      font-weight: 700;
+    }
+    .th-green { background: var(--green-light); color: var(--green); }
+    .th-orange { background: var(--orange-light); color: var(--orange); }
+    .th-purple { background: var(--purple-light); color: var(--purple); }
+    .th-blue { background: var(--blue-light); color: var(--blue); }
+
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin: 10px 0;
+      font-weight: 700;
+      font-size: 10.5pt;
+    }
+    .word-bank span {
+      padding: 4px 12px;
+      border-radius: 8px;
+      background: #fff;
+    }
+    .wb-green { background: var(--green-light); border: 2px solid var(--green); }
+    .wb-green span { border: 1px solid #a5d6a7; }
+    .wb-orange { background: var(--orange-light); border: 2px solid var(--orange); }
+    .wb-orange span { border: 1px solid #ffcc80; }
+    .wb-purple { background: var(--purple-light); border: 2px solid var(--purple); }
+    .wb-purple span { border: 1px solid #ce93d8; }
+    .wb-blue { background: var(--blue-light); border: 2px solid var(--blue); }
+    .wb-blue span { border: 1px solid #81d4fa; }
+
+    .vf-item, .check-item {
+      margin: 6px 0;
+      padding: 4px 0;
+      font-size: 10.5pt;
+    }
+    .vf-box, .check-box {
+      display: inline-block;
+      width: 28px;
+      height: 24px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      text-align: center;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .match-container {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 6px 16px;
+      align-items: center;
+      margin: 10px 0;
+      font-size: 10.5pt;
+    }
+    .match-left {
+      text-align: right;
+      font-weight: 700;
+      padding: 6px 0;
+    }
+    .match-dot {
+      font-size: 1.4rem;
+      color: var(--muted);
+    }
+    .match-right {
+      text-align: left;
+      padding: 6px 0;
+    }
+
+    .read-box {
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+    .read-green { background: linear-gradient(180deg, var(--green-light) 0%, #fff 100%); border: 2px solid var(--green); }
+    .read-orange { background: linear-gradient(180deg, var(--orange-light) 0%, #fff 100%); border: 2px solid var(--orange); }
+
+    .writing-lines {
+      min-height: 4em;
+      margin: 8px 0;
+      background: #fffdf5;
+      border: 1px solid #e0d4a8;
+      border-radius: 8px;
+      padding: 8px 12px;
+      background-image: repeating-linear-gradient(
+        transparent,
+        transparent 1.6em,
+        #d0c8a8 1.6em,
+        #d0c8a8 calc(1.6em + 1px)
+      );
+    }
+
+    .body-figure {
+      text-align: center;
+      margin: 14px 0;
+    }
+    .body-figure svg {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .puzzle-grid {
+      display: inline-block;
+      margin: 10px auto;
+      font-family: 'Nunito', monospace;
+      font-weight: 700;
+      font-size: 13pt;
+      letter-spacing: 0.15em;
+    }
+    .puzzle-grid table {
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+    .puzzle-grid td {
+      width: 28px;
+      height: 28px;
+      text-align: center;
+      vertical-align: middle;
+      border: 1px solid #bdbdbd;
+      background: #fff;
+    }
+
+    .footer-page {
+      margin-top: 16px;
+      padding: 8px 12px;
+      border-top: 2px dashed var(--border);
+      font-size: 9.5pt;
+      color: var(--muted);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-page label {
+      font-weight: 600;
+    }
+    .footer-page .f-line {
+      border-bottom: 1px solid var(--muted);
+      min-width: 100px;
+      display: inline-block;
+    }
+
+    .gabarito {
+      background: #fff8e7;
+      border: 2px solid #f4d35e;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 9.5pt;
+    }
+    .gabarito table { font-size: 9pt; }
+    .gabarito .section-header {
+      background: #856404;
+      font-size: 1rem;
+      margin-top: 8px;
+    }
+
+    footer.print-note {
+      margin-top: 16px;
+      font-size: 9pt;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
+    <span>Use Ctrl+P → "Salvar como PDF" para gerar o arquivo. Formato A4.</span>
+  </div>
+
+  <main class="sheet">
+
+    <!-- CAPA / CABEÇALHO -->
+    <header>
+      <h1>🔬 ATIVIDADE DE CIÊNCIAS – 2º ANO</h1>
+      <p class="subtitle">Os Seres Humanos e o Ambiente | Ensino Fundamental</p>
+      <div class="header-line">
+        <label>👤 Nome: <span class="field" style="min-width: 200px;">&nbsp;</span></label>
+        <label>📚 Turma: <span class="field" style="min-width: 60px;">&nbsp;</span></label>
+        <label>📅 Data: <span class="field" style="min-width: 120px;">____/____/________</span></label>
+      </div>
+      <div class="intro-box">
+        <strong>📖 Como usar esta atividade:</strong> Leia os textos com atenção. Responda cada questão
+        com letra legível nos espaços indicados. Nas questões de V ou F, escreva a letra dentro do parêntese.
+        Nas questões de marcar, use um <strong>X</strong>. Capriche! 🌟
+      </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- UNIDADE 1 — COMPONENTES DO AMBIENTE (VERDE) -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section>
+      <div class="section-header header-green">
+        <span class="num">1</span>
+        <span class="title">🌿 COMPONENTES DO AMBIENTE</span>
+      </div>
+
+      <div class="intro-text intro-green">
+        O ambiente é tudo o que nos rodeia. Ele é formado por <strong>seres vivos</strong>,
+        como plantas, animais e seres humanos, e por <strong>componentes não vivos</strong>,
+        como a água, o ar, o solo e a luz do sol.
+      </div>
+
+      <!-- Exercício 1 -->
+      <div class="q avoid-break">
+        <span class="q-num q-green">1</span>
+        <span class="q-label ql-green">📋 Classificação com tabela</span>
+        <p>Leia as palavras abaixo e escreva cada uma na coluna correta da tabela:</p>
+        <div class="word-bank wb-green">
+          <span>GATO</span><span>PEDRA</span><span>ÁRVORE</span><span>AREIA</span><span>BORBOLETA</span>
+          <span>LAGO</span><span>FORMIGA</span><span>NUVEM</span><span>PEIXE</span><span>LUZ DO SOL</span>
+        </div>
+        <table class="data">
+          <tr>
+            <th class="th-green">🌱 Seres Vivos</th>
+            <th class="th-green">🪨 Componentes Não Vivos</th>
+          </tr>
+          <tr><td style="height:28px;"><span class="line long"></span></td><td><span class="line long"></span></td></tr>
+          <tr><td style="height:28px;"><span class="line long"></span></td><td><span class="line long"></span></td></tr>
+          <tr><td style="height:28px;"><span class="line long"></span></td><td><span class="line long"></span></td></tr>
+          <tr><td style="height:28px;"><span class="line long"></span></td><td><span class="line long"></span></td></tr>
+          <tr><td style="height:28px;"><span class="line long"></span></td><td><span class="line long"></span></td></tr>
+        </table>
+      </div>
+
+      <!-- Exercício 2 -->
+      <div class="q avoid-break">
+        <span class="q-num q-green">2</span>
+        <span class="q-label ql-green">✏️ Complete as frases</span>
+        <p>Complete com as palavras corretas:</p>
+        <p>a) As plantas e os animais são exemplos de <span class="line medium"></span>.</p>
+        <p>b) O ar, a água e o solo são componentes <span class="line medium"></span>.</p>
+        <p>c) Os seres humanos também fazem parte dos seres <span class="line"></span>.</p>
+        <p>d) A luz do sol é um componente <span class="line"></span> do ambiente.</p>
+      </div>
+
+      <!-- Exercício 3 -->
+      <div class="q avoid-break">
+        <span class="q-num q-green">3</span>
+        <span class="q-label ql-green">✅ Verdadeiro ou Falso</span>
+        <p>Escreva <strong>V</strong> (Verdadeiro) ou <strong>F</strong> (Falso):</p>
+        <div class="vf-item"><span class="vf-box"></span> Um cachorro é um ser vivo porque nasce, cresce e se reproduz.</div>
+        <div class="vf-item"><span class="vf-box"></span> Uma pedra é um ser vivo.</div>
+        <div class="vf-item"><span class="vf-box"></span> A água é um componente não vivo do ambiente.</div>
+        <div class="vf-item"><span class="vf-box"></span> As borboletas são seres vivos porque precisam de alimento.</div>
+        <div class="vf-item"><span class="vf-box"></span> O carro é um ser vivo porque se move.</div>
+      </div>
+
+      <!-- Exercício 4 -->
+      <div class="q avoid-break">
+        <span class="q-num q-green">4</span>
+        <span class="q-label ql-green">📖 Leia e responda</span>
+
+        <div class="read-box read-green">
+          <strong>🌾 A Fazenda do Vovô João</strong>
+          <p>"Na fazenda do Vovô João, existem muitas árvores, cavalos, vacas e porcos.
+          Há também um lago cheio de peixes, pedras grandes e muito sol."</p>
+        </div>
+
+        <p>a) Cite dois seres vivos que existem na fazenda do Vovô João:</p>
+        <p><span class="line medium"></span> e <span class="line medium"></span></p>
+
+        <p>b) Cite dois componentes não vivos citados no texto:</p>
+        <p><span class="line medium"></span> e <span class="line medium"></span></p>
+
+        <p>c) Por que o peixe é um ser vivo?</p>
+        <p><span class="line long"></span></p>
+        <p><span class="line long"></span></p>
+      </div>
+
+      <div class="footer-page">
+        <label>👤 Nome: <span class="f-line" style="min-width:180px;"></span></label>
+        <label>📚 Turma: <span class="f-line" style="min-width:40px;"></span></label>
+        <label>📅 Data: <span class="f-line" style="min-width:100px;">____/____/________</span></label>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- UNIDADE 2 — CARACTERÍSTICAS DOS SERES VIVOS (LARANJA) -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section>
+      <div class="section-header header-orange">
+        <span class="num">2</span>
+        <span class="title">🐾 CARACTERÍSTICAS DOS SERES VIVOS</span>
+      </div>
+
+      <div class="intro-text intro-orange">
+        Os seres vivos <strong>nascem</strong>, <strong>crescem</strong>, <strong>reproduzem-se</strong>
+        e <strong>morrem</strong>. Eles também precisam de <strong>alimento</strong>, <strong>água</strong>
+        e <strong>ar</strong> para sobreviver. Essas são as características que diferenciam
+        os seres vivos dos componentes não vivos.
+      </div>
+
+      <!-- Exercício 1 -->
+      <div class="q avoid-break">
+        <span class="q-num q-orange">1</span>
+        <span class="q-label ql-orange">🔢 Numere a ordem</span>
+        <p>Numere de <strong>1 a 5</strong> as fases da vida do porco, na ordem correta:</p>
+        <div class="vf-item"><span class="vf-box"></span> Adulto</div>
+        <div class="vf-item"><span class="vf-box"></span> Filhote</div>
+        <div class="vf-item"><span class="vf-box"></span> Morte</div>
+        <div class="vf-item"><span class="vf-box"></span> Jovem</div>
+        <div class="vf-item"><span class="vf-box"></span> Reprodução (fêmea com filhotes)</div>
+      </div>
+
+      <!-- Exercício 2 -->
+      <div class="q avoid-break">
+        <span class="q-num q-orange">2</span>
+        <span class="q-label ql-orange">✏️ Complete com as palavras do quadro</span>
+        <div class="word-bank wb-orange">
+          <span>NASCE</span><span>FILHOTE</span><span>CRESCER</span><span>MORREM</span>
+          <span>ÁGUA</span><span>ALIMENTO</span><span>AR</span>
+        </div>
+        <p>a) O boto-cor-de-rosa <span class="line"></span> depois de 12 meses na barriga da mãe.</p>
+        <p>b) Nasce apenas um <span class="line"></span> por vez.</p>
+        <p>c) O boto pode <span class="line"></span> mais de dois metros!</p>
+        <p>d) Os botos <span class="line"></span> antes de gerar filhotes quando há pesca irregular.</p>
+        <p>e) Os seres vivos precisam de <span class="line short"></span>, <span class="line short"></span> e <span class="line short"></span>.</p>
+      </div>
+
+      <!-- Exercício 3 -->
+      <div class="q avoid-break">
+        <span class="q-num q-orange">3</span>
+        <span class="q-label ql-orange">🦜 Características da Arara-Canindé</span>
+        <p>Marque com <strong>X</strong> as características que identificam a Arara-Canindé como <strong>ser vivo</strong>:</p>
+        <div class="check-item"><span class="check-box"></span> Ela pesa aproximadamente 1 quilograma.</div>
+        <div class="check-item"><span class="check-box"></span> Ela precisa beber água.</div>
+        <div class="check-item"><span class="check-box"></span> Ela se alimenta de frutas, sementes e insetos.</div>
+        <div class="check-item"><span class="check-box"></span> Ela tem de dois a três filhotes por vez, que nascem de ovos.</div>
+        <div class="check-item"><span class="check-box"></span> Ela tem cores fortes.</div>
+
+        <p style="margin-top:12px;">Quais das alternativas acima são características de SER VIVO? Explique:</p>
+        <p><span class="line long"></span></p>
+        <p><span class="line long"></span></p>
+      </div>
+
+      <!-- Exercício 4 -->
+      <div class="q avoid-break">
+        <span class="q-num q-orange">4</span>
+        <span class="q-label ql-orange">🔍 Caça-palavras</span>
+        <p>Encontre as palavras escondidas no diagrama. Circule de <strong style="color:var(--green);">VERDE</strong>
+        as que indicam <strong>fases da vida</strong> e de <strong style="color:#c62828;">VERMELHO</strong>
+        as que indicam <strong>necessidades dos seres vivos</strong>.</p>
+        <div class="word-bank wb-orange">
+          <span>NASCER</span><span>CRESCER</span><span>MORRER</span><span>ALIMENTO</span>
+          <span>AGUA</span><span>AR</span><span>REPRODUZIR</span><span>VIVO</span>
+        </div>
+        <div class="puzzle-grid" style="text-align:center;">
+          <table>
+            <tr><td>R</td><td>E</td><td>P</td><td>R</td><td>O</td><td>D</td><td>U</td><td>Z</td><td>I</td><td>R</td></tr>
+            <tr><td>N</td><td>A</td><td>S</td><td>C</td><td>E</td><td>R</td><td>V</td><td>M</td><td>A</td><td>L</td></tr>
+            <tr><td>C</td><td>R</td><td>A</td><td>G</td><td>U</td><td>A</td><td>I</td><td>O</td><td>R</td><td>P</td></tr>
+            <tr><td>A</td><td>L</td><td>I</td><td>M</td><td>E</td><td>N</td><td>T</td><td>O</td><td>H</td><td>Q</td></tr>
+            <tr><td>M</td><td>O</td><td>R</td><td>R</td><td>E</td><td>R</td><td>V</td><td>K</td><td>S</td><td>F</td></tr>
+            <tr><td>B</td><td>C</td><td>R</td><td>E</td><td>S</td><td>C</td><td>E</td><td>R</td><td>J</td><td>W</td></tr>
+            <tr><td>X</td><td>V</td><td>I</td><td>V</td><td>O</td><td>D</td><td>N</td><td>G</td><td>Z</td><td>Y</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Exercício 5 -->
+      <div class="q avoid-break">
+        <span class="q-num q-orange">5</span>
+        <span class="q-label ql-orange">📝 Escreva com suas palavras</span>
+        <p>O que é um ser vivo? Escreva 2 características:</p>
+        <p>Característica 1: <span class="line long"></span></p>
+        <p>Característica 2: <span class="line long"></span></p>
+      </div>
+
+      <div class="footer-page">
+        <label>👤 Nome: <span class="f-line" style="min-width:180px;"></span></label>
+        <label>📚 Turma: <span class="f-line" style="min-width:40px;"></span></label>
+        <label>📅 Data: <span class="f-line" style="min-width:100px;">____/____/________</span></label>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- UNIDADE 3 — SERES HUMANOS (ROXO) -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section>
+      <div class="section-header header-purple">
+        <span class="num">3</span>
+        <span class="title">👤 SEMELHANÇAS E DIFERENÇAS ENTRE OS SERES HUMANOS</span>
+      </div>
+
+      <div class="intro-text intro-purple">
+        O corpo humano é dividido em: <strong>cabeça</strong>, <strong>tronco</strong>,
+        <strong>membros superiores</strong> e <strong>membros inferiores</strong>.
+        Cada pessoa é única! Temos características físicas diferentes, como a cor dos olhos,
+        o formato do nariz e a altura. Mas também temos <strong>características sociais</strong>,
+        que dependem do grupo em que vivemos.
+      </div>
+
+      <!-- Exercício 1 -->
+      <div class="q avoid-break">
+        <span class="q-num q-purple">1</span>
+        <span class="q-label ql-purple">🧍 Identifique as partes do corpo</span>
+        <p>Observe o boneco abaixo e escreva o nome de cada parte indicada pela seta:</p>
+
+        <div class="body-figure">
+          <svg width="220" height="320" viewBox="0 0 220 320" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cabeça -->
+            <circle cx="110" cy="45" r="30" fill="none" stroke="#6a1b9a" stroke-width="2.5"/>
+            <!-- Tronco -->
+            <line x1="110" y1="75" x2="110" y2="180" stroke="#6a1b9a" stroke-width="2.5"/>
+            <!-- Braços (membros superiores) -->
+            <line x1="110" y1="100" x2="50" y2="155" stroke="#6a1b9a" stroke-width="2.5"/>
+            <line x1="110" y1="100" x2="170" y2="155" stroke="#6a1b9a" stroke-width="2.5"/>
+            <!-- Pernas (membros inferiores) -->
+            <line x1="110" y1="180" x2="65" y2="280" stroke="#6a1b9a" stroke-width="2.5"/>
+            <line x1="110" y1="180" x2="155" y2="280" stroke="#6a1b9a" stroke-width="2.5"/>
+
+            <!-- Seta: Cabeça -->
+            <line x1="145" y1="35" x2="185" y2="25" stroke="#999" stroke-width="1" marker-end="none"/>
+            <circle cx="145" cy="35" r="2" fill="#999"/>
+            <rect x="186" y="12" width="30" height="22" rx="4" fill="none" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <!-- Seta: Membros superiores (esquerdo do desenho / braço direito) -->
+            <line x1="45" y1="140" x2="5" y2="120" stroke="#999" stroke-width="1"/>
+            <circle cx="45" cy="140" r="2" fill="#999"/>
+            <rect x="2" y="94" width="50" height="22" rx="4" fill="none" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <!-- Seta: Tronco -->
+            <line x1="115" y1="130" x2="180" y2="130" stroke="#999" stroke-width="1"/>
+            <circle cx="115" cy="130" r="2" fill="#999"/>
+            <rect x="182" y="118" width="35" height="22" rx="4" fill="none" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+
+            <!-- Seta: Membros inferiores -->
+            <line x1="60" y1="260" x2="10" y2="270" stroke="#999" stroke-width="1"/>
+            <circle cx="60" cy="260" r="2" fill="#999"/>
+            <rect x="2" y="272" width="55" height="22" rx="4" fill="none" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Exercício 2 -->
+      <div class="q avoid-break">
+        <span class="q-num q-purple">2</span>
+        <span class="q-label ql-purple">✋ Para que servem as partes do corpo?</span>
+        <p>Complete:</p>
+        <p>a) As mãos servem para: <span class="line long"></span></p>
+        <p>b) Os braços servem para: <span class="line long"></span></p>
+        <p>c) As pernas servem para: <span class="line long"></span></p>
+        <p>d) A boca serve para: <span class="line long"></span></p>
+      </div>
+
+      <!-- Exercício 3 -->
+      <div class="q avoid-break">
+        <span class="q-num q-purple">3</span>
+        <span class="q-label ql-purple">🔗 Fases da Vida Humana — Ligue</span>
+        <p>Ligue cada fase da vida à sua descrição:</p>
+        <div class="match-container">
+          <div class="match-left">INFÂNCIA</div><div class="match-dot">●</div><div class="match-right">● Dos 12 aos 18 anos. O corpo muda muito.</div>
+          <div class="match-left">ADOLESCÊNCIA</div><div class="match-dot">●</div><div class="match-right">● Do nascimento até cerca de 12 anos.</div>
+          <div class="match-left">FASE ADULTA</div><div class="match-dot">●</div><div class="match-right">● Os cabelos ficam brancos e a pele, enrugada.</div>
+          <div class="match-left">VELHICE</div><div class="match-dot">●</div><div class="match-right">● Novas responsabilidades e aprendizagens.</div>
+        </div>
+      </div>
+
+      <!-- Exercício 4 -->
+      <div class="q avoid-break">
+        <span class="q-num q-purple">4</span>
+        <span class="q-label ql-purple">🔢 Ordene as fases da vida</span>
+        <p>Numere de <strong>1 a 4</strong> na ordem correta:</p>
+        <div class="vf-item"><span class="vf-box"></span> Fase Adulta</div>
+        <div class="vf-item"><span class="vf-box"></span> Infância</div>
+        <div class="vf-item"><span class="vf-box"></span> Adolescência</div>
+        <div class="vf-item"><span class="vf-box"></span> Velhice</div>
+      </div>
+
+      <!-- Exercício 5 -->
+      <div class="q avoid-break">
+        <span class="q-num q-purple">5</span>
+        <span class="q-label ql-purple">✅ Verdadeiro ou Falso</span>
+        <p>Escreva <strong>V</strong> (Verdadeiro) ou <strong>F</strong> (Falso):</p>
+        <div class="vf-item"><span class="vf-box"></span> Na infância, brincar é muito importante para o desenvolvimento.</div>
+        <div class="vf-item"><span class="vf-box"></span> Na adolescência, o corpo fica exatamente igual ao da infância.</div>
+        <div class="vf-item"><span class="vf-box"></span> Na velhice, os idosos têm muitas experiências de vida.</div>
+        <div class="vf-item"><span class="vf-box"></span> Na fase adulta, as pessoas têm novas responsabilidades.</div>
+      </div>
+
+      <!-- Exercício 6 -->
+      <div class="q avoid-break">
+        <span class="q-num q-purple">6</span>
+        <span class="q-label ql-purple">🏷️ Característica física ou social?</span>
+        <p>Escreva <strong>F</strong> para física e <strong>S</strong> para social:</p>
+        <div class="vf-item"><span class="vf-box"></span> Cor dos olhos</div>
+        <div class="vf-item"><span class="vf-box"></span> Jeito de se vestir</div>
+        <div class="vf-item"><span class="vf-box"></span> Altura</div>
+        <div class="vf-item"><span class="vf-box"></span> Tipo de moradia</div>
+        <div class="vf-item"><span class="vf-box"></span> Cor da pele</div>
+        <div class="vf-item"><span class="vf-box"></span> Língua que fala</div>
+      </div>
+
+      <!-- Exercício 7 -->
+      <div class="q avoid-break">
+        <span class="q-num q-purple">7</span>
+        <span class="q-label ql-purple">📝 Escreva sobre você</span>
+        <p>Como você é? Descreva uma característica física e uma social:</p>
+        <p>Característica física: <span class="line long"></span></p>
+        <p>Característica social: <span class="line long"></span></p>
+      </div>
+
+      <div class="footer-page">
+        <label>👤 Nome: <span class="f-line" style="min-width:180px;"></span></label>
+        <label>📚 Turma: <span class="f-line" style="min-width:40px;"></span></label>
+        <label>📅 Data: <span class="f-line" style="min-width:100px;">____/____/________</span></label>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- UNIDADE 4 — CUIDADOS COM A SAÚDE (AZUL) -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section>
+      <div class="section-header header-blue">
+        <span class="num">4</span>
+        <span class="title">💚 CUIDADOS COM A SAÚDE</span>
+      </div>
+
+      <div class="intro-text intro-blue">
+        Ter <strong>saúde</strong> significa estar bem. Quando algo é saudável, faz bem
+        para o corpo e para a mente. Para ter saúde, precisamos:
+        <strong>alimentar-nos bem</strong>, <strong>movimentar o corpo</strong>,
+        <strong>ter higiene</strong>, <strong>relacionar-nos bem</strong> e <strong>descansar</strong>.
+      </div>
+
+      <!-- Exercício 1 -->
+      <div class="q avoid-break">
+        <span class="q-num q-blue">1</span>
+        <span class="q-label ql-blue">🔗 Ligue o hábito ao benefício</span>
+        <p>Ligue cada hábito saudável ao seu benefício:</p>
+        <div class="match-container">
+          <div class="match-left">Tomar banho todos os dias</div><div class="match-dot">●</div><div class="match-right">● Evita doenças nos dentes</div>
+          <div class="match-left">Escovar os dentes</div><div class="match-dot">●</div><div class="match-right">● Mantém o corpo limpo e saudável</div>
+          <div class="match-left">Lavar as mãos antes de comer</div><div class="match-dot">●</div><div class="match-right">● Ajuda a dormir e recuperar energia</div>
+          <div class="match-left">Dormir 8 horas por noite</div><div class="match-dot">●</div><div class="match-right">● Evita ingestão de germes</div>
+        </div>
+      </div>
+
+      <!-- Exercício 2 -->
+      <div class="q avoid-break">
+        <span class="q-num q-blue">2</span>
+        <span class="q-label ql-blue">✏️ Complete as frases</span>
+        <p>a) Para ter saúde, devemos nos alimentar bem e beber água <span class="line"></span>.</p>
+        <p>b) Fazer atividades físicas e brincar ajuda a <span class="line"></span> o corpo.</p>
+        <p>c) Devemos escovar os dentes após cada <span class="line"></span>.</p>
+        <p>d) É importante lavar as mãos antes de <span class="line"></span> e depois de usar o <span class="line"></span>.</p>
+        <p>e) Devemos dormir no mínimo <span class="line short"></span> horas por noite para descansar.</p>
+      </div>
+
+      <!-- Exercício 3 -->
+      <div class="q avoid-break">
+        <span class="q-num q-blue">3</span>
+        <span class="q-label ql-blue">🟢 Saudável ou não saudável?</span>
+        <p>Escreva <strong>S</strong> (saudável) ou <strong>N</strong> (não saudável):</p>
+        <div class="vf-item"><span class="vf-box"></span> Comer frutas e verduras todos os dias.</div>
+        <div class="vf-item"><span class="vf-box"></span> Ficar o dia inteiro sem tomar banho.</div>
+        <div class="vf-item"><span class="vf-box"></span> Brincar e praticar esportes.</div>
+        <div class="vf-item"><span class="vf-box"></span> Dormir apenas 4 horas por noite.</div>
+        <div class="vf-item"><span class="vf-box"></span> Lavar as mãos antes das refeições.</div>
+        <div class="vf-item"><span class="vf-box"></span> Não escovar os dentes após o jantar.</div>
+      </div>
+
+      <!-- Exercício 4 -->
+      <div class="q avoid-break">
+        <span class="q-num q-blue">4</span>
+        <span class="q-label ql-blue">📖 História em sequência</span>
+        <p>Estela voltou da quadra após brincar com os colegas.
+        Coloque os acontecimentos em ordem (<strong>1 a 4</strong>):</p>
+        <div class="vf-item"><span class="vf-box"></span> Estela sentou à mesa e comeu.</div>
+        <div class="vf-item"><span class="vf-box"></span> Estela chegou em casa dizendo que estava com fome.</div>
+        <div class="vf-item"><span class="vf-box"></span> O pai pediu que ela fosse tomar banho primeiro.</div>
+        <div class="vf-item"><span class="vf-box"></span> Estela tomou banho e ficou limpinha.</div>
+      </div>
+
+      <!-- Exercício 5 -->
+      <div class="q avoid-break">
+        <span class="q-num q-blue">5</span>
+        <span class="q-label ql-blue">📝 Escreva com suas palavras</span>
+        <p>O que é ter saúde para você? Cite dois hábitos saudáveis que você pratica:</p>
+        <p>Ter saúde é: <span class="line long"></span></p>
+        <p><span class="line long"></span></p>
+        <p>Hábito 1: <span class="line long"></span></p>
+        <p>Hábito 2: <span class="line long"></span></p>
+      </div>
+
+      <!-- Exercício 6 -->
+      <div class="q avoid-break">
+        <span class="q-num q-blue">6</span>
+        <span class="q-label ql-blue">💬 Por que brincar é importante?</span>
+        <p>Por que brincar também é importante para a saúde? Converse com um colega e escreva a resposta:</p>
+        <div class="writing-lines" style="min-height: 5em;"></div>
+      </div>
+
+      <div class="footer-page">
+        <label>👤 Nome: <span class="f-line" style="min-width:180px;"></span></label>
+        <label>📚 Turma: <span class="f-line" style="min-width:40px;"></span></label>
+        <label>📅 Data: <span class="f-line" style="min-width:100px;">____/____/________</span></label>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- GABARITO -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="gabarito page-break">
+      <div class="section-header" style="background:#856404;">
+        <span class="num">📋</span>
+        <span class="title">GABARITO (PROFESSOR)</span>
+      </div>
+
+      <p style="font-size:9pt;margin-top:6px;">
+        <strong>Referências BNCC (2º ano – Ciências):</strong>
+        Matéria e energia – componentes vivos e não vivos (EF02CI01);
+        Vida e evolução – seres vivos, características e ciclo de vida (EF02CI04, EF02CI05);
+        Ser humano e saúde – corpo humano, hábitos saudáveis (EF02CI06).
+      </p>
+
+      <h3 style="color:#856404;">🌿 Unidade 1 — Componentes do Ambiente</h3>
+      <table class="data">
+        <tr><th style="width:40px;">Ex.</th><th>Resposta</th></tr>
+        <tr><td>1</td><td><strong>Seres Vivos:</strong> Gato, Árvore, Borboleta, Formiga, Peixe. <strong>Não Vivos:</strong> Pedra, Areia, Lago, Nuvem, Luz do Sol.</td></tr>
+        <tr><td>2</td><td>a) seres vivos &nbsp; b) não vivos &nbsp; c) vivos &nbsp; d) não vivo</td></tr>
+        <tr><td>3</td><td>V, F, V, V, F</td></tr>
+        <tr><td>4</td><td>a) Aceitar dois entre: árvores, cavalos, vacas, porcos, peixes. &nbsp; b) Aceitar dois entre: lago, pedras, sol. &nbsp; c) Porque nasce, cresce, se reproduz, precisa de alimento/água.</td></tr>
+      </table>
+
+      <h3 style="color:#856404;">🐾 Unidade 2 — Características dos Seres Vivos</h3>
+      <table class="data">
+        <tr><th style="width:40px;">Ex.</th><th>Resposta</th></tr>
+        <tr><td>1</td><td>Ordem: 3, 1, 5, 2, 4</td></tr>
+        <tr><td>2</td><td>a) NASCE &nbsp; b) FILHOTE &nbsp; c) CRESCER &nbsp; d) MORREM &nbsp; e) ÁGUA, ALIMENTO e AR</td></tr>
+        <tr><td>3</td><td>Marcar: "Precisa beber água", "Se alimenta de frutas…", "Tem filhotes…". As características de ser vivo são: precisar de água, alimentar-se e reproduzir-se.</td></tr>
+        <tr><td>4</td><td>Palavras no caça-palavras: REPRODUZIR (linha 1), NASCER (linha 2), AGUA (linha 3), ALIMENTO (linha 4), MORRER (linha 5), CRESCER (linha 6), VIVO (linha 7). Fases (verde): nascer, crescer, morrer, reproduzir. Necessidades (vermelho): alimento, água, ar.</td></tr>
+        <tr><td>5</td><td>Resposta pessoal. Ex.: "É algo que nasce, cresce, se reproduz e morre." / "Precisa de alimento e água."</td></tr>
+      </table>
+
+      <h3 style="color:#856404;">👤 Unidade 3 — Seres Humanos</h3>
+      <table class="data">
+        <tr><th style="width:40px;">Ex.</th><th>Resposta</th></tr>
+        <tr><td>1</td><td>Cabeça (topo), Tronco (meio), Membros superiores (braços), Membros inferiores (pernas).</td></tr>
+        <tr><td>2</td><td>Respostas pessoais. Ex.: a) segurar, pegar. b) abraçar, carregar. c) andar, correr. d) comer, falar.</td></tr>
+        <tr><td>3</td><td>Infância → Do nascimento até 12 anos. Adolescência → Dos 12 aos 18 anos. Fase Adulta → Novas responsabilidades. Velhice → Cabelos brancos, pele enrugada.</td></tr>
+        <tr><td>4</td><td>Ordem: 3, 1, 2, 4</td></tr>
+        <tr><td>5</td><td>V, F, V, V</td></tr>
+        <tr><td>6</td><td>F, S, F, S, F, S</td></tr>
+        <tr><td>7</td><td>Resposta pessoal.</td></tr>
+      </table>
+
+      <h3 style="color:#856404;">💚 Unidade 4 — Cuidados com a Saúde</h3>
+      <table class="data">
+        <tr><th style="width:40px;">Ex.</th><th>Resposta</th></tr>
+        <tr><td>1</td><td>Tomar banho → Mantém o corpo limpo. Escovar dentes → Evita doenças nos dentes. Lavar mãos → Evita ingestão de germes. Dormir 8h → Ajuda a dormir e recuperar energia.</td></tr>
+        <tr><td>2</td><td>a) filtrada &nbsp; b) movimentar &nbsp; c) refeição &nbsp; d) comer / banheiro &nbsp; e) 8</td></tr>
+        <tr><td>3</td><td>S, N, S, N, S, N</td></tr>
+        <tr><td>4</td><td>Ordem: 4, 1, 2, 3</td></tr>
+        <tr><td>5</td><td>Resposta pessoal.</td></tr>
+        <tr><td>6</td><td>Resposta pessoal. Ex.: Brincar faz bem para o corpo (exercício) e para a mente (diversão, felicidade).</td></tr>
+      </table>
+    </section>
+
+    <footer class="print-note">
+      Documento otimizado para impressão A4. BNCC – MEC – Ciências, 2º ano do Ensino Fundamental.
+    </footer>
+  </main>
+
+</body>
+</html>
