@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OBA Nível I — Revisão Astronomia e Astronáutica</title>
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --paper: #fffef8;
+      --accent: #e63946;
+      --blue: #457b9d;
+      --yellow: #f4d35e;
+      --green: #2a9d8f;
+      --purple: #7b68ee;
+      --muted: #6c757d;
+      --border: #dee2e6;
+      --card: #f8f9fa;
+      --space-deep: #0d1321;
+      --space-glow: #4cc9f0;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background: #e9ecef;
+      line-height: 1.45;
+      font-size: 11pt;
+    }
+
+    .sheet {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 1rem;
+      background: var(--paper);
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      padding: 12mm 14mm;
+    }
+
+    @page { size: A4; margin: 12mm; }
+
+    @media print {
+      body { background: #fff; }
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .sheet {
+        box-shadow: none;
+        margin: 0;
+        max-width: none;
+        min-height: auto;
+        padding: 0;
+      }
+      .no-print { display: none !important; }
+      a[href]:after { content: ""; }
+      .page-break { page-break-before: always; }
+      .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+      main.sheet > section {
+        break-inside: auto;
+        page-break-inside: auto;
+      }
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #343a40;
+      color: #fff;
+      padding: 10px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .toolbar button:hover { filter: brightness(1.08); }
+    .toolbar span { font-size: 13px; opacity: .9; }
+
+    h1 {
+      font-size: 1.35rem;
+      margin: 0 0 4px;
+      color: var(--accent);
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+      font-weight: 600;
+      color: var(--blue);
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .header-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      background: linear-gradient(135deg, #fff9e6, #e8f4fc);
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+    }
+    .header-line label {
+      flex: 1;
+      min-width: 140px;
+      font-weight: 600;
+      font-size: 10pt;
+    }
+    .header-line input {
+      border: none;
+      border-bottom: 2px solid var(--blue);
+      background: transparent;
+      width: 100%;
+      min-height: 22px;
+    }
+
+    .intro-box {
+      background: var(--card);
+      border-left: 5px solid var(--green);
+      padding: 10px 14px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 16px;
+      font-size: 10.5pt;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin: 18px 0 10px;
+      padding: 6px 12px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      color: var(--blue);
+      margin: 12px 0 6px;
+    }
+
+    .concept {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 8px 0;
+    }
+
+    .read-box {
+      background: linear-gradient(180deg, #e3f2fd 0%, #fff 100%);
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+    .read-box strong { color: var(--blue); }
+
+    .why-box {
+      background: linear-gradient(180deg, #f3e8ff 0%, #fff 100%);
+      border: 2px solid var(--purple);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 10px 0;
+      font-size: 10.3pt;
+    }
+    .why-box strong { color: var(--purple); }
+
+    .mc {
+      margin: 8px 0 4px;
+      padding-left: 0;
+      list-style: none;
+    }
+    .mc li {
+      margin: 4px 0;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .mc li:hover { background: #f1f3f5; }
+
+    .q {
+      margin: 14px 0;
+      padding: 10px 12px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .q-num {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+    .tag {
+      font-size: 9pt;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .tag-mc { background: #cfe2ff; color: #084298; }
+    .tag-sim { background: #fce7f3; color: #9d174d; }
+
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 10pt;
+    }
+    table.data th, table.data td {
+      border: 1px solid var(--border);
+      padding: 8px;
+    }
+    table.data th { background: #e9ecef; }
+
+    .gabarito {
+      background: #fff8e7;
+      border: 2px solid var(--yellow);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 9.5pt;
+    }
+    .gabarito table { font-size: 9pt; }
+    .gabarito h2 { background: #856404; }
+
+    .refs {
+      background: #e8f4f8;
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 16px;
+      font-size: 10pt;
+    }
+    .refs h2 { background: var(--blue); margin-top: 0; }
+    .refs ul { margin: 8px 0; padding-left: 1.2rem; }
+    .refs a { color: #0d47a1; word-break: break-all; }
+
+    footer.print-note {
+      margin-top: 16px;
+      font-size: 9pt;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .nav-toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 12px 0 16px;
+      padding: 10px;
+      background: #f1f3f5;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .nav-toc a {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: #fff;
+      border: 1px solid var(--border);
+    }
+    .nav-toc a:hover { background: #e7f1ff; }
+
+    .illus {
+      margin: 12px auto;
+      text-align: center;
+    }
+    .illus svg {
+      max-width: 100%;
+      height: auto;
+      filter: drop-shadow(2px 3px 4px rgba(0,0,0,.12));
+    }
+    .illus-caption {
+      font-size: 9pt;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .hero-strip {
+      margin: 10px 0 14px;
+      padding: 12px;
+      border-radius: 12px;
+      background: linear-gradient(120deg, #0d1321 0%, #1d3557 45%, #415a77 100%);
+      color: #e0e7ff;
+      text-align: center;
+    }
+    .hero-strip p { margin: 6px 0 0; font-size: 10pt; opacity: .95; }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">Imprimir / Salvar em PDF</button>
+    <span>Use Ctrl+P → “Salvar como PDF”. Formato A4. O gabarito está só no final.</span>
+  </div>
+
+  <main class="sheet">
+    <header>
+      <div class="hero-strip avoid-break">
+        <!-- ILLUS: foguete + estrelas -->
+        <div class="illus" aria-hidden="true">
+          <svg width="280" height="88" viewBox="0 0 280 88" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="rkBody" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e63946"/><stop offset="100%" stop-color="#9d0208"/></linearGradient>
+              <linearGradient id="rkWin" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#90e0ef"/><stop offset="100%" stop-color="#457b9d"/></linearGradient>
+            </defs>
+            <circle cx="30" cy="22" r="1.2" fill="#fff" opacity=".9"/><circle cx="52" cy="14" r=".8" fill="#fff"/><circle cx="78" cy="28" r="1" fill="#fff" opacity=".7"/>
+            <circle cx="240" cy="18" r="1.4" fill="#fff"/><circle cx="218" cy="36" r=".7" fill="#fff" opacity=".6"/>
+            <path d="M118 8 L132 52 L118 56 L104 52 Z" fill="url(#rkBody)" stroke="#5c0a0f" stroke-width="1"/>
+            <path d="M118 8 L108 40 L100 48 L104 52 Z" fill="#b91c1c" stroke="#5c0a0f" stroke-width=".8"/>
+            <path d="M118 8 L128 40 L136 48 L132 52 Z" fill="#b91c1c" stroke="#5c0a0f" stroke-width=".8"/>
+            <ellipse cx="118" cy="28" rx="7" ry="9" fill="url(#rkWin)" stroke="#1d3557" stroke-width="1"/>
+            <path d="M114 56 L122 72 L118 78 L114 72 Z" fill="#fb8500"/><path d="M110 72 L126 72 L118 84 Z" fill="#ffba08" opacity=".9"/>
+          </svg>
+        </div>
+        <p><strong>Olimpíada Brasileira de Astronomia e Astronáutica</strong> — material de revisão (Nível I)</p>
+      </div>
+
+      <h1>Revisão OBA — Astronomia e Astronáutica</h1>
+      <p class="subtitle">Para o 1º ao 3º ano do Ensino Fundamental (Nível I)</p>
+
+      <div class="header-line">
+        <label>Nome: <input type="text" aria-label="Nome do aluno" /></label>
+        <label>Data: <input type="text" aria-label="Data" /></label>
+        <label>Turma: <input type="text" aria-label="Turma" /></label>
+      </div>
+
+      <div class="intro-box">
+        <strong>Como usar:</strong> Leia os textos com calma. Nas questões, marque com <strong>X</strong> a alternativa que você acha certa.
+        O <strong>gabarito</strong> está reunido <strong>só no final</strong> — tente resolver antes de conferir!
+        A prova do Nível I tem <strong>10 questões</strong> (5 de Astronomia + 5 de Astronáutica), até <strong>2 horas</strong>, em geral em <strong>maio</strong>, com 5 alternativas (a–e).
+      </div>
+
+      <blockquote class="concept" style="margin-top:0;font-size:10pt;">
+        Baseado no estilo das provas recentes da OBA (24ª à 28ª edição, 2021–2025). Linguagem acessível para crianças de 6 a 8 anos.
+      </blockquote>
+
+      <nav class="nav-toc no-print" aria-label="Índice da página">
+        <a href="#como-e">Como é a prova</a>
+        <a href="#astronomia">Astronomia</a>
+        <a href="#lua">Lua</a>
+        <a href="#terra">Terra</a>
+        <a href="#sol">Sol</a>
+        <a href="#sistema-solar">Sistema Solar</a>
+        <a href="#estrelas">Estrelas e curiosidades</a>
+        <a href="#astronautica">Astronáutica</a>
+        <a href="#foguetes">Foguetes</a>
+        <a href="#tabela">Tabela revisão</a>
+        <a href="#simulado">Simulado</a>
+        <a href="#gabarito">Gabarito</a>
+        <a href="#refs">Referências</a>
+      </nav>
+    </header>
+
+    <section id="como-e">
+      <h2>Como é a prova do Nível I?</h2>
+      <div class="concept">
+        <p>Você vai encontrar perguntas com <strong>cinco alternativas</strong>. Às vezes a prova pede a frase em que está <strong>tudo certo</strong> ou <strong>tudo errado</strong>.
+        Outras vezes, você marca <strong>V</strong> (verdadeiro) ou <strong>F</strong> (falso) em várias frases e depois escolhe a sequência certa (por exemplo: V, V, F, V…).</p>
+        <div class="why-box">
+          <strong>Por quê?</strong> Isso ajuda a ver se você entende o conceito por completo — não só uma palavrinha solta.
+        </div>
+      </div>
+    </section>
+
+    <section id="astronomia">
+      <h2>Parte 1 — Astronomia</h2>
+    </section>
+
+    <section id="lua">
+      <h2>Capítulo 1 — A Lua, nosso vizinho mais próximo</h2>
+
+      <div class="illus avoid-break" aria-hidden="true">
+        <svg width="240" height="100" viewBox="0 0 240 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="moong" cx="35%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#f5f5f5"/><stop offset="100%" stop-color="#b0b0b0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="170" cy="38" r="22" fill="#ffd166" opacity=".25"/>
+          <circle cx="118" cy="50" r="32" fill="url(#moong)" stroke="#6c757d" stroke-width="1.2"/>
+          <circle cx="102" cy="40" r="6" fill="#9e9e9e" opacity=".5"/><circle cx="128" cy="58" r="4" fill="#9e9e9e" opacity=".4"/>
+          <ellipse cx="75" cy="72" rx="28" ry="8" fill="#1d3557" opacity=".15"/>
+          <path d="M40 58 L48 42 L52 58 M46 46 L50 46" stroke="#457b9d" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="48" cy="36" r="10" fill="#e63946" opacity=".15"/>
+        </svg>
+        <p class="illus-caption">A Lua não brilha sozinha: ela <em>reflete</em> a luz do Sol.</p>
+      </div>
+
+      <h3>O que é a Lua?</h3>
+      <div class="concept">
+        <p>A <strong>Lua</strong> é o astro mais próximo da Terra. Ela <strong>não é uma estrela</strong> e <strong>não tem luz própria</strong> — reflete a luz do Sol. A Lua é o <strong>satélite natural</strong> da Terra: ela orbita (gira ao redor) da Terra.</p>
+        <div class="why-box">
+          <strong>Resumo:</strong> Satélite natural = companheiro “fixo” do planeta, que gira ao redor dele. A Lua é assim: a da Terra.
+        </div>
+      </div>
+
+      <h3>Fatos importantes</h3>
+      <ul class="concept" style="margin-top:0;">
+        <li>A Lua <strong>não tem atmosfera</strong> como a Terra. Por isso o céu de lá é <strong>preto</strong> mesmo de “dia”.</li>
+        <li>Tem <strong>crateras e montanhas</strong>, mas <strong>não tem mar de água</strong> (o “mar” da Lua é nome antigo de região escura), nem florestas, rios ou oceanos.</li>
+        <li>Astronautas já pisaram na Lua. O primeiro foi <strong>Neil Armstrong</strong> (1969, <strong>Apollo 11</strong>, região chamada “Mar da Tranquilidade” — é planície, não água!).</li>
+        <li>Ao todo, <strong>12 astronautas</strong> americanos caminharam na Lua.</li>
+        <li>Na Lua, a pessoa <strong>pesa menos</strong> porque a gravidade lá é menor.</li>
+        <li>Da Terra, vemos praticamente <strong>sempre a mesma face</strong> da Lua.</li>
+        <li>O “lado de trás” <strong>não fica sempre no escuro</strong> — também recebe Sol; só não vemos daqui.</li>
+      </ul>
+
+      <h3>Fases da Lua</h3>
+      <div class="concept">
+        <p>A Lua parece mudar de forma no mês — são as <strong>fases</strong>. As quatro principais: <strong>Lua Nova</strong>, <strong>Quarto Crescente</strong>, <strong>Lua Cheia</strong> e <strong>Quarto Minguante</strong>.</p>
+        <p><strong>Lua Nova:</strong> quase não vemos a Lua no céu daqui porque a face iluminada está “virada para o outro lado”. <em>Curiosidade:</em> nessa fase, o lado que não vemos da Terra costuma estar bem iluminado pelo Sol.</p>
+      </div>
+
+      <h3>O astronauta brasileiro</h3>
+      <p class="concept"><strong>Marcos Pontes</strong> foi o primeiro brasileiro no espaço, na <strong>Estação Espacial Internacional (ISS)</strong> — <strong>não</strong> foi à Lua.</p>
+
+      <h3>Exercícios — A Lua <span class="tag tag-mc">Estilo OBA</span></h3>
+
+      <div class="q avoid-break" id="q1">
+        <span class="q-num">1</span>
+        <p>A Lua já foi visitada por astronautas. Assinale a alternativa em que está <strong>tudo errado</strong>:</p>
+        <ul class="mc">
+          <li>a) ( ) Na Lua há muitas crateras e montanhas.</li>
+          <li>b) ( ) Como a Lua não tem atmosfera como a Terra, o céu lá é preto.</li>
+          <li>c) ( ) Quando a Lua Cheia está “nascendo”, o Sol costuma se pondo (fenômeno comum de observar).</li>
+          <li>d) ( ) A Lua tem quase o mesmo tamanho real do Sol.</li>
+          <li>e) ( ) A Lua tem quatro fases principais: Cheia, Nova, Quarto-crescente e Quarto-minguante.</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break" id="q2">
+        <span class="q-num">2</span>
+        <p>A Lua gira em torno da Terra, e a Terra em torno do Sol. Assinale a afirmação <strong>toda errada</strong>:</p>
+        <ul class="mc">
+          <li>a) ( ) A Lua brilha porque tem luz própria, como o Sol.</li>
+          <li>b) ( ) O Sol é a estrela mais próxima da Terra.</li>
+          <li>c) ( ) Da Terra só vemos um lado da Lua.</li>
+          <li>d) ( ) Astronautas visitaram a Lua, mas não moram nela.</li>
+          <li>e) ( ) A Lua é o astro mais próximo da Terra.</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break" id="q3">
+        <span class="q-num">3</span>
+        <p>Na Lua Nova, o lado da Lua que <strong>não vemos</strong> da Terra está:</p>
+        <ul class="mc">
+          <li>a) ( ) Totalmente escuro.</li>
+          <li>b) ( ) Todo iluminado pelo Sol.</li>
+          <li>c) ( ) Parcialmente iluminado.</li>
+          <li>d) ( ) Coberto de nuvens.</li>
+          <li>e) ( ) Sempre voltado só para a Terra, sem receber Sol.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <section id="terra">
+      <h2>Capítulo 2 — A Terra, nosso lar no espaço</h2>
+
+      <div class="illus avoid-break" aria-hidden="true">
+        <svg width="260" height="96" viewBox="0 0 260 96" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="earthg" cx="35%" cy="35%" r="70%">
+              <stop offset="0%" stop-color="#48cae4"/><stop offset="45%" stop-color="#2a9d8f"/><stop offset="100%" stop-color="#1d3557"/>
+            </radialGradient>
+          </defs>
+          <circle cx="130" cy="48" r="36" fill="url(#earthg)" stroke="#0d3b66" stroke-width="1.2"/>
+          <path d="M104 30 Q120 38 118 52 Q108 58 100 48 Z" fill="#e9c46a" opacity=".7"/>
+          <path d="M142 28 Q160 40 158 56 Q148 62 134 50 Z" fill="#2d6a4f" opacity=".85"/>
+          <ellipse cx="200" cy="24" rx="14" ry="5" fill="#fff" opacity=".12" transform="rotate(-15 200 24)"/>
+          <text x="210" y="88" font-size="8" fill="#6c757d">Água, ar, vida — planeta especial</text>
+        </svg>
+        <p class="illus-caption">A Terra tem atmosfera, água em ciclo e vida. O Sol manda energia para tudo isso funcionar.</p>
+      </div>
+
+      <h3>Fatos essenciais</h3>
+      <ul class="concept">
+        <li>Vista do espaço, a Terra é quase uma <strong>esfera</strong> (formato de bola).</li>
+        <li>A <strong>atmosfera</strong> protege a vida: respiração, temperatura mais estável, bloqueio de parte da radiação perigosa.</li>
+        <li><strong>Ciclo da água:</strong> com calor do Sol, a água evapora, forma nuvens e volta com chuva.</li>
+        <li>A Terra <strong>orbita o Sol</strong> (translação) em cerca de <strong>365 dias</strong> (um ano).</li>
+        <li>A Terra <strong>gira em torno do próprio eixo</strong> (rotação) — isso ajuda a explicar dia e noite.</li>
+        <li>A Terra tem <strong>uma Lua</strong> natural.</li>
+        <li>Há rios, lagos, oceanos, florestas, montanhas e <strong>calotas polares</strong> (gelo nos polos).</li>
+        <li><strong>Quatro estações</strong> no clima de muitas regiões: Verão, Outono, Inverno, Primavera.</li>
+      </ul>
+      <div class="why-box">
+        <strong>Atenção na prova:</strong> Na astronomia moderna, o Sol e as estrelas <strong>não</strong> “giram ao redor da Terra” no modelo que usamos para o Sistema Solar — a Terra orbita o Sol e gira sobre si mesma.
+      </div>
+
+      <h3>Exercícios — A Terra <span class="tag tag-mc">Estilo OBA</span></h3>
+
+      <div class="q avoid-break" id="q4">
+        <span class="q-num">4</span>
+        <p>O planeta mais bem estudado é a Terra. Marque a afirmação <strong>toda errada</strong>:</p>
+        <ul class="mc">
+          <li>a) ( ) A Terra gira ao redor do Sol e a Lua gira ao redor da Terra.</li>
+          <li>b) ( ) A atmosfera da Terra permite a vida na Terra.</li>
+          <li>c) ( ) A Terra é plana, não gira ao redor do Sol e tem 4 luas.</li>
+          <li>d) ( ) Vista do espaço a Terra tem a forma de uma esfera (bola).</li>
+          <li>e) ( ) A Lua é satélite natural da Terra e já foi visitada por astronautas.</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break" id="q5">
+        <span class="q-num">5</span>
+        <p>PRIMEIRO coloque <strong>F</strong> ou <strong>V</strong> em cada frase. DEPOIS assinale a sequência correta:</p>
+        <ol style="font-size:10.5pt;">
+          <li>( ) A Terra tem rios, lagos, mares, atmosfera, florestas e oceanos.</li>
+          <li>( ) A atmosfera da Terra protege a vida na Terra.</li>
+          <li>( ) A Terra tem uma Lua e ela gira ao redor da Terra.</li>
+          <li>( ) A Terra gasta cerca de 365 dias para dar uma volta ao redor do Sol.</li>
+          <li>( ) A Lua, o Sol e as estrelas giram ao redor da Terra.</li>
+        </ol>
+        <ul class="mc">
+          <li>a) ( ) 1ª(V) – 2ª(V) – 3ª(V) – 4ª(V) – 5ª(F)</li>
+          <li>b) ( ) 1ª(V) – 2ª(V) – 3ª(F) – 4ª(F) – 5ª(V)</li>
+          <li>c) ( ) 1ª(F) – 2ª(F) – 3ª(V) – 4ª(V) – 5ª(F)</li>
+          <li>d) ( ) 1ª(V) – 2ª(V) – 3ª(F) – 4ª(F) – 5ª(V)</li>
+          <li>e) ( ) 1ª(F) – 2ª(F) – 3ª(F) – 4ª(V) – 5ª(V)</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <section id="sol">
+      <h2>Capítulo 3 — O Sol, a estrela da família</h2>
+
+      <div class="illus avoid-break" aria-hidden="true">
+        <svg width="220" height="90" viewBox="0 0 220 90" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="sung" cx="45%" cy="45%" r="55%">
+              <stop offset="0%" stop-color="#fff7b2"/><stop offset="50%" stop-color="#ffb703"/><stop offset="100%" stop-color="#fb8500"/>
+            </radialGradient>
+          </defs>
+          <g transform="translate(110,42)">
+            <circle r="28" fill="url(#sung)" stroke="#e85d04" stroke-width="1.5"/>
+            <path d="M0 -36 L0 -44 M32 -16 L40 -20 M32 16 L40 20 M0 36 L0 44 M-32 16 L-40 20 M-32 -16 L-40 -20" stroke="#ffb703" stroke-width="3" stroke-linecap="round" opacity=".85"/>
+          </g>
+          <ellipse cx="50" cy="70" rx="40" ry="6" fill="#1d3557" opacity=".08"/>
+        </svg>
+        <p class="illus-caption">O Sol é estrela: luz e calor “de verdade”, produzidos lá dentro.</p>
+      </div>
+
+      <div class="concept">
+        <p>O <strong>Sol</strong> é uma <strong>estrela</strong> — uma bola enorme de gás bem quente que libera luz e calor. É a <strong>estrela mais próxima da Terra</strong>. As outras estrelas da noite estão muito mais longe.</p>
+        <ul>
+          <li>O Sol <strong>aquece e ilumina</strong> a Terra.</li>
+          <li>Com esse calor, parte da <strong>água evapora</strong> e volta na chuva.</li>
+          <li>A Terra <strong>orbita o Sol</strong> (não o contrário no modelo que estudamos).</li>
+          <li>O Sol é <strong>muito maior</strong> que a Terra, que a Lua e que todos os planetas.</li>
+          <li>Em geral: <strong>quanto mais perto do Sol, mais quente</strong> tende a ser o planeta (há detalhes, como atmosfera de Vênus).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="sistema-solar">
+      <h2>Capítulo 4 — O Sistema Solar, a família do Sol</h2>
+
+      <div class="illus avoid-break" aria-hidden="true">
+        <svg width="280" height="72" viewBox="0 0 280 72" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="36" r="14" fill="#ffb703" stroke="#e85d04"/><circle cx="52" cy="36" r="5" fill="#9b9b9b"/>
+          <circle cx="74" cy="36" r="7" fill="#e9c46a"/><circle cx="100" cy="36" r="8" fill="#48cae4"/>
+          <circle cx="126" cy="36" r="6" fill="#e76f51"/><circle cx="154" cy="36" r="12" fill="#dda15e"/>
+          <circle cx="188" cy="36" r="11" fill="#e9c46a"/><circle cx="220" cy="36" r="9" fill="#90e0ef"/><circle cx="252" cy="36" r="9" fill="#4361ee"/>
+          <text x="8" y="68" font-size="7" fill="#6c757d">Mercúrio → Netuno (não está em escala de tamanho/distância)</text>
+        </svg>
+        <p class="illus-caption">Ajuda para lembrar a <strong>ordem</strong>: Mercúrio, Vênus, Terra, Marte, Júpiter, Saturno, Urano, Netuno.</p>
+      </div>
+
+      <p class="concept"><strong>Ordem</strong> (do mais próximo ao mais distante do Sol): <strong>Mercúrio, Vênus, Terra, Marte, Júpiter, Saturno, Urano, Netuno</strong>.</p>
+      <p class="concept">Dica sonora: <strong>“Me Ve Te Ma Ju Sa U Ne”</strong> (iniciais: <strong>Me</strong>rcúrio, <strong>Ve</strong>nus, <strong>Te</strong>rra, <strong>Ma</strong>rte, <strong>Ju</strong>piter, <strong>Sa</strong>turno, <strong>U</strong>rano, <strong>Ne</strong>tuno).</p>
+      <p class="concept"><strong>Plutão</strong> hoje é classificado como <strong>planeta anão</strong> (fica além da órbita de Netuno no cinturão de Kuiper). Nas provas do nível I, costuma aparecer que <strong>não entra</strong> na lista dos 8 planetas “grandes”.</p>
+      <div class="why-box">
+        <strong>Resumo:</strong> Quanto mais <strong>longe</strong> do Sol, em geral o planeta se move na órbita com <strong>mais calma</strong> (mais devagar) e o <strong>“ano”</strong> dele fica <strong>mais longo</strong>.
+      </div>
+
+      <h3>Detalhes que costumam cair</h3>
+      <ul class="concept">
+        <li><strong>Mercúrio:</strong> menor planeta, mais próximo do Sol, ano mais curto, sem luas, quase sem atmosfera.</li>
+        <li><strong>Vênus:</strong> muito quente, muito brilhante no céu, sem luas.</li>
+        <li><strong>Terra:</strong> água líquida e vida; uma lua.</li>
+        <li><strong>Marte:</strong> cor avermelhada (ferrugem no solo), duas luas pequenas (Fobos e Deimos), calotas de gelo, explorado por robôs.</li>
+        <li><strong>Júpiter:</strong> o maior, gasoso, anéis discretos, muitas luas.</li>
+        <li><strong>Saturno:</strong> famoso pelos anéis brilhantes, gasoso, muitas luas.</li>
+      </ul>
+
+      <h3>Exercícios — Sistema Solar <span class="tag tag-mc">Estilo OBA</span></h3>
+
+      <div class="q avoid-break" id="q6">
+        <span class="q-num">6</span>
+        <p>Assinale a alternativa em que está <strong>tudo certo</strong>:</p>
+        <ul class="mc">
+          <li>a) ( ) Mercúrio tem uma lua, Vênus tem duas luas e Marte tem 3 luas.</li>
+          <li>b) ( ) A Terra e Marte têm atmosferas. A Lua e Mercúrio também têm atmosferas.</li>
+          <li>c) ( ) A Terra e Marte têm calotas polares. A Lua também tem calota polar.</li>
+          <li>d) ( ) A Terra é maior do que Mercúrio e Mercúrio é maior do que a Lua.</li>
+          <li>e) ( ) A Lua e Mercúrio têm atmosferas, mas Vênus, Marte e a Terra não têm.</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break" id="q7">
+        <span class="q-num">7</span>
+        <p>Marque a alternativa com os planetas na <strong>ordem correta</strong> de afastamento do Sol:</p>
+        <ul class="mc">
+          <li>a) ( ) Mercúrio, Vênus, Terra, Marte, Júpiter, Saturno, Plutão e Netuno.</li>
+          <li>b) ( ) Mercúrio, Terra, Vênus, Marte, Saturno, Júpiter, Urano e Netuno.</li>
+          <li>c) ( ) Mercúrio, Vênus, Marte, Terra, Saturno, Júpiter, Urano e Netuno.</li>
+          <li>d) ( ) Vênus, Marte, Mercúrio, Terra, Saturno, Júpiter, Netuno e Urano.</li>
+          <li>e) ( ) Mercúrio, Vênus, Terra, Marte, Júpiter, Saturno, Urano, Netuno.</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break" id="q8">
+        <span class="q-num">8</span>
+        <p>Numa viagem espacial, um astronauta passou perto de um planeta <strong>avermelhado</strong>, com <strong>duas luas</strong>, rochoso e com alguma atmosfera. Qual o nome?</p>
+        <ul class="mc">
+          <li>a) ( ) Mercúrio.</li>
+          <li>b) ( ) Vênus.</li>
+          <li>c) ( ) Marte.</li>
+          <li>d) ( ) Júpiter.</li>
+          <li>e) ( ) Urano.</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break" id="q9">
+        <span class="q-num">9</span>
+        <p>Entre a Terra e o Sol, um planeta <strong>não tem lua</strong>, é dos mais <strong>quentes</strong> e dos mais <strong>brilhantes</strong> ao olho nu entre esses. Qual é?</p>
+        <ul class="mc">
+          <li>a) ( ) Mercúrio</li>
+          <li>b) ( ) Vênus</li>
+          <li>c) ( ) Marte</li>
+          <li>d) ( ) Júpiter</li>
+          <li>e) ( ) Urano</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break" id="q10">
+        <span class="q-num">10</span>
+        <p>Quanto mais longe do Sol, mais devagar o planeta costuma se mover na órbita. PRIMEIRO marque <strong>F</strong> ou <strong>V</strong>; DEPOIS a sequência correta:</p>
+        <ol style="font-size:10.5pt;">
+          <li>( ) A Terra não gira ao redor do Sol; logo ela está parada.</li>
+          <li>( ) O ano de Mercúrio é menor do que o da Terra.</li>
+          <li>( ) Plutão, planeta anão, é mais lento na órbita do que qualquer um dos 8 planetas principais.</li>
+          <li>( ) Mercúrio é o mais rápido dos 8 planetas ao completar uma volta em torno do Sol.</li>
+          <li>( ) Marte orbita o Sol mas leva mais tempo do que a Terra.</li>
+        </ol>
+        <ul class="mc">
+          <li>a) ( ) 1ª(F) – 2ª(V) – 3ª(F) – 4ª(V) – 5ª(V)</li>
+          <li>b) ( ) 1ª(F) – 2ª(V) – 3ª(V) – 4ª(V) – 5ª(V)</li>
+          <li>c) ( ) 1ª(F) – 2ª(F) – 3ª(V) – 4ª(F) – 5ª(F)</li>
+          <li>d) ( ) 1ª(V) – 2ª(F) – 3ª(V) – 4ª(F) – 5ª(V)</li>
+          <li>e) ( ) 1ª(V) – 2ª(F) – 3ª(F) – 4ª(F) – 5ª(F)</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <section id="estrelas">
+      <h2>Capítulo 5 — Estrelas, estações e curiosidades</h2>
+
+      <div class="illus avoid-break" aria-hidden="true">
+        <svg width="260" height="100" viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="tele" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#8d99ae"/><stop offset="100%" stop-color="#2b2d42"/>
+            </linearGradient>
+          </defs>
+          <rect x="20" y="58" width="200" height="8" rx="2" fill="#6c757d"/>
+          <path d="M120 58 L135 28 L150 58 Z" fill="url(#tele)" stroke="#1d3557"/>
+          <rect x="128" y="20" width="14" height="14" rx="2" fill="#1d3557" stroke="#000" stroke-opacity=".2"/>
+          <circle cx="135" cy="27" r="4" fill="#90e0ef" opacity=".6"/>
+          <circle cx="60" cy="25" r="1.2" fill="#fff"/><circle cx="210" cy="20" r="1" fill="#fff"/><circle cx="230" cy="40" r=".8" fill="#fff"/>
+        </svg>
+        <p class="illus-caption">Com telescópio ou binóculo dá para ver mais detalhes da Lua e de planetas brilhantes.</p>
+      </div>
+
+      <ul class="concept">
+        <li><strong>Estrelas:</strong> luz própria (o Sol é uma estrela).</li>
+        <li><strong>Planetas:</strong> orbitam uma estrela; não brilham com luz própria como estrelas.</li>
+        <li><strong>Lua:</strong> satélite natural; orbita um planeta.</li>
+      </ul>
+      <div class="concept">
+        <p><strong>ISS (Estação Espacial Internacional):</strong> orbita a Terra; astronautas ficam meses a bordo. <strong>Marcos Pontes</strong> foi à ISS em 2006. A ISS <strong>não é a Lua</strong>.</p>
+        <p><strong>Unidade Astronômica (UA):</strong> distância média Terra–Sol (usada para medir distâncias no Sistema Solar).</p>
+        <p><strong>Santos Dumont:</strong> importante na aviação (avião, experiências com voo). <strong>Não foi astronauta</strong> — viveu antes da era espacial moderna.</p>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <section id="astronautica">
+      <h2>Parte 2 — Astronáutica</h2>
+    </section>
+
+    <section id="foguetes">
+      <h2>Capítulo 6 — Foguetes: como chegamos ao espaço?</h2>
+
+      <div class="illus avoid-break" aria-hidden="true">
+        <svg width="280" height="110" viewBox="0 0 280 110" xmlns="http://www.w3.org/2000/svg">
+          <rect x="40" y="85" width="200" height="6" fill="#adb5bd" rx="2"/>
+          <path d="M95 85 L115 55 L125 55 L135 85 Z" fill="#495057"/>
+          <path d="M118 20 L128 55 L118 58 L108 55 Z" fill="#c1121f" stroke="#5c0a0f"/>
+          <ellipse cx="118" cy="24" rx="5" ry="7" fill="#e63946"/>
+          <path d="M108 55 L100 72 L104 76 L108 72 Z" fill="#6c757d"/><path d="M128 55 L136 72 L132 76 L128 72 Z" fill="#6c757d"/>
+          <text x="160" y="48" font-size="9" fill="#495057">45°</text>
+          <path d="M148 50 L168 68" stroke="#495057" stroke-dasharray="3 2"/>
+        </svg>
+        <p class="illus-caption">Na OBAFOG do Nível I, a base costuma usar tubo inclinado (~45°), gatilho e ar comprimido.</p>
+      </div>
+
+      <div class="concept">
+        <p>O <strong>foguete</strong> é o tipo de veículo que nos levou ao espaço. Ele empurra <strong>gases para trás com muita força</strong> e, em troca, é empurrado para frente — ideia parecida com <strong>ação e reação</strong> (como um balão soltando ar).</p>
+        <ul>
+          <li>Foguetes <strong>não precisam de asas</strong> como aviões para funcionar no espaço sem ar.</li>
+          <li>São veículos <strong>muito rápidos</strong> que já construímos.</li>
+          <li><strong>Sem foguetes</strong>, não teríamos colocado tantos satélites e telescópios em órbita da forma como conhecemos.</li>
+          <li>Grande parte da massa no lançamento é <strong>combustível</strong>.</li>
+          <li><strong>Não usam gasolina</strong> como carro comum — combustíveis próprios (ex.: combinações usadas em foguetes espaciais reais).</li>
+          <li>Lançamentos fazem <strong>muito barulho</strong>.</li>
+          <li>Ainda <strong>não mandamos humanos a Marte</strong> — missões tripuladas foram à Lua (e órbita / estações).</li>
+        </ul>
+        <div class="why-box">
+          <strong>Resumo OBAFOG (Nível I):</strong> tubo ~<strong>45°</strong>, gatilho solta o foguete, <strong>contagem regressiva</strong> avisa todo mundo (não é “mágica” nem sorte — é segurança!), <strong>ar comprimido</strong> empurra o modelo. Mais ar (bem comprimido) e gatilho rápido costumam ajudar no alcance; <strong>contra o vento</strong> costuma ir menos longe; base <strong>bem firme</strong> no chão.
+        </div>
+      </div>
+
+      <h3>Exercícios — Foguetes <span class="tag tag-mc">Estilo OBA</span></h3>
+
+      <div class="q avoid-break" id="q11">
+        <span class="q-num">11</span>
+        <p>Lista sobre foguetes: marque <strong>F/V</strong> e depois a sequência correta.</p>
+        <ol style="font-size:10.5pt;">
+          <li>( ) Foguetes costumam ser mais caros do que carros comuns.</li>
+          <li>( ) Foguetes não fazem barulho quando são lançados.</li>
+          <li>( ) Sem foguetes, como conhecemos hoje, não colocaríamos satélites no espaço do jeito usual.</li>
+          <li>( ) Sem foguetes, não chegaríamos a outros planetas com naves espaciais do tipo que conhecemos.</li>
+          <li>( ) Foguetes espaciais costumam ser mais caros do que aviões comerciais típicos.</li>
+        </ol>
+        <ul class="mc">
+          <li>a) ( ) 1ª(V) – 2ª(F) – 3ª(V) – 4ª(F) – 5ª(F)</li>
+          <li>b) ( ) 1ª(V) – 2ª(F) – 3ª(V) – 4ª(V) – 5ª(V)</li>
+          <li>c) ( ) 1ª(F) – 2ª(V) – 3ª(V) – 4ª(V) – 5ª(F)</li>
+          <li>d) ( ) 1ª(V) – 2ª(F) – 3ª(F) – 4ª(V) – 5ª(F)</li>
+          <li>e) ( ) 1ª(F) – 2ª(V) – 3ª(V) – 4ª(F) – 5ª(V)</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break" id="q12">
+        <span class="q-num">12</span>
+        <p>Sobre a <strong>base de lançamento</strong> (tubo, gatilho, vento…): marque <strong>F/V</strong> e a sequência correta.</p>
+        <ol style="font-size:10.5pt;">
+          <li>( ) O foguete vai mais longe quando lançado a cerca de 45° do chão (como no material da OBAFOG).</li>
+          <li>( ) O foguete vai mais longe quando o gatilho é puxado bem rápido.</li>
+          <li>( ) O foguete vai mais longe se lançado contra o vento forte.</li>
+          <li>( ) A base precisa estar bem presa no chão para não se mover no lançamento.</li>
+          <li>( ) O foguete vai mais longe quando o gatilho é puxado bem devagar.</li>
+        </ol>
+        <ul class="mc">
+          <li>a) ( ) 1ª(F) – 2ª(V) – 3ª(V) – 4ª(F) – 5ª(V)</li>
+          <li>b) ( ) 1ª(V) – 2ª(F) – 3ª(V) – 4ª(V) – 5ª(V)</li>
+          <li>c) ( ) 1ª(F) – 2ª(V) – 3ª(F) – 4ª(V) – 5ª(F)</li>
+          <li>d) ( ) 1ª(V) – 2ª(V) – 3ª(F) – 4ª(V) – 5ª(F)</li>
+          <li>e) ( ) 1ª(V) – 2ª(F) – 3ª(F) – 4ª(F) – 5ª(F)</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break" id="q13">
+        <span class="q-num">13</span>
+        <p>Foguete OBAFOG Nível 1 com <strong>ar comprimido</strong>: marque <strong>F/V</strong> e a sequência correta.</p>
+        <ol style="font-size:10.5pt;">
+          <li>( ) Nesta base o foguete de nível 1 voa por impulso de ar comprimido.</li>
+          <li>( ) Com bomba de encher pneu de bicicleta comprimimos ar na base.</li>
+          <li>( ) Quanto mais ar comprimido na base, em geral mais longe vai o foguete.</li>
+          <li>( ) O foguete vai mais longe com bem menos ar na base.</li>
+          <li>( ) Com bomba de encher bola também comprimimos ar na base.</li>
+        </ol>
+        <ul class="mc">
+          <li>a) ( ) 1ª(V) – 2ª(V) – 3ª(V) – 4ª(F) – 5ª(V)</li>
+          <li>b) ( ) 1ª(F) – 2ª(F) – 3ª(V) – 4ª(V) – 5ª(F)</li>
+          <li>c) ( ) 1ª(V) – 2ª(F) – 3ª(F) – 4ª(V) – 5ª(V)</li>
+          <li>d) ( ) 1ª(V) – 2ª(V) – 3ª(F) – 4ª(V) – 5ª(F)</li>
+          <li>e) ( ) 1ª(F) – 2ª(V) – 3ª(V) – 4ª(V) – 5ª(F)</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break" id="q14">
+        <span class="q-num">14</span>
+        <p>Sobre foguetes e espaço: marque <strong>F/V</strong> e a sequência correta.</p>
+        <ol style="font-size:10.5pt;">
+          <li>( ) Em geral, foguetes são usados para levar satélites artificiais ao espaço.</li>
+          <li>( ) Somente foguetes levam telescópios ao espaço (qualquer tipo, em qualquer época).</li>
+          <li>( ) Foguetes lançam gases para trás para irem para a frente.</li>
+          <li>( ) Como carros comuns, foguetes usam gasolina no tanque para ir ao espaço.</li>
+          <li>( ) Foguetes não precisam de asas como aviões.</li>
+        </ol>
+        <ul class="mc">
+          <li>a) ( ) 1ª(V) – 2ª(F) – 3ª(V) – 4ª(F) – 5ª(V)</li>
+          <li>b) ( ) 1ª(F) – 2ª(V) – 3ª(F) – 4ª(V) – 5ª(F)</li>
+          <li>c) ( ) 1ª(V) – 2ª(V) – 3ª(F) – 4ª(V) – 5ª(F)</li>
+          <li>d) ( ) 1ª(V) – 2ª(F) – 3ª(V) – 4ª(V) – 5ª(F)</li>
+          <li>e) ( ) 1ª(F) – 2ª(F) – 3ª(V) – 4ª(F) – 5ª(V)</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <section id="tabela">
+      <h2>Revisão geral — tabela dos astros</h2>
+      <table class="data">
+        <thead>
+          <tr><th>Astro</th><th>Tipo</th><th>Luz própria?</th><th>Atmosfera?</th><th>Vida como na Terra?</th><th>Luas</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Sol</strong></td><td>Estrela</td><td>Sim</td><td>—</td><td>Não</td><td>—</td></tr>
+          <tr><td><strong>Terra</strong></td><td>Planeta</td><td>Não</td><td>Sim (boa para nós)</td><td>Sim</td><td>1 (Lua)</td></tr>
+          <tr><td><strong>Lua</strong></td><td>Satélite</td><td>Não</td><td>Não</td><td>Não</td><td>1—</td></tr>
+          <tr><td><strong>Marte</strong></td><td>Planeta</td><td>Não</td><td>Fina, diferente</td><td>Não</td><td>2</td></tr>
+          <tr><td><strong>Vênus</strong></td><td>Planeta</td><td>Não</td><td>Densa, quente</td><td>Não</td><td>0</td></tr>
+          <tr><td><strong>Mercúrio</strong></td><td>Planeta</td><td>Não</td><td>Quase nada</td><td>Não</td><td>0</td></tr>
+          <tr><td><strong>Júpiter</strong></td><td>Planeta</td><td>Não</td><td>Sim (gasoso)</td><td>Não</td><td>Muitas</td></tr>
+          <tr><td><strong>Saturno</strong></td><td>Planeta</td><td>Não</td><td>Sim (gasoso)</td><td>Não</td><td>Muitas</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="page-break"></div>
+
+    <section id="simulado">
+      <h2>Simulado completo — estilo OBA Nível I</h2>
+      <p class="concept">Dez questões, como na prova real. Marque com calma; o gabarito está no final.</p>
+
+      <div class="q avoid-break">
+        <span class="q-num">S1</span> <span class="tag tag-sim">Simulado</span>
+        <p><strong>(1 ponto)</strong> Assinale onde está <strong>tudo certo</strong> sobre a Lua:</p>
+        <ul class="mc">
+          <li>a) ( ) A Lua brilha mais do que o Sol e é maior do que o Sol.</li>
+          <li>b) ( ) A Lua é satélite artificial da Terra e já foi visitada por astronautas.</li>
+          <li>c) ( ) A Lua é satélite natural da Terra e já foi visitada por astronautas.</li>
+          <li>d) ( ) Marte é vermelho e já foi visitado por astronautas humanos.</li>
+          <li>e) ( ) A Lua e Marte já foram visitados por astronautas norte-americanos.</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">S2</span> <span class="tag tag-sim">Simulado</span>
+        <p><strong>(1 ponto)</strong> Sobre Mercúrio, Vênus, Terra, Marte e Lua: assinale onde está <strong>tudo certo</strong>:</p>
+        <ul class="mc">
+          <li>a) ( ) Mercúrio tem uma lua, Vênus tem duas luas e Marte tem três luas.</li>
+          <li>b) ( ) A Lua, Marte e Mercúrio têm montanhas e oceanos de água.</li>
+          <li>c) ( ) Mercúrio, Vênus e Marte têm luas naturais.</li>
+          <li>d) ( ) A Lua, Marte e Mercúrio têm crateras e montanhas.</li>
+          <li>e) ( ) A Terra é maior do que Mercúrio e Mercúrio é maior do que Marte.</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">S3</span> <span class="tag tag-sim">Simulado</span>
+        <p><strong>(1 ponto)</strong> Sobre o Sistema Solar, assinale <strong>tudo certo</strong>:</p>
+        <ul class="mc">
+          <li>a) ( ) Saturno é o maior planeta, tem anéis, muitas luas e é gasoso como Urano.</li>
+          <li>b) ( ) Mercúrio é o mais próximo do Sol, tem o menor ano e é o maior de todos.</li>
+          <li>c) ( ) Marte tem atmosfera, é vermelho, é maior do que a Lua e maior do que Mercúrio.</li>
+          <li>d) ( ) Júpiter é o maior planeta, tem anéis, muitas luas e é rochoso como Vênus.</li>
+          <li>e) ( ) Vênus é o planeta mais quente, mais brilhante e bem menor do que Mercúrio.</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">S4</span> <span class="tag tag-sim">Simulado</span>
+        <p><strong>(1 ponto)</strong> Primeira parada: o <strong>astro mais próximo</strong> da Terra. Qual o nome?</p>
+        <ul class="mc">
+          <li>a) ( ) Lua</li>
+          <li>b) ( ) Marte</li>
+          <li>c) ( ) Sol</li>
+          <li>d) ( ) “Estrelas” ao acaso no céu</li>
+          <li>e) ( ) Estação Espacial Internacional</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">S5</span> <span class="tag tag-sim">Simulado</span>
+        <p><strong>(1 ponto)</strong> Assinale a única alternativa em que está <strong>tudo errado</strong>:</p>
+        <ul class="mc">
+          <li>a) ( ) Em Lua Nova, em geral quase não vemos a Lua no céu à noite.</li>
+          <li>b) ( ) O astronauta brasileiro Marcos Pontes também esteve na Lua.</li>
+          <li>c) ( ) A Terra tem quatro estações: Verão, Inverno, Outono e Primavera (em várias regiões).</li>
+          <li>d) ( ) Na Lua os astronautas pesam menos do que na Terra.</li>
+          <li>e) ( ) A Lua tem quatro fases principais: Cheia, Nova, Quarto-crescente e Quarto-minguante.</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">S6</span> <span class="tag tag-sim">Simulado</span>
+        <p><strong>(Até 1 ponto)</strong> O Sol e a Terra. Marque <strong>F/V</strong> e a sequência correta:</p>
+        <ol style="font-size:10.5pt;">
+          <li>( ) O Sol aquece a Terra.</li>
+          <li>( ) O Sol ilumina a Terra, a qual orbita o Sol.</li>
+          <li>( ) Graças ao Sol, parte da água da Terra evapora e depois pode cair como chuva.</li>
+          <li>( ) A Terra leva cerca de 365 dias para uma volta completa ao redor do Sol.</li>
+          <li>( ) A Lua e o Sol orbitam a Terra todos os dias.</li>
+        </ol>
+        <ul class="mc">
+          <li>a) ( ) 1ª(V) – 2ª(V) – 3ª(V) – 4ª(V) – 5ª(F)</li>
+          <li>b) ( ) 1ª(F) – 2ª(F) – 3ª(F) – 4ª(F) – 5ª(V)</li>
+          <li>c) ( ) 1ª(F) – 2ª(F) – 3ª(V) – 4ª(V) – 5ª(F)</li>
+          <li>d) ( ) 1ª(V) – 2ª(V) – 3ª(F) – 4ª(F) – 5ª(V)</li>
+          <li>e) ( ) 1ª(V) – 2ª(F) – 3ª(F) – 4ª(F) – 5ª(F)</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">S7</span> <span class="tag tag-sim">Simulado</span>
+        <p><strong>(Até 1 ponto)</strong> Marque <strong>F/V</strong> e a sequência correta:</p>
+        <ol style="font-size:10.5pt;">
+          <li>( ) É o Sol que orbita a Terra.</li>
+          <li>( ) A distância média Terra–Sol é usamos como referência de 1 Unidade Astronômica.</li>
+          <li>( ) Santos Dumont foi importante na aviação, mas não foi astronauta.</li>
+          <li>( ) Marcos Pontes esteve na ISS, mas não na Lua.</li>
+          <li>( ) Na Lua Nova, o lado da Lua que não vemos da Terra está iluminado pelo Sol.</li>
+        </ol>
+        <ul class="mc">
+          <li>a) ( ) 1ª(F) – 2ª(V) – 3ª(V) – 4ª(V) – 5ª(V)</li>
+          <li>b) ( ) 1ª(F) – 2ª(V) – 3ª(V) – 4ª(V) – 5ª(F)</li>
+          <li>c) ( ) 1ª(F) – 2ª(F) – 3ª(V) – 4ª(F) – 5ª(F)</li>
+          <li>d) ( ) 1ª(V) – 2ª(F) – 3ª(V) – 4ª(V) – 5ª(V)</li>
+          <li>e) ( ) 1ª(V) – 2ª(V) – 3ª(F) – 4ª(F) – 5ª(V)</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">S8</span> <span class="tag tag-sim">Simulado</span>
+        <p><strong>(Até 1 ponto)</strong> Base de lançamento: marque <strong>F/V</strong> e a sequência correta.</p>
+        <ol style="font-size:10.5pt;">
+          <li>( ) Tubo inclinado cerca de 45° ajuda o foguete-modelo a ir mais longe (OBAFOG).</li>
+          <li>( ) O gatilho, ao ser acionado, libera o foguete.</li>
+          <li>( ) A contagem regressiva avisa que haverá lançamento.</li>
+          <li>( ) A contagem regressiva “dá sorte” ao foguete.</li>
+          <li>( ) A contagem regressiva faz o foguete voar mais alto sozinha.</li>
+        </ol>
+        <ul class="mc">
+          <li>a) ( ) 1ª(V) – 2ª(V) – 3ª(V) – 4ª(F) – 5ª(F)</li>
+          <li>b) ( ) 1ª(V) – 2ª(F) – 3ª(V) – 4ª(V) – 5ª(F)</li>
+          <li>c) ( ) 1ª(F) – 2ª(V) – 3ª(V) – 4ª(F) – 5ª(F)</li>
+          <li>d) ( ) 1ª(V) – 2ª(F) – 3ª(F) – 4ª(V) – 5ª(F)</li>
+          <li>e) ( ) 1ª(V) – 2ª(V) – 3ª(F) – 4ª(V) – 5ª(F)</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">S9</span> <span class="tag tag-sim">Simulado</span>
+        <p><strong>(Até 1 ponto)</strong> Foguete Nível 1 com ar comprimido: marque <strong>F/V</strong> e a sequência correta.</p>
+        <ol style="font-size:10.5pt;">
+          <li>( ) O foguete de nível 1 voa por impulso de ar comprimido.</li>
+          <li>( ) Bomba de pneu de bicicleta comprime ar na base.</li>
+          <li>( ) Quanto mais ar comprimido, em geral mais longe vai.</li>
+          <li>( ) Com menos ar, o foguete costuma ir mais longe.</li>
+          <li>( ) Bomba de bola também comprime ar na base.</li>
+        </ol>
+        <ul class="mc">
+          <li>a) ( ) 1ª(V) – 2ª(V) – 3ª(V) – 4ª(F) – 5ª(V)</li>
+          <li>b) ( ) 1ª(F) – 2ª(F) – 3ª(V) – 4ª(V) – 5ª(F)</li>
+          <li>c) ( ) 1ª(V) – 2ª(F) – 3ª(F) – 4ª(V) – 5ª(V)</li>
+          <li>d) ( ) 1ª(V) – 2ª(V) – 3ª(F) – 4ª(V) – 5ª(F)</li>
+          <li>e) ( ) 1ª(F) – 2ª(V) – 3ª(V) – 4ª(V) – 5ª(F)</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">S10</span> <span class="tag tag-sim">Simulado</span>
+        <p><strong>(Até 1 ponto)</strong> Foguetes no espaço: marque <strong>F/V</strong> e a sequência correta.</p>
+        <ol style="font-size:10.5pt;">
+          <li>( ) Foguetes costumam ser essenciais para colocar satélites artificiais em órbita.</li>
+          <li>( ) Todo telescópio do mundo só pode ir ao espaço com foguete.</li>
+          <li>( ) Foguetes empurram gases para trás para avançar.</li>
+          <li>( ) Foguetes usam gasolina comum de carro no lugar de propelentes próprios.</li>
+          <li>( ) Foguetes não precisam de asas como aviões.</li>
+        </ol>
+        <ul class="mc">
+          <li>a) ( ) 1ª(V) – 2ª(F) – 3ª(V) – 4ª(F) – 5ª(V)</li>
+          <li>b) ( ) 1ª(F) – 2ª(V) – 3ª(F) – 4ª(V) – 5ª(F)</li>
+          <li>c) ( ) 1ª(V) – 2ª(V) – 3ª(F) – 4ª(V) – 5ª(F)</li>
+          <li>d) ( ) 1ª(V) – 2ª(F) – 3ª(V) – 4ª(V) – 5ª(F)</li>
+          <li>e) ( ) 1ª(F) – 2ª(F) – 3ª(V) – 4ª(F) – 5ª(V)</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <section id="gabarito" class="gabarito">
+      <h2>Gabarito (após praticar)</h2>
+      <p style="margin-top:0;">Confira só depois de tentar. Letras indicam a alternativa correta. Em questões V/F, a linha certa é a indicada.</p>
+
+      <h3 style="color:#856404;margin-bottom:6px;">Exercícios ao longo do capítulo (questões 1 a 14)</h3>
+      <table class="data">
+        <tr><th>Q.</th><th>Resposta</th><th>Comentário breve</th></tr>
+        <tr><td>1</td><td>d</td><td>A Lua é bem menor que o Sol; só parece “grande” por estar perto da Terra.</td></tr>
+        <tr><td>2</td><td>a</td><td>A Lua reflete luz; não é estrela nem tem luz própria.</td></tr>
+        <tr><td>3</td><td>b</td><td>No lado oculto na Lua Nova, há iluminação solar (não é eternamente escuro).</td></tr>
+        <tr><td>4</td><td>c</td><td>Três afirmações falsas juntas: Terra não é plana, orbita o Sol, tem 1 Lua.</td></tr>
+        <tr><td>5</td><td>a</td><td>V V V V F — o Sol e estrelas não orbitam a Terra nesse modelo.</td></tr>
+        <tr><td>6</td><td>d</td><td>Comparação de tamanhos: Terra &gt; Mercúrio &gt; Lua.</td></tr>
+        <tr><td>7</td><td>e</td><td>Ordem: Mercúrio → Netuno (8 planetas; Plutão é anão).</td></tr>
+        <tr><td>8</td><td>c</td><td>Marte: vermelho, duas luas, superfície rochosa.</td></tr>
+        <tr><td>9</td><td>b</td><td>Vênus entre Terra e Sol: sem lua, muito quente e brilhante.</td></tr>
+        <tr><td>10</td><td>b</td><td>F V V V V — Terra orbita o Sol; Plutão é mais lento que os 8 planetas.</td></tr>
+        <tr><td>11</td><td>b</td><td>V F V V V.</td></tr>
+        <tr><td>12</td><td>d</td><td>V V F V F.</td></tr>
+        <tr><td>13</td><td>a</td><td>V V V F V.</td></tr>
+        <tr><td>14</td><td>a</td><td>V F V F V (telescópios existem em terra também).</td></tr>
+      </table>
+
+      <h3 style="color:#856404;margin:14px 0 6px;">Simulado (S1 a S10)</h3>
+      <table class="data">
+        <tr><th>Q.</th><th>Resposta</th><th>Nota</th></tr>
+        <tr><td>S1</td><td>c</td><td>Lua: satélite natural; visitada na era Apollo.</td></tr>
+        <tr><td>S2</td><td>d</td><td>Lua, Marte e Mercúrio têm crateras/montanhas; sem oceanos na Lua/Mercúrio.</td></tr>
+        <tr><td>S3</td><td>c</td><td>Júpiter é o maior; Saturno não é o maior.</td></tr>
+        <tr><td>S4</td><td>a</td><td>Astro mais próximo da Terra: Lua.</td></tr>
+        <tr><td>S5</td><td>b</td><td>Só Marcos Pontes na Lua está errado; foi à ISS.</td></tr>
+        <tr><td>S6</td><td>a</td><td>V V V V F.</td></tr>
+        <tr><td>S7</td><td>a</td><td>F V V V V.</td></tr>
+        <tr><td>S8</td><td>a</td><td>V V V F F.</td></tr>
+        <tr><td>S9</td><td>a</td><td>Mesma lógica da questão 13.</td></tr>
+        <tr><td>S10</td><td>a</td><td>Mesma lógica da questão 14.</td></tr>
+      </table>
+    </section>
+
+    <section id="refs" class="refs">
+      <h2>Referências e provas anteriores</h2>
+      <p>Links oficiais da OBA (conferidos na página <cite>Provas e Gabaritos</cite>). Use para estudar o estilo real da prova.</p>
+      <ul>
+        <li><a href="http://www.oba.org.br/site/">Site oficial da OBA</a> — informações, calendário e normas.</li>
+        <li><a href="http://www.oba.org.br/site/?p=conteudo&amp;idcat=9&amp;pag=conteudo&amp;m=s">Provas e gabaritos (todas as edições na lista)</a> — página principal de PDFs.</li>
+        <li><strong>Nível I — 2024 (XXVII OBA):</strong> <a href="http://www.oba.org.br/sisglob/sisglob_arquivos/downloads/Prova%20nivel%201%20da%2027%20OBA%20DE%202024-compactado.pdf">Prova em PDF (compactado)</a> e <a href="http://www.oba.org.br/sisglob/sisglob_arquivos/downloads/Prova%20nivel%201%20da%2027%20OBA%20DE%202024%20-%20GABARITO-compactado.pdf">Gabarito em PDF</a>.</li>
+        <li><strong>Nível I — 2023 (XXVI OBA):</strong> <a href="http://www.oba.org.br/sisglob/sisglob_arquivos/downloads/Prova%20nivel%201%20da%2026%20OBA%20DE%202023.pdf">Prova em PDF</a> e <a href="http://www.oba.org.br/sisglob/sisglob_arquivos/Prova%20nivel%201%20da%2026%20OBA%20DE%202023%20-%20GABARITO.pdf">Gabarito em PDF</a>.</li>
+        <li><strong>Nível I — 2022 (XXV OBA):</strong> <a href="http://www.oba.org.br/sisglob/sisglob_arquivos/downloads/Prova%20nivel%201%20da%2025%20OBA%20DE%202022.pdf">Prova em PDF</a> e <a href="http://www.oba.org.br/sisglob/sisglob_arquivos/Gabarito%20da%20Prova%20nivel%201%20da%2025%20OBA%20DE%202022.pdf">Gabarito em PDF</a>.</li>
+      </ul>
+      <p style="font-size:9.5pt;color:var(--muted);margin-bottom:0;">Os nomes dos arquivos repetem a numeração tradicional da OBA (ex.: “25ª OBA” em 2022); os links apontam para os PDFs corretos do nível I.</p>
+    </section>
+
+    <footer class="print-note">
+      Material de apoio à OBA. Impressão A4. Ilustrações em SVG — leves e offline.
+    </footer>
+  </main>
+
+</body>
+</html>
