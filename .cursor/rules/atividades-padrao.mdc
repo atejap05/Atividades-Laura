@@ -1,0 +1,50 @@
+---
+description: Padrão para criar e editar atividades escolares (HTML A4) deste repositório
+globs: atividades/**/*.html
+alwaysApply: true
+---
+
+# Padrão de atividades — Atividades-Laura
+
+Atividades escolares impressas para uma criança de 8 anos no **2º ano do Ensino Fundamental**.
+Cada atividade é **um arquivo HTML autossuficiente** (CSS + JS inline) em
+`atividades/<disciplina>/`. Sem build, sem dependências, sem testes. A entrega final é
+**impressa em A4 / PDF**.
+
+Comece pelo template `atividades/_template-atividade-a4.html`. Modelo canônico (referência de
+componentes ricos): `atividades/matematica/atividade-matematica-2ano-a4.html`.
+Inspiração de conteúdo: PDFs em `recursos/kit-super-matematica/`. Guia completo: `CLAUDE.md`.
+
+## Objetivos de cada atividade
+
+- **Mesclar revisão e aprofundamento** do conteúdo.
+- Combinar **múltipla escolha** (estilo prova/simulado) com **discursivas** (escrita).
+- Ser **lúdica e criativa** (temas: super-heróis, animais, histórias) e adequada a 7–8 anos.
+- Conteúdo em **pt-BR** (inglês/bilíngue só quando o tema for esse).
+
+## Regras técnicas
+
+- `<html lang="pt-BR">`; bloco `@page { size: A4 }` + `@media print` que esconde `.no-print`,
+  remove toolbar/sombras e usa `.page-break` e `.avoid-break`. Inclua `print-color-adjust: exact`.
+- Tema por variáveis em `:root` (`--ink`, `--accent`, `--blue`…), não cores fixas.
+- `.toolbar.no-print` com `<button onclick="window.print()">Imprimir / Salvar em PDF</button>`.
+- **Sempre valide a paginação no print preview** antes de concluir.
+- Não há CSS/JS compartilhado — replique convenções copiando de um arquivo irmão.
+- Exercícios gerados por dados (ex.: `atividades/matematica/atividade-taboada.html`): edite os
+  arrays/loops no `<script>`, nunca o HTML renderizado.
+
+## Estrutura pedagógica (na ordem, dentro de `<main class="sheet">`)
+
+1. **Capa:** `<h1>` temático; `.subtitle` = `Disciplina — Revisão e aprofundamento | 2º ano do Ensino Fundamental`; `.header-line` com Nome/Data/Turma; `.intro-box` "Como usar".
+2. **Seções `Parte N — Tema`**, cada uma com `.concept` (revisão), `.read-box` ("Leia com
+   atenção"), e cards `.q` com `.q-num` + tag:
+   - `.tag-mc` "Múltipla escolha" → `<ul class="mc"><li>( ) A) …</li></ul>`.
+   - `.tag-w` "Resposta escrita" → linhas `<span class="line">`.
+3. **Desafio final** combinando temas (aprofundamento).
+4. **Gabarito:** `<section class="gabarito page-break">` com respostas e **códigos BNCC** do
+   2º ano (ex.: EF02MA01, EF02MA05/06, EF02MA14/15). Confira todas as contas.
+
+Componentes reutilizáveis no modelo canônico: contas verticais `.vm`/`.vm-grid` (Dez./Un.,
+"vai 1"), geometria SVG 2D (`.geo-2d`) e 3D (`.geo-3d`), `table.data`, `.ordinal-row`, `.two-col`.
+
+Nomeie arquivos novos como `atividade-<disciplina>-<ano>ano-a4.html`.

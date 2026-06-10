@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{TITULO}} | 2º ano</title>
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --paper: #fffef8;
+      --accent: #e63946;
+      --blue: #457b9d;
+      --yellow: #f4d35e;
+      --green: #2a9d8f;
+      --purple: #7b68ee;
+      --muted: #6c757d;
+      --border: #dee2e6;
+      --card: #f8f9fa;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background: #e9ecef;
+      line-height: 1.45;
+      font-size: 11pt;
+    }
+
+    .sheet {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 1rem;
+      background: var(--paper);
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      padding: 12mm 14mm;
+    }
+
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+
+    @media print {
+      body { background: #fff; }
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .sheet {
+        box-shadow: none;
+        margin: 0;
+        max-width: none;
+        min-height: auto;
+        padding: 0;
+      }
+      .no-print { display: none !important; }
+      a[href]:after { content: ""; }
+      .page-break { page-break-before: always; }
+      .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+      /* Seções longas devem poder quebrar entre páginas (evita 1ª página quase vazia) */
+      main.sheet > section {
+        break-inside: auto;
+        page-break-inside: auto;
+      }
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #343a40;
+      color: #fff;
+      padding: 10px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .toolbar button:hover { filter: brightness(1.08); }
+    .toolbar span { font-size: 13px; opacity: .9; }
+
+    h1 {
+      font-size: 1.35rem;
+      margin: 0 0 4px;
+      color: var(--accent);
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+      font-weight: 600;
+      color: var(--blue);
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .header-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      background: linear-gradient(135deg, #fff9e6, #e8f4fc);
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+    }
+    .header-line label {
+      flex: 1;
+      min-width: 140px;
+      font-weight: 600;
+      font-size: 10pt;
+    }
+    .header-line input {
+      border: none;
+      border-bottom: 2px solid var(--blue);
+      background: transparent;
+      width: 100%;
+      min-height: 22px;
+    }
+
+    .intro-box {
+      background: var(--card);
+      border-left: 5px solid var(--green);
+      padding: 10px 14px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 16px;
+      font-size: 10.5pt;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin: 18px 0 10px;
+      padding: 6px 12px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      color: var(--blue);
+      margin: 12px 0 6px;
+    }
+
+    .concept {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 8px 0;
+    }
+
+    .read-box {
+      background: linear-gradient(180deg, #e3f2fd 0%, #fff 100%);
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+    .read-box strong { color: var(--blue); }
+
+    .ordinal-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin: 10px 0;
+    }
+    .ordinal-row span {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 2.2em;
+    }
+    .ordinal-row small { font-size: 0.75rem; color: var(--muted); }
+
+    .mc {
+      margin: 8px 0 4px;
+      padding-left: 0;
+      list-style: none;
+    }
+    .mc li {
+      margin: 4px 0;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .mc li:hover { background: #f1f3f5; }
+
+    .q {
+      margin: 14px 0;
+      padding: 10px 12px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .q-num {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+    .tag {
+      font-size: 9pt;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .tag-mc { background: #cfe2ff; color: #084298; }
+    .tag-w { background: #d1e7dd; color: #0f5132; }
+
+    .line {
+      border-bottom: 1px dotted var(--muted);
+      min-height: 1.4em;
+      display: inline-block;
+      min-width: 120px;
+    }
+    .line.short { min-width: 60px; }
+
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 10pt;
+    }
+    table.data th, table.data td {
+      border: 1px solid var(--border);
+      padding: 8px;
+    }
+    table.data th { background: #e9ecef; }
+
+    /* Contas verticais — dezena sobre dezena, unidade sobre unidade */
+    .vm-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 24px;
+      justify-content: flex-start;
+      margin: 12px 0;
+    }
+    .vm {
+      display: inline-block;
+      vertical-align: top;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .vm table {
+      border-collapse: collapse;
+      margin: 0;
+    }
+    .vm td {
+      min-width: 1em;
+      height: 1.25em;
+      text-align: center;
+      vertical-align: middle;
+      padding: 2px 3px;
+    }
+    /* Coluna do sinal: à frente (à esquerda) dos algarismos */
+    .vm td.vm-op {
+      width: 1.15em;
+      font-weight: 800;
+      text-align: center;
+      vertical-align: middle;
+      padding-right: 3px;
+      line-height: 1;
+      font-size: 1.05em;
+    }
+    .vm td.vm-line {
+      border-top: 2px solid var(--ink);
+      padding-top: 4px;
+      height: 0;
+      line-height: 0;
+    }
+    .vm .lbl {
+      font-size: 0.45rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      height: 0.9em;
+      line-height: 1;
+    }
+    .vm .carry {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--accent);
+      height: 0.85em;
+    }
+    .vm .carry-box {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      min-width: 0.9em;
+      min-height: 0.85em;
+      display: inline-block;
+    }
+    .vm .ans td.vm-ans {
+      border-bottom: 2px dotted var(--muted);
+      min-height: 1.35em;
+    }
+    .vm-sub .borrow {
+      font-size: 0.55rem;
+      color: var(--blue);
+    }
+
+    .geo-2d, .geo-3d {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-end;
+      margin: 10px 0;
+    }
+    .shape {
+      text-align: center;
+      font-size: 9pt;
+      color: var(--muted);
+    }
+    .shape svg { display: block; margin: 0 auto 4px; }
+
+    /* Figuras 3D — sombreamento e profundidade (SVG + gradientes) */
+    .geo-3d-wrap {
+      margin: 14px 0;
+      padding: 14px 12px 16px;
+      background: linear-gradient(160deg, #eef3fb 0%, #e4eaf6 45%, #dce5f2 100%);
+      border-radius: 14px;
+      border: 1px solid #b8c9e0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+    }
+    .geo-3d-wrap > p {
+      margin: 0 0 10px;
+      font-size: 10pt;
+      font-weight: 600;
+      color: var(--blue);
+    }
+    .geo-3d {
+      align-items: flex-end;
+      justify-content: center;
+      gap: 14px 18px;
+    }
+    .shape-3d {
+      text-align: center;
+      font-size: 8.5pt;
+      color: #495057;
+      font-weight: 600;
+      max-width: 88px;
+    }
+    .shape-3d svg {
+      display: block;
+      margin: 0 auto 6px;
+      filter: drop-shadow(3px 4px 6px rgba(30, 40, 60, .22));
+    }
+    .shape-3d .shape-hint {
+      display: block;
+      font-size: 7.5pt;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 2px;
+      line-height: 1.2;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .gabarito {
+      background: #fff8e7;
+      border: 2px solid var(--yellow);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 9.5pt;
+    }
+    .gabarito table { font-size: 9pt; }
+    .gabarito h2 { background: #856404; }
+
+    footer.print-note {
+      margin-top: 16px;
+      font-size: 9pt;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    TEMPLATE DE ATIVIDADE A4 — Atividades-Laura
+    ============================================
+    Esqueleto pronto. Preencha os {{PLACEHOLDERS}} e duplique as <section> conforme o tema.
+    Componentes ricos prontos para copiar (contas verticais .vm, geometria SVG 2D/3D, .ordinal-row,
+    table.data) estao no modelo canonico: atividades/matematica/atividade-matematica-2ano-a4.html
+    Padrao completo: ver CLAUDE.md. Sempre conferir no print preview (Ctrl+P, A4).
+  -->
+
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">Imprimir / Salvar em PDF</button>
+    <span>Use Ctrl+P → "Salvar como PDF" para gerar o arquivo. Formato A4.</span>
+  </div>
+
+  <main class="sheet">
+
+    <!-- CAPA -->
+    <header>
+      <h1>{{TITULO TEMATICO E CRIATIVO}}</h1>
+      <p class="subtitle">{{DISCIPLINA}} — Revisão e aprofundamento | 2º ano do Ensino Fundamental</p>
+      <div class="header-line">
+        <label>Nome: <input type="text" aria-label="Nome do aluno" /></label>
+        <label>Data: <input type="text" aria-label="Data" /></label>
+        <label>Turma: <input type="text" aria-label="Turma" /></label>
+      </div>
+      <div class="intro-box">
+        <strong>Como usar esta atividade:</strong> {{INSTRUCOES CURTAS}} Nas questões de múltipla
+        escolha, marque com <strong>X</strong> a alternativa correta. Boa sorte!
+      </div>
+    </header>
+
+    <!-- PARTE 1 — duplique esta <section> para cada tema -->
+    <section>
+      <h2>Parte 1 — {{TEMA}}</h2>
+
+      <!-- REVISAO: explicacao curta do conceito -->
+      <div class="concept">
+        <p><strong>{{CONCEITO}}</strong> {{Explicação curta e clara para 7–8 anos.}}</p>
+      </div>
+
+      <!-- Texto/contexto ludico que ancora as questoes -->
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>{{Pequeno texto com tema divertido que da contexto as perguntas abaixo.}}</p>
+      </div>
+
+      <!-- Questao de multipla escolha -->
+      <div class="q avoid-break">
+        <span class="q-num">1</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>{{Enunciado da pergunta?}}</p>
+        <ul class="mc">
+          <li>( ) A) {{alternativa}}</li>
+          <li>( ) B) {{alternativa}}</li>
+          <li>( ) C) {{alternativa}}</li>
+          <li>( ) D) {{alternativa}}</li>
+        </ul>
+      </div>
+
+      <!-- Questao discursiva / de escrita -->
+      <div class="q avoid-break">
+        <span class="q-num">2</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>{{Enunciado que pede o desenvolvimento da resposta.}}</p>
+        <p>Resposta: <span class="line"></span></p>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- DESAFIO FINAL — combina varios temas (aprofundamento) -->
+    <section>
+      <h2>Desafio final — Use tudo!</h2>
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>{{Situação-problema que junta os temas das partes anteriores.}}</p>
+      </div>
+      <div class="q avoid-break">
+        <span class="q-num">N</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>{{Pergunta-desafio.}}</p>
+        <p>Resposta: <span class="line"></span></p>
+      </div>
+    </section>
+
+    <!-- GABARITO -->
+    <section class="gabarito page-break">
+      <h2>Gabarito (professor)</h2>
+      <p style="font-size:9pt;margin-top:0;">Referências de habilidades BNCC (2º ano): {{códigos, ex.: EF02MA01, EF02LP…}}.</p>
+      <table class="data">
+        <tr><th>Q.</th><th>Resposta</th></tr>
+        <tr><td>1</td><td>{{resposta correta}}</td></tr>
+        <tr><td>2</td><td>{{resposta esperada}}</td></tr>
+      </table>
+    </section>
+
+    <footer class="print-note">Atividades da Laura — material de estudo (revisão e aprofundamento).</footer>
+
+  </main>
+
+</body>
+</html>

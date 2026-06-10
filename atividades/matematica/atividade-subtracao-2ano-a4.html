@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Missão Subtração — A Aventura de Tirar e Comparar | 2º ano</title>
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --paper: #fffef8;
+      --accent: #e63946;
+      --blue: #457b9d;
+      --yellow: #f4d35e;
+      --green: #2a9d8f;
+      --purple: #7b68ee;
+      --muted: #6c757d;
+      --border: #dee2e6;
+      --card: #f8f9fa;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background: #e9ecef;
+      line-height: 1.45;
+      font-size: 11pt;
+    }
+
+    .sheet {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 1rem;
+      background: var(--paper);
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      padding: 12mm 14mm;
+    }
+
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+
+    @media print {
+      body { background: #fff; }
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .sheet {
+        box-shadow: none;
+        margin: 0;
+        max-width: none;
+        min-height: auto;
+        padding: 0;
+      }
+      .no-print { display: none !important; }
+      a[href]:after { content: ""; }
+      .page-break { page-break-before: always; }
+      .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+      main.sheet > section {
+        break-inside: auto;
+        page-break-inside: auto;
+      }
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #343a40;
+      color: #fff;
+      padding: 10px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .toolbar button:hover { filter: brightness(1.08); }
+    .toolbar span { font-size: 13px; opacity: .9; }
+
+    h1 {
+      font-size: 1.35rem;
+      margin: 0 0 4px;
+      color: var(--accent);
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+      font-weight: 600;
+      color: var(--blue);
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .header-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      background: linear-gradient(135deg, #fff9e6, #e8f4fc);
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+    }
+    .header-line label {
+      flex: 1;
+      min-width: 140px;
+      font-weight: 600;
+      font-size: 10pt;
+    }
+    .header-line input {
+      border: none;
+      border-bottom: 2px solid var(--blue);
+      background: transparent;
+      width: 100%;
+      min-height: 22px;
+    }
+
+    .intro-box {
+      background: var(--card);
+      border-left: 5px solid var(--green);
+      padding: 10px 14px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 16px;
+      font-size: 10.5pt;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin: 18px 0 10px;
+      padding: 6px 12px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      color: var(--blue);
+      margin: 12px 0 6px;
+    }
+
+    .concept {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 8px 0;
+    }
+
+    .read-box {
+      background: linear-gradient(180deg, #e3f2fd 0%, #fff 100%);
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+    .read-box strong { color: var(--blue); }
+
+    .tip-box {
+      background: linear-gradient(135deg, #fff9e6, #fff3cd);
+      border: 2px solid var(--yellow);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 10px 0;
+      font-size: 10.5pt;
+    }
+    .tip-box strong { color: #856404; }
+
+    .use-cases {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    @media (max-width: 600px) {
+      .use-cases { grid-template-columns: 1fr; }
+    }
+    .use-case {
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-size: 10pt;
+    }
+    .use-case .icon {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .use-case strong { color: var(--accent); display: block; margin-bottom: 4px; }
+
+    .steps-list {
+      margin: 8px 0;
+      padding-left: 1.2rem;
+    }
+    .steps-list li { margin: 4px 0; }
+
+    .example-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: flex-start;
+      margin: 12px 0;
+    }
+    .example-notes {
+      flex: 1;
+      min-width: 200px;
+      font-size: 10pt;
+    }
+    .example-notes p { margin: 6px 0; }
+    .note-borrow { color: var(--blue); font-weight: 600; }
+    .note-result { color: var(--green); font-weight: 600; }
+
+    .mc {
+      margin: 8px 0 4px;
+      padding-left: 0;
+      list-style: none;
+    }
+    .mc li {
+      margin: 4px 0;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .mc li:hover { background: #f1f3f5; }
+
+    .q {
+      margin: 14px 0;
+      padding: 10px 12px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .q-num {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+    .tag {
+      font-size: 9pt;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .tag-mc { background: #cfe2ff; color: #084298; }
+    .tag-w { background: #d1e7dd; color: #0f5132; }
+
+    .line {
+      border-bottom: 1px dotted var(--muted);
+      min-height: 1.4em;
+      display: inline-block;
+      min-width: 120px;
+    }
+    .line.short { min-width: 60px; }
+
+    .inline-sub {
+      font-family: "Consolas", "Courier New", monospace;
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: #f8f9fa;
+      padding: 4px 12px;
+      border-radius: 8px;
+      border: 1px dashed var(--border);
+      display: inline-block;
+      margin: 4px 8px 4px 0;
+    }
+
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 10pt;
+    }
+    table.data th, table.data td {
+      border: 1px solid var(--border);
+      padding: 8px;
+    }
+    table.data th { background: #e9ecef; }
+
+    .vm-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 24px;
+      justify-content: flex-start;
+      margin: 12px 0;
+    }
+    .vm {
+      display: inline-block;
+      vertical-align: top;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .vm table {
+      border-collapse: collapse;
+      margin: 0;
+    }
+    .vm td {
+      min-width: 1em;
+      height: 1.25em;
+      text-align: center;
+      vertical-align: middle;
+      padding: 2px 3px;
+    }
+    .vm td.vm-op {
+      width: 1.15em;
+      font-weight: 800;
+      text-align: center;
+      vertical-align: middle;
+      padding-right: 3px;
+      line-height: 1;
+      font-size: 1.05em;
+    }
+    .vm td.vm-line {
+      border-top: 2px solid var(--ink);
+      padding-top: 4px;
+      height: 0;
+      line-height: 0;
+    }
+    .vm .lbl {
+      font-size: 0.45rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      height: 0.9em;
+      line-height: 1;
+    }
+    .vm .ans td.vm-ans {
+      border-bottom: 2px dotted var(--muted);
+      min-height: 1.35em;
+    }
+    .vm-sub .borrow {
+      font-size: 0.55rem;
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .vm-sub .borrow-box {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      min-width: 0.9em;
+      min-height: 0.85em;
+      display: inline-block;
+    }
+    .vm-solved .strike {
+      text-decoration: line-through;
+      color: var(--muted);
+      font-size: 0.85em;
+    }
+    .vm-solved .new-digit {
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .vm-solved td.vm-ans {
+      border-bottom: none;
+      color: var(--green);
+    }
+
+    .gabarito {
+      background: #fff8e7;
+      border: 2px solid var(--yellow);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 9.5pt;
+    }
+    .gabarito table { font-size: 9pt; }
+    .gabarito h2 { background: #856404; }
+
+    footer.print-note {
+      margin-top: 16px;
+      font-size: 9pt;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">Imprimir / Salvar em PDF</button>
+    <span>Use Ctrl+P → "Salvar como PDF" para gerar o arquivo. Formato A4.</span>
+  </div>
+
+  <main class="sheet">
+
+    <header>
+      <h1>Missão Subtração — A Aventura de Tirar e Comparar</h1>
+      <p class="subtitle">Matemática — Revisão e aprofundamento | 2º ano do Ensino Fundamental</p>
+      <div class="header-line">
+        <label>Nome: <input type="text" aria-label="Nome do aluno" /></label>
+        <label>Data: <input type="text" aria-label="Data" /></label>
+        <label>Turma: <input type="text" aria-label="Turma" /></label>
+      </div>
+      <div class="intro-box">
+        <strong>Como usar esta atividade:</strong> Primeiro leia a Parte 1 com calma — ela explica
+        o que é subtração, quando usar e como funciona o <strong>tomar emprestado</strong>. Depois
+        resolva as 12 questões. Nas de múltipla escolha, marque com <strong>X</strong> a alternativa
+        correta. Nas de resposta escrita, arme a conta no espaço e escreva o resultado. Boa missão!
+      </div>
+    </header>
+
+    <!-- PARTE 1 — CONTEÚDO EXPLICATIVO -->
+    <section>
+      <h2>Parte 1 — O que é subtração?</h2>
+
+      <div class="concept">
+        <p><strong>Subtração</strong> é a operação que usamos quando queremos <strong>tirar</strong>,
+        <strong>comparar</strong> ou descobrir <strong>quanto falta</strong>. O sinal é o
+        <strong>menos (−)</strong>.</p>
+        <p>Em uma conta como <strong>8 − 3 = 5</strong>:</p>
+        <ul>
+          <li><strong>8</strong> é o <em>total</em> (o que tínhamos no começo);</li>
+          <li><strong>3</strong> é o que <em>tiramos</em> (ou o que comparamos);</li>
+          <li><strong>5</strong> é o que <em>sobra</em> (o resultado).</li>
+        </ul>
+        <p>Exemplo: Laura tinha <strong>8 balas</strong>. Comeu <strong>3</strong>. Sobraram
+        <strong>5 balas</strong>. Escrevemos: 8 − 3 = 5.</p>
+      </div>
+
+      <h3>Os 3 casos em que a subtração ajuda</h3>
+      <div class="use-cases avoid-break">
+        <div class="use-case">
+          <span class="icon">🍬</span>
+          <strong>1. Tirar</strong>
+          <p>Tinha 10 figurinhas, perdeu 4. Quantas ficaram?<br><em>10 − 4 = 6</em></p>
+        </div>
+        <div class="use-case">
+          <span class="icon">📏</span>
+          <strong>2. Comparar</strong>
+          <p>Pedro tem 15 pontos, Ana tem 22. Quantos a <em>mais</em> Ana tem?<br><em>22 − 15 = 7</em></p>
+        </div>
+        <div class="use-case">
+          <span class="icon">🎯</span>
+          <strong>3. Completar</strong>
+          <p>Faltam quantas moedas para juntar 20, se já tenho 13?<br><em>20 − 13 = 7</em></p>
+        </div>
+      </div>
+
+      <div class="tip-box avoid-break">
+        <strong>Palavras-pista nos problemas:</strong> quando você ler
+        <em>“sobrou”</em>, <em>“perdeu”</em>, <em>“gastou”</em>, <em>“deu”</em>,
+        <em>“a mais que”</em>, <em>“diferença”</em>, <em>“quanto falta”</em> ou
+        <em>“quantos a menos”</em> — pense em subtração!
+      </div>
+
+      <h3>Regra do “Tomar emprestado”</h3>
+      <div class="concept">
+        <p>Às vezes o número de <strong>cima</strong> (unidade) é <strong>menor</strong> que o de
+        baixo. Não dá para subtrair direto! Aí <strong>tomamos emprestado 1 dezena</strong> da
+        coluna ao lado.</p>
+        <ol class="steps-list">
+          <li>Olhe as <strong>unidades</strong>: o de cima é menor que o de baixo?</li>
+          <li>Se sim, <strong>empreste 1 dezena</strong>: a dezena de cima diminui 1 e a unidade
+            ganha <strong>10</strong> (vira um número maior).</li>
+          <li>Subtraia as unidades, depois as dezenas (e as centenas, se tiver).</li>
+        </ol>
+      </div>
+
+      <div class="read-box avoid-break">
+        <strong>Exemplo resolvido: 42 − 17 = 25</strong>
+        <div class="example-wrap">
+          <div class="vm vm-sub vm-solved" aria-label="Exemplo 42 menos 17 igual a 25">
+            <table>
+              <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+              <tr><td></td><td class="borrow">3</td><td class="borrow">12</td></tr>
+              <tr><td></td><td><span class="strike">4</span> <span class="new-digit">3</span></td><td><span class="strike">2</span> <span class="new-digit">12</span></td></tr>
+              <tr><td class="vm-op">−</td><td>1</td><td>7</td></tr>
+              <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+              <tr class="ans"><td></td><td class="vm-ans">2</td><td class="vm-ans">5</td></tr>
+            </table>
+          </div>
+          <div class="example-notes">
+            <p><span class="note-borrow">① Unidades:</span> 2 é menor que 7. Emprestamos 1 dezena:
+              o 4 vira <strong>3</strong> e o 2 vira <strong>12</strong>.</p>
+            <p><span class="note-borrow">② Agora:</span> 12 − 7 = <strong>5</strong> (unidade do resultado).</p>
+            <p><span class="note-borrow">③ Dezenas:</span> 3 − 1 = <strong>2</strong> (dezena do resultado).</p>
+            <p><span class="note-result">Resposta: 25</span></p>
+          </div>
+        </div>
+        <p style="font-size:10pt;margin-top:8px;"><strong>Dica:</strong> alinhe sempre
+        <em>unidade com unidade</em> e <em>dezena com dezena</em>. Nos quadradinhos acima dos
+        números, anote o que ficou depois de emprestar.</p>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- PARTE 2 — CONTAS PURAS -->
+    <section>
+      <h2>Parte 2 — Contas no papel</h2>
+      <p class="concept">Resolva cada conta. Nas de 1 dígito, escreva o resultado ao lado. Nas de
+        2 e 3 dígitos, arme a conta no espaço e use os quadradinhos se precisar
+        <strong>tomar emprestado</strong>.</p>
+
+      <div class="q avoid-break">
+        <span class="q-num">1</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Calcule:</p>
+        <p>
+          <span class="inline-sub">9 − 4 = </span>
+          <span class="line short"></span>
+        </p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">2</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Calcule:</p>
+        <p>
+          <span class="inline-sub">8 − 5 = </span>
+          <span class="line short"></span>
+        </p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">3</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Arme e resolva <strong>57 − 23</strong>:</p>
+        <div class="vm-grid">
+          <div class="vm vm-sub">
+            <table>
+              <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+              <tr><td></td><td class="borrow"><span class="borrow-box"></span></td><td class="borrow"><span class="borrow-box"></span></td></tr>
+              <tr><td></td><td>5</td><td>7</td></tr>
+              <tr><td class="vm-op">−</td><td>2</td><td>3</td></tr>
+              <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+              <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">4</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Arme e resolva <strong>64 − 38</strong> (atenção: pode precisar tomar emprestado!):</p>
+        <div class="vm-grid">
+          <div class="vm vm-sub">
+            <table>
+              <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+              <tr><td></td><td class="borrow"><span class="borrow-box"></span></td><td class="borrow"><span class="borrow-box"></span></td></tr>
+              <tr><td></td><td>6</td><td>4</td></tr>
+              <tr><td class="vm-op">−</td><td>3</td><td>8</td></tr>
+              <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+              <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">5</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Arme e resolva <strong>365 − 142</strong>:</p>
+        <div class="vm-grid">
+          <div class="vm vm-sub">
+            <table>
+              <tr><td></td><td class="lbl">Cen.</td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+              <tr><td></td><td class="borrow"><span class="borrow-box"></span></td><td class="borrow"><span class="borrow-box"></span></td><td class="borrow"><span class="borrow-box"></span></td></tr>
+              <tr><td></td><td>3</td><td>6</td><td>5</td></tr>
+              <tr><td class="vm-op">−</td><td>1</td><td>4</td><td>2</td></tr>
+              <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+              <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">6</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Arme e resolva <strong>523 − 178</strong> (atenção: pode precisar tomar emprestado!):</p>
+        <div class="vm-grid">
+          <div class="vm vm-sub">
+            <table>
+              <tr><td></td><td class="lbl">Cen.</td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+              <tr><td></td><td class="borrow"><span class="borrow-box"></span></td><td class="borrow"><span class="borrow-box"></span></td><td class="borrow"><span class="borrow-box"></span></td></tr>
+              <tr><td></td><td>5</td><td>2</td><td>3</td></tr>
+              <tr><td class="vm-op">−</td><td>1</td><td>7</td><td>8</td></tr>
+              <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+              <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- PARTE 3 — PROBLEMAS COTIDIANOS -->
+    <section>
+      <h2>Parte 3 — Problemas do dia a dia</h2>
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>Em cada história, descubra se o problema pede para <strong>tirar</strong>,
+        <strong>comparar</strong> ou <strong>completar</strong>. Depois monte a conta de subtração
+        e encontre a resposta.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">7</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Laura tinha <strong>R$ 50,00</strong> de mesada. Comprou um livro por
+        <strong>R$ 28,00</strong>. Quanto dinheiro <em>sobrou</em> com ela?</p>
+        <ul class="mc">
+          <li>( ) A) R$ 78,00</li>
+          <li>( ) B) R$ 32,00</li>
+          <li>( ) C) R$ 22,00</li>
+          <li>( ) D) R$ 28,00</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">8</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Miguel tinha <strong>45 figurinhas</strong> do álbum. Deu <strong>17</strong> para o
+        irmão. Quantas figurinhas <em>ficaram</em> com Miguel?</p>
+        <ul class="mc">
+          <li>( ) A) 62</li>
+          <li>( ) B) 38</li>
+          <li>( ) C) 28</li>
+          <li>( ) D) 32</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">9</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Na sala, João fez <strong>38</strong> pontos no jogo e Maria fez <strong>52</strong>.
+        Quantos pontos a <em>mais</em> Maria fez que João?</p>
+        <ul class="mc">
+          <li>( ) A) 90</li>
+          <li>( ) B) 24</li>
+          <li>( ) C) 14</li>
+          <li>( ) D) 16</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">10</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>A mãe da Laura tem <strong>35 anos</strong> e Laura tem <strong>8 anos</strong>.
+        Quantos anos a <em>mais</em> a mãe tem que Laura?</p>
+        <p>Conta: <span class="line short"></span> &nbsp; Resposta: <span class="line short"></span> anos</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">11</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Na fruteira havia <strong>24 maçãs</strong>. A família comeu <strong>9</strong> no lanche.
+        Quantas maçãs <em>sobraram</em>?</p>
+        <p>Conta: <span class="line short"></span> &nbsp; Resposta: <span class="line short"></span> maçãs</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">12</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Um livro de histórias tem <strong>87 páginas</strong>. Laura já leu <strong>39</strong>.
+        Quantas páginas <em>faltam</em> para ela terminar o livro?</p>
+        <p>Arme a conta abaixo e escreva a resposta.</p>
+        <div class="vm-grid">
+          <div class="vm vm-sub">
+            <table>
+              <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+              <tr><td></td><td class="borrow"><span class="borrow-box"></span></td><td class="borrow"><span class="borrow-box"></span></td></tr>
+              <tr><td></td><td>8</td><td>7</td></tr>
+              <tr><td class="vm-op">−</td><td>3</td><td>9</td></tr>
+              <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+              <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+            </table>
+          </div>
+        </div>
+        <p>Resposta: faltam <span class="line short"></span> páginas.</p>
+      </div>
+    </section>
+
+    <!-- GABARITO -->
+    <section class="gabarito page-break">
+      <h2>Gabarito (professor)</h2>
+      <p style="font-size:9pt;margin-top:0;">
+        Referências de habilidades BNCC (2º ano):
+        <strong>EF02MA04</strong> (composição e decomposição de números — base do tomar emprestado),
+        <strong>EF02MA05</strong> (fatos básicos da adição e da subtração),
+        <strong>EF02MA06</strong> (resolver e elaborar problemas de adição e subtração).
+      </p>
+      <table class="data">
+        <tr><th>Q.</th><th>Resposta</th><th>Observação</th></tr>
+        <tr><td>1</td><td>5</td><td>9 − 4</td></tr>
+        <tr><td>2</td><td>3</td><td>8 − 5</td></tr>
+        <tr><td>3</td><td>34</td><td>57 − 23 (sem emprestar)</td></tr>
+        <tr><td>4</td><td>26</td><td>64 − 38 (com emprestar: 14−8=6; 5−3=2)</td></tr>
+        <tr><td>5</td><td>223</td><td>365 − 142 (sem emprestar)</td></tr>
+        <tr><td>6</td><td>345</td><td>523 − 178 (com emprestar)</td></tr>
+        <tr><td>7</td><td>C) R$ 22,00</td><td>50 − 28 = 22 (tirar)</td></tr>
+        <tr><td>8</td><td>C) 28</td><td>45 − 17 = 28 (tirar; com emprestar)</td></tr>
+        <tr><td>9</td><td>C) 14</td><td>52 − 38 = 14 (comparar)</td></tr>
+        <tr><td>10</td><td>27 anos</td><td>35 − 8 = 27 (comparar; com emprestar)</td></tr>
+        <tr><td>11</td><td>15 maçãs</td><td>24 − 9 = 15 (tirar)</td></tr>
+        <tr><td>12</td><td>48 páginas</td><td>87 − 39 = 48 (completar; com emprestar)</td></tr>
+      </table>
+    </section>
+
+    <footer class="print-note">Atividades da Laura — material de estudo (revisão e aprofundamento).</footer>
+
+  </main>
+
+</body>
+</html>
