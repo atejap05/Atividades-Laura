@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matemática — Medidas e Operações | 2º ano</title>
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --paper: #fffef8;
+      --accent: #e63946;
+      --blue: #457b9d;
+      --yellow: #f4d35e;
+      --green: #2a9d8f;
+      --purple: #7b68ee;
+      --orange: #e8850c;
+      --muted: #6c757d;
+      --border: #dee2e6;
+      --card: #f8f9fa;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background: #e9ecef;
+      line-height: 1.45;
+      font-size: 11pt;
+    }
+
+    .sheet {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 1rem;
+      background: var(--paper);
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      padding: 12mm 14mm;
+    }
+
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+
+    @media print {
+      body { background: #fff; }
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .sheet {
+        box-shadow: none;
+        margin: 0;
+        max-width: none;
+        min-height: auto;
+        padding: 0;
+      }
+      .no-print { display: none !important; }
+      a[href]:after { content: ""; }
+      .page-break { page-break-before: always; }
+      .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+      main.sheet > section {
+        break-inside: auto;
+        page-break-inside: auto;
+      }
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #343a40;
+      color: #fff;
+      padding: 10px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .toolbar button:hover { filter: brightness(1.08); }
+    .toolbar span { font-size: 13px; opacity: .9; }
+
+    h1 {
+      font-size: 1.35rem;
+      margin: 0 0 4px;
+      color: var(--accent);
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+      font-weight: 600;
+      color: var(--blue);
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .header-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      background: linear-gradient(135deg, #fff9e6, #e8f4fc);
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+    }
+    .header-line label {
+      flex: 1;
+      min-width: 140px;
+      font-weight: 600;
+      font-size: 10pt;
+    }
+    .header-line input {
+      border: none;
+      border-bottom: 2px solid var(--blue);
+      background: transparent;
+      width: 100%;
+      min-height: 22px;
+    }
+
+    .intro-box {
+      background: var(--card);
+      border-left: 5px solid var(--green);
+      padding: 10px 14px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 16px;
+      font-size: 10.5pt;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin: 14px 0 6px;
+      padding: 5px 12px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      color: var(--blue);
+      margin: 12px 0 6px;
+    }
+
+    .concept {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 8px 0;
+    }
+    .concept .tip {
+      display: block;
+      margin-top: 6px;
+      font-size: 9.5pt;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .read-box {
+      background: linear-gradient(180deg, #e3f2fd 0%, #fff 100%);
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin: 10px 0;
+    }
+    .read-box p { margin: 6px 0; }
+    .read-box strong { color: var(--blue); }
+
+    .mc {
+      margin: 8px 0 4px;
+      padding-left: 0;
+      list-style: none;
+    }
+    .mc li {
+      margin: 1px 0;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+    .mc li:hover { background: #f1f3f5; }
+
+    .q {
+      margin: 8px 0;
+      padding: 7px 10px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .q-num {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+    .tag {
+      font-size: 9pt;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .tag-mc { background: #cfe2ff; color: #084298; }
+    .tag-w { background: #d1e7dd; color: #0f5132; }
+    .tag-ce { background: #ffe5b4; color: #8a5000; }
+
+    /* Certo / Errado — caixinhas de marcar */
+    .ce-list { margin: 6px 0 0; }
+    .ce-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 8px;
+      border-bottom: 1px dotted var(--border);
+    }
+    .ce-item:last-child { border-bottom: none; }
+    .ce-opts {
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: 9.5pt;
+    }
+    .ce-opts .cert { color: var(--green); }
+    .ce-opts .err { color: var(--accent); }
+
+    .line {
+      border-bottom: 1px dotted var(--muted);
+      min-height: 1.4em;
+      display: inline-block;
+      min-width: 120px;
+    }
+    .line.short { min-width: 60px; }
+
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 10pt;
+    }
+    table.data th, table.data td {
+      border: 1px solid var(--border);
+      padding: 8px;
+    }
+    table.data th { background: #e9ecef; }
+
+    /* Contas verticais — dezena sobre dezena, unidade sobre unidade */
+    .vm-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 24px;
+      justify-content: flex-start;
+      margin: 12px 0;
+    }
+    .vm {
+      display: inline-block;
+      vertical-align: top;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.15;
+      text-align: center;
+    }
+    .vm .cap {
+      display: block;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .vm table {
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+    .vm td {
+      min-width: 1em;
+      height: 1.25em;
+      text-align: center;
+      vertical-align: middle;
+      padding: 2px 3px;
+    }
+    .vm td.vm-op {
+      width: 1.15em;
+      font-weight: 800;
+      text-align: center;
+      vertical-align: middle;
+      padding-right: 3px;
+      line-height: 1;
+      font-size: 1.05em;
+    }
+    .vm td.vm-line {
+      border-top: 2px solid var(--ink);
+      padding-top: 4px;
+      height: 0;
+      line-height: 0;
+    }
+    .vm .lbl {
+      font-size: 0.45rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      height: 0.9em;
+      line-height: 1;
+    }
+    .vm .carry {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--accent);
+      height: 0.85em;
+    }
+    .vm .carry-box {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      min-width: 0.9em;
+      min-height: 0.85em;
+      display: inline-block;
+    }
+    .vm .ans td.vm-ans {
+      border-bottom: 2px dotted var(--muted);
+      min-height: 1.35em;
+    }
+    .vm-sub .borrow {
+      font-size: 0.55rem;
+      color: var(--blue);
+    }
+
+    /* Ilustrações — moldura clara para as gravuras SVG */
+    .illus {
+      margin: 12px 0;
+      padding: 12px;
+      background: linear-gradient(160deg, #eef3fb 0%, #e4eaf6 45%, #dce5f2 100%);
+      border-radius: 14px;
+      border: 1px solid #b8c9e0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+    }
+    .illus figure {
+      margin: 0;
+      text-align: center;
+      font-size: 8.5pt;
+      color: #495057;
+      font-weight: 600;
+    }
+    .illus svg {
+      display: block;
+      margin: 0 auto 4px;
+      filter: drop-shadow(2px 3px 5px rgba(30,40,60,.18));
+    }
+
+    /* Relógio digital */
+    .digital {
+      font-family: "Consolas", "Courier New", monospace;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #37e64a;
+      background: #10241a;
+      padding: 8px 14px;
+      border-radius: 8px;
+      letter-spacing: 2px;
+      border: 2px solid #0a1a12;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .gabarito {
+      background: #fff8e7;
+      border: 2px solid var(--yellow);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 9.5pt;
+    }
+    .gabarito table { font-size: 9pt; }
+    .gabarito h2 { background: #856404; }
+
+    footer.print-note {
+      margin-top: 16px;
+      font-size: 9pt;
+      color: var(--muted);
+      text-align: center;
+    }
+      .q p { margin: 5px 0; }
+    .concept p { margin: 4px 0; }
+    .illus { margin: 8px 0; padding: 8px; }
+
+    /* Paginação compacta — títulos presos ao conteúdo, cards menores */
+    .topic-head { break-inside: avoid; page-break-inside: avoid; }
+    .topic-head h2 { display: table; break-after: avoid; page-break-after: avoid; }
+    p { orphans: 3; widows: 3; }
+
+    /* Grade de 2 colunas para questões curtas */
+    .q-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 8px 0;
+    }
+    .q-grid > .q { margin: 0; }
+    ul.mc.inline {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 8px;
+    }
+    @media (max-width: 600px) {
+      .q-grid, ul.mc.inline { grid-template-columns: 1fr; }
+    }
+
+    /* Linhas para respostas escritas mais longas */
+    .write-lines { margin-top: 6px; }
+    .write-lines span {
+      display: block;
+      border-bottom: 1px dotted var(--muted);
+      height: 1.7em;
+    }
+    .draw-box {
+      border: 1.5px dashed var(--border);
+      border-radius: 8px;
+      height: 70px;
+      margin-top: 6px;
+    }
+
+    /* Relógios analógicos gerados por script */
+    .clock-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: space-around;
+      margin: 6px 0;
+    }
+    .clock-row figure {
+      margin: 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 9.5pt;
+    }
+
+    .clock-row .clock { display: block; }
+    /* 5 contas por linha */
+    .vm-grid[data-list] {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px 8px;
+      justify-items: center;
+    }
+    .gabarito table.data td, .gabarito table.data th { padding: 2px 5px; }
+    .gabarito table.data td:nth-child(odd) { font-weight: 700; width: 2.2em; }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">Imprimir / Salvar em PDF</button>
+    <span>Use Ctrl+P → “Salvar como PDF” para gerar o arquivo. Formato A4.</span>
+  </div>
+
+  <main class="sheet">
+
+    <!-- CAPA -->
+    <header>
+      <h1>Missão Feira &amp; Viagem — medir, contar e repartir</h1>
+      <p class="subtitle">Matemática — Revisão e aprofundamento | 2º ano do Ensino Fundamental</p>
+      <div class="header-line">
+        <label>Nome: <input type="text" aria-label="Nome do aluno" /></label>
+        <label>Data: <input type="text" aria-label="Data" /></label>
+        <label>Turma: <input type="text" aria-label="Turma" /></label>
+      </div>
+      <div class="intro-box">
+        <strong>Como usar esta atividade:</strong> Cada parte começa com uma <strong>história</strong>.
+        Leia com calma — os números que você precisa estão escondidos nela, e alguns
+        <strong>não servem</strong> para a pergunta! Nas questões de <strong>múltipla escolha</strong>,
+        marque com <strong>X</strong> a alternativa certa. Nas de <strong>Certo ou Errado</strong>,
+        volte ao texto antes de responder. Nas <strong>contas armadas</strong>, alinhe
+        <strong>unidade embaixo de unidade</strong> e <strong>dezena embaixo de dezena</strong>.
+        Dá para fazer uma parte por dia. Bora para a missão!
+      </div>
+    </header>
+
+    <!-- PARTE 1 — MASSA -->
+    <section>
+      <div class="topic-head">
+        <h2>Parte 1 — Massa: grama (g) e quilograma (kg)</h2>
+        <div class="concept">
+          <p>A <strong>massa</strong> é o “peso” das coisas. Usamos a <strong>balança</strong> para medir.
+          A unidade menor é o <strong>grama (g)</strong>. A maior é o <strong>quilograma (kg)</strong>.</p>
+          <p><strong>1 kg = 1000 g</strong> &nbsp;•&nbsp; <strong>meio quilo = 500 g</strong> &nbsp;•&nbsp; <strong>2 kg = 2000 g</strong></p>
+          <span class="tip">Curiosidade: 1 kg de algodão e 1 kg de ferro pesam a mesma coisa! O algodão só ocupa muito mais espaço.</span>
+        </div>
+      </div>
+        <div class="illus avoid-break" aria-hidden="true">
+          <figure>
+            <svg width="150" height="120" viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="bal_pan" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#e9edf2"/><stop offset="100%" stop-color="#9aa7b6"/></linearGradient>
+                <linearGradient id="bal_base" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#8a6a3a"/><stop offset="100%" stop-color="#5c451f"/></linearGradient>
+              </defs>
+              <!-- base -->
+              <rect x="60" y="96" width="30" height="12" rx="3" fill="url(#bal_base)"/>
+              <rect x="72" y="34" width="6" height="64" fill="#7a8794"/>
+              <!-- viga -->
+              <rect x="24" y="30" width="102" height="6" rx="3" fill="#7a8794"/>
+              <circle cx="75" cy="33" r="6" fill="#576571"/>
+              <!-- correntes -->
+              <line x1="27" y1="34" x2="27" y2="60" stroke="#8a97a4" stroke-width="2"/>
+              <line x1="123" y1="34" x2="123" y2="60" stroke="#8a97a4" stroke-width="2"/>
+              <!-- pratos -->
+              <path d="M 10 60 Q 27 78 44 60 Z" fill="url(#bal_pan)" stroke="#6c7885" stroke-width="1.2"/>
+              <path d="M 106 60 Q 123 78 140 60 Z" fill="url(#bal_pan)" stroke="#6c7885" stroke-width="1.2"/>
+              <!-- maçãs num prato -->
+              <circle cx="22" cy="56" r="6" fill="#e63946"/>
+              <circle cx="32" cy="56" r="6" fill="#e63946"/>
+              <!-- peso no outro -->
+              <rect x="116" y="48" width="14" height="12" rx="2" fill="#495057"/>
+              <text x="123" y="57" font-size="6" fill="#fff" text-anchor="middle" font-family="sans-serif">1kg</text>
+            </svg>
+            Balança de pratos
+          </figure>
+          <figure>
+            <svg width="120" height="96" viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="scale_body" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#dfe6ee"/><stop offset="100%" stop-color="#aab6c4"/></linearGradient>
+              </defs>
+              <rect x="14" y="40" width="92" height="42" rx="8" fill="url(#scale_body)" stroke="#8894a2" stroke-width="1.5"/>
+              <rect x="26" y="18" width="68" height="24" rx="6" fill="#c8d2de" stroke="#8894a2" stroke-width="1.2"/>
+              <rect x="34" y="52" width="52" height="20" rx="4" fill="#10241a"/>
+              <text x="60" y="66" font-size="12" fill="#37e64a" text-anchor="middle" font-family="Consolas, monospace" font-weight="bold">2 kg</text>
+            </svg>
+            Balança digital
+          </figure>
+        </div>
+
+      <div class="read-box">
+        <strong>Leia com atenção — O mistério da balança da Dona Rosa</strong>
+        <p>Sábado de manhã, a Laura chegou cedinho à feira com a vovó. A barraca da Dona Rosa estava
+        uma confusão: a <strong>balança digital</strong> tinha parado de funcionar! — Sem balança, como
+        vou saber o peso das coisas? — suspirou Dona Rosa.</p>
+        <p>A Laura teve uma ideia. Alguns pacotes já vêm com o peso escrito: o saco de
+        <strong>arroz</strong> tem <strong>5 kg</strong>, o pacote de <strong>farinha</strong> tem
+        <strong>500 g</strong>, o pacote de <strong>feijão</strong> tem <strong>1 kg</strong> e o
+        saquinho de <strong>amendoim</strong> tem <strong>200 g</strong>. E a Dona Rosa ainda tinha
+        uma velha <strong>balança de pratos</strong> guardada embaixo da mesa.</p>
+        <p>Com ela, a Laura descobriu que as <strong>batatas</strong> pesavam o mesmo que
+        <strong>2 pacotes de feijão</strong>, e que a <strong>melancia</strong> equilibrava com o
+        <strong>saco de arroz mais 1 pacote de feijão</strong>. Foi aí que o <strong>Tomé</strong>, o
+        gato da barraca, pulou num dos pratos! Ele pesava <strong>4 kg</strong> — um pouco menos que o
+        saco de arroz. Todo mundo riu, e a feira finalmente pôde começar.</p>
+      </div>
+
+      <div class="q-grid">
+        <div class="q avoid-break">
+          <span class="q-num">1</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantos gramas há em <strong>1 kg</strong>?</p>
+          <ul class="mc inline"><li>( ) A) 10 g</li><li>( ) B) 100 g</li><li>( ) C) 1000 g</li><li>( ) D) 500 g</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">2</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>O pacote de farinha (<strong>500 g</strong>) é o mesmo que:</p>
+          <ul class="mc inline"><li>( ) A) 1 kg</li><li>( ) B) meio quilo</li><li>( ) C) 5 kg</li><li>( ) D) 50 kg</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">3</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quanto pesavam as <strong>batatas</strong>? (Dica: 2 pacotes de feijão.)</p>
+          <ul class="mc inline"><li>( ) A) 1 kg</li><li>( ) B) 2 kg</li><li>( ) C) 5 kg</li><li>( ) D) 200 g</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">4</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quanto pesava a <strong>melancia</strong>? (arroz + 1 feijão)</p>
+          <ul class="mc inline"><li>( ) A) 4 kg</li><li>( ) B) 5 kg</li><li>( ) C) 6 kg</li><li>( ) D) 51 kg</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">5</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p><strong>2 pacotes de farinha</strong> de 500 g pesam juntos:</p>
+          <ul class="mc inline"><li>( ) A) 1 kg</li><li>( ) B) 2 kg</li><li>( ) C) 5 kg</li><li>( ) D) 250 g</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">6</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p><strong>5 saquinhos de amendoim</strong> de 200 g pesam juntos:</p>
+          <ul class="mc inline"><li>( ) A) 1 kg</li><li>( ) B) 500 g</li><li>( ) C) 205 g</li><li>( ) D) 2 kg</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">7</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Qual unidade é melhor para pesar uma <strong>borracha</strong>?</p>
+          <ul class="mc inline"><li>( ) A) grama</li><li>( ) B) quilograma</li><li>( ) C) metro</li><li>( ) D) hora</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">8</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Qual unidade é melhor para pesar uma <strong>criança</strong>?</p>
+          <ul class="mc inline"><li>( ) A) grama</li><li>( ) B) quilograma</li><li>( ) C) centímetro</li><li>( ) D) minuto</li></ul>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">9</span> <span class="tag tag-ce">Certo ou Errado</span>
+        <p>Volte à história da Dona Rosa e marque:</p>
+        <div class="ce-list">
+          <div class="ce-item">a) O Tomé é mais pesado que o saco de arroz.</div>
+          <div class="ce-item">b) O saquinho de amendoim é o item mais leve da história.</div>
+          <div class="ce-item">c) A Laura usou a balança de pratos porque a digital quebrou.</div>
+          <div class="ce-item">d) O pacote de feijão pesa 1000 g.</div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">10</span> <span class="tag tag-ce">Certo ou Errado</span>
+        <div class="ce-list">
+          <div class="ce-item">a) 3 kg é o mesmo que 3000 g.</div>
+          <div class="ce-item">b) Meio quilo é o mesmo que 50 g.</div>
+          <div class="ce-item">c) 1 kg de algodão pesa menos que 1 kg de ferro.</div>
+          <div class="ce-item">d) 900 g é menos que 1 kg.</div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">11</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Complete as conversões:</p>
+        <p>a) 1 kg = _______ g &nbsp; b) 2 kg = _______ g &nbsp; c) 4 kg = _______ g<br>
+        d) meio quilo = _______ g &nbsp; e) 1000 g = _______ kg &nbsp; f) 3000 g = _______ kg</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">12</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Complete com <strong>&gt;</strong> (maior), <strong>&lt;</strong> (menor) ou <strong>=</strong> (igual):</p>
+        <p>a) 1 kg ____ 900 g &nbsp;&nbsp; b) 500 g ____ meio quilo &nbsp;&nbsp; c) 2 kg ____ 2500 g &nbsp;&nbsp; d) 1000 g ____ 1 kg</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">13</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Ordene do <strong>mais leve</strong> para o <strong>mais pesado</strong>:</p>
+        <p>Tomé (4 kg) — amendoim (200 g) — arroz (5 kg) — farinha (500 g) — melancia (6 kg) — feijão (1 kg)</p>
+        <div class="write-lines"><span></span></div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">14</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Um cliente comprou <strong>1 saco de arroz</strong> e <strong>2 pacotes de feijão</strong>.
+        Quanto pesou a compra? Mostre a conta:</p>
+        <p><span class="line" style="min-width:220px;"></span> &nbsp; Resposta: _______ kg</p>
+      </div>
+
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção — A sacola da vovó</strong>
+        <p>Antes de ir embora, a vovó comprou <strong>1 kg de tomate</strong>, <strong>meio quilo de
+        cenoura</strong> e <strong>2 kg de laranja</strong>. A sacola de pano dela aguenta no máximo
+        <strong>5 kg</strong> — mais que isso, a alça arrebenta!</p>
+      </div>
+
+      <div class="q-grid">
+        <div class="q avoid-break">
+          <span class="q-num">15</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quanto pesa a sacola da vovó?</p>
+          <ul class="mc"><li>( ) A) 3 kg</li><li>( ) B) 3 kg e meio</li><li>( ) C) 4 kg</li><li>( ) D) 8 kg</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">16</span> <span class="tag tag-w">Resposta escrita</span>
+          <p>Se a vovó tirar as laranjas (2 kg), quanto a sacola vai pesar em <strong>gramas</strong>?</p>
+          <p>_______ g</p>
+          <p>A alça arrebenta? ( ) sim &nbsp; ( ) não</p>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">17</span> <span class="tag tag-w">Explique com suas palavras</span>
+        <p>Um pacote de <strong>1 kg de pipoca</strong> é muito maior que um pacote de <strong>1 kg de
+        feijão</strong>. Qual dos dois é mais pesado? Explique.</p>
+        <div class="write-lines"><span></span><span></span></div>
+      </div>
+    </section>
+
+    <!-- PARTE 2 — COMPRIMENTO -->
+    <section>
+      <div class="topic-head">
+        <h2>Parte 2 — Comprimento: centímetro (cm) e metro (m)</h2>
+        <div class="concept">
+          <p>O <strong>comprimento</strong> diz o tamanho das coisas. Medimos com <strong>régua</strong>
+          ou <strong>fita métrica</strong>. A unidade menor é o <strong>centímetro (cm)</strong>. A maior
+          é o <strong>metro (m)</strong>.</p>
+          <p><strong>1 m = 100 cm</strong> &nbsp;•&nbsp; <strong>meio metro = 50 cm</strong> &nbsp;•&nbsp; <strong>1 m e meio = 150 cm</strong></p>
+          <span class="tip">Curiosidade: para distâncias bem grandes, como estradas, usamos o quilômetro (km). 1 km = 1000 m!</span>
+        </div>
+      </div>
+        <div class="illus avoid-break" aria-hidden="true">
+          <figure>
+            <svg width="260" height="52" viewBox="0 0 260 52" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="ruler" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffe9a8"/><stop offset="100%" stop-color="#f0c94a"/></linearGradient>
+              </defs>
+              <rect x="6" y="14" width="248" height="26" rx="3" fill="url(#ruler)" stroke="#b9902a" stroke-width="1.2"/>
+              <!-- marcas de cm 0..10 -->
+              <g stroke="#5c451f" stroke-width="1">
+                <line x1="18" y1="14" x2="18" y2="30"/><line x1="42" y1="14" x2="42" y2="30"/>
+                <line x1="66" y1="14" x2="66" y2="30"/><line x1="90" y1="14" x2="90" y2="30"/>
+                <line x1="114" y1="14" x2="114" y2="30"/><line x1="138" y1="14" x2="138" y2="30"/>
+                <line x1="162" y1="14" x2="162" y2="30"/><line x1="186" y1="14" x2="186" y2="30"/>
+                <line x1="210" y1="14" x2="210" y2="30"/><line x1="234" y1="14" x2="234" y2="30"/>
+              </g>
+              <g font-size="7" fill="#5c451f" font-family="sans-serif" text-anchor="middle">
+                <text x="18" y="48">0</text><text x="66" y="48">2</text><text x="114" y="48">4</text><text x="162" y="48">6</text><text x="210" y="48">8</text>
+              </g>
+            </svg>
+            Régua em centímetros
+          </figure>
+        </div>
+
+      <div class="read-box">
+        <strong>Leia com atenção — Arrumando o carro para a viagem</strong>
+        <p>Na sexta à noite, a família da Laura arrumou o carro para viajar até a praia. O papai
+        mediu tudo com a fita métrica, porque ninguém queria deixar nada para trás.</p>
+        <p>O <strong>porta-malas</strong> tinha <strong>1 m</strong> de largura. A <strong>mala
+        grande</strong> media <strong>60 cm</strong>, e a <strong>mochila</strong> da Laura,
+        <strong>40 cm</strong>. A <strong>prancha de surfe</strong> do Theo, irmão da Laura, media
+        <strong>150 cm</strong> — grande demais para o porta-malas! Ela foi amarrada no teto com um
+        <strong>barbante de 2 m</strong>.</p>
+        <p>A Laura quis ajudar e mediu a própria <strong>régua</strong>: <strong>30 cm</strong>. Depois
+        mediu o seu <strong>palmo</strong>: <strong>12 cm</strong>. — Meu palmo é menor que a régua! —
+        ela riu. O <strong>carro</strong> inteiro media <strong>4 m</strong> de comprimento, e a
+        estrada até a praia tinha <strong>90 km</strong>.</p>
+      </div>
+
+      <div class="q-grid">
+        <div class="q avoid-break">
+          <span class="q-num">18</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantos centímetros há em <strong>1 metro</strong>?</p>
+          <ul class="mc inline"><li>( ) A) 10 cm</li><li>( ) B) 50 cm</li><li>( ) C) 100 cm</li><li>( ) D) 1000 cm</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">19</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>O barbante de <strong>2 m</strong> tem quantos centímetros?</p>
+          <ul class="mc inline"><li>( ) A) 20 cm</li><li>( ) B) 200 cm</li><li>( ) C) 2000 cm</li><li>( ) D) 12 cm</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">20</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Qual é o objeto <strong>mais comprido</strong> da história?</p>
+          <ul class="mc inline"><li>( ) A) prancha</li><li>( ) B) carro</li><li>( ) C) barbante</li><li>( ) D) mala</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">21</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>A mala e a mochila, uma <strong>ao lado da outra</strong>, medem:</p>
+          <ul class="mc inline"><li>( ) A) 1 m</li><li>( ) B) 20 cm</li><li>( ) C) 2 m</li><li>( ) D) 64 cm</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">22</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Qual unidade é melhor para medir um <strong>lápis</strong>?</p>
+          <ul class="mc inline"><li>( ) A) cm</li><li>( ) B) m</li><li>( ) C) km</li><li>( ) D) kg</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">23</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Qual unidade é melhor para a <strong>distância até a praia</strong>?</p>
+          <ul class="mc inline"><li>( ) A) cm</li><li>( ) B) g</li><li>( ) C) km</li><li>( ) D) min</li></ul>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">24</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Por que a prancha <strong>não coube</strong> no porta-malas?</p>
+        <ul class="mc">
+          <li>( ) A) Porque 150 cm é mais que 1 m (100 cm).</li>
+          <li>( ) B) Porque a prancha era muito pesada.</li>
+          <li>( ) C) Porque 150 cm é menos que 1 m.</li>
+          <li>( ) D) Porque o barbante era curto.</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">25</span> <span class="tag tag-ce">Certo ou Errado</span>
+        <p>Volte à história da viagem e marque:</p>
+        <div class="ce-list">
+          <div class="ce-item">a) A mochila da Laura é menor que a mala grande.</div>
+          <div class="ce-item">b) O palmo da Laura é maior que a régua dela.</div>
+          <div class="ce-item">c) A prancha mede 1 metro e meio.</div>
+          <div class="ce-item">d) O carro mede 400 cm.</div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">26</span> <span class="tag tag-ce">Certo ou Errado</span>
+        <div class="ce-list">
+          <div class="ce-item">a) Meio metro é o mesmo que 50 cm.</div>
+          <div class="ce-item">b) 3 m é o mesmo que 30 cm.</div>
+          <div class="ce-item">c) Uma porta tem cerca de 2 m de altura.</div>
+          <div class="ce-item">d) 1 cm é maior que 1 m.</div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">27</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Complete as conversões:</p>
+        <p>a) 1 m = _______ cm &nbsp; b) 2 m = _______ cm &nbsp; c) 5 m = _______ cm<br>
+        d) meio metro = _______ cm &nbsp; e) 300 cm = _______ m &nbsp; f) 100 cm = _______ m</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">28</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Quantos centímetros a prancha (150 cm) tem <strong>a mais</strong> que a largura do
+        porta-malas (1 m = 100 cm)? Mostre a conta:</p>
+        <p><span class="line" style="min-width:220px;"></span> &nbsp; Resposta: _______ cm</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">29</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Quantos <strong>palmos inteiros</strong> da Laura (12 cm) cabem na régua de 30 cm?
+        Dica: vá somando 12 + 12 + … até passar de 30.</p>
+        <p>Cabem _______ palmos inteiros e sobram _______ cm.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">30</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Ordene do <strong>menor</strong> para o <strong>maior</strong>:</p>
+        <p>régua (30 cm) — carro (4 m) — mochila (40 cm) — prancha (150 cm) — barbante (2 m) — mala (60 cm)</p>
+        <div class="write-lines"><span></span></div>
+      </div>
+
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção — O castelo de areia</strong>
+        <p>Na praia, a Laura e o Theo fizeram um castelo de areia. A <strong>torre</strong> mais alta
+        tinha <strong>35 cm</strong>. O <strong>muro</strong> em volta media <strong>80 cm</strong>. O
+        Theo ainda cavou um <strong>canal</strong> de <strong>150 cm</strong> até a água.</p>
+      </div>
+
+      <div class="q-grid">
+        <div class="q avoid-break">
+          <span class="q-num">31</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantos cm a torre é <strong>menor</strong> que o muro?</p>
+          <ul class="mc inline"><li>( ) A) 45 cm</li><li>( ) B) 55 cm</li><li>( ) C) 115 cm</li><li>( ) D) 35 cm</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">32</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quanto falta para o canal (150 cm) ter <strong>2 m</strong>?</p>
+          <ul class="mc inline"><li>( ) A) 50 cm</li><li>( ) B) 150 cm</li><li>( ) C) 20 cm</li><li>( ) D) 1 m</li></ul>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">33</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>A Laura fez <strong>outra torre igual</strong> à primeira. Somando as alturas das duas torres:</p>
+        <p>_______ + _______ = _______ cm. &nbsp; Isso é mais ou menos que o muro? <span class="line"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">34</span> <span class="tag tag-w">Explique com suas palavras</span>
+        <p>A Laura e o papai mediram a mesma mesa com o palmo. A Laura contou <strong>10 palmos</strong>
+        e o papai, <strong>6 palmos</strong>. Por que deu diferente? O que eles poderiam usar para
+        chegar ao mesmo número?</p>
+        <div class="write-lines"><span></span><span></span></div>
+      </div>
+    </section>
+
+    <!-- PARTE 3 — TEMPO -->
+    <section>
+      <div class="topic-head">
+        <h2>Parte 3 — Tempo: horas, minutos, segundos e calendário</h2>
+        <div class="concept">
+          <p>O <strong>tempo</strong> é medido no <strong>relógio</strong> e no <strong>calendário</strong>.
+          No relógio de ponteiros, o <strong>ponteiro pequeno</strong> mostra a hora e o
+          <strong>ponteiro grande</strong> mostra os minutos.</p>
+          <p><strong>1 min = 60 s</strong> &nbsp;•&nbsp; <strong>1 h = 60 min</strong> &nbsp;•&nbsp;
+          <strong>meia hora = 30 min</strong> &nbsp;•&nbsp; <strong>1 dia = 24 h</strong> &nbsp;•&nbsp;
+          <strong>1 semana = 7 dias</strong></p>
+          <span class="tip">Quando o ponteiro grande está no 12, é hora “em ponto”. Quando está no 6, é “e meia”.</span>
+        </div>
+      </div>
+
+      <div class="read-box">
+        <strong>Leia com atenção — Diário do dia do passeio</strong>
+        <p><em>Querido diário,</em> hoje foi <strong>sábado, 14 de março</strong>, o dia do passeio ao
+        sítio do vovô Zé!</p>
+        <p>Acordei às <strong>7h</strong> e tomei café às <strong>8h</strong>. O carro saiu de casa às
+        <strong>9h</strong> em ponto, e a viagem durou <strong>2 horas</strong>. Chegando lá, ajudei o
+        vovô a dar milho para as galinhas durante <strong>meia hora</strong>.</p>
+        <p>Almoçamos ao <strong>meio-dia (12h)</strong>. Depois do almoço, andei a cavalo das
+        <strong>14h</strong> às <strong>15h</strong>. O Theo ficou <strong>15 minutos</strong> no balanço
+        e disse que foram “só 15 segundos”! Voltamos para casa às <strong>17h</strong>, bem cansados.</p>
+        <p>O vovô avisou que no <strong>próximo sábado, dia 21 de março</strong>, vai ter pamonha.
+        Mal posso esperar!</p>
+      </div>
+
+      <div class="q-grid">
+        <div class="q avoid-break">
+          <span class="q-num">35</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p><strong>1 hora</strong> tem quantos minutos?</p>
+          <ul class="mc inline"><li>( ) A) 30</li><li>( ) B) 60</li><li>( ) C) 100</li><li>( ) D) 24</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">36</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p><strong>1 minuto</strong> tem quantos segundos?</p>
+          <ul class="mc inline"><li>( ) A) 60</li><li>( ) B) 100</li><li>( ) C) 30</li><li>( ) D) 12</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">37</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p><strong>Meia hora</strong> é o mesmo que:</p>
+          <ul class="mc inline"><li>( ) A) 15 min</li><li>( ) B) 30 min</li><li>( ) C) 50 min</li><li>( ) D) 60 min</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">38</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>A que horas a família <strong>chegou</strong> ao sítio?</p>
+          <ul class="mc inline"><li>( ) A) 9h</li><li>( ) B) 10h</li><li>( ) C) 11h</li><li>( ) D) 12h</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">39</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quanto tempo a Laura andou <strong>a cavalo</strong>?</p>
+          <ul class="mc inline"><li>( ) A) meia hora</li><li>( ) B) 1 hora</li><li>( ) C) 2 horas</li><li>( ) D) 15 min</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">40</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantos dias faltam do <strong>dia 14</strong> ao <strong>dia 21</strong> de março?</p>
+          <ul class="mc inline"><li>( ) A) 5</li><li>( ) B) 7</li><li>( ) C) 14</li><li>( ) D) 21</li></ul>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">41</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Que horas marca cada relógio?</p>
+        <div class="clock-row">
+          <figure><span class="clock" data-t="9:00"></span>A) ________</figure>
+          <figure><span class="clock" data-t="12:00"></span>B) ________</figure>
+          <figure><span class="clock" data-t="4:30"></span>C) ________</figure>
+          <figure><span class="clock" data-t="6:00"></span>D) ________</figure>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">42</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Escreva como aparece no <strong>relógio digital</strong> (ex.: 3 horas da tarde → <span class="digital" style="font-size:.9rem;padding:1px 6px;">15:00</span>):</p>
+        <p>a) 8 horas da manhã → ________ &nbsp; b) meio-dia → ________<br>
+        c) 5 horas da tarde → ________ &nbsp; d) 2 horas da tarde → ________</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">43</span> <span class="tag tag-ce">Certo ou Errado</span>
+        <p>Volte ao diário e marque:</p>
+        <div class="ce-list">
+          <div class="ce-item">a) A Laura acordou antes de tomar café.</div>
+          <div class="ce-item">b) Ela deu milho às galinhas por 30 minutos.</div>
+          <div class="ce-item">c) O Theo ficou 15 segundos no balanço.</div>
+          <div class="ce-item">d) Eles voltaram às 5 horas da tarde.</div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">44</span> <span class="tag tag-ce">Certo ou Errado</span>
+        <div class="ce-list">
+          <div class="ce-item">a) 2 horas são 120 minutos.</div>
+          <div class="ce-item">b) Um dia tem 24 horas.</div>
+          <div class="ce-item">c) Uma semana tem 5 dias.</div>
+          <div class="ce-item">d) Meia hora é mais tempo que 1 hora.</div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">45</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Complete:</p>
+        <p>a) 1 h = _______ min &nbsp; b) 2 h = _______ min &nbsp; c) 3 h = _______ min<br>
+        d) meia hora = _______ min &nbsp; e) 1 min = _______ s &nbsp; f) 1 dia = _______ h</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">46</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>A família saiu de casa às <strong>9h</strong> e voltou às <strong>17h</strong>. Quantas horas
+        ficaram fora de casa? Mostre a conta:</p>
+        <p><span class="line" style="min-width:220px;"></span> &nbsp; Resposta: _______ horas</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">47</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Numere de <strong>1 a 5</strong> na ordem em que as coisas aconteceram no diário:</p>
+        <p>( &nbsp; ) almoço &nbsp;&nbsp; ( &nbsp; ) acordar &nbsp;&nbsp; ( &nbsp; ) andar a cavalo &nbsp;&nbsp;
+        ( &nbsp; ) sair de casa &nbsp;&nbsp; ( &nbsp; ) voltar para casa</p>
+      </div>
+
+      <div class="q-grid">
+        <div class="q avoid-break">
+          <span class="q-num">48</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>O que dura <strong>mais ou menos 1 minuto</strong>?</p>
+          <ul class="mc"><li>( ) A) lavar as mãos</li><li>( ) B) dormir a noite toda</li><li>( ) C) uma aula inteira</li><li>( ) D) a viagem ao sítio</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">49</span> <span class="tag tag-w">Resposta escrita</span>
+          <p>A pamonha leva <strong>1 hora</strong> para cozinhar. O vovô começou às <strong>15h</strong>.</p>
+          <p>a) Fica pronta às _______.</p>
+          <p>b) Se demorar meia hora a mais, fica pronta às _______.</p>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">50</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>O dia 14 de março foi um <strong>sábado</strong>. Que dia da semana será o dia
+        <strong>15</strong>? _____________ &nbsp; E o dia <strong>21</strong>? _____________</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">51</span> <span class="tag tag-w">Explique com suas palavras</span>
+        <p>Por que o Theo errou ao dizer que ficou “só 15 segundos” no balanço? Explique a diferença
+        entre <strong>segundo</strong> e <strong>minuto</strong>.</p>
+        <div class="write-lines"><span></span><span></span></div>
+      </div>
+    </section>
+
+    <!-- PARTE 4 — ADIÇÃO E SUBTRAÇÃO -->
+    <section>
+      <div class="topic-head">
+        <h2>Parte 4 — Adição e subtração (grau médio)</h2>
+        <div class="concept">
+          <p>Nas <strong>somas</strong>, quando a coluna das unidades passa de 9, anote o
+          <strong>“vai 1”</strong> no quadradinho em cima das dezenas. Nas <strong>subtrações</strong>,
+          se o número de cima for menor, <strong>empreste 1 dezena</strong> da coluna vizinha
+          (ela vira 10 unidades).</p>
+          <span class="tip">Para conferir uma subtração, some a resposta com o número que você tirou: tem que dar o número de cima! Ex.: 52 − 27 = 25, porque 25 + 27 = 52.</span>
+        </div>
+      </div>
+
+      <div class="read-box">
+        <strong>Leia com atenção — O caixa da feira no sábado</strong>
+        <p>Todo sábado, a Dona Rosa anota as vendas num caderninho. Neste sábado, a Laura foi a
+        <strong>ajudante oficial</strong> da barraca!</p>
+        <p>De <strong>manhã</strong>, venderam <strong>38 maçãs</strong>, <strong>47 laranjas</strong> e
+        <strong>26 bananas</strong>. À <strong>tarde</strong>, venderam mais <strong>25 maçãs</strong>,
+        <strong>36 laranjas</strong> e <strong>19 bananas</strong>.</p>
+        <p>A barraca começou o dia com <strong>90 ovos</strong> e terminou com <strong>34</strong>. O Seu
+        Juca, da barraca vizinha, vendeu <strong>72 pastéis</strong> — <strong>18 a mais</strong> do que
+        no sábado passado.</p>
+        <p>No fim do dia, a Laura fez as contas no caderninho e descobriu uma coisa curiosa: a fruta
+        campeã de vendas não era a que ela imaginava!</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">52</span> <span class="tag tag-w">Contas armadas — somas</span>
+        <p>Resolva. Use o quadradinho para o “vai 1”.</p>
+        <div class="vm-grid" data-op="+" data-list="38+47,56+29,64+28,45+37,73+19,27+48,19+59,36+36,58+34,67+26"></div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">53</span> <span class="tag tag-w">Contas armadas — subtrações</span>
+        <p>Resolva. Lembre de emprestar 1 dezena quando precisar.</p>
+        <div class="vm-grid" data-op="−" data-list="52-27,84-46,70-38,63-29,91-45,81-54,60-17,75-38,42-19,93-66"></div>
+      </div>
+
+      <div class="q-grid">
+        <div class="q avoid-break">
+          <span class="q-num">54</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantas <strong>maçãs</strong> foram vendidas no dia todo?</p>
+          <ul class="mc inline"><li>( ) A) 63</li><li>( ) B) 53</li><li>( ) C) 13</li><li>( ) D) 73</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">55</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantas <strong>laranjas</strong> foram vendidas no dia todo?</p>
+          <ul class="mc inline"><li>( ) A) 83</li><li>( ) B) 73</li><li>( ) C) 711</li><li>( ) D) 11</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">56</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Qual foi a fruta <strong>campeã</strong> de vendas?</p>
+          <ul class="mc inline"><li>( ) A) maçã</li><li>( ) B) laranja</li><li>( ) C) banana</li><li>( ) D) empate</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">57</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantos <strong>ovos</strong> foram vendidos?</p>
+          <ul class="mc inline"><li>( ) A) 56</li><li>( ) B) 64</li><li>( ) C) 124</li><li>( ) D) 66</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">58</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>O resultado de <strong>80 − 35</strong> é:</p>
+          <ul class="mc inline"><li>( ) A) 45</li><li>( ) B) 55</li><li>( ) C) 115</li><li>( ) D) 35</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">59</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Sem fazer a conta exata, <strong>49 + 32</strong> dá mais ou menos:</p>
+          <ul class="mc inline"><li>( ) A) 60</li><li>( ) B) 80</li><li>( ) C) 100</li><li>( ) D) 40</li></ul>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">60</span> <span class="tag tag-ce">Certo ou Errado</span>
+        <p>Volte ao caderninho da Dona Rosa e marque:</p>
+        <div class="ce-list">
+          <div class="ce-item">a) De manhã, venderam mais laranjas do que maçãs.</div>
+          <div class="ce-item">b) No dia todo, venderam 55 bananas.</div>
+          <div class="ce-item">c) No sábado passado, o Seu Juca vendeu 54 pastéis.</div>
+          <div class="ce-item">d) À tarde, venderam 80 frutas ao todo.</div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">61</span> <span class="tag tag-ce">Certo ou Errado</span>
+        <div class="ce-list">
+          <div class="ce-item">a) 38 + 47 dá o mesmo resultado que 47 + 38.</div>
+          <div class="ce-item">b) 50 − 20 dá o mesmo resultado que 20 − 50.</div>
+          <div class="ce-item">c) 60 − 25 = 35.</div>
+          <div class="ce-item">d) 29 + 29 = 58.</div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">62</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Quantas <strong>maçãs e bananas</strong> foram vendidas só de <strong>manhã</strong>? Mostre a conta:</p>
+        <p><span class="line" style="min-width:220px;"></span> &nbsp; Resposta: _______ frutas</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">63</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>No dia todo, quantas <strong>laranjas a mais</strong> do que bananas foram vendidas?
+        (Dica: bananas do dia = 26 + 19.)</p>
+        <p><span class="line" style="min-width:220px;"></span> &nbsp; Resposta: _______ laranjas a mais</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">64</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Descubra o número que falta:</p>
+        <p>a) 45 + _____ = 80 &nbsp;&nbsp; b) _____ + 27 = 60 &nbsp;&nbsp; c) 90 − _____ = 52 &nbsp;&nbsp; d) _____ − 20 = 45</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">65</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>A Dona Rosa tinha <strong>R$ 50</strong> no caixa. Recebeu <strong>R$ 35</strong> de um cliente
+        e depois deu <strong>R$ 12</strong> de troco para outro. Com quanto ficou? Faça as duas contas:</p>
+        <p>1ª conta: <span class="line" style="min-width:150px;"></span> &nbsp; 2ª conta: <span class="line" style="min-width:150px;"></span> &nbsp; Resposta: R$ _______</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">66</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>O Seu Juca quer vender <strong>90 pastéis</strong> no próximo sábado. Hoje ele vendeu 72.
+        Quantos pastéis a mais ele precisa vender?</p>
+        <p><span class="line" style="min-width:220px;"></span> &nbsp; Resposta: _______ pastéis</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">67</span> <span class="tag tag-w">Explique com suas palavras</span>
+        <p>O Theo fez <strong>52 − 27</strong> e achou <strong>35</strong>. Qual é a resposta certa?
+        Onde ele errou?</p>
+        <div class="write-lines"><span></span><span></span></div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">68</span> <span class="tag tag-w">Crie um problema</span>
+        <p>Invente um probleminha de <strong>subtração</strong> com as frutas da Dona Rosa. Depois,
+        resolva.</p>
+        <div class="write-lines"><span></span><span></span><span></span></div>
+      </div>
+    </section>
+
+    <!-- PARTE 5 — MULTIPLICAÇÃO -->
+    <section>
+      <div class="topic-head">
+        <h2>Parte 5 — Multiplicação</h2>
+        <div class="concept">
+          <p><strong>Multiplicar</strong> é somar <strong>parcelas iguais</strong> de um jeito mais rápido.
+          Ex.: <strong>3 × 4</strong> quer dizer <strong>4 + 4 + 4 = 12</strong> (três grupos de quatro).
+          Em <strong>linhas e colunas</strong>, contamos <em>linhas × colunas</em>.</p>
+          <span class="tip">O dobro é multiplicar por 2 (dobro de 5 = 10). O triplo é multiplicar por 3 (triplo de 5 = 15).</span>
+        </div>
+      </div>
+        <div class="illus avoid-break" aria-hidden="true">
+          <figure>
+            <svg width="180" height="120" viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+              <!-- 3 linhas x 4 colunas de maçãs -->
+              <g fill="#e63946" stroke="#a11d2a" stroke-width="1">
+                <circle cx="30" cy="25" r="11"/><circle cx="70" cy="25" r="11"/><circle cx="110" cy="25" r="11"/><circle cx="150" cy="25" r="11"/>
+                <circle cx="30" cy="60" r="11"/><circle cx="70" cy="60" r="11"/><circle cx="110" cy="60" r="11"/><circle cx="150" cy="60" r="11"/>
+                <circle cx="30" cy="95" r="11"/><circle cx="70" cy="95" r="11"/><circle cx="110" cy="95" r="11"/><circle cx="150" cy="95" r="11"/>
+              </g>
+            </svg>
+            3 linhas × 4 = 12
+          </figure>
+        </div>
+
+      <div class="read-box">
+        <strong>Leia com atenção — Caixas, bandejas e fileiras</strong>
+        <p>Depois da feira, a Dona Rosa foi ajudar na festa da escola da Laura. Tinha tanta coisa para
+        organizar que ela usou um truque: arrumar tudo em <strong>grupos iguais</strong>.</p>
+        <p>Os copos de suco ficaram em <strong>3 bandejas</strong>, com <strong>5 copos</strong> em cada
+        uma. As cadeiras do teatrinho ficaram em <strong>4 fileiras</strong> de <strong>6 cadeiras</strong>.
+        Os brigadeiros foram para <strong>2 caixas</strong> com <strong>10 brigadeiros</strong> cada.</p>
+        <p>No estacionamento, a Laura contou <strong>5 bicicletas</strong> e <strong>3 carros</strong>.
+        — Quanta roda! — ela exclamou. (Lembre: bicicleta tem <strong>2 rodas</strong> e carro tem
+        <strong>4 rodas</strong>.)</p>
+        <p>A professora Ana pediu o <strong>dobro</strong> dos balões do ano passado. No ano passado
+        foram <strong>8 balões</strong>.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">69</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Transforme a soma em multiplicação:</p>
+        <p>a) 4 + 4 + 4 = ____ × ____ = ____ &nbsp;&nbsp; b) 5 + 5 + 5 + 5 = ____ × ____ = ____<br>
+        c) 2 + 2 + 2 + 2 + 2 = ____ × ____ = ____ &nbsp;&nbsp; d) 10 + 10 + 10 = ____ × ____ = ____</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">70</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Olhe a gravura das maçãs no quadro acima e complete:</p>
+        <p>_______ linhas × _______ colunas = _______ maçãs</p>
+      </div>
+
+      <div class="q-grid">
+        <div class="q avoid-break">
+          <span class="q-num">71</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quanto é <strong>3 × 5</strong>?</p>
+          <ul class="mc inline"><li>( ) A) 8</li><li>( ) B) 15</li><li>( ) C) 35</li><li>( ) D) 53</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">72</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quanto é <strong>4 × 4</strong>?</p>
+          <ul class="mc inline"><li>( ) A) 8</li><li>( ) B) 12</li><li>( ) C) 16</li><li>( ) D) 44</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">73</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quanto é <strong>6 × 2</strong>?</p>
+          <ul class="mc inline"><li>( ) A) 8</li><li>( ) B) 12</li><li>( ) C) 62</li><li>( ) D) 14</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">74</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantos <strong>copos de suco</strong> havia nas bandejas?</p>
+          <ul class="mc inline"><li>( ) A) 8</li><li>( ) B) 15</li><li>( ) C) 35</li><li>( ) D) 10</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">75</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantas <strong>cadeiras</strong> havia no teatrinho?</p>
+          <ul class="mc inline"><li>( ) A) 10</li><li>( ) B) 24</li><li>( ) C) 46</li><li>( ) D) 20</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">76</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantas <strong>rodas</strong> têm as 5 bicicletas?</p>
+          <ul class="mc inline"><li>( ) A) 7</li><li>( ) B) 10</li><li>( ) C) 52</li><li>( ) D) 25</li></ul>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">77</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>a) Quantas rodas têm os <strong>3 carros</strong>? ____ × ____ = ____ rodas</p>
+        <p>b) Quantas rodas há no estacionamento <strong>ao todo</strong> (bicicletas + carros)? ____ + ____ = ____ rodas</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">78</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>a) Quantos <strong>brigadeiros</strong> havia nas 2 caixas? ____ × ____ = ____</p>
+        <p>b) Quantos <strong>balões</strong> a professora pediu este ano (o dobro de 8)? ____</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">79</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Complete:</p>
+        <p>a) dobro de 6 = ____ &nbsp; b) triplo de 4 = ____ &nbsp; c) dobro de 10 = ____ &nbsp;
+        d) triplo de 5 = ____ &nbsp; e) dobro de 9 = ____</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">80</span> <span class="tag tag-ce">Certo ou Errado</span>
+        <div class="ce-list">
+          <div class="ce-item">a) 3 × 5 é o mesmo que 5 + 5 + 5.</div>
+          <div class="ce-item">b) 4 fileiras de 6 cadeiras são 24 cadeiras.</div>
+          <div class="ce-item">c) 2 × 10 = 12.</div>
+          <div class="ce-item">d) O triplo de 3 é 6.</div>
+        </div>
+      </div>
+
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção — A gincana</strong>
+        <p>Na gincana da festa, a professora formou <strong>3 equipes</strong> com <strong>4 crianças</strong>
+        cada. Cada criança ganhou <strong>2 fitas</strong> coloridas para amarrar no braço.</p>
+      </div>
+
+      <div class="q-grid">
+        <div class="q avoid-break">
+          <span class="q-num">81</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantas <strong>crianças</strong> participaram da gincana?</p>
+          <ul class="mc inline"><li>( ) A) 7</li><li>( ) B) 12</li><li>( ) C) 34</li><li>( ) D) 8</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">82</span> <span class="tag tag-w">Resposta escrita</span>
+          <p>Quantas <strong>fitas</strong> a professora distribuiu ao todo?</p>
+          <p>____ crianças × 2 fitas = ____ fitas</p>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">83</span> <span class="tag tag-w">Desenhe</span>
+        <p>Desenhe <strong>2 fileiras</strong> com <strong>5 estrelas</strong> em cada. Depois escreva a multiplicação:
+        ____ × ____ = ____</p>
+        <div class="draw-box"></div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">84</span> <span class="tag tag-w">Explique com suas palavras</span>
+        <p>A Laura disse que <strong>3 × 4</strong> dá o mesmo resultado que <strong>4 × 3</strong>.
+        Ela está certa? Explique (pode usar as maçãs da gravura).</p>
+        <div class="write-lines"><span></span><span></span></div>
+      </div>
+    </section>
+
+    <!-- PARTE 6 — DIVISÃO -->
+    <section>
+      <div class="topic-head">
+        <h2>Parte 6 — Divisão, metade e terça parte</h2>
+        <div class="concept">
+          <p><strong>Dividir</strong> é <strong>repartir em partes iguais</strong>. Ex.: <strong>12 ÷ 3 = 4</strong>:
+          12 coisas repartidas em 3 grupos iguais dão <strong>4</strong> em cada grupo. A divisão é a
+          “irmã” da multiplicação: 12 ÷ 3 = 4 porque <strong>3 × 4 = 12</strong>.</p>
+          <p><strong>Metade</strong> = dividir por 2 &nbsp;•&nbsp; <strong>terça parte</strong> = dividir por 3</p>
+        </div>
+      </div>
+        <div class="illus avoid-break" aria-hidden="true">
+          <figure>
+            <svg width="240" height="110" viewBox="0 0 240 110" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="basket" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#d9a86a"/><stop offset="100%" stop-color="#a06d33"/></linearGradient>
+              </defs>
+              <!-- 3 cestas com 4 bananas cada -->
+              <g>
+                <path d="M 10 60 L 70 60 L 62 100 L 18 100 Z" fill="url(#basket)" stroke="#6e4a1e" stroke-width="1.5"/>
+                <path d="M 90 60 L 150 60 L 142 100 L 98 100 Z" fill="url(#basket)" stroke="#6e4a1e" stroke-width="1.5"/>
+                <path d="M 170 60 L 230 60 L 222 100 L 178 100 Z" fill="url(#basket)" stroke="#6e4a1e" stroke-width="1.5"/>
+              </g>
+              <g fill="#f4d35e" stroke="#c9a227" stroke-width="1">
+                <ellipse cx="28" cy="52" rx="5" ry="10"/><ellipse cx="40" cy="52" rx="5" ry="10"/><ellipse cx="52" cy="52" rx="5" ry="10"/><ellipse cx="64" cy="52" rx="5" ry="10"/>
+                <ellipse cx="108" cy="52" rx="5" ry="10"/><ellipse cx="120" cy="52" rx="5" ry="10"/><ellipse cx="132" cy="52" rx="5" ry="10"/><ellipse cx="144" cy="52" rx="5" ry="10"/>
+                <ellipse cx="188" cy="52" rx="5" ry="10"/><ellipse cx="200" cy="52" rx="5" ry="10"/><ellipse cx="212" cy="52" rx="5" ry="10"/><ellipse cx="224" cy="52" rx="5" ry="10"/>
+              </g>
+            </svg>
+            12 bananas ÷ 3 cestas = 4 em cada
+          </figure>
+        </div>
+
+      <div class="read-box">
+        <strong>Leia com atenção — O piquenique da turma</strong>
+        <p>No último dia de aula, a turma da Laura fez um piquenique no parque. Cada um levou alguma
+        coisa para dividir com os amigos.</p>
+        <p>A Laura levou <strong>12 bananas</strong>. O Pedro levou <strong>20 biscoitos</strong>. A Bia
+        levou <strong>16 morangos</strong>, e a professora Ana levou <strong>10 garrafinhas de água</strong>.
+        — Tudo tem que ser repartido em partes iguais, para ninguém ficar com menos! — disse a professora.</p>
+        <p>As 12 bananas foram colocadas em <strong>3 cestas</strong> iguais. Os 20 biscoitos foram
+        divididos entre <strong>4 amigos</strong>. Os morangos foram repartidos igualmente em
+        <strong>2 pratos</strong>. E a Bia guardou a <strong>metade</strong> dos morangos do prato dela
+        para levar para a irmãzinha.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">85</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Olhe a gravura das cestas. Repartindo 12 bananas em 3 cestas iguais, quantas ficam em cada cesta?</p>
+        <p>12 ÷ 3 = _______ bananas em cada cesta</p>
+      </div>
+
+      <div class="q-grid">
+        <div class="q avoid-break">
+          <span class="q-num">86</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quanto é <strong>10 ÷ 2</strong>?</p>
+          <ul class="mc inline"><li>( ) A) 5</li><li>( ) B) 8</li><li>( ) C) 12</li><li>( ) D) 20</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">87</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quanto é <strong>15 ÷ 5</strong>?</p>
+          <ul class="mc inline"><li>( ) A) 3</li><li>( ) B) 5</li><li>( ) C) 10</li><li>( ) D) 20</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">88</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantos <strong>biscoitos</strong> ganhou cada amigo do Pedro?</p>
+          <ul class="mc inline"><li>( ) A) 4</li><li>( ) B) 5</li><li>( ) C) 16</li><li>( ) D) 24</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">89</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantos <strong>morangos</strong> ficaram em cada prato?</p>
+          <ul class="mc inline"><li>( ) A) 8</li><li>( ) B) 14</li><li>( ) C) 18</li><li>( ) D) 32</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">90</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quantos morangos a Bia <strong>guardou</strong> para a irmã?</p>
+          <ul class="mc inline"><li>( ) A) 2</li><li>( ) B) 4</li><li>( ) C) 6</li><li>( ) D) 16</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">91</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>A <strong>terça parte</strong> de 15 é:</p>
+          <ul class="mc inline"><li>( ) A) 3</li><li>( ) B) 5</li><li>( ) C) 12</li><li>( ) D) 45</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">92</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p><strong>14 lápis</strong> em <strong>2 estojos</strong> iguais. Quantos em cada?</p>
+          <ul class="mc inline"><li>( ) A) 6</li><li>( ) B) 7</li><li>( ) C) 12</li><li>( ) D) 16</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">93</span> <span class="tag tag-w">Resposta escrita</span>
+          <p>As <strong>10 garrafinhas</strong> foram repartidas igualmente entre <strong>5 crianças</strong>.</p>
+          <p>10 ÷ 5 = ____ garrafinhas para cada</p>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">94</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Complete usando a “irmã” multiplicação:</p>
+        <p>a) 12 ÷ 3 = ____ porque 3 × ____ = 12 &nbsp;&nbsp; b) 8 ÷ 2 = ____ porque 2 × ____ = 8<br>
+        c) 15 ÷ 3 = ____ porque 3 × ____ = 15 &nbsp;&nbsp; d) 20 ÷ 5 = ____ porque 5 × ____ = 20</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">95</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Complete:</p>
+        <p>a) metade de 10 = ____ &nbsp; b) metade de 20 = ____ &nbsp; c) metade de 16 = ____ &nbsp;
+        d) terça parte de 9 = ____ &nbsp; e) terça parte de 12 = ____</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">96</span> <span class="tag tag-ce">Certo ou Errado</span>
+        <div class="ce-list">
+          <div class="ce-item">a) Dividir é repartir em partes iguais.</div>
+          <div class="ce-item">b) A metade de 10 é 2.</div>
+          <div class="ce-item">c) 18 ÷ 2 = 9.</div>
+          <div class="ce-item">d) Cada cesta da Laura ficou com 4 bananas.</div>
+        </div>
+      </div>
+
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção — Hora de formar times</strong>
+        <p>Depois do lanche, <strong>12 crianças</strong> foram brincar. A professora quis formar times
+        iguais: primeiro de <strong>2 em 2</strong>, depois de <strong>3 em 3</strong> e, por último,
+        de <strong>4 em 4</strong>.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">97</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Quantos times foram formados em cada jeito?</p>
+        <p>a) de 2 em 2: 12 ÷ 2 = ____ times &nbsp; b) de 3 em 3: 12 ÷ 3 = ____ times &nbsp; c) de 4 em 4: 12 ÷ 4 = ____ times</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">98</span> <span class="tag tag-w">Desafio — sobrou!</span>
+        <p>A professora tinha <strong>13 adesivos</strong> para dar a <strong>4 crianças</strong>, a
+        mesma quantidade para cada uma. Quantos cada criança ganha? Sobra algum?</p>
+        <p>Cada uma ganha ____ adesivos e sobra ____.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">99</span> <span class="tag tag-w">Desenhe</span>
+        <p>Desenhe <strong>15 bolinhas</strong> e faça um círculo em volta de cada grupo de <strong>5</strong>.
+        Quantos grupos você formou? 15 ÷ 5 = ____</p>
+        <div class="draw-box"></div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">100</span> <span class="tag tag-w">Explique com suas palavras</span>
+        <p>Como a <strong>multiplicação</strong> ajuda a descobrir quanto é <strong>20 ÷ 4</strong>? Explique.</p>
+        <div class="write-lines"><span></span><span></span></div>
+      </div>
+    </section>
+
+    <!-- DESAFIO FINAL -->
+    <section>
+      <h2>Desafio final — Férias na serra</h2>
+      <div class="read-box">
+        <strong>Leia com atenção — A viagem para a casa da tia Lu</strong>
+        <p>Chegaram as férias! A família da Laura ia viajar para a casa da tia Lu, lá na serra. Antes
+        de sair, passaram na feira da Dona Rosa e compraram <strong>2 kg de maçã</strong>,
+        <strong>1 kg de uva</strong> e <strong>meio quilo de queijo</strong>.</p>
+        <p>Eles saíram de casa às <strong>8h</strong> e chegaram às <strong>11h</strong>. No caminho,
+        pararam <strong>meia hora</strong> num posto para lanchar. A Laura levou <strong>3 sacolinhas</strong>
+        com <strong>6 biscoitos</strong> em cada uma, para dividir igualmente entre ela, o Theo e os
+        <strong>4 primos</strong>.</p>
+        <p>A tia Lu tinha preparado uma surpresa no quintal: uma <strong>cama elástica de 3 m</strong>
+        de largura e um balanço pendurado numa <strong>corda de 2 m</strong>. À noite, todos jogaram
+        cartas. A Laura fez <strong>45 pontos</strong> na primeira rodada e <strong>38</strong> na
+        segunda. O Theo fez <strong>90 pontos</strong> no total. Quem ganhou? Descubra nas questões!</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">101</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>a) Quantos <strong>quilos de fruta</strong> a família comprou? _______ kg</p>
+        <p>b) Quanto pesaram <strong>todas</strong> as compras (fruta + queijo), em gramas? _______ g</p>
+      </div>
+
+      <div class="q-grid">
+        <div class="q avoid-break">
+          <span class="q-num">102</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Quanto tempo durou a viagem, das 8h às 11h?</p>
+          <ul class="mc inline"><li>( ) A) 2 horas</li><li>( ) B) 3 horas</li><li>( ) C) 11 horas</li><li>( ) D) 19 horas</li></ul>
+        </div>
+        <div class="q avoid-break">
+          <span class="q-num">103</span> <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Tirando a parada do lanche, quanto tempo o carro <strong>andou</strong>?</p>
+          <ul class="mc"><li>( ) A) 3 horas</li><li>( ) B) 2 horas e meia</li><li>( ) C) 2 horas</li><li>( ) D) 3 horas e meia</li></ul>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">104</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>a) Quantos <strong>biscoitos</strong> a Laura levou? ____ × ____ = ____ biscoitos</p>
+        <p>b) Quantas <strong>crianças</strong> vão dividir os biscoitos (Laura + Theo + 4 primos)? ____</p>
+        <p>c) Quantos biscoitos cada criança vai ganhar? ____ ÷ ____ = ____</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">105</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>a) Quantos pontos a Laura fez <strong>no total</strong>? Mostre a conta: <span class="line" style="min-width:150px;"></span> = ____</p>
+        <p>b) Quem ganhou o jogo? <span class="line"></span> &nbsp; Por quantos pontos? <span class="line" style="min-width:150px;"></span> = ____</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">106</span> <span class="tag tag-ce">Certo ou Errado</span>
+        <div class="ce-list">
+          <div class="ce-item">a) A corda do balanço tem 200 cm.</div>
+          <div class="ce-item">b) A cama elástica tem 30 cm de largura.</div>
+          <div class="ce-item">c) A família chegou antes do meio-dia.</div>
+          <div class="ce-item">d) 1 kg de uva pesa menos que 1 kg de maçã.</div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">107</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A tia Lu vai repartir as <strong>2 kg de maçã</strong> (que são 20 maçãs) igualmente entre
+        as <strong>6 crianças e 4 adultos</strong>. Quantas maçãs cada pessoa ganha?</p>
+        <ul class="mc inline"><li>( ) A) 2</li><li>( ) B) 4</li><li>( ) C) 10</li><li>( ) D) 5</li></ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">108</span> <span class="tag tag-w">Escrita criativa</span>
+        <p>Continue a história! Escreva <strong>3 frases</strong> sobre o segundo dia na casa da tia Lu.
+        Use pelo menos <strong>uma medida</strong> (kg, g, m, cm ou horas) e <strong>uma conta</strong>.</p>
+        <div class="write-lines"><span></span><span></span><span></span><span></span></div>
+      </div>
+    </section>
+
+    <!-- GABARITO -->
+    <section class="gabarito page-break">
+      <h2>Gabarito (professor)</h2>
+      <p style="font-size:9pt;margin-top:0;">Referências de habilidades BNCC: adição/subtração com reagrupamento
+      e problemas (EF02MA05, EF02MA06); multiplicação como adição de parcelas iguais e disposição retangular
+      (EF02MA07; EF03MA07 — aprofundamento); dobro, triplo, metade e terça parte (EF02MA08); divisão por repartição
+      e medida, com e sem resto (EF03MA08 — aprofundamento); comprimento — m, cm, unidades não padronizadas
+      (EF02MA16); massa — g, kg (EF02MA17); calendário e intervalos entre datas (EF02MA18); relógio, horas e
+      intervalos de tempo (EF02MA19).</p>
+      <table class="data">
+        <tr><th>Q.</th><th>Resposta</th><th>Q.</th><th>Resposta</th></tr>
+        <tr><td>1</td><td>C) 1000 g</td><td>55</td><td>A) 83 (47 + 36)</td></tr>
+        <tr><td>2</td><td>B) meio quilo</td><td>56</td><td>B) laranja (83 &gt; 63 &gt; 45)</td></tr>
+        <tr><td>3</td><td>B) 2 kg</td><td>57</td><td>A) 56 (90 − 34)</td></tr>
+        <tr><td>4</td><td>C) 6 kg (5 + 1)</td><td>58</td><td>A) 45</td></tr>
+        <tr><td>5</td><td>A) 1 kg</td><td>59</td><td>B) 80 (exato: 81)</td></tr>
+        <tr><td>6</td><td>A) 1 kg (1000 g)</td><td>60</td><td>a) C b) E (45) c) C (72 − 18) d) C (25 + 36 + 19)</td></tr>
+        <tr><td>7</td><td>A) grama</td><td>61</td><td>a) C b) E c) C d) C</td></tr>
+        <tr><td>8</td><td>B) quilograma</td><td>62</td><td>38 + 26 = 64 frutas</td></tr>
+        <tr><td>9</td><td>a) E (4 kg &lt; 5 kg) b) C c) C d) C</td><td>63</td><td>83 − 45 = 38 laranjas a mais</td></tr>
+        <tr><td>10</td><td>a) C b) E (500 g) c) E (pesam igual) d) C</td><td>64</td><td>a) 35 b) 33 c) 38 d) 65</td></tr>
+        <tr><td>11</td><td>a) 1000 b) 2000 c) 4000 d) 500 e) 1 f) 3</td><td>65</td><td>50 + 35 = 85; 85 − 12 = 73 → R$ 73</td></tr>
+        <tr><td>12</td><td>a) &gt; b) = c) &lt; d) =</td><td>66</td><td>90 − 72 = 18 pastéis</td></tr>
+        <tr><td>13</td><td>amendoim, farinha, feijão, Tomé, arroz, melancia</td><td>67</td><td>Certo: 25. Ele fez 7 − 2 nas unidades em vez de emprestar 1 dezena (12 − 7 = 5; 4 − 2 = 2).</td></tr>
+        <tr><td>14</td><td>5 + 1 + 1 = 7 kg</td><td>68</td><td>Pessoal — conferir se a conta está certa.</td></tr>
+        <tr><td>15</td><td>B) 3 kg e meio (1 kg + 500 g + 2 kg)</td><td>69</td><td>a) 3 × 4 = 12 b) 4 × 5 = 20 c) 5 × 2 = 10 d) 3 × 10 = 30</td></tr>
+        <tr><td>16</td><td>1500 g; não arrebenta</td><td>70</td><td>3 × 4 = 12 maçãs</td></tr>
+        <tr><td>17</td><td>Pessoal — pesam igual (1 kg); a pipoca só ocupa mais espaço.</td><td>71</td><td>B) 15</td></tr>
+        <tr><td>18</td><td>C) 100 cm</td><td>72</td><td>C) 16</td></tr>
+        <tr><td>19</td><td>B) 200 cm</td><td>73</td><td>B) 12</td></tr>
+        <tr><td>20</td><td>B) carro (4 m = 400 cm)</td><td>74</td><td>B) 15 (3 × 5)</td></tr>
+        <tr><td>21</td><td>A) 1 m (60 + 40 = 100 cm)</td><td>75</td><td>B) 24 (4 × 6)</td></tr>
+        <tr><td>22</td><td>A) cm</td><td>76</td><td>B) 10 (5 × 2)</td></tr>
+        <tr><td>23</td><td>C) km</td><td>77</td><td>a) 3 × 4 = 12 b) 10 + 12 = 22 rodas</td></tr>
+        <tr><td>24</td><td>A)</td><td>78</td><td>a) 2 × 10 = 20 b) 16</td></tr>
+        <tr><td>25</td><td>a) C b) E (12 cm &lt; 30 cm) c) C d) C</td><td>79</td><td>a) 12 b) 12 c) 20 d) 15 e) 18</td></tr>
+        <tr><td>26</td><td>a) C b) E (300 cm) c) C d) E</td><td>80</td><td>a) C b) C c) E (20) d) E (9)</td></tr>
+        <tr><td>27</td><td>a) 100 b) 200 c) 500 d) 50 e) 3 f) 1</td><td>81</td><td>B) 12 (3 × 4)</td></tr>
+        <tr><td>28</td><td>150 − 100 = 50 cm</td><td>82</td><td>12 × 2 = 24 fitas</td></tr>
+        <tr><td>29</td><td>2 palmos (24 cm), sobram 6 cm</td><td>83</td><td>2 × 5 = 10</td></tr>
+        <tr><td>30</td><td>régua, mochila, mala, prancha, barbante, carro</td><td>84</td><td>Sim — 3 linhas de 4 ou 4 linhas de 3 dão 12.</td></tr>
+        <tr><td>31</td><td>A) 45 cm</td><td>85</td><td>4</td></tr>
+        <tr><td>32</td><td>A) 50 cm</td><td>86</td><td>A) 5</td></tr>
+        <tr><td>33</td><td>35 + 35 = 70 cm; menos que o muro (80 cm)</td><td>87</td><td>A) 3</td></tr>
+        <tr><td>34</td><td>Pessoal — os palmos têm tamanhos diferentes; usar régua ou fita métrica (unidade padronizada).</td><td>88</td><td>B) 5 (20 ÷ 4)</td></tr>
+        <tr><td>35</td><td>B) 60</td><td>89</td><td>A) 8 (16 ÷ 2)</td></tr>
+        <tr><td>36</td><td>A) 60</td><td>90</td><td>B) 4 (metade de 8)</td></tr>
+        <tr><td>37</td><td>B) 30 min</td><td>91</td><td>B) 5</td></tr>
+        <tr><td>38</td><td>C) 11h (9h + 2 h)</td><td>92</td><td>B) 7</td></tr>
+        <tr><td>39</td><td>B) 1 hora</td><td>93</td><td>2</td></tr>
+        <tr><td>40</td><td>B) 7</td><td>94</td><td>a) 4 b) 4 c) 5 d) 4</td></tr>
+        <tr><td>41</td><td>A) 9h B) 12h C) 4h30 (quatro e meia) D) 6h</td><td>95</td><td>a) 5 b) 10 c) 8 d) 3 e) 4</td></tr>
+        <tr><td>42</td><td>a) 08:00 b) 12:00 c) 17:00 d) 14:00</td><td>96</td><td>a) C b) E (5) c) C d) C</td></tr>
+        <tr><td>43</td><td>a) C b) C c) E (15 minutos) d) C</td><td>97</td><td>a) 6 b) 4 c) 3</td></tr>
+        <tr><td>44</td><td>a) C b) C c) E (7 dias) d) E</td><td>98</td><td>3 adesivos cada, sobra 1</td></tr>
+        <tr><td>45</td><td>a) 60 b) 120 c) 180 d) 30 e) 60 f) 24</td><td>99</td><td>3 grupos</td></tr>
+        <tr><td>46</td><td>17 − 9 = 8 horas</td><td>100</td><td>Pessoal — 4 × 5 = 20, então 20 ÷ 4 = 5.</td></tr>
+        <tr><td>47</td><td>almoço 3, acordar 1, cavalo 4, sair 2, voltar 5</td><td>101</td><td>a) 3 kg b) 3500 g (2000 + 1000 + 500)</td></tr>
+        <tr><td>48</td><td>A) lavar as mãos</td><td>102</td><td>B) 3 horas</td></tr>
+        <tr><td>49</td><td>a) 16h b) 16h30</td><td>103</td><td>B) 2 horas e meia</td></tr>
+        <tr><td>50</td><td>domingo; sábado</td><td>104</td><td>a) 3 × 6 = 18 b) 6 c) 18 ÷ 6 = 3</td></tr>
+        <tr><td>51</td><td>Pessoal — ele ficou 15 minutos; 1 minuto tem 60 segundos, então 15 min é muito mais que 15 s.</td><td>105</td><td>a) 45 + 38 = 83 b) Theo, por 7 pontos (90 − 83)</td></tr>
+        <tr><td>52</td><td>a) 85 b) 85 c) 92 d) 82 e) 92 f) 75 g) 78 h) 72 i) 92 j) 93</td><td>106</td><td>a) C b) E (300 cm) c) C (11h) d) E (pesam igual)</td></tr>
+        <tr><td>53</td><td>a) 25 b) 38 c) 32 d) 34 e) 46 f) 27 g) 43 h) 37 i) 23 j) 27</td><td>107</td><td>A) 2 (20 ÷ 10)</td></tr>
+        <tr><td>54</td><td>A) 63 (38 + 25)</td><td>108</td><td>Pessoal.</td></tr>
+      </table>
+    </section>
+
+    <footer class="print-note">
+      Documento otimizado para impressão A4. BNCC — MEC; referências de habilidades — Nova Escola / Profez (EF02MA05–EF02MA19, EF03MA07, EF03MA08).
+    </footer>
+  </main>
+
+  <script>
+    // Certo ou Errado: acrescenta as caixinhas de marcar em cada item
+    document.querySelectorAll('.ce-item').forEach(el => {
+      const txt = document.createElement('span');
+      txt.innerHTML = el.innerHTML;
+      el.innerHTML = '';
+      el.append(txt);
+      el.insertAdjacentHTML('beforeend',
+        '<span class="ce-opts"><span class="cert">Certo</span> (&nbsp;) &nbsp; <span class="err">Errado</span> (&nbsp;)</span>');
+    });
+
+    // Contas armadas: data-list="38+47,52-27,…" → tabelas Dez./Un.
+    document.querySelectorAll('.vm-grid[data-list]').forEach((grid, g) => {
+      const op = grid.dataset.op;
+      const sub = op !== '+';
+      grid.innerHTML = grid.dataset.list.split(',').map((pair, i) => {
+        const [a, b] = pair.split(/[+-]/).map(s => s.trim().padStart(2, ' '));
+        const top = sub
+          ? '<td class="borrow"></td><td class="borrow"></td>'
+          : '<td class="carry"><span class="carry-box"></span></td><td class="carry"></td>';
+        return `<div class="vm${sub ? ' vm-sub' : ''}"><span class="cap">${'abcdefghij'[i]})</span>
+          <table>
+            <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+            <tr><td></td>${top}</tr>
+            <tr><td></td><td>${a[0]}</td><td>${a[1]}</td></tr>
+            <tr><td class="vm-op">${op}</td><td>${b[0]}</td><td>${b[1]}</td></tr>
+            <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+            <tr class="ans"><td></td><td class="vm-ans">&nbsp;</td><td class="vm-ans">&nbsp;</td></tr>
+          </table></div>`;
+      }).join('');
+    });
+
+    // Relógios analógicos: <span class="clock" data-t="4:30">
+    document.querySelectorAll('.clock[data-t]').forEach(el => {
+      const [h, m] = el.dataset.t.split(':').map(Number);
+      const c = 45, pt = (deg, len) => {
+        const r = (deg - 90) * Math.PI / 180;
+        return [(c + len * Math.cos(r)).toFixed(1), (c + len * Math.sin(r)).toFixed(1)];
+      };
+      let marks = '';
+      for (let i = 1; i <= 12; i++) {
+        const [x1, y1] = pt(i * 30, 38), [x2, y2] = pt(i * 30, 34), [tx, ty] = pt(i * 30, 27);
+        marks += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#37474f" stroke-width="2"/>`;
+        marks += `<text x="${tx}" y="${(+ty + 3.5).toFixed(1)}" font-size="9" text-anchor="middle" font-family="sans-serif" font-weight="bold" fill="#37474f">${i}</text>`;
+      }
+      const [hx, hy] = pt((h % 12 + m / 60) * 30, 16), [mx, my] = pt(m * 6, 25);
+      el.innerHTML = `<svg width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="45" cy="45" r="42" fill="#fff" stroke="#37474f" stroke-width="3"/>${marks}
+        <line x1="45" y1="45" x2="${hx}" y2="${hy}" stroke="#37474f" stroke-width="4" stroke-linecap="round"/>
+        <line x1="45" y1="45" x2="${mx}" y2="${my}" stroke="#e63946" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="45" cy="45" r="3" fill="#37474f"/></svg>`;
+    });
+  </script>
+
+</body>
+</html>
