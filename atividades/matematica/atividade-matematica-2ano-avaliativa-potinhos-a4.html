@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Os potinhos da Laura — Revisão para a avaliativa | 2º ano</title>
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --paper: #fffef8;
+      --accent: #d46a2e;
+      --blue: #2f6f8f;
+      --yellow: #f4d35e;
+      --green: #2a9d8f;
+      --purple: #7b68ee;
+      --pink: #d96c8a;
+      --muted: #6c757d;
+      --border: #dee2e6;
+      --card: #f8f9fa;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background: #e9ecef;
+      line-height: 1.35;
+      font-size: 10.5pt;
+    }
+
+    .sheet {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 1rem;
+      background: var(--paper);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+      padding: 11mm 13mm 14mm;
+    }
+
+    @page { size: A4; margin: 11mm; }
+
+    @media print {
+      body { background: #fff; }
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .sheet {
+        box-shadow: none;
+        margin: 0;
+        max-width: none;
+        min-height: auto;
+        padding: 0;
+      }
+      .no-print { display: none !important; }
+      a[href]:after { content: ""; }
+      .page-break { page-break-before: always; break-before: page; }
+      .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+      main.sheet > section { break-inside: auto; page-break-inside: auto; }
+      .two-col { grid-template-columns: 1fr 1fr; }
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #343a40;
+      color: #fff;
+      padding: 10px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .toolbar button:hover { filter: brightness(1.08); }
+    .toolbar span { font-size: 13px; opacity: 0.9; }
+
+    h1 {
+      font-size: 1.45rem;
+      margin: 0 0 4px;
+      color: var(--accent);
+      text-align: center;
+      line-height: 1.2;
+    }
+    .subtitle {
+      text-align: center;
+      font-weight: 600;
+      color: var(--blue);
+      margin: 0 0 10px;
+      font-size: 0.98rem;
+    }
+
+    .header-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding: 8px 10px;
+      background: linear-gradient(135deg, #fff9e6, #e8f4fc);
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+    }
+    .header-line label {
+      flex: 1;
+      min-width: 140px;
+      font-weight: 600;
+      font-size: 10pt;
+    }
+    .header-line input {
+      border: none;
+      border-bottom: 2px solid var(--blue);
+      background: transparent;
+      width: 100%;
+      min-height: 22px;
+      font: inherit;
+    }
+
+    .intro-box, .part-note {
+      background: var(--card);
+      border-left: 5px solid var(--green);
+      padding: 8px 12px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 10px;
+      font-size: 10.5pt;
+    }
+    .part-note { border-left-color: var(--accent); background: #fff6ee; }
+
+    h2 {
+      font-size: 1.02rem;
+      margin: 12px 0 8px;
+      padding: 6px 12px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 8px;
+      display: block;
+      width: fit-content;
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+    .stick { break-after: avoid; page-break-after: avoid; }
+    h3 {
+      font-size: 0.92rem;
+      color: var(--blue);
+      margin: 8px 0 4px;
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+
+    .concept {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin: 6px 0;
+    }
+    .concept p, .read-box p, .q p, .tip-box p, .example p { margin: 4px 0; }
+
+    .read-box {
+      background: linear-gradient(180deg, #e3f2fd 0%, #fff 100%);
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      padding: 8px 11px;
+      margin: 8px 0;
+    }
+    .read-box strong { color: var(--blue); }
+
+    .tip-box {
+      background: linear-gradient(135deg, #fff9e6, #fff3cd);
+      border: 2px solid var(--yellow);
+      border-radius: 10px;
+      padding: 7px 10px;
+      margin: 8px 0;
+      font-size: 10pt;
+    }
+    .tip-box strong { color: #856404; }
+
+    .example {
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 8px 10px 10px;
+      background: #fff7f0;
+      margin: 8px 0;
+    }
+    .example .tag-ex {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      font-size: 9pt;
+      border-radius: 20px;
+      padding: 2px 8px;
+      margin-bottom: 4px;
+    }
+
+    .q {
+      margin: 10px 0;
+      padding: 8px 10px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .q-num {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+    .tag {
+      font-size: 9pt;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .tag-mc { background: #cfe2ff; color: #084298; }
+    .tag-w { background: #d1e7dd; color: #0f5132; }
+    .star { color: var(--accent); font-weight: 800; }
+
+    .mc { margin: 6px 0 2px; padding-left: 0; list-style: none; }
+    .mc li { margin: 3px 0; padding: 2px 6px; border-radius: 6px; }
+
+    .line {
+      border-bottom: 1.5px dotted var(--muted);
+      min-height: 1.35em;
+      display: inline-block;
+      min-width: 110px;
+    }
+    .line.short { min-width: 48px; }
+    .line.block { display: block; width: 100%; margin: 7px 0; }
+
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 6px 0;
+      font-size: 10pt;
+    }
+    table.data th, table.data td {
+      border: 1px solid var(--border);
+      padding: 5px 7px;
+      text-align: center;
+    }
+    table.data th { background: #e9ecef; }
+    table.data td.left, table.data th.left { text-align: left; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 14px;
+      align-items: start;
+    }
+    @media screen and (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .slot {
+      display: inline-block;
+      min-width: 1.7em;
+      min-height: 1.15em;
+      border-bottom: 2px solid var(--ink);
+      text-align: center;
+      padding: 0 3px;
+      line-height: 1.15;
+      font-weight: 800;
+    }
+    .slot.a { background: #ffe7a3; }
+    .slot.b { background: #d4e6ff; }
+    .slot.c { background: #d3f3de; }
+    .given { color: var(--blue); font-weight: 800; }
+
+    .legend { font-size: 10pt; margin: 4px 0 6px; }
+    .legend .slot { min-width: 1.4em; margin: 0 4px; }
+
+    .houses {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .house {
+      border: 2px solid var(--blue);
+      border-radius: 10px;
+      padding: 6px 8px 8px;
+      background: #f7fbff;
+    }
+    .house h3 { text-align: center; margin: 0 0 4px; }
+    .house ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px 8px;
+      font-weight: 700;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 5px 10px;
+      margin-top: 6px;
+    }
+    .fact {
+      font-weight: 700;
+      background: var(--card);
+      border-radius: 8px;
+      padding: 3px 6px;
+      font-size: 11pt;
+    }
+    .fact .n {
+      display: inline-block;
+      min-width: 1.3em;
+      color: var(--muted);
+      font-size: 8.5pt;
+      font-weight: 700;
+    }
+
+    .mop-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-top: 6px;
+    }
+    .mop {
+      font-family: Consolas, "Courier New", monospace;
+      font-weight: 800;
+      font-size: 1.15rem;
+      line-height: 1.15;
+    }
+    .mop .lbl {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 8pt;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .mop table { border-collapse: collapse; }
+    .mop td {
+      min-width: 0.85em;
+      height: 1.2em;
+      text-align: center;
+      padding: 1px 2px;
+    }
+    .mop td.op { font-size: 1rem; }
+    .mop td.rule { border-top: 2px solid var(--ink); height: 0; padding: 0; }
+    .mop td.box {
+      border: 1.5px solid var(--blue);
+      border-radius: 3px;
+      min-width: 1.15em;
+      height: 1.45em;
+      background: #f7fbff;
+    }
+    .mop td.tiny {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: var(--muted);
+      height: auto;
+      line-height: 1;
+      padding-top: 3px;
+    }
+
+    .example-row, .share-body, .pot-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 8px 10px;
+    }
+    .pile {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+      width: 58px;
+      min-height: 46px;
+      padding: 5px;
+      border: 2px dashed var(--muted);
+      border-radius: 8px;
+      background: #fff;
+      align-content: center;
+      justify-content: center;
+    }
+    .pile.wide { width: 82px; }
+    .pile.three { width: 48px; }
+    .pile small, .pot small {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 8pt;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 1px solid #8a3e12;
+      display: inline-block;
+    }
+    .arrow {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent);
+      padding-bottom: 28px;
+    }
+    .pot { width: 76px; text-align: center; }
+    .pot-jar {
+      width: 70px;
+      min-height: 74px;
+      margin: 10px auto 2px;
+      border: 3px solid var(--blue);
+      border-radius: 6px 6px 16px 16px;
+      background: #f3f9ff;
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 8px 4px;
+    }
+    .pot-jar::before {
+      content: "";
+      position: absolute;
+      top: -9px;
+      left: 12px;
+      width: 34px;
+      height: 8px;
+      border: 3px solid var(--blue);
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+      background: #d9ecff;
+    }
+    .pot-jar.empty {
+      background: #fff;
+      border-style: dashed;
+      min-height: 78px;
+    }
+    .pot-jar.empty::before {
+      border-style: dashed;
+      background: #fff;
+    }
+    .share { margin: 8px 0; padding-top: 4px; }
+    .eq {
+      font-weight: 800;
+      font-size: 12pt;
+      margin: 4px 0;
+    }
+
+    .families {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .family {
+      background: #f7fbff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-weight: 700;
+    }
+
+    table.plot {
+      border-collapse: collapse;
+      margin: 4px auto;
+    }
+    table.plot th, table.plot td {
+      border: 1px solid #adb5bd;
+      width: 46px;
+      height: 18px;
+      text-align: center;
+      padding: 0;
+      font-size: 10pt;
+      font-weight: 800;
+      line-height: 1;
+    }
+    table.plot th.axis {
+      width: 22px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 8pt;
+      text-align: right;
+      padding-right: 4px;
+    }
+    table.plot th.name {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 8pt;
+      background: #e9ecef;
+      height: 28px;
+    }
+    table.plot td.on-l { background: #c5ddf0; }
+    table.plot td.on-j { background: #b7e4dc; }
+    table.plot td.on-g { background: #f8d7b5; }
+    .plot-caption { font-size: 9pt; text-align: center; margin: 0; color: var(--muted); }
+
+    .gabarito {
+      background: #fff8e7;
+      border: 2px solid var(--yellow);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 9.5pt;
+    }
+    .gabarito h2 { background: #856404; }
+    .gabarito table { font-size: 8.7pt; }
+    .gabarito td, .gabarito th { text-align: left; vertical-align: top; }
+    .gabarito td:first-child, .gabarito th:first-child { width: 4.2em; text-align: center; }
+    .gabarito tr { break-inside: avoid; page-break-inside: avoid; }
+
+    footer.print-note {
+      margin-top: 14px;
+      font-size: 9pt;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .avoid-break, .share, .example, .house, .family, .plot-wrap, .mop {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">Imprimir / Salvar em PDF</button>
+    <span>Use Ctrl+P → “Salvar como PDF”. Formato A4. O gabarito começa em página nova: dá para não imprimir essa parte.</span>
+  </div>
+
+  <main class="sheet">
+    <header>
+      <h1>Os potinhos da Laura</h1>
+      <p class="subtitle">Matemática — Revisão e aprofundamento | 2º ano do Ensino Fundamental</p>
+      <div class="header-line">
+        <label>Nome: <input type="text" aria-label="Nome do aluno" /></label>
+        <label>Data: <input type="text" aria-label="Data" /></label>
+        <label>Turma: <input type="text" aria-label="Turma" /></label>
+      </div>
+      <div class="intro-box">
+        <strong>Como usar esta atividade:</strong> revisão para a avaliativa. Os temas são
+        <strong>multiplicação e divisão</strong>, <strong>tabelas e gráficos</strong> e
+        <strong>combinando possibilidades e proporcionalidade</strong>.
+        Pode fazer em dois dias: primeiro as Partes 1, 2 e 3; depois o restante e o desafio.
+        Nas múltiplas escolhas, marque <strong>X</strong>. Nos potinhos vazios, desenhe as bolinhas.
+        O ★ é um pouquinho mais difícil. O gabarito fica no final, para um adulto conferir.
+      </div>
+    </header>
+
+    <section>
+      <h2>Parte 1 — Multiplicação: grupos iguais</h2>
+      <div class="concept">
+        <p><strong>Multiplicar é juntar grupos com a mesma quantidade.</strong> 4 × 3 significa 4 grupos de 3. Isso é o mesmo que 3 + 3 + 3 + 3 = 12. O sinal × lê-se “vezes”.</p>
+        <p>Na conta <strong>A × B = C</strong>, A e B são os números que a gente multiplica e C é o resultado. Às vezes falta o A, às vezes o B, às vezes o C.</p>
+      </div>
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>A Laura adora brincar, e a Mamãe Gilmara gosta de ver a casa limpa e organizada. O Papai Joel, brincalhão, transforma a arrumação em jogo. Eles guardam brinquedos, panos e livros em grupos iguais. Cada grupo igual vira uma multiplicação.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">1</span>
+        <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A Laura fez 4 grupos com 3 carrinhos em cada grupo. Quantos carrinhos há?</p>
+        <ul class="mc">
+          <li>( ) A) 7</li>
+          <li>( ) B) 43</li>
+          <li>( ) C) 12</li>
+          <li>( ) D) 9</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">2</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Escreva cada soma de parcelas iguais como uma multiplicação. Depois resolva.</p>
+        <p>a) 2 + 2 + 2 + 2 + 2 = <span class="slot"></span> × <span class="slot"></span> = <span class="slot"></span></p>
+        <p>b) 4 + 4 + 4 = <span class="slot"></span> × <span class="slot"></span> = <span class="slot"></span></p>
+        <p>c) 5 + 5 + 5 + 5 = <span class="slot"></span> × <span class="slot"></span> = <span class="slot"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">3</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Contas armadas. Um algarismo em cada quadradinho: a dezena na esquerda (D) e a unidade na direita (U).</p>
+        <div class="mop-grid">
+          <div class="mop avoid-break">
+            <div class="lbl">a)</div>
+            <table>
+              <tr><td></td><td></td><td>3</td></tr>
+              <tr><td class="op">×</td><td></td><td>5</td></tr>
+              <tr><td class="rule" colspan="3"></td></tr>
+              <tr><td></td><td class="tiny">D</td><td class="tiny">U</td></tr>
+              <tr><td></td><td class="box"></td><td class="box"></td></tr>
+            </table>
+          </div>
+          <div class="mop avoid-break">
+            <div class="lbl">b)</div>
+            <table>
+              <tr><td></td><td></td><td>6</td></tr>
+              <tr><td class="op">×</td><td></td><td>4</td></tr>
+              <tr><td class="rule" colspan="3"></td></tr>
+              <tr><td></td><td class="tiny">D</td><td class="tiny">U</td></tr>
+              <tr><td></td><td class="box"></td><td class="box"></td></tr>
+            </table>
+          </div>
+          <div class="mop avoid-break">
+            <div class="lbl">c)</div>
+            <table>
+              <tr><td></td><td></td><td>8</td></tr>
+              <tr><td class="op">×</td><td></td><td>2</td></tr>
+              <tr><td class="rule" colspan="3"></td></tr>
+              <tr><td></td><td class="tiny">D</td><td class="tiny">U</td></tr>
+              <tr><td></td><td class="box"></td><td class="box"></td></tr>
+            </table>
+          </div>
+          <div class="mop avoid-break">
+            <div class="lbl">d)</div>
+            <table>
+              <tr><td></td><td></td><td>5</td></tr>
+              <tr><td class="op">×</td><td></td><td>5</td></tr>
+              <tr><td class="rule" colspan="3"></td></tr>
+              <tr><td></td><td class="tiny">D</td><td class="tiny">U</td></tr>
+              <tr><td></td><td class="box"></td><td class="box"></td></tr>
+            </table>
+          </div>
+          <div class="mop avoid-break">
+            <div class="lbl">e)</div>
+            <table>
+              <tr><td></td><td></td><td>7</td></tr>
+              <tr><td class="op">×</td><td></td><td>3</td></tr>
+              <tr><td class="rule" colspan="3"></td></tr>
+              <tr><td></td><td class="tiny">D</td><td class="tiny">U</td></tr>
+              <tr><td></td><td class="box"></td><td class="box"></td></tr>
+            </table>
+          </div>
+          <div class="mop avoid-break">
+            <div class="lbl">f)</div>
+            <table>
+              <tr><td></td><td></td><td>4</td></tr>
+              <tr><td class="op">×</td><td></td><td>6</td></tr>
+              <tr><td class="rule" colspan="3"></td></tr>
+              <tr><td></td><td class="tiny">D</td><td class="tiny">U</td></tr>
+              <tr><td></td><td class="box"></td><td class="box"></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <span class="q-num">4</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Complete as casas da tabuada. Os números <span class="given">azuis</span> já estão prontos. Dica: na casa do 4, os resultados crescem de 4 em 4.</p>
+        <div class="houses">
+          <div class="house">
+            <h3>Casa do 2</h3>
+            <ul>
+              <li>2 × 1 = <span class="slot c"></span></li>
+              <li>2 × 2 = <span class="given">4</span></li>
+              <li>2 × 3 = <span class="slot c"></span></li>
+              <li>2 × 4 = <span class="slot c"></span></li>
+              <li>2 × 5 = <span class="given">10</span></li>
+              <li>2 × 6 = <span class="slot c"></span></li>
+              <li>2 × 7 = <span class="slot c"></span></li>
+              <li>2 × 8 = <span class="given">16</span></li>
+              <li>2 × 9 = <span class="slot c"></span></li>
+              <li>2 × 10 = <span class="slot c"></span></li>
+            </ul>
+          </div>
+          <div class="house">
+            <h3>Casa do 3</h3>
+            <ul>
+              <li>3 × 1 = <span class="given">3</span></li>
+              <li>3 × 2 = <span class="slot c"></span></li>
+              <li>3 × 3 = <span class="slot c"></span></li>
+              <li>3 × 4 = <span class="given">12</span></li>
+              <li>3 × 5 = <span class="slot c"></span></li>
+              <li>3 × 6 = <span class="slot c"></span></li>
+              <li>3 × 7 = <span class="slot c"></span></li>
+              <li>3 × 8 = <span class="slot c"></span></li>
+              <li>3 × 9 = <span class="slot c"></span></li>
+              <li>3 × 10 = <span class="given">30</span></li>
+            </ul>
+          </div>
+          <div class="house">
+            <h3>Casa do 4</h3>
+            <ul>
+              <li>4 × 1 = <span class="given">4</span></li>
+              <li>4 × 2 = <span class="slot c"></span></li>
+              <li>4 × 3 = <span class="slot c"></span></li>
+              <li>4 × 4 = <span class="given">16</span></li>
+              <li>4 × 5 = <span class="slot c"></span></li>
+              <li>4 × 6 = <span class="slot c"></span></li>
+              <li>4 × 7 = <span class="given">28</span></li>
+              <li>4 × 8 = <span class="slot c"></span></li>
+              <li>4 × 9 = <span class="slot c"></span></li>
+              <li>4 × 10 = <span class="slot c"></span></li>
+            </ul>
+          </div>
+          <div class="house">
+            <h3>Casa do 5</h3>
+            <ul>
+              <li>5 × 1 = <span class="slot c"></span></li>
+              <li>5 × 2 = <span class="slot c"></span></li>
+              <li>5 × 3 = <span class="given">15</span></li>
+              <li>5 × 4 = <span class="slot c"></span></li>
+              <li>5 × 5 = <span class="slot c"></span></li>
+              <li>5 × 6 = <span class="given">30</span></li>
+              <li>5 × 7 = <span class="slot c"></span></li>
+              <li>5 × 8 = <span class="slot c"></span></li>
+              <li>5 × 9 = <span class="slot c"></span></li>
+              <li>5 × 10 = <span class="given">50</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="q">
+        <span class="q-num">5</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Em cada conta <strong>A × B = C</strong>, descubra quem falta. O quadradinho colorido é o número escondido.</p>
+        <p class="legend">
+          <span class="slot a">A</span> primeiro número
+          <span class="slot b">B</span> segundo número
+          <span class="slot c">C</span> resultado
+        </p>
+        <div class="facts">
+          <div class="fact"><span class="n">1</span> 3 × 4 = <span class="slot c"></span></div>
+          <div class="fact"><span class="n">2</span> <span class="slot a"></span> × 5 = 20</div>
+          <div class="fact"><span class="n">3</span> 6 × <span class="slot b"></span> = 18</div>
+          <div class="fact"><span class="n">4</span> <span class="slot a"></span> × 2 = 14 <span class="star">★</span></div>
+          <div class="fact"><span class="n">5</span> 4 × <span class="slot b"></span> = 16</div>
+          <div class="fact"><span class="n">6</span> 8 × 2 = <span class="slot c"></span></div>
+          <div class="fact"><span class="n">7</span> 5 × <span class="slot b"></span> = 30 <span class="star">★</span></div>
+          <div class="fact"><span class="n">8</span> <span class="slot a"></span> × 3 = 27 <span class="star">★</span></div>
+          <div class="fact"><span class="n">9</span> 7 × 5 = <span class="slot c"></span> <span class="star">★</span></div>
+          <div class="fact"><span class="n">10</span> 10 × <span class="slot b"></span> = 40</div>
+          <div class="fact"><span class="n">11</span> <span class="slot a"></span> × 4 = 24</div>
+          <div class="fact"><span class="n">12</span> 9 × <span class="slot b"></span> = 18 <span class="star">★</span></div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">6</span>
+        <span class="tag tag-mc">Múltipla escolha</span>
+        <p>O Papai Joel deu 5 pulos e repetiu isso 4 vezes, brincando com a Laura. Qual conta mostra o total de pulos?</p>
+        <ul class="mc">
+          <li>( ) A) 5 × 4 = 20</li>
+          <li>( ) B) 5 + 4 = 9</li>
+          <li>( ) C) 5 × 5 = 25</li>
+          <li>( ) D) 4 + 4 + 4 = 12</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">7</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>A Mamãe Gilmara guardou os panos de prato em 3 gavetas, com 6 panos em cada uma. Escreva a multiplicação e diga quantos panos há ao todo.</p>
+        <p>Conta: <span class="line short"></span> × <span class="line short"></span> = <span class="line short"></span></p>
+        <p>Resposta: <span class="line"></span> panos.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Parte 2 — Divisão com potinhos</h2>
+      <div class="concept">
+        <p><strong>Dividir, neste método, é repartir unidades iguais nos potinhos.</strong> Na conta 12 dividido para 3, temos 12 unidades distribuídas igualmente em 3 potinhos. Em cada potinho ficam 4 unidades. Por isso 12 ÷ 3 = 4. Lê-se: “12 dividido para 3 é igual a 4”.</p>
+        <p>Há outro jeito de pensar: a quantidade de cada potinho já é conhecida, e a pergunta é <strong>quantos potinhos</strong> cabem. Se há 12 bolinhas e cada potinho recebe 4, cabem 3 potinhos, porque 4 + 4 + 4 = 12.</p>
+        <p>Às vezes sobra alguma unidade, porque não deu para repartir tudo em partes iguais. A multiplicação confere a divisão: se 3 × 4 = 12, então 12 ÷ 3 = 4 e 12 ÷ 4 = 3.</p>
+      </div>
+
+      <div class="example avoid-break">
+        <span class="tag-ex">Exemplo resolvido</span>
+        <p>12 bolinhas vão ser distribuídas igualmente em 3 potinhos.</p>
+        <div class="example-row">
+          <div>
+            <div class="pile wide" aria-hidden="true">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+            <small style="display:block;text-align:center;font-weight:700;">monte: 12</small>
+          </div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="pot-row">
+            <div class="pot">
+              <div class="pot-jar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+              <small>potinho 1 · 4</small>
+            </div>
+            <div class="pot">
+              <div class="pot-jar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+              <small>potinho 2 · 4</small>
+            </div>
+            <div class="pot">
+              <div class="pot-jar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+              <small>potinho 3 · 4</small>
+            </div>
+          </div>
+        </div>
+        <p class="eq">12 dividido para 3 = 4 &nbsp;&nbsp; ou &nbsp;&nbsp; 12 ÷ 3 = 4</p>
+        <p>Prova com a multiplicação: 3 × 4 = 12.</p>
+      </div>
+
+      <div class="tip-box avoid-break">
+        <strong>Conferiu?</strong> Multiplique o que ficou em cada potinho pela quantidade de potinhos. O resultado tem que voltar a ser o monte.
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">8</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Estes potinhos já estão prontos. Cada um tem a mesma quantidade. Observe e complete.</p>
+        <div class="pot-row">
+          <div class="pot">
+            <div class="pot-jar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+            <small>potinho 1</small>
+          </div>
+          <div class="pot">
+            <div class="pot-jar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+            <small>potinho 2</small>
+          </div>
+          <div class="pot">
+            <div class="pot-jar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+            <small>potinho 3</small>
+          </div>
+        </div>
+        <p>a) Quantas bolinhas há ao todo? <span class="line short"></span></p>
+        <p>b) Escreva a divisão: <span class="line short"></span> ÷ <span class="line short"></span> = <span class="line short"></span></p>
+        <p>c) Escreva a multiplicação que prova: <span class="line short"></span> × <span class="line short"></span> = <span class="line short"></span></p>
+      </div>
+
+      <div class="q">
+        <span class="q-num">9</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p class="stick">Desenhe as bolinhas nos potinhos, todas com a mesma quantidade. Depois escreva a divisão.</p>
+
+        <div class="share">
+          <p><strong>a)</strong> Reparta 8 bolinhas em 2 potinhos.</p>
+          <div class="share-body">
+            <div>
+              <div class="pile">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+              <small style="display:block;text-align:center;font-weight:700;">monte: 8</small>
+            </div>
+            <div class="arrow">→</div>
+            <div class="pot">
+              <div class="pot-jar empty"></div>
+              <small>potinho 1</small>
+            </div>
+            <div class="pot">
+              <div class="pot-jar empty"></div>
+              <small>potinho 2</small>
+            </div>
+          </div>
+          <p class="eq">8 dividido para 2 = <span class="slot c"></span></p>
+        </div>
+
+        <div class="share">
+          <p><strong>b)</strong> Reparta 9 bolinhas em 3 potinhos.</p>
+          <div class="share-body">
+            <div>
+              <div class="pile three">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+              <small style="display:block;text-align:center;font-weight:700;">monte: 9</small>
+            </div>
+            <div class="arrow">→</div>
+            <div class="pot">
+              <div class="pot-jar empty"></div>
+              <small>potinho 1</small>
+            </div>
+            <div class="pot">
+              <div class="pot-jar empty"></div>
+              <small>potinho 2</small>
+            </div>
+            <div class="pot">
+              <div class="pot-jar empty"></div>
+              <small>potinho 3</small>
+            </div>
+          </div>
+          <p class="eq">9 dividido para 3 = <span class="slot c"></span></p>
+        </div>
+
+        <div class="share">
+          <p><strong>c)</strong> Reparta 10 bolinhas em 5 potinhos. Desta vez o monte está só em número: imagine as 10 bolinhas.</p>
+          <div class="pot-row">
+            <div class="pot"><div class="pot-jar empty"></div><small>1</small></div>
+            <div class="pot"><div class="pot-jar empty"></div><small>2</small></div>
+            <div class="pot"><div class="pot-jar empty"></div><small>3</small></div>
+            <div class="pot"><div class="pot-jar empty"></div><small>4</small></div>
+            <div class="pot"><div class="pot-jar empty"></div><small>5</small></div>
+          </div>
+          <p class="eq">10 dividido para 5 = <span class="slot c"></span></p>
+        </div>
+
+        <div class="share">
+          <p><strong>d)</strong> Reparta 16 bolinhas em 4 potinhos.</p>
+          <div class="pot-row">
+            <div class="pot"><div class="pot-jar empty"></div><small>potinho 1</small></div>
+            <div class="pot"><div class="pot-jar empty"></div><small>potinho 2</small></div>
+            <div class="pot"><div class="pot-jar empty"></div><small>potinho 3</small></div>
+            <div class="pot"><div class="pot-jar empty"></div><small>potinho 4</small></div>
+          </div>
+          <p class="eq">16 dividido para 4 = <span class="slot c"></span></p>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">10</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Agora você já sabe quantos vão em cada potinho. A pergunta é: <strong>quantos potinhos</strong>?</p>
+        <p>A Laura tem 12 biscoitos. Ela quer colocar 3 biscoitos em cada potinho, para o lanche com o Papai Joel. Quantos potinhos ela enche?</p>
+        <p>Resposta: <span class="line short"></span> potinhos.</p>
+        <p>Prova: <span class="line short"></span> × <span class="line short"></span> = 12</p>
+      </div>
+
+      <div class="q">
+        <span class="q-num">11</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Complete as divisões. Se ajudar, pense na multiplicação. As cores são as mesmas da questão 5: amarelo é o primeiro número, azul é o segundo, verde é o resultado.</p>
+        <div class="facts">
+          <div class="fact"><span class="n">1</span> 8 ÷ 2 = <span class="slot c"></span></div>
+          <div class="fact"><span class="n">2</span> 12 ÷ 3 = <span class="slot c"></span></div>
+          <div class="fact"><span class="n">3</span> 15 ÷ 5 = <span class="slot c"></span></div>
+          <div class="fact"><span class="n">4</span> 20 ÷ 4 = <span class="slot c"></span></div>
+          <div class="fact"><span class="n">5</span> 18 ÷ 3 = <span class="slot c"></span></div>
+          <div class="fact"><span class="n">6</span> 14 ÷ 2 = <span class="slot c"></span></div>
+          <div class="fact"><span class="n">7</span> 16 ÷ 4 = <span class="slot c"></span></div>
+          <div class="fact"><span class="n">8</span> 25 ÷ 5 = <span class="slot c"></span></div>
+          <div class="fact"><span class="n">9</span> 21 ÷ 3 = <span class="slot c"></span></div>
+          <div class="fact"><span class="n">10</span> 24 ÷ 4 = <span class="slot c"></span></div>
+          <div class="fact"><span class="n">11</span> 30 ÷ 5 = <span class="slot c"></span></div>
+          <div class="fact"><span class="n">12</span> 9 ÷ 3 = <span class="slot c"></span></div>
+        </div>
+        <p style="margin-top:8px;">Agora o resultado já está escrito. Descubra o número que falta.</p>
+        <div class="facts">
+          <div class="fact"><span class="n">13</span> <span class="slot a"></span> ÷ 4 = 5</div>
+          <div class="fact"><span class="n">14</span> 18 ÷ <span class="slot b"></span> = 6</div>
+          <div class="fact"><span class="n">15</span> <span class="slot a"></span> ÷ 2 = 7</div>
+          <div class="fact"><span class="n">16</span> 15 ÷ <span class="slot b"></span> = 3</div>
+          <div class="fact"><span class="n">17</span> <span class="slot a"></span> ÷ 6 = 4</div>
+          <div class="fact"><span class="n">18</span> 16 ÷ <span class="slot b"></span> = 2 <span class="star">★</span></div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">12</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Família da conta. A multiplicação e a divisão andam juntas. Complete as duas divisões de cada família.</p>
+        <div class="families">
+          <div class="family">
+            4 × 5 = 20<br />
+            20 ÷ 5 = <span class="slot c"></span><br />
+            20 ÷ 4 = <span class="slot c"></span>
+          </div>
+          <div class="family">
+            3 × 6 = 18<br />
+            18 ÷ 6 = <span class="slot c"></span><br />
+            18 ÷ 3 = <span class="slot c"></span>
+          </div>
+          <div class="family">
+            5 × 3 = 15<br />
+            15 ÷ 3 = <span class="slot c"></span><br />
+            15 ÷ 5 = <span class="slot c"></span>
+          </div>
+          <div class="family">
+            8 × 2 = 16<br />
+            16 ÷ 2 = <span class="slot c"></span><br />
+            16 ÷ 8 = <span class="slot c"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">13</span>
+        <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A Laura tem 18 figurinhas para repartir em 3 potinhos iguais. Quantas figurinhas ficam em cada potinho?</p>
+        <ul class="mc">
+          <li>( ) A) 15</li>
+          <li>( ) B) 21</li>
+          <li>( ) C) 9</li>
+          <li>( ) D) 6</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">14</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p><span class="star">★</span> A Laura tem 13 lápis para guardar em 3 potinhos, com a mesma quantidade em cada um. Não vai dar inteiro: vai sobrar.</p>
+        <p>Quantos lápis ficam em cada potinho? <span class="line short"></span></p>
+        <p>Quantos sobram? <span class="line short"></span></p>
+        <p>Conta que ajuda: <span class="line short"></span> × <span class="line short"></span> = <span class="line short"></span> e sobra <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">15</span>
+        <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual divisão é exata, sem sobra?</p>
+        <ul class="mc">
+          <li>( ) A) 10 ÷ 3</li>
+          <li>( ) B) 12 ÷ 4</li>
+          <li>( ) C) 11 ÷ 2</li>
+          <li>( ) D) 13 ÷ 5</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="avoid-break">
+      <h2>Parte 3 — Probleminhas da família</h2>
+      <div class="read-box">
+        <strong>Leia com atenção</strong>
+        <p>Cada probleminha acontece na casa da Laura. Escreva a conta, não só o número final. Se a história reparte em potinhos, grupos ou gavetas iguais, pode ser divisão. Se junta grupos iguais, é multiplicação.</p>
+      </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">16</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>A Laura tem 6 pulseiras. O Papai Joel disse: “Vou te dar o dobro dessa quantidade para a brincadeira.” Quantas pulseiras o Joel vai dar?</p>
+        <p>Resposta: <span class="line"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">17</span>
+        <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A Mamãe Gilmara quer a estante limpa e organizada. Há 4 prateleiras e em cada uma cabem 5 livros. Quantos livros cabem na estante?</p>
+        <ul class="mc">
+          <li>( ) A) 9</li>
+          <li>( ) B) 45</li>
+          <li>( ) C) 15</li>
+          <li>( ) D) 20</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">18</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>O Joel assou 16 biscoitos. A Laura vai repartir igualmente em 4 potinhos. Quantos biscoitos ficam em cada potinho?</p>
+        <p>Resposta: <span class="line short"></span> &nbsp; Prova: <span class="line short"></span> × <span class="line short"></span> = 16</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">19</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>A Laura combinou com o Joel: 6 rodadas de pula-pula, com 3 pulos em cada rodada. Quantos pulos ela deu no total? Escreva a conta.</p>
+        <p>Conta: <span class="line"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">20</span>
+        <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A Gilmara separou 15 toalhas limpas para dobrar em pilhas de 5 toalhas. Quantas pilhas ela fez?</p>
+        <ul class="mc">
+          <li>( ) A) 3</li>
+          <li>( ) B) 10</li>
+          <li>( ) C) 20</li>
+          <li>( ) D) 75</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">21</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Na brincadeira do Papai Joel, formaram 3 times com 4 crianças em cada um.</p>
+        <p>a) Quantas crianças há? <span class="line short"></span> &nbsp; Conta: <span class="line short"></span></p>
+        <p>b) Se chegar mais 1 time com a mesma quantidade, quantas crianças haverá? <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">22</span>
+        <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A Laura tinha 20 adesivos. Deu a metade para uma amiga. Com quantos adesivos a Laura ficou?</p>
+        <ul class="mc">
+          <li>( ) A) 40</li>
+          <li>( ) B) 18</li>
+          <li>( ) C) 10</li>
+          <li>( ) D) 2</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">23</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>A Mamãe Gilmara comprou 3 pacotes de sabão, com 4 sabões em cada pacote. Ela vai usar 2 sabões hoje para lavar a roupa. Quantos sabões sobram?</p>
+        <p>Conta: <span class="line"></span></p>
+        <p>Sobram: <span class="line short"></span> sabões.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">24</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>O Papai Joel tem 18 carrinhos. Quer colocar a mesma quantidade em 3 caixas. Quantos carrinhos ficam em cada caixa? Escreva também a multiplicação que prova.</p>
+        <p>Cada caixa: <span class="line short"></span> &nbsp; Prova: <span class="line"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">25</span>
+        <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A Laura organizou os lápis de cor da Mamãe: 2 potes com 8 lápis cada. Qual conta está certa?</p>
+        <ul class="mc">
+          <li>( ) A) 2 × 8 = 16</li>
+          <li>( ) B) 2 + 8 = 10</li>
+          <li>( ) C) 8 ÷ 2 = 4</li>
+          <li>( ) D) 8 − 2 = 6</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">26</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Invente um probleminha da Laura, do Joel ou da Mamãe Gilmara usando a conta 5 × 3. Depois resolva.</p>
+        <p>Problema:</p>
+        <span class="line block"></span>
+        <span class="line block"></span>
+        <p>Resposta: <span class="line"></span></p>
+      </div>
+    </section>
+
+    <div class="part-note page-break">
+      <strong>Segunda parte da revisão.</strong>
+      Se as Partes 1, 2 e 3 ficaram para um dia, comece aqui no outro.
+      Agora vêm tabelas, gráficos, possibilidades e proporcionalidade — ainda com a Laura, o Joel e a Gilmara.
+    </div>
+
+    <section>
+      <h2>Parte 4 — Tabelas e gráficos</h2>
+      <div class="concept">
+        <p><strong>Tabela</strong> organiza informações em linhas e colunas. <strong>Gráfico de colunas</strong> mostra as mesmas quantidades pela altura: coluna mais alta, quantidade maior. Cada quadradinho vale 1.</p>
+      </div>
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>A turma da Laura respondeu: “Qual brincadeira você mais gosta?” A tabela está aqui embaixo. O total ainda está vazio.</p>
+      </div>
+
+      <table class="data avoid-break">
+        <tr>
+          <th class="left">Brincadeira</th>
+          <th>Número de votos</th>
+        </tr>
+        <tr><td class="left">Pular corda</td><td>8</td></tr>
+        <tr><td class="left">Boneca</td><td>5</td></tr>
+        <tr><td class="left">Carrinho</td><td>7</td></tr>
+        <tr><td class="left">Desenho</td><td>4</td></tr>
+        <tr><td class="left">Bola</td><td>6</td></tr>
+        <tr><td class="left"><strong>Total</strong></td><td><span class="slot c"></span></td></tr>
+      </table>
+
+      <div class="q avoid-break">
+        <span class="q-num">27</span>
+        <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual brincadeira teve mais votos?</p>
+        <ul class="mc">
+          <li>( ) A) Boneca</li>
+          <li>( ) B) Pular corda</li>
+          <li>( ) C) Desenho</li>
+          <li>( ) D) Bola</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">28</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>a) Complete o total da tabela. Quantas crianças votaram? <span class="line short"></span></p>
+        <p>b) Quantos votos a mais “pular corda” teve do que “desenho”? <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">29</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Quantos votos a boneca e o carrinho tiveram juntos? <span class="line short"></span></p>
+        <p>Conta: <span class="line"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">30</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>No sábado, a família lavou copos. O gráfico de colunas mostra quantos. Cada quadradinho com ● vale 1 copo. A fileira 1 é a de baixo.</p>
+        <div class="plot-wrap">
+          <table class="plot" aria-label="Gráfico de copos lavados">
+            <tr><th class="axis">8</th><td></td><td></td><td></td></tr>
+            <tr><th class="axis">7</th><td></td><td></td><td class="on-g">●</td></tr>
+            <tr><th class="axis">6</th><td></td><td></td><td class="on-g">●</td></tr>
+            <tr><th class="axis">5</th><td class="on-l">●</td><td></td><td class="on-g">●</td></tr>
+            <tr><th class="axis">4</th><td class="on-l">●</td><td></td><td class="on-g">●</td></tr>
+            <tr><th class="axis">3</th><td class="on-l">●</td><td class="on-j">●</td><td class="on-g">●</td></tr>
+            <tr><th class="axis">2</th><td class="on-l">●</td><td class="on-j">●</td><td class="on-g">●</td></tr>
+            <tr><th class="axis">1</th><td class="on-l">●</td><td class="on-j">●</td><td class="on-g">●</td></tr>
+            <tr>
+              <th class="axis"></th>
+              <th class="name">Laura</th>
+              <th class="name">Joel</th>
+              <th class="name">Gilmara</th>
+            </tr>
+          </table>
+          <p class="plot-caption">Copos lavados no sábado</p>
+        </div>
+        <p>a) Quem lavou mais copos? <span class="line"></span></p>
+        <p>b) Quantos copos o Joel lavou? <span class="line short"></span></p>
+        <p>c) Quantos copos a Laura e o Joel lavaram juntos? <span class="line short"></span></p>
+        <p>d) A Gilmara lavou quantos copos a mais que o Joel? <span class="line short"></span></p>
+      </div>
+
+      <div class="q">
+        <span class="q-num">31</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Brinquedos guardados no sábado. Pinte o gráfico de baixo para cima: a fileira 1 é a primeira que você pinta.</p>
+        <div class="two-col">
+          <table class="data">
+            <tr><th class="left">Pessoa</th><th>Brinquedos</th></tr>
+            <tr><td class="left">Laura</td><td>6</td></tr>
+            <tr><td class="left">Joel</td><td>4</td></tr>
+            <tr><td class="left">Gilmara</td><td>8</td></tr>
+          </table>
+          <div class="plot-wrap">
+            <table class="plot" aria-label="Gráfico para pintar os brinquedos guardados">
+              <tr><th class="axis">8</th><td></td><td></td><td></td></tr>
+              <tr><th class="axis">7</th><td></td><td></td><td></td></tr>
+              <tr><th class="axis">6</th><td></td><td></td><td></td></tr>
+              <tr><th class="axis">5</th><td></td><td></td><td></td></tr>
+              <tr><th class="axis">4</th><td></td><td></td><td></td></tr>
+              <tr><th class="axis">3</th><td></td><td></td><td></td></tr>
+              <tr><th class="axis">2</th><td></td><td></td><td></td></tr>
+              <tr><th class="axis">1</th><td></td><td></td><td></td></tr>
+              <tr>
+                <th class="axis"></th>
+                <th class="name">Laura</th>
+                <th class="name">Joel</th>
+                <th class="name">Gilmara</th>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <p>a) Quem ficou com a coluna mais alta? <span class="line"></span></p>
+        <p>b) A Laura guardou quantos brinquedos a mais que o Joel? <span class="line short"></span></p>
+        <p>c) Quantos brinquedos os três guardaram juntos? <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">32</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Tabela de duas entradas: cômodos que cada pessoa organizou. Complete a coluna Total. O zero também entra na conta.</p>
+        <table class="data">
+          <tr>
+            <th class="left">Pessoa</th>
+            <th>Sala</th>
+            <th>Cozinha</th>
+            <th>Quarto</th>
+            <th>Total</th>
+          </tr>
+          <tr>
+            <td class="left">Laura</td><td>1</td><td>0</td><td>2</td><td><span class="slot c"></span></td>
+          </tr>
+          <tr>
+            <td class="left">Joel</td><td>2</td><td>1</td><td>1</td><td><span class="slot c"></span></td>
+          </tr>
+          <tr>
+            <td class="left">Gilmara</td><td>1</td><td>2</td><td>2</td><td><span class="slot c"></span></td>
+          </tr>
+        </table>
+        <p>a) Quem organizou mais cômodos? <span class="line"></span></p>
+        <p>b) Quantos cômodos foram organizados na cozinha, somando as três pessoas? <span class="line short"></span></p>
+        <p>c) A Laura organizou mais a sala ou o quarto? <span class="line"></span></p>
+      </div>
+    </section>
+
+    <section>
+      <div class="avoid-break">
+      <h2>Parte 5 — Combinando possibilidades</h2>
+      <div class="concept">
+        <p><strong>Combinar</strong> é formar pares diferentes. Se cada item da primeira lista pode ir com cada item da segunda, nós multiplicamos.</p>
+        <p>Exemplo: a camiseta amarela pode ir com 3 shorts, e a camiseta azul também pode ir com os mesmos 3 shorts. São 3 + 3 = 6 looks. A conta curta é 2 × 3 = 6.</p>
+      </div>
+      </div>
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>A Laura escolhe a roupa da brincadeira. O Joel monta os lanches. A Gilmara monta um kit para a casa ficar cheirosa e limpa. Cada escolha muda a combinação.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">33</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>A Laura tem 2 camisetas (Am = amarela, Az = azul) e 3 shorts (R = rosa, V = verde, L = listrado). O primeiro look já está escrito. Complete os outros.</p>
+        <table class="data">
+          <tr>
+            <th class="left">Camiseta</th>
+            <th>rosa (R)</th>
+            <th>verde (V)</th>
+            <th>listrado (L)</th>
+          </tr>
+          <tr>
+            <td class="left">amarela (Am)</td>
+            <td>Am+R</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="left">azul (Az)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+        <p>Quantos looks diferentes? <span class="line short"></span></p>
+        <p>Conta: <span class="line short"></span> × <span class="line short"></span> = <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">34</span>
+        <span class="tag tag-mc">Múltipla escolha</span>
+        <p>O Papai Joel prepara lanches: 3 sucos (laranja, uva e limão) e 3 comidas (biscoito, fruta e queijo). Cada suco pode ir com cada comida. Quantos lanches diferentes dá para montar?</p>
+        <ul class="mc">
+          <li>( ) A) 6</li>
+          <li>( ) B) 9</li>
+          <li>( ) C) 33</li>
+          <li>( ) D) 12</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">35</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>A Mamãe Gilmara monta um kit de limpeza. Ela escolhe 1 pano entre 3 cores (amarelo, azul e branco) e 1 borrifador entre 2 cheiros (limão e lavanda). Liste todas as combinações.</p>
+        <p>1. <span class="line"></span> &nbsp; 2. <span class="line"></span></p>
+        <p>3. <span class="line"></span> &nbsp; 4. <span class="line"></span></p>
+        <p>5. <span class="line"></span> &nbsp; 6. <span class="line"></span></p>
+        <p>Quantas são? <span class="line short"></span> &nbsp; Conta: <span class="line short"></span> × <span class="line short"></span> = <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">36</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p><span class="star">★</span> A Laura tem 2 saias e quer formar 8 looks. Cada saia combina com cada blusa. Quantas blusas diferentes ela precisa ter?</p>
+        <p>Conta: 2 × <span class="line short"></span> = 8</p>
+        <p>Resposta: <span class="line short"></span> blusas.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Parte 6 — Proporcionalidade: para cada, dobro e metade</h2>
+      <div class="concept">
+        <p><strong>Para cada 1, a mesma quantidade se repete.</strong> Se 1 pacote tem 4 biscoitos, 2 pacotes têm o dobro: 8 biscoitos. Se um lado dobra, o outro também dobra. Essa é uma proporcionalidade simples, bem do 2º ano.</p>
+        <p><strong>Dobro</strong> é duas vezes. <strong>Metade</strong> é dividir por 2. <strong>Triplo</strong> é três vezes. <strong>Terça parte</strong> é dividir por 3. A terça parte de 12 é 4, porque 12 dividido para 3 potinhos dá 4 em cada um. E o triplo de 4 volta a ser 12.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">37</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Cada pacote de biscoito do lanche tem 4 biscoitos. Complete a tabela. Ela cresce na mesma proporção.</p>
+        <table class="data">
+          <tr>
+            <th>Pacotes</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6 ★</td>
+          </tr>
+          <tr>
+            <th>Biscoitos</th>
+            <td>4</td>
+            <td>8</td>
+            <td><span class="slot c"></span></td>
+            <td><span class="slot c"></span></td>
+            <td><span class="slot c"></span></td>
+            <td><span class="slot c"></span></td>
+          </tr>
+        </table>
+        <p>De 1 pacote para 2, os biscoitos foram de 4 para 8. Eles dobraram? <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">38</span>
+        <span class="tag tag-mc">Múltipla escolha</span>
+        <p>1 receita de suco da Laura usa 2 laranjas. Quantas laranjas ela precisa para 4 receitas iguais?</p>
+        <ul class="mc">
+          <li>( ) A) 8</li>
+          <li>( ) B) 6</li>
+          <li>( ) C) 4</li>
+          <li>( ) D) 24</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">39</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>A Mamãe Gilmara usa 3 panos para limpar 1 cômodo. Cada cômodo gasta a mesma quantidade.</p>
+        <p>a) Quantos panos para 2 cômodos? <span class="line short"></span></p>
+        <p>b) Quantos panos para 5 cômodos? <span class="line short"></span></p>
+        <p>c) Se ela tem 12 panos, quantos cômodos iguais consegue limpar? <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">40</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>O Papai Joel encheu 6 bexigas para a brincadeira.</p>
+        <p>a) O dobro de 6 é <span class="line short"></span></p>
+        <p>b) O triplo de 6 é <span class="line short"></span></p>
+        <p>c) A metade de 6 é <span class="line short"></span></p>
+        <p>d) A terça parte de 18 bexigas é <span class="line short"></span></p>
+        <p>e) 18 dividido para 3 potinhos dá <span class="line short"></span> em cada um.</p>
+        <p>f) Os resultados de (d) e (e) são iguais? <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">41</span>
+        <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Cada caixa de jogo da Laura vem com 5 peças. Ela tem 3 caixas. Se ganhar mais 1 caixa igual, com quantas peças ela fica?</p>
+        <ul class="mc">
+          <li>( ) A) 15</li>
+          <li>( ) B) 9</li>
+          <li>( ) C) 35</li>
+          <li>( ) D) 20</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Desafio final — Sábado na casa da Laura</h2>
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>No sábado a casa precisa ficar limpa, e ainda sobra tempo para brincar. A Mamãe Gilmara organiza. O Papai Joel inventa jogo no meio da arrumação. A Laura ajuda e depois escolhe a brincadeira. Use potinhos, contas, tabela e combinações.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">42</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>A Gilmara guardou os pregadores em 4 potinhos, com 6 pregadores em cada um. Quantos pregadores há?</p>
+        <p>Conta: <span class="line"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">43</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Há 12 panos de limpeza para 3 gavetas iguais. Quantos panos ficam em cada gaveta? Escreva a divisão e a multiplicação que prova.</p>
+        <p>Divisão: <span class="line"></span></p>
+        <p>Prova: <span class="line"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">44</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>A Laura guarda 8 brinquedos em 2 caixas iguais.</p>
+        <p>a) Quantos brinquedos ficam em cada caixa? <span class="line short"></span></p>
+        <p>b) O dobro do que ficou em uma caixa é <span class="line short"></span></p>
+        <p>c) Esse dobro é igual ao total de brinquedos? <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">45</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Depois da limpeza, a Laura escolhe a brincadeira: 2 jogos (Uno e memória) e 3 lugares (sala, quarto e quintal). Escreva um ✓ em cada combinação possível.</p>
+        <table class="data">
+          <tr>
+            <th class="left">Jogo</th>
+            <th>Sala</th>
+            <th>Quarto</th>
+            <th>Quintal</th>
+          </tr>
+          <tr><td class="left">Uno</td><td></td><td></td><td></td></tr>
+          <tr><td class="left">Memória</td><td></td><td></td><td></td></tr>
+        </table>
+        <p>Quantas brincadeiras diferentes? <span class="line short"></span></p>
+        <p>Conta: <span class="line short"></span> × <span class="line short"></span> = <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">46</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>O Joel anotou as risadas da tarde.</p>
+        <table class="data">
+          <tr><th class="left">Pessoa</th><th>Risadas</th></tr>
+          <tr><td class="left">Laura</td><td>10</td></tr>
+          <tr><td class="left">Joel</td><td>8</td></tr>
+          <tr><td class="left">Gilmara</td><td>4</td></tr>
+        </table>
+        <p>a) Quem riu mais? <span class="line"></span></p>
+        <p>b) Quantas risadas a Laura teve a mais que a Gilmara? <span class="line short"></span></p>
+        <p>c) O Joel riu o dobro da Gilmara? <span class="line short"></span> Por quê? <span class="line"></span></p>
+        <p>d) A metade das risadas da Laura é <span class="line short"></span></p>
+        <p>e) Quantas risadas os três tiveram juntos? <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">47</span>
+        <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Cada rodada de memória dura o tempo de 3 músicas. Eles jogam 4 rodadas. Quantas músicas tocam?</p>
+        <ul class="mc">
+          <li>( ) A) 7</li>
+          <li>( ) B) 1</li>
+          <li>( ) C) 12</li>
+          <li>( ) D) 43</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">48</span>
+        <span class="tag tag-w">Resposta escrita</span>
+        <p>Explique para a Mamãe Gilmara a conta <strong>15 dividido para 5 potinhos</strong>, do jeito dos potinhos.</p>
+        <p>a) Quantas unidades ficam em cada potinho? <span class="line short"></span></p>
+        <p>b) Qual multiplicação prova essa divisão? <span class="line"></span></p>
+        <p>c) Em uma frase: o que você fez com as 15 unidades?</p>
+        <span class="line block"></span>
+      </div>
+    </section>
+
+    <section class="gabarito page-break">
+      <h2>Gabarito (professor)</h2>
+      <p>Aceite estratégia pessoal quando a conta e o resultado estiverem certos. Na questão 2, a ordem dos fatores pode aparecer invertida. Na 26, o problema precisa ser de grupos iguais e terminar em 15. Nas listas de combinações, a ordem não importa.</p>
+      <p>
+        <strong>EF02MA07</strong> — problemas de multiplicação por 2, 3, 4 e 5 como adição de parcelas iguais (grupos iguais). A divisão entra como repartir em partes iguais e como medida (quantos grupos cabem), que é o jeito como essa turma estuda o tema junto com a multiplicação.
+        <strong>EF02MA08</strong> — dobro, metade, triplo e terça parte.
+        <strong>EF02MA22</strong> — comparar informações em tabela de dupla entrada e em gráfico de colunas.
+        <strong>EF02MA23</strong> — organizar dados em tabela e gráfico de colunas.
+        As combinações simples (possibilidades) são contadas com a multiplicação, no espírito do EF02MA07.
+      </p>
+      <table class="data">
+        <thead>
+          <tr><th>Q.</th><th>Resposta</th></tr>
+        </thead>
+        <tbody>
+        <tr><td>1</td><td>C) 12. Quatro grupos de 3: 4 × 3 = 12.</td></tr>
+        <tr><td>2</td><td>a) 5 × 2 = 10 &nbsp; b) 3 × 4 = 12 &nbsp; c) 4 × 5 = 20. Também vale a ordem invertida (2 × 5, 4 × 3, 5 × 4).</td></tr>
+        <tr><td>3</td><td>a) 15 &nbsp; b) 24 &nbsp; c) 16 &nbsp; d) 25 &nbsp; e) 21 &nbsp; f) 24. Dezena no quadradinho da esquerda.</td></tr>
+        <tr><td>4</td><td>
+          Casa do 2: 2, <em>4</em>, 6, 8, <em>10</em>, 12, 14, <em>16</em>, 18, 20.<br />
+          Casa do 3: <em>3</em>, 6, 9, <em>12</em>, 15, 18, 21, 24, 27, <em>30</em>.<br />
+          Casa do 4: <em>4</em>, 8, 12, <em>16</em>, 20, 24, <em>28</em>, 32, 36, 40.<br />
+          Casa do 5: 5, 10, <em>15</em>, 20, 25, <em>30</em>, 35, 40, 45, <em>50</em>.<br />
+          Os números em itálico já vinham na folha.
+        </td></tr>
+        <tr><td>5</td><td>1) 12 &nbsp; 2) 4 &nbsp; 3) 3 &nbsp; 4) 7 &nbsp; 5) 4 &nbsp; 6) 16 &nbsp; 7) 6 &nbsp; 8) 9 &nbsp; 9) 35 &nbsp; 10) 4 &nbsp; 11) 6 &nbsp; 12) 2.</td></tr>
+        <tr><td>6</td><td>A) 5 × 4 = 20.</td></tr>
+        <tr><td>7</td><td>3 × 6 = 18 panos.</td></tr>
+        <tr><td>8</td><td>a) 15 &nbsp; b) 15 ÷ 3 = 5 &nbsp; c) 3 × 5 = 15. Cada potinho tem 5 bolinhas.</td></tr>
+        <tr><td>9</td><td>a) 4 e 4; 8 ÷ 2 = 4. &nbsp; b) 3, 3 e 3; 9 ÷ 3 = 3. &nbsp; c) 2 em cada; 10 ÷ 5 = 2. &nbsp; d) 4 em cada; 16 ÷ 4 = 4. Vale o desenho se a quantidade estiver igual e certa.</td></tr>
+        <tr><td>10</td><td>4 potinhos. Prova: 4 × 3 = 12. Ideia de medida: quantos grupos de 3 cabem em 12.</td></tr>
+        <tr><td>11</td><td>
+          Resultados: 1) 4 &nbsp; 2) 4 &nbsp; 3) 3 &nbsp; 4) 5 &nbsp; 5) 6 &nbsp; 6) 7 &nbsp; 7) 4 &nbsp; 8) 5 &nbsp; 9) 7 &nbsp; 10) 6 &nbsp; 11) 6 &nbsp; 12) 3.<br />
+          Números que faltam: 13) 20 &nbsp; 14) 3 &nbsp; 15) 14 &nbsp; 16) 5 &nbsp; 17) 24 &nbsp; 18) 8.
+        </td></tr>
+        <tr><td>12</td><td>20 ÷ 5 = 4 e 20 ÷ 4 = 5. &nbsp; 18 ÷ 6 = 3 e 18 ÷ 3 = 6. &nbsp; 15 ÷ 3 = 5 e 15 ÷ 5 = 3. &nbsp; 16 ÷ 2 = 8 e 16 ÷ 8 = 2.</td></tr>
+        <tr><td>13</td><td>D) 6. Porque 18 ÷ 3 = 6 e 3 × 6 = 18.</td></tr>
+        <tr><td>14</td><td>4 em cada potinho e sobra 1. Conta: 3 × 4 = 12 e sobra 1. (13 = 12 + 1.)</td></tr>
+        <tr><td>15</td><td>B) 12 ÷ 4 = 3, sem sobra. As outras sobram: 10 ÷ 3 sobra 1; 11 ÷ 2 sobra 1; 13 ÷ 5 sobra 3.</td></tr>
+        <tr><td>16</td><td>12 pulseiras. O dobro de 6 é 2 × 6 = 12.</td></tr>
+        <tr><td>17</td><td>D) 20. Porque 4 × 5 = 20.</td></tr>
+        <tr><td>18</td><td>4 biscoitos. Prova: 4 × 4 = 16.</td></tr>
+        <tr><td>19</td><td>6 × 3 = 18 pulos.</td></tr>
+        <tr><td>20</td><td>A) 3. Porque 15 ÷ 5 = 3, ou 5 + 5 + 5.</td></tr>
+        <tr><td>21</td><td>a) 12 crianças; 3 × 4 = 12. &nbsp; b) 16 crianças; 12 + 4 = 16 ou 4 × 4 = 16.</td></tr>
+        <tr><td>22</td><td>C) 10. A metade de 20 é 10.</td></tr>
+        <tr><td>23</td><td>3 × 4 = 12 sabões; 12 − 2 = 10. Sobram 10.</td></tr>
+        <tr><td>24</td><td>6 carrinhos em cada caixa. Prova: 3 × 6 = 18.</td></tr>
+        <tr><td>25</td><td>A) 2 × 8 = 16.</td></tr>
+        <tr><td>26</td><td>Resposta livre. O problema deve ter 5 grupos de 3 ou 3 grupos de 5, e a resposta é 15. Exemplo: “A Laura colocou 3 bolinhas em cada um de 5 potinhos. Ao todo, 15 bolinhas.”</td></tr>
+        <tr><td>27</td><td>B) Pular corda, com 8 votos.</td></tr>
+        <tr><td>28</td><td>a) 30, porque 8 + 5 + 7 + 4 + 6 = 30. &nbsp; b) 4, porque 8 − 4 = 4.</td></tr>
+        <tr><td>29</td><td>12. Conta: 5 + 7 = 12.</td></tr>
+        <tr><td>30</td><td>a) Gilmara (7). &nbsp; b) 3. &nbsp; c) 8, porque 5 + 3 = 8. &nbsp; d) 4, porque 7 − 3 = 4. Colunas: Laura 5, Joel 3, Gilmara 7.</td></tr>
+        <tr><td>31</td><td>Pintura de baixo para cima: Laura 6 quadradinhos, Joel 4, Gilmara 8 (a coluna inteira). a) Gilmara. b) 2, porque 6 − 4 = 2. c) 18, porque 6 + 4 + 8 = 18.</td></tr>
+        <tr><td>32</td><td>Totais: Laura 3, Joel 4, Gilmara 5. a) Gilmara. b) 3, porque 0 + 1 + 2 = 3. c) O quarto, porque 2 é maior que 1.</td></tr>
+        <tr><td>33</td><td>Am+R (já vinha), Am+V, Am+L, Az+R, Az+V, Az+L. São 6 looks. Conta: 2 × 3 = 6.</td></tr>
+        <tr><td>34</td><td>B) 9. Porque 3 × 3 = 9. Somar 3 + 3 = 6 é o erro comum.</td></tr>
+        <tr><td>35</td><td>6 kits, em qualquer ordem: amarelo e limão; amarelo e lavanda; azul e limão; azul e lavanda; branco e limão; branco e lavanda. Conta: 3 × 2 = 6.</td></tr>
+        <tr><td>36</td><td>4 blusas, porque 2 × 4 = 8.</td></tr>
+        <tr><td>37</td><td>12, 16, 20 e 24 biscoitos. Sim, dobraram: de 4 para 8.</td></tr>
+        <tr><td>38</td><td>A) 8. Porque 4 × 2 = 8, ou 2 + 2 + 2 + 2.</td></tr>
+        <tr><td>39</td><td>a) 6 panos (dobro de 3). &nbsp; b) 15 panos (5 × 3). &nbsp; c) 4 cômodos, porque 12 ÷ 3 = 4.</td></tr>
+        <tr><td>40</td><td>a) 12 &nbsp; b) 18 &nbsp; c) 3 &nbsp; d) 6 &nbsp; e) 6 &nbsp; f) Sim. Terça parte e “dividido para 3” são a mesma ideia.</td></tr>
+        <tr><td>41</td><td>D) 20. Ela fica com 4 caixas: 4 × 5 = 20. Quem marca 15 esqueceu a caixa nova.</td></tr>
+        <tr><td>42</td><td>24 pregadores. Conta: 4 × 6 = 24.</td></tr>
+        <tr><td>43</td><td>4 panos em cada gaveta. 12 ÷ 3 = 4. Prova: 3 × 4 = 12.</td></tr>
+        <tr><td>44</td><td>a) 4 &nbsp; b) 8 &nbsp; c) Sim, porque o dobro de 4 é 8, que é o total de brinquedos.</td></tr>
+        <tr><td>45</td><td>6 combinações, um ✓ em cada célula: Uno na sala, no quarto e no quintal; memória na sala, no quarto e no quintal. Conta: 2 × 3 = 6.</td></tr>
+        <tr><td>46</td><td>a) Laura. &nbsp; b) 6, porque 10 − 4 = 6. &nbsp; c) Sim, porque 2 × 4 = 8. &nbsp; d) 5. &nbsp; e) 22, porque 10 + 8 + 4 = 22.</td></tr>
+        <tr><td>47</td><td>C) 12. Porque 4 × 3 = 12.</td></tr>
+        <tr><td>48</td><td>a) 3 unidades em cada potinho. &nbsp; b) 5 × 3 = 15. &nbsp; c) Exemplo de frase: “Reparti 15 unidades igualmente em 5 potinhos, e ficaram 3 em cada um.”</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="print-note">
+      Atividades da Laura — revisão para a avaliativa de Matemática, 2º ano. Temas: tabelas e gráficos; multiplicação e divisão; possibilidades e proporcionalidade.
+    </footer>
+  </main>
+</body>
+</html>

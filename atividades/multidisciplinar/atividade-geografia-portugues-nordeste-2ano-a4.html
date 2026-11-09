@@ -1,0 +1,1674 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>O Enigma dos Estados | Geografia e Interpretação — 2º ano</title>
+    <style>
+      :root {
+        --ink: #1a1a2e;
+        --paper: #fffef8;
+        --accent: #e63946;
+        --blue: #457b9d;
+        --yellow: #f4d35e;
+        --green: #2a9d8f;
+        --purple: #7b68ee;
+        --muted: #6c757d;
+        --border: #dee2e6;
+        --card: #f8f9fa;
+        --gab-ink: #856404;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", system-ui, sans-serif;
+        color: var(--ink);
+        background: #e9ecef;
+        line-height: 1.45;
+        font-size: 11pt;
+      }
+
+      .sheet {
+        max-width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto 1rem;
+        background: var(--paper);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+        padding: 12mm 14mm;
+      }
+
+      @page {
+        size: A4;
+        margin: 12mm;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+        * {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        .sheet {
+          box-shadow: none;
+          margin: 0;
+          max-width: none;
+          min-height: auto;
+          padding: 0;
+        }
+        .no-print {
+          display: none !important;
+        }
+        a[href]:after {
+          content: "";
+        }
+        .page-break {
+          page-break-before: always;
+        }
+        .avoid-break {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+        /* Seções longas devem poder quebrar entre páginas (evita 1ª página quase vazia).
+           ATENÇÃO: esta regra (0,1,2) vence .avoid-break (0,1,0) — nunca use .avoid-break
+           numa <section> filha direta de main.sheet; use sempre num <div> ou <table>. */
+        main.sheet > section {
+          break-inside: auto;
+          page-break-inside: auto;
+        }
+        /* Título nunca fica órfão no pé da folha */
+        h2,
+        h3 {
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+        .bar-chart,
+        .puzzle-grid table,
+        table.cruz,
+        .trilha {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+      }
+
+      /* Régua de folha só na tela — a tela não é paginada e engana */
+      @media screen {
+        .page-break {
+          height: 0;
+          border-top: 2px dashed #adb5bd;
+          margin: 24px 0 20px;
+          position: relative;
+        }
+        .page-break::after {
+          content: "fim da folha";
+          position: absolute;
+          right: 0;
+          top: -0.9em;
+          font-size: 8pt;
+          color: var(--muted);
+          background: var(--paper);
+          padding: 0 6px;
+        }
+      }
+
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: #343a40;
+        color: #fff;
+        padding: 10px 16px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .toolbar button {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      .toolbar button:hover {
+        filter: brightness(1.08);
+      }
+      .toolbar span {
+        font-size: 13px;
+        opacity: 0.9;
+      }
+
+      h1 {
+        font-size: 1.3rem;
+        margin: 0 0 4px;
+        color: var(--accent);
+        text-align: center;
+      }
+      .subtitle {
+        text-align: center;
+        font-weight: 600;
+        color: var(--blue);
+        margin-bottom: 10px;
+        font-size: 0.95rem;
+      }
+
+      .header-line {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 12px;
+        padding: 8px 12px;
+        background: linear-gradient(135deg, #fff9e6, #e8f4fc);
+        border: 2px dashed var(--border);
+        border-radius: 10px;
+      }
+      .header-line label {
+        flex: 1;
+        min-width: 140px;
+        font-weight: 600;
+        font-size: 10pt;
+      }
+      .header-line input {
+        border: none;
+        border-bottom: 2px solid var(--blue);
+        background: transparent;
+        width: 100%;
+        min-height: 22px;
+      }
+
+      .intro-box {
+        background: var(--card);
+        border-left: 5px solid var(--green);
+        padding: 9px 14px;
+        border-radius: 0 10px 10px 0;
+        margin-bottom: 12px;
+        font-size: 10pt;
+      }
+
+      h2 {
+        font-size: 1.02rem;
+        margin: 11px 0 7px;
+        padding: 5px 12px;
+        background: var(--ink);
+        color: #fff;
+        border-radius: 8px;
+        display: inline-block;
+      }
+
+      h3 {
+        font-size: 0.95rem;
+        color: var(--blue);
+        margin: 12px 0 6px;
+      }
+
+      .concept {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 9px 12px;
+        margin: 8px 0;
+        font-size: 10pt;
+      }
+      .concept p {
+        margin: 4px 0;
+      }
+
+      .read-box {
+        background: linear-gradient(180deg, #e3f2fd 0%, #fff 100%);
+        border: 2px solid var(--blue);
+        border-radius: 12px;
+        padding: 8px 12px;
+        margin: 8px 0;
+      }
+      .read-box strong {
+        color: var(--blue);
+      }
+
+      /* Parágrafos numerados — permitem citar "onde eu achei" a resposta */
+      ol.paras {
+        margin: 5px 0 0;
+        padding-left: 1.5em;
+        font-size: 10.5pt;
+      }
+      ol.paras li {
+        margin: 4px 0;
+      }
+
+      /* Cartões-postais — variantes de cor do .read-box */
+      .read-box.postal {
+        padding: 8px 12px;
+        margin: 8px 0;
+      }
+      .read-box.postal p {
+        margin: 3px 0 0;
+        font-size: 10pt;
+      }
+      .postal-de {
+        font-size: 8.5pt;
+        color: var(--muted);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+      .read-box.p-green {
+        background: linear-gradient(180deg, #e8f5e9 0%, #fff 100%);
+        border-color: var(--green);
+      }
+      .read-box.p-green strong {
+        color: var(--green);
+      }
+      .read-box.p-yellow {
+        background: linear-gradient(180deg, #fff9e6 0%, #fff 100%);
+        border-color: #c99a12;
+      }
+      .read-box.p-yellow strong {
+        color: #8a6a06;
+      }
+      .read-box.p-red {
+        background: linear-gradient(180deg, #fdecea 0%, #fff 100%);
+        border-color: var(--accent);
+      }
+      .read-box.p-red strong {
+        color: var(--accent);
+      }
+
+      .mc {
+        margin: 6px 0 2px;
+        padding-left: 0;
+        list-style: none;
+      }
+      .mc li {
+        margin: 3px 0;
+        padding: 3px 8px;
+        border-radius: 6px;
+      }
+      .mc li:hover {
+        background: #f1f3f5;
+      }
+      /* Alternativas curtas em linha — economiza 3 linhas por questão na folha */
+      .mc.inline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px 20px;
+      }
+
+      .q {
+        margin: 9px 0;
+        padding: 8px 11px;
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+      }
+      .q > p {
+        margin: 5px 0;
+      }
+      .q-num {
+        display: inline-block;
+        background: var(--yellow);
+        color: var(--ink);
+        font-weight: 800;
+        padding: 2px 8px;
+        border-radius: 6px;
+        margin-right: 6px;
+        font-size: 0.9rem;
+      }
+      .tag {
+        font-size: 9pt;
+        padding: 2px 8px;
+        border-radius: 20px;
+        font-weight: 600;
+      }
+      .tag-mc {
+        background: #cfe2ff;
+        color: #084298;
+      }
+      .tag-w {
+        background: #d1e7dd;
+        color: #0f5132;
+      }
+      /* Novo: Verdadeiro ou Falso */
+      .tag-vf {
+        background: #fff3cd;
+        color: #664d03;
+      }
+
+      /* ── Itens V/F com DUAS caixas: a resposta e "onde eu achei" ──
+         Grid por item (e não texto corrido): com duas caixinhas, uma afirmação
+         que quebra em 2 linhas desalinharia a coluna se fosse inline. */
+      .vf-head,
+      .vf-item {
+        display: grid;
+        grid-template-columns: 26px 34px 1fr;
+        gap: 0 8px;
+        align-items: start;
+      }
+      .vf-head {
+        margin: 7px 0 2px;
+        font-size: 7.5pt;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        line-height: 1.1;
+        text-align: center;
+      }
+      .vf-head span:last-child {
+        text-align: left;
+      }
+      .vf-item {
+        margin: 2px 0;
+        font-size: 10pt;
+      }
+      .vf-box {
+        display: block;
+        height: 21px;
+        border: 2px solid var(--border);
+        border-radius: 5px;
+        background: #fff;
+      }
+      /* A 2ª caixinha se distingue pelo traço, não pela cor */
+      .vf-box.vf-src {
+        border-width: 1px;
+        border-style: dashed;
+        border-color: var(--muted);
+      }
+      .vf-txt {
+        line-height: 1.3;
+        padding-top: 2px;
+      }
+      .vf-txt b {
+        color: var(--accent);
+      }
+
+      .line {
+        border-bottom: 1px dotted var(--muted);
+        min-height: 1.4em;
+        display: inline-block;
+        min-width: 120px;
+      }
+      .line.short {
+        min-width: 60px;
+      }
+      .line.medium {
+        min-width: 200px;
+      }
+      .line.long {
+        min-width: 90%;
+        display: block;
+        margin: 6px 0;
+      }
+      /* Escape obrigatório: min-width em px dentro de <td> entra no min-content
+         da tabela e faz a tabela vazar para fora da folha. */
+      table.data td .line {
+        min-width: 0;
+        width: 100%;
+        display: block;
+      }
+
+      /* Bloco pautado para reescrita de frases */
+      .writing-lines {
+        min-height: 3.4em;
+        margin: 6px 0;
+        background: #fffdf5;
+        border: 1px solid #e0d4a8;
+        border-radius: 8px;
+        padding: 5px 12px;
+        background-image: repeating-linear-gradient(
+          transparent,
+          transparent 1.6em,
+          #d0c8a8 1.6em,
+          #d0c8a8 calc(1.6em + 1px)
+        );
+      }
+
+      table.data {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 8px 0;
+        font-size: 10pt;
+      }
+      table.data th,
+      table.data td {
+        border: 1px solid var(--border);
+        padding: 4px 7px;
+      }
+      table.data th {
+        background: #e9ecef;
+      }
+      table.data td.num {
+        text-align: center;
+        font-weight: 700;
+      }
+
+      /* ── Gráfico de barras horizontais (CSS puro, sem SVG) ──
+         O valor fica FORA da barra: Sergipe é 3,9% da maior e não caberia
+         texto dentro sem mentir sobre a proporção. */
+      .bar-chart {
+        margin: 10px 0;
+        padding: 10px 12px 8px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+      }
+      .bar-row {
+        display: grid;
+        grid-template-columns: 34mm 1fr 12mm;
+        align-items: center;
+        gap: 0 6px;
+        margin-bottom: 4px;
+      }
+      .bar-label {
+        font-size: 9pt;
+        font-weight: 600;
+        text-align: right;
+        line-height: 1.1;
+      }
+      .bar-track {
+        height: 6mm;
+        border-left: 2px solid var(--ink);
+        border-bottom: 1px solid var(--border);
+      }
+      /* border no preenchimento: sobrevive a "imprimir sem gráficos de fundo" */
+      .bar-fill {
+        display: block; /* é um <span>: sem isto, width/height não se aplicam */
+        height: 100%;
+        background: var(--blue);
+        border: 1px solid var(--ink);
+        border-left: none;
+        border-radius: 0 3px 3px 0;
+      }
+      .bar-row:nth-child(even) .bar-fill {
+        background: var(--green);
+      }
+      .bar-val {
+        font-size: 9pt;
+        font-weight: 800;
+        text-align: right;
+      }
+
+      /* ── Trilha "Monte a rota" ──
+         Grade 3×3: em linha única as casinhas ficariam com ~16mm, onde não cabe
+         escrever "Rio Grande do Norte". Aqui cada casa tem ~42mm de escrita. */
+      .trilha {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px 10px;
+        margin: 8px 0 4px;
+      }
+      .trilha .casa {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        border: 2px solid var(--purple);
+        border-radius: 9px;
+        background: #fff;
+        padding: 3px 8px 4px;
+      }
+      .trilha .casa b {
+        font-size: 8pt;
+        color: var(--purple);
+        white-space: nowrap;
+      }
+      .trilha .casa .esc {
+        flex: 1;
+        border-bottom: 1px dotted var(--muted);
+        height: 16px;
+      }
+
+      /* ── Caça-palavras ── */
+      .word-bank {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px 8px;
+        padding: 7px 10px;
+        border-radius: 10px;
+        margin: 8px 0;
+        font-weight: 700;
+        font-size: 9.5pt;
+        background: var(--card);
+        border: 2px solid var(--green);
+      }
+      .word-bank span {
+        padding: 2px 9px;
+        border-radius: 8px;
+        background: #fff;
+        border: 1px solid var(--border);
+      }
+      .puzzle-grid {
+        margin: 6px 0;
+        text-align: center;
+      }
+      .puzzle-grid table {
+        border-collapse: collapse;
+        margin: 0 auto;
+      }
+      .puzzle-grid td {
+        width: 6.5mm;
+        height: 6.5mm;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid #bdbdbd;
+        background: #fff;
+        font-family: "Consolas", "Courier New", monospace;
+        font-weight: 700;
+        font-size: 10.5pt;
+      }
+
+      /* ── Cruzadinha com coluna-chave vertical ── */
+      table.cruz {
+        border-collapse: collapse;
+        margin: 6px 0;
+        font-family: "Consolas", "Courier New", monospace;
+      }
+      table.cruz td {
+        padding: 0;
+      }
+      table.cruz td.dica {
+        font-family: "Segoe UI", system-ui, sans-serif;
+        font-size: 8.5pt;
+        font-weight: 600;
+        text-align: right;
+        padding-right: 7px;
+        white-space: nowrap;
+      }
+      table.cruz td.cel {
+        width: 6mm;
+        height: 6mm;
+        border: 1px solid var(--ink);
+        background: #fff;
+      }
+      table.cruz td.vazio {
+        width: 6mm;
+        height: 6mm;
+        border: none;
+      }
+      /* Borda vermelha ALÉM do fundo amarelo: a coluna-chave carrega
+         informação e não pode depender só de cor de fundo na impressão. */
+      table.cruz td.cel.secreta {
+        background: var(--yellow);
+        border: 2px solid var(--accent);
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      @media (max-width: 600px) {
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .aviso {
+        display: inline-block;
+        background: var(--accent);
+        color: #fff;
+        padding: 5px 12px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 9.5pt;
+        margin: 4px 0 8px;
+      }
+      .nota {
+        font-size: 9pt;
+        color: var(--muted);
+        margin: 4px 0 0;
+      }
+
+      .gabarito {
+        background: #fff8e7;
+        border: 2px solid var(--yellow);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 9.5pt;
+      }
+      .gabarito table {
+        font-size: 9pt;
+      }
+      .gabarito h2 {
+        background: var(--gab-ink);
+      }
+      .gabarito h3 {
+        color: var(--gab-ink);
+        margin: 12px 0 4px;
+      }
+
+      footer.print-note {
+        margin-top: 14px;
+        font-size: 9pt;
+        color: var(--muted);
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar no-print">
+      <button type="button" onclick="window.print()">
+        Imprimir / Salvar em PDF
+      </button>
+      <span
+        >Use Ctrl+P → "Salvar como PDF" para gerar o arquivo. Formato A4.</span
+      >
+    </div>
+
+    <main class="sheet">
+      <!-- ══════════ FOLHA 1 — CAPA + FOLHA DE CONSULTA ══════════ -->
+      <header>
+        <h1>O Enigma dos Estados — A Grande Viagem da Zabé</h1>
+        <p class="subtitle">
+          Geografia e Interpretação de Texto — Revisão e aprofundamento | 2º ano
+          do Ensino Fundamental
+        </p>
+        <div class="header-line">
+          <label>Nome: <input type="text" aria-label="Nome do aluno" /></label>
+          <label>Data: <input type="text" aria-label="Data" /></label>
+          <label>Turma: <input type="text" aria-label="Turma" /></label>
+        </div>
+        <div class="intro-box">
+          <strong>Como usar:</strong> na <strong>múltipla escolha</strong>,
+          marque <strong>X</strong> na alternativa certa. No
+          <strong>V ou F</strong>, escreva <strong>V</strong> ou
+          <strong>F</strong> na primeira caixinha e, na caixinha pontilhada,
+          <strong>onde você achou a resposta</strong>. Boa viagem!
+        </div>
+      </header>
+
+      <section>
+        <h2>Folha de Consulta — Os 9 Estados do Nordeste</h2>
+
+        <div class="concept two-col avoid-break">
+          <div>
+            <strong>O que é uma região?</strong> O Brasil é dividido em
+            <em>5 grandes regiões</em>. Uma delas é o <strong>Nordeste</strong>,
+            que tem <strong>9 estados</strong>. Cada estado tem
+            <strong>uma capital</strong> — a cidade onde fica o governo do
+            estado.
+          </div>
+          <div>
+            <strong>Como se mede o tamanho?</strong> O tamanho de um estado se
+            mede em <em>quilômetros quadrados</em> (km²). São números enormes!
+            Na tabela, o tamanho está em <strong>milhares</strong> de km²: onde
+            está escrito <strong>565</strong>, leia “565 mil km²”.
+          </div>
+        </div>
+
+        <table class="data avoid-break">
+          <tr>
+            <th style="width: 62px">Tamanho</th>
+            <th>Estado</th>
+            <th>Capital</th>
+            <th style="width: 96px">Área (mil km²)</th>
+          </tr>
+          <tr>
+            <td class="num">1º</td>
+            <td><strong>Bahia</strong> (BA)</td>
+            <td>Salvador</td>
+            <td class="num">565</td>
+          </tr>
+          <tr>
+            <td class="num">2º</td>
+            <td>Maranhão (MA)</td>
+            <td>São Luís</td>
+            <td class="num">332</td>
+          </tr>
+          <tr>
+            <td class="num">3º</td>
+            <td>Piauí (PI)</td>
+            <td>Teresina</td>
+            <td class="num">252</td>
+          </tr>
+          <tr>
+            <td class="num">4º</td>
+            <td>Ceará (CE)</td>
+            <td>Fortaleza</td>
+            <td class="num">149</td>
+          </tr>
+          <tr>
+            <td class="num">5º</td>
+            <td>Pernambuco (PE)</td>
+            <td>Recife</td>
+            <td class="num">98</td>
+          </tr>
+          <tr>
+            <td class="num">6º</td>
+            <td>Paraíba (PB)</td>
+            <td>João Pessoa</td>
+            <td class="num">56</td>
+          </tr>
+          <tr>
+            <td class="num">7º</td>
+            <td>Rio Grande do Norte (RN)</td>
+            <td>Natal</td>
+            <td class="num">53</td>
+          </tr>
+          <tr>
+            <td class="num">8º</td>
+            <td>Alagoas (AL)</td>
+            <td>Maceió</td>
+            <td class="num">28</td>
+          </tr>
+          <tr>
+            <td class="num">9º</td>
+            <td><strong>Sergipe</strong> (SE)</td>
+            <td>Aracaju</td>
+            <td class="num">22</td>
+          </tr>
+        </table>
+        <p class="nota">
+          <strong>Não precisa decorar!</strong> Volte a esta folha sempre que
+          precisar — só o Desafio final pede resposta sem olhar.
+        </p>
+
+        <div class="q avoid-break">
+          <span class="q-num">1</span>
+          <span class="tag tag-w">Resposta escrita</span>
+          <p>
+            Complete usando a tabela: o Nordeste tem
+            <span class="line short"></span> estados e, por isso, também
+            <span class="line short"></span> capitais.
+          </p>
+          <p>
+            O <strong>maior</strong> é a <span class="line medium"></span> e o
+            <strong>menor</strong> é <span class="line medium"></span>
+          </p>
+        </div>
+
+        <div class="q avoid-break">
+          <span class="q-num">2</span>
+          <span class="tag tag-mc">Múltipla escolha</span>
+          <p>Qual destas cidades é a capital do <strong>Piauí</strong>?</p>
+          <ul class="mc inline">
+            <li>( ) A) Natal</li>
+            <li>( ) B) Teresina</li>
+            <li>( ) C) Fortaleza</li>
+            <li>( ) D) São Luís</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="page-break"></div>
+
+      <!-- ══════════ FOLHA 2 — PARTE 1: TEXTO NARRATIVO ══════════ -->
+      <section>
+        <h2>Parte 1 — O Enigma dos Estados</h2>
+
+        <div class="read-box avoid-break">
+          <strong>Leia com atenção</strong>
+          <ol class="paras">
+            <li>Zabé é uma asa-branca. Ela mora no sertão e adora viajar.</li>
+            <li>
+              Um dia ela teve uma ideia: — Vou visitar os nove estados do
+              Nordeste! Mas não vou seguir a ordem do mapa. Vou começar pelo
+              estado <strong>menor</strong> de todos e terminar no
+              <strong>maior</strong> de todos.
+            </li>
+            <li>
+              O papagaio Zé Pereira foi junto para escrever o diário da viagem.
+            </li>
+            <li>
+              Zabé começou em Aracaju, a capital de Sergipe — o menor estado do
+              Nordeste e o menor do Brasil inteiro!
+            </li>
+            <li>
+              Depois voou para Alagoas, o Rio Grande do Norte, a Paraíba,
+              Pernambuco, o Ceará, o Piauí e o Maranhão.
+            </li>
+            <li>
+              A última parada foi Salvador, a capital da Bahia, o estado mais
+              grandão. No fim, Zé Pereira leu o diário em voz alta — e tinha
+              erro em quase toda página!
+            </li>
+          </ol>
+        </div>
+
+        <div class="q avoid-break">
+          <span class="q-num">3</span>
+          <span class="tag tag-vf">Verdadeiro ou Falso</span>
+          <p>
+            As frases abaixo são do diário do <strong>Zé Pereira</strong>. Marque
+            <strong>V</strong> ou <strong>F</strong> e, na caixinha pontilhada,
+            escreva o <strong>número do parágrafo</strong> onde você achou a
+            resposta.
+          </p>
+          <div class="vf-head">
+            <span>V/F</span><span>onde<br />achei</span
+            ><span>Afirmação</span>
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>a)</b> O Nordeste do Brasil tem nove estados.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>b)</b> Zabé começou a viagem pelo maior estado do
+              Nordeste.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"><b>c)</b> Aracaju é a capital de Sergipe.</span>
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>d)</b> Sergipe é o menor estado do Brasil inteiro.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>e)</b> Depois de Sergipe, Zabé voou para o Ceará.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"><b>f)</b> A capital da Bahia é Salvador.</span>
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"><b>g)</b> Zabé seguiu a ordem do mapa.</span>
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>h)</b> O Maranhão foi a última parada da viagem.</span
+            >
+          </div>
+        </div>
+
+        <div class="q avoid-break">
+          <span class="q-num">4</span>
+          <span class="tag tag-w">Resposta escrita</span>
+          <p>
+            O Zé Pereira errou! Escolha <strong>duas</strong> frases que você
+            marcou com <strong>F</strong> e reescreva cada uma
+            <strong>consertada</strong>.
+          </p>
+          <div class="writing-lines"></div>
+          <div class="writing-lines"></div>
+        </div>
+
+        <div class="q avoid-break">
+          <span class="q-num">5</span>
+          <span class="tag tag-w">Resposta escrita</span>
+          <p>
+            Zabé não seguiu a ordem do mapa. Então que ordem ela seguiu?
+            Explique com suas palavras.
+          </p>
+          <span class="line long"></span>
+        </div>
+      </section>
+
+      <div class="page-break"></div>
+
+      <!-- ══════════ FOLHA 3 — PARTE 2: TABELA DE DUPLA ENTRADA ══════════ -->
+      <section>
+        <h2>Parte 2 — A Feira dos Nove</h2>
+
+        <div class="read-box avoid-break">
+          <strong>Leia com atenção</strong>
+          <p style="margin: 4px 0 0">
+            Na Grande Feira de Caruaru, em Pernambuco, os nove estados do
+            Nordeste mandam caixas com os seus produtos mais famosos. Zabé
+            anotou tudo nesta tabela. Para achar uma informação, procure a
+            <strong>linha</strong> do estado e siga com o dedo até a
+            <strong>coluna</strong> que você quer.
+          </p>
+        </div>
+
+        <table class="data avoid-break">
+          <tr>
+            <th>Estado</th>
+            <th>Capital</th>
+            <th>O que mandou para a feira</th>
+            <th style="width: 68px">Caixas</th>
+          </tr>
+          <tr>
+            <td>Bahia</td>
+            <td>Salvador</td>
+            <td>cacau</td>
+            <td class="num">30</td>
+          </tr>
+          <tr>
+            <td>Maranhão</td>
+            <td>São Luís</td>
+            <td>arroz</td>
+            <td class="num">12</td>
+          </tr>
+          <tr>
+            <td>Piauí</td>
+            <td>Teresina</td>
+            <td>mel</td>
+            <td class="num">8</td>
+          </tr>
+          <tr>
+            <td>Ceará</td>
+            <td>Fortaleza</td>
+            <td>castanha de caju</td>
+            <td class="num">25</td>
+          </tr>
+          <tr>
+            <td>Pernambuco</td>
+            <td>Recife</td>
+            <td>manga</td>
+            <td class="num">20</td>
+          </tr>
+          <tr>
+            <td>Paraíba</td>
+            <td>João Pessoa</td>
+            <td>abacaxi</td>
+            <td class="num">15</td>
+          </tr>
+          <tr>
+            <td>Rio Grande do Norte</td>
+            <td>Natal</td>
+            <td>sal</td>
+            <td class="num">18</td>
+          </tr>
+          <tr>
+            <td>Alagoas</td>
+            <td>Maceió</td>
+            <td>coco</td>
+            <td class="num">22</td>
+          </tr>
+          <tr>
+            <td>Sergipe</td>
+            <td>Aracaju</td>
+            <td>laranja</td>
+            <td class="num">10</td>
+          </tr>
+        </table>
+
+        <div class="q avoid-break">
+          <span class="q-num">6</span>
+          <span class="tag tag-vf">Verdadeiro ou Falso</span>
+          <p>
+            Use a tabela. Na caixinha pontilhada, escreva o nome da
+            <strong>coluna</strong> que você precisou olhar.
+          </p>
+          <div class="vf-head">
+            <span>V/F</span><span>onde<br />achei</span
+            ><span>Afirmação</span>
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>a)</b> O estado que mandou castanha de caju tem a capital
+              Fortaleza.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>b)</b> Sergipe mandou mais caixas do que Alagoas.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>c)</b> A capital do estado que mandou mel é Natal.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>d)</b> A Bahia mandou mais caixas do que o Ceará.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>e)</b> Na tabela, dois estados mandaram a mesma coisa.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>f)</b> Quem mora em Recife pode dizer que o seu estado mandou
+              manga.</span
+            >
+          </div>
+        </div>
+
+        <div class="q avoid-break">
+          <span class="q-num">7</span>
+          <span class="tag tag-mc">Múltipla escolha</span>
+          <p>
+            Cuidado, esta é pegadinha! Qual estado mandou o
+            <strong>menor número de caixas</strong>?
+          </p>
+          <ul class="mc inline">
+            <li>( ) A) Piauí</li>
+            <li>( ) B) Sergipe</li>
+            <li>( ) C) Maranhão</li>
+            <li>( ) D) Paraíba</li>
+          </ul>
+        </div>
+
+        <div class="q avoid-break">
+          <span class="q-num">8</span>
+          <span class="tag tag-w">Resposta escrita</span>
+          <p>
+            O Piauí e Sergipe mandaram quantas caixas <strong>juntos</strong>?
+            Mostre a conta.
+          </p>
+          <p>
+            Conta: <span class="line medium"></span> Resposta:
+            <span class="line short"></span> caixas
+          </p>
+        </div>
+      </section>
+
+      <div class="page-break"></div>
+
+      <!-- ══════════ FOLHA 4 — PARTE 3: GRÁFICO DE BARRAS ══════════ -->
+      <section>
+        <h2>Parte 3 — Quem é o maior?</h2>
+
+        <div class="concept">
+          <p>
+            <strong>Ler um gráfico de barras:</strong> quanto
+            <em>mais comprida</em> a barra, maior o estado. Mas atenção — quando
+            duas barras são quase iguais, é o
+            <strong>número</strong> que decide!
+          </p>
+          <p style="font-size: 9.5pt">
+            Os números estão em <strong>milhares de km²</strong>:
+            <strong>565</strong> quer dizer “565 mil km²”.
+          </p>
+        </div>
+
+        <div class="bar-chart avoid-break">
+          <div class="bar-row">
+            <span class="bar-label">Bahia</span>
+            <span class="bar-track"
+              ><span class="bar-fill" style="width: 100%"></span
+            ></span>
+            <span class="bar-val">565</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Maranhão</span>
+            <span class="bar-track"
+              ><span class="bar-fill" style="width: 58.8%"></span
+            ></span>
+            <span class="bar-val">332</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Piauí</span>
+            <span class="bar-track"
+              ><span class="bar-fill" style="width: 44.6%"></span
+            ></span>
+            <span class="bar-val">252</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Ceará</span>
+            <span class="bar-track"
+              ><span class="bar-fill" style="width: 26.4%"></span
+            ></span>
+            <span class="bar-val">149</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Pernambuco</span>
+            <span class="bar-track"
+              ><span class="bar-fill" style="width: 17.3%"></span
+            ></span>
+            <span class="bar-val">98</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Paraíba</span>
+            <span class="bar-track"
+              ><span class="bar-fill" style="width: 9.9%"></span
+            ></span>
+            <span class="bar-val">56</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Rio G. do Norte</span>
+            <span class="bar-track"
+              ><span class="bar-fill" style="width: 9.4%"></span
+            ></span>
+            <span class="bar-val">53</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Alagoas</span>
+            <span class="bar-track"
+              ><span class="bar-fill" style="width: 5%"></span
+            ></span>
+            <span class="bar-val">28</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Sergipe</span>
+            <span class="bar-track"
+              ><span class="bar-fill" style="width: 3.9%"></span
+            ></span>
+            <span class="bar-val">22</span>
+          </div>
+        </div>
+
+        <div class="q avoid-break">
+          <span class="q-num">9</span>
+          <span class="tag tag-vf">Verdadeiro ou Falso</span>
+          <p>
+            Use o gráfico. Na caixinha pontilhada, escreva <em>barra</em> se você
+            olhou o desenho ou <em>número</em> se precisou ler o número.
+          </p>
+          <div class="vf-head">
+            <span>V/F</span><span>onde<br />achei</span
+            ><span>Afirmação</span>
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>a)</b> A barra da Bahia é a mais comprida do gráfico.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"><b>b)</b> O Ceará é maior que Pernambuco.</span>
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"><b>c)</b> Alagoas é maior que a Paraíba.</span>
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>d)</b> O Piauí é o terceiro maior estado do Nordeste.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>e)</b> O Rio Grande do Norte é maior que a Paraíba.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>f)</b> Sergipe tem a barra mais comprida do gráfico.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"><b>g)</b> O Maranhão é menor que o Piauí.</span>
+          </div>
+        </div>
+
+        <div class="q avoid-break">
+          <span class="q-num">10</span>
+          <span class="tag tag-w">Resposta escrita</span>
+          <p>
+            Escreva os <strong>três maiores</strong> estados do Nordeste, do
+            maior para o menor.
+          </p>
+          <table class="data">
+            <tr>
+              <th style="width: 33%">1º maior</th>
+              <th style="width: 33%">2º maior</th>
+              <th>3º maior</th>
+            </tr>
+            <tr>
+              <td><span class="line"></span></td>
+              <td><span class="line"></span></td>
+              <td><span class="line"></span></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="q avoid-break">
+          <span class="q-num">11</span>
+          <span class="tag tag-w">Resposta escrita</span>
+          <p>
+            Alagoas e Sergipe são os dois menores. Juntando os dois, dá quantos
+            mil km²? Mostre a conta.
+          </p>
+          <p>
+            Conta: <span class="line medium"></span> Resposta:
+            <span class="line short"></span> mil km²
+          </p>
+        </div>
+      </section>
+
+      <div class="page-break"></div>
+
+      <!-- ══════════ FOLHA 5 — PARTE 4: CARTÕES-POSTAIS + TRILHA ══════════ -->
+      <section>
+        <h2>Parte 4 — Três cartões-postais para a Zabé</h2>
+
+        <div class="read-box postal p-red avoid-break">
+          <span class="postal-de">Cartão 1 — de Recife, Pernambuco</span>
+          <p>
+            <strong>Oi, Zabé!</strong> Aqui é o Téo. A minha cidade tem tantos
+            rios e tantas pontes que muita gente chama Recife de “Veneza
+            brasileira”. No sábado eu fui à praia de Boa Viagem com a minha avó.
+            Um abraço!
+          </p>
+        </div>
+
+        <div class="read-box postal p-yellow avoid-break">
+          <span class="postal-de">Cartão 2 — de Teresina, Piauí</span>
+          <p>
+            <strong>Olá, Zabé!</strong> Sou a Cecília. Aqui a gente não vai à
+            praia no fim de semana: a minha cidade fica entre dois rios, o
+            Parnaíba e o Poti, bem longe do mar. Quando o calor aperta, eu me
+            refresco na beira do rio. Vem ver!
+          </p>
+        </div>
+
+        <div class="read-box postal p-green avoid-break">
+          <span class="postal-de"
+            >Cartão 3 — de Natal, Rio Grande do Norte</span
+          >
+          <p>
+            <strong>Oi, Zabé!</strong> Eu sou o Davi. Aqui tem dunas de areia
+            enormes e um cajueiro tão grande que parece um bosque inteiro — é o
+            maior cajueiro do mundo, ali em Pirangi. De manhã eu vejo o mar da
+            janela. Te espero!
+          </p>
+        </div>
+
+        <div class="q avoid-break">
+          <span class="q-num">12</span>
+          <span class="tag tag-vf">Verdadeiro ou Falso</span>
+          <p>
+            Atenção: algumas respostas não estão escritas — você descobre
+            <strong>juntando</strong> o que dois cartões contam. Na caixinha
+            pontilhada, escreva o <strong>número do cartão</strong> que te
+            ajudou (pode ser mais de um!).
+          </p>
+          <div class="vf-head">
+            <span>V/F</span><span>onde<br />achei</span
+            ><span>Afirmação</span>
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>a)</b> Téo, Cecília e Davi moram em três capitais
+              diferentes.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>b)</b> Todas as capitais do Nordeste ficam na beira do
+              mar.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"><b>c)</b> Cecília mora em Pernambuco.</span>
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>d)</b> Davi pode ir à praia na cidade dele.</span
+            >
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"><b>e)</b> Cecília se refresca no mar.</span>
+          </div>
+          <div class="vf-item">
+            <span class="vf-box"></span><span class="vf-box vf-src"></span>
+            <span class="vf-txt"
+              ><b>f)</b> Os três cartões falam de capitais do Nordeste.</span
+            >
+          </div>
+        </div>
+
+        <div class="q avoid-break">
+          <span class="q-num">13</span>
+          <span class="tag tag-w">Resposta escrita</span>
+          <p>
+            A cidade da Cecília e a cidade do Davi são bem diferentes. Escreva
+            <strong>uma</strong> diferença entre elas.
+          </p>
+          <div class="writing-lines"></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Desafio final — Monte a rota</h2>
+        <div class="q avoid-break">
+          <span class="q-num">14</span>
+          <span class="tag tag-w">Resposta escrita</span>
+          <p class="aviso">Agora tente sem olhar a folha de consulta!</p>
+          <p>
+            Escreva os nove estados na ordem da viagem da Zabé: do
+            <strong>menor</strong> para o <strong>maior</strong>.
+          </p>
+          <div class="trilha">
+            <span class="casa"><b>1º menor</b><span class="esc"></span></span>
+            <span class="casa"><b>2º</b><span class="esc"></span></span>
+            <span class="casa"><b>3º</b><span class="esc"></span></span>
+            <span class="casa"><b>4º</b><span class="esc"></span></span>
+            <span class="casa"><b>5º</b><span class="esc"></span></span>
+            <span class="casa"><b>6º</b><span class="esc"></span></span>
+            <span class="casa"><b>7º</b><span class="esc"></span></span>
+            <span class="casa"><b>8º</b><span class="esc"></span></span>
+            <span class="casa"><b>9º maior</b><span class="esc"></span></span>
+          </div>
+        </div>
+      </section>
+
+      <div class="page-break"></div>
+
+      <!-- ══════════ FOLHA 6 — HORA DOS JOGOS ══════════ -->
+      <section>
+        <h2>Hora dos jogos — As 9 capitais</h2>
+
+        <div class="q avoid-break">
+          <span class="q-num">15</span>
+          <span class="tag tag-w">Caça-palavras</span>
+          <p>
+            Encontre as <strong>9 capitais</strong> do Nordeste. Elas estão
+            <strong>deitadas</strong> (da esquerda para a direita) ou
+            <strong>em pé</strong> (de cima para baixo) — nunca de trás para a
+            frente. Estão escritas sem acento e sem espaço.
+          </p>
+          <div class="word-bank">
+            <span>SALVADOR</span><span>SAO LUIS</span><span>TERESINA</span>
+            <span>FORTALEZA</span><span>RECIFE</span><span>JOAO PESSOA</span>
+            <span>NATAL</span><span>MACEIO</span><span>ARACAJU</span>
+          </div>
+          <div class="puzzle-grid">
+            <table>
+              <tr><td>L</td><td>O</td><td>D</td><td>U</td><td>T</td><td>E</td><td>B</td><td>U</td><td>C</td><td>I</td><td>I</td><td>V</td></tr>
+              <tr><td>U</td><td>M</td><td>A</td><td>C</td><td>E</td><td>I</td><td>O</td><td>P</td><td>D</td><td>M</td><td>Z</td><td>S</td></tr>
+              <tr><td>F</td><td>L</td><td>R</td><td>D</td><td>T</td><td>I</td><td>L</td><td>J</td><td>U</td><td>F</td><td>R</td><td>R</td></tr>
+              <tr><td>S</td><td>S</td><td>A</td><td>L</td><td>V</td><td>A</td><td>D</td><td>O</td><td>R</td><td>C</td><td>E</td><td>P</td></tr>
+              <tr><td>T</td><td>N</td><td>C</td><td>S</td><td>N</td><td>A</td><td>P</td><td>A</td><td>P</td><td>N</td><td>C</td><td>B</td></tr>
+              <tr><td>B</td><td>O</td><td>A</td><td>D</td><td>L</td><td>S</td><td>A</td><td>O</td><td>L</td><td>U</td><td>I</td><td>S</td></tr>
+              <tr><td>D</td><td>G</td><td>J</td><td>N</td><td>P</td><td>R</td><td>M</td><td>P</td><td>V</td><td>C</td><td>F</td><td>P</td></tr>
+              <tr><td>U</td><td>T</td><td>U</td><td>A</td><td>B</td><td>U</td><td>V</td><td>E</td><td>F</td><td>T</td><td>E</td><td>N</td></tr>
+              <tr><td>I</td><td>J</td><td>O</td><td>T</td><td>E</td><td>R</td><td>E</td><td>S</td><td>I</td><td>N</td><td>A</td><td>Z</td></tr>
+              <tr><td>U</td><td>B</td><td>R</td><td>A</td><td>N</td><td>F</td><td>T</td><td>S</td><td>T</td><td>O</td><td>N</td><td>B</td></tr>
+              <tr><td>P</td><td>G</td><td>N</td><td>L</td><td>N</td><td>F</td><td>R</td><td>O</td><td>I</td><td>M</td><td>J</td><td>B</td></tr>
+              <tr><td>B</td><td>L</td><td>R</td><td>F</td><td>O</td><td>R</td><td>T</td><td>A</td><td>L</td><td>E</td><td>Z</td><td>A</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="q avoid-break">
+          <span class="q-num">16</span>
+          <span class="tag tag-w">Cruzadinha</span>
+          <p>
+            Escreva a <strong>capital</strong> de cada estado, uma letra em cada
+            quadradinho (sem acento e sem espaço). Depois leia
+            <strong>de cima para baixo</strong> a coluna amarela e descubra a
+            palavra secreta.
+          </p>
+          <table class="cruz">
+            <tr>
+              <td class="dica">Bahia</td>
+              <td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="cel secreta"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="vazio"></td><td class="vazio"></td>
+            </tr>
+            <tr>
+              <td class="dica">Pernambuco</td>
+              <td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="cel"></td><td class="cel secreta"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td>
+            </tr>
+            <tr>
+              <td class="dica">Sergipe</td>
+              <td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="cel"></td><td class="cel secreta"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td>
+            </tr>
+            <tr>
+              <td class="dica">Rio Grande do Norte</td>
+              <td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="cel"></td><td class="cel"></td><td class="cel secreta"></td><td class="cel"></td><td class="cel"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td>
+            </tr>
+            <tr>
+              <td class="dica">Maranhão</td>
+              <td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="cel"></td><td class="cel secreta"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td>
+            </tr>
+            <tr>
+              <td class="dica">Piauí</td>
+              <td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel secreta"></td><td class="cel"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td>
+            </tr>
+            <tr>
+              <td class="dica">Alagoas</td>
+              <td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel secreta"></td><td class="cel"></td><td class="cel"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td>
+            </tr>
+            <tr>
+              <td class="dica">Paraíba</td>
+              <td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="cel secreta"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td>
+            </tr>
+            <tr>
+              <td class="dica">Ceará</td>
+              <td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="vazio"></td><td class="cel"></td><td class="cel secreta"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="cel"></td><td class="vazio"></td><td class="vazio"></td>
+            </tr>
+          </table>
+          <p>
+            Quem nasce e mora no <strong>sertão</strong> do Nordeste é chamado de
+            <span class="line medium"></span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ══════════ FOLHA 7 — GABARITO ══════════ -->
+      <section class="gabarito page-break">
+        <h2>Gabarito (professor)</h2>
+        <p style="font-size: 9pt; margin-top: 0">
+          <strong>Referências de habilidades BNCC.</strong>
+          <em>Língua Portuguesa:</em> localizar informações explícitas em textos
+          (EF15LP03); relacionar texto com ilustrações e outros recursos gráficos
+          (EF15LP18); ler e compreender diagramas, curiosidades e gêneros do
+          campo investigativo (EF12LP17); reconhecer a função de textos que
+          apresentam informações coletadas (EF02LP20); identificar e reproduzir a
+          sequência dos fatos (EF02LP17). <em>Matemática:</em> comparar e ordenar
+          números naturais até a ordem de centenas (EF02MA01); comparar
+          informações em tabelas de dupla entrada e em gráficos de colunas ou
+          barras (EF02MA22); resolver problemas de adição e subtração (EF02MA06).
+          <em>Geografia:</em> comparar meios de transporte e o seu papel na
+          conexão entre lugares (EF02GE03); reconhecer semelhanças e diferenças
+          no modo de viver de pessoas em diferentes lugares (EF02GE04).
+        </p>
+        <p style="font-size: 9pt">
+          <strong>Nota sobre o nível.</strong> Estados, capitais e grandes
+          regiões são conteúdo de <strong>4º ano</strong> na BNCC
+          (<strong>EF04GE05</strong> — distinguir unidades político-administrativas
+          oficiais, incluindo Unidade da Federação e grande região). Aqui isso
+          entra como <strong>aprofundamento antecipado</strong>: a folha de
+          consulta da página 1 fica disponível durante toda a atividade, de modo
+          que o que se avalia é <strong>ler o dado</strong> (em texto, tabela e
+          gráfico), não memorizar 18 nomes. Só o Desafio final pede resposta de
+          memória. Como esta versão não traz mapa, as habilidades EF02GE08 e
+          EF02GE09 (elaborar e ler representações cartográficas) não são
+          contempladas.
+        </p>
+
+        <h3>Folha 1 — Folha de consulta</h3>
+        <table class="data">
+          <tr>
+            <th style="width: 40px">Q.</th>
+            <th>Resposta</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>
+              9 estados e 9 capitais; maior = <strong>Bahia</strong>; menor =
+              <strong>Sergipe</strong>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>B) Teresina</td>
+          </tr>
+        </table>
+
+        <h3>Parte 1 — O Enigma dos Estados</h3>
+        <table class="data">
+          <tr>
+            <th style="width: 40px">Q.</th>
+            <th>Resposta</th>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>
+              <strong>V, F, V, V, F, V, F, F</strong> — parágrafos: a) 2 &nbsp;
+              b) 2 e 4 &nbsp; c) 4 &nbsp; d) 4 &nbsp; e) 5 (foi Alagoas, não o
+              Ceará) &nbsp; f) 6 &nbsp; g) 2 (ela seguiu a ordem do tamanho)
+              &nbsp; h) 5 e 6 (a última parada foi a Bahia)
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>
+              Aceitar quaisquer duas falsas corrigidas. Ex.: “Zabé começou a
+              viagem pelo <em>menor</em> estado do Nordeste.” / “Depois de
+              Sergipe, Zabé voou para <em>Alagoas</em>.” / “Zabé seguiu a ordem
+              do <em>tamanho</em> dos estados.” / “A <em>Bahia</em> foi a última
+              parada da viagem.”
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>
+              A ordem do <strong>tamanho</strong>: começou no menor estado
+              (Sergipe) e terminou no maior (Bahia).
+            </td>
+          </tr>
+        </table>
+
+        <h3>Parte 2 — A Feira dos Nove</h3>
+        <table class="data">
+          <tr>
+            <th style="width: 40px">Q.</th>
+            <th>Resposta</th>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>
+              <strong>V, F, F, V, F, V</strong> — b) Sergipe mandou 10 e Alagoas
+              22 &nbsp; c) o mel é do Piauí, cuja capital é Teresina &nbsp; d) 30
+              &gt; 25 &nbsp; e) os nove produtos são todos diferentes
+            </td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>
+              A) Piauí (8 caixas). <em>A pegadinha:</em> o menor estado (Sergipe,
+              10 caixas) não é o que mandou menos caixas.
+            </td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>8 + 10 = <strong>18</strong> caixas</td>
+          </tr>
+        </table>
+
+        <h3>Parte 3 — Quem é o maior?</h3>
+        <table class="data">
+          <tr>
+            <th style="width: 40px">Q.</th>
+            <th>Resposta</th>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>
+              <strong>V, V, F, V, F, F, F</strong> — c) Alagoas 28 &lt; Paraíba
+              56 &nbsp; e) RN 53 &lt; Paraíba 56 — as barras são quase iguais, só
+              o número decide (item-chave) &nbsp; f) a maior barra é a da Bahia
+              &nbsp; g) Maranhão 332 &gt; Piauí 252
+            </td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Bahia (565), Maranhão (332), Piauí (252)</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>28 + 22 = <strong>50</strong> mil km²</td>
+          </tr>
+        </table>
+
+        <h3>Parte 4 — Três cartões-postais</h3>
+        <table class="data">
+          <tr>
+            <th style="width: 40px">Q.</th>
+            <th>Resposta</th>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>
+              <strong>V, F, F, V, F, V</strong> — b) <em>inferência</em>: o
+              cartão 2 mostra que Teresina fica longe do mar, logo “todas” é
+              falso &nbsp; c) Cecília é de Teresina, no Piauí &nbsp; d) Davi vê o
+              mar da janela e tem dunas (cartão 3) &nbsp; e) ela se refresca no
+              <em>rio</em>
+            </td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>
+              Aceitar qualquer diferença apoiada nos cartões: Teresina fica entre
+              dois rios e longe do mar, Natal fica na beira do mar; em Natal dá
+              para ir à praia e ver dunas, em Teresina a criança brinca no rio.
+            </td>
+          </tr>
+        </table>
+
+        <h3>Desafio final e jogos</h3>
+        <table class="data">
+          <tr>
+            <th style="width: 40px">Q.</th>
+            <th>Resposta</th>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>
+              Sergipe (22) → Alagoas (28) → Rio Grande do Norte (53) → Paraíba
+              (56) → Pernambuco (98) → Ceará (149) → Piauí (252) → Maranhão (332)
+              → Bahia (565)
+            </td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>
+              Posições na grade (linha, coluna), contando de cima para baixo e da
+              esquerda para a direita:<br />
+              <strong>Deitadas:</strong> MACEIO — linha 2, coluna 2 &nbsp;•&nbsp;
+              SALVADOR — linha 4, coluna 2 &nbsp;•&nbsp; SAOLUIS — linha 6,
+              coluna 6 &nbsp;•&nbsp; TERESINA — linha 9, coluna 4 &nbsp;•&nbsp;
+              FORTALEZA — linha 12, coluna 4.<br />
+              <strong>Em pé:</strong> ARACAJU — linha 2, coluna 3 &nbsp;•&nbsp;
+              JOAOPESSOA — linha 3, coluna 8 &nbsp;•&nbsp; RECIFE — linha 3,
+              coluna 11 &nbsp;•&nbsp; NATAL — linha 7, coluna 4.
+            </td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>
+              SALVADOR, RECIFE, ARACAJU, NATAL, SAOLUIS, TERESINA, MACEIO,
+              JOAOPESSOA, FORTALEZA.<br />
+              Coluna amarela, de cima para baixo:
+              <strong>S-E-R-T-A-N-E-J-O</strong> → a palavra secreta é
+              <strong>SERTANEJO</strong> (quem nasce e mora no sertão).
+            </td>
+          </tr>
+        </table>
+
+        <h3>Dados de referência</h3>
+        <p style="font-size: 9pt; margin: 4px 0">
+          Áreas do IBGE, arredondadas para milhares de km². Sergipe é o menor
+          estado do Brasil inteiro. Teresina é a única capital do Nordeste que
+          não fica no litoral. Os produtos da Parte 2 correspondem a produções
+          reais de cada estado (cacau/BA, arroz/MA, mel/PI, castanha de caju/CE,
+          manga/PE, abacaxi/PB, sal/RN, coco/AL, laranja/SE).
+        </p>
+      </section>
+
+      <footer class="print-note">
+        Atividades da Laura — material de estudo (revisão e aprofundamento).
+      </footer>
+    </main>
+  </body>
+</html>

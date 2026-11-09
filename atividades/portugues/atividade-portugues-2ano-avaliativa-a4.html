@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>O pássaro do nosso quintal — Português, avaliação de final de ano | 2º ano</title>
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --paper: #fffef8;
+      --accent: #0f6e6b;
+      --blue: #1d4e89;
+      --yellow: #f4d35e;
+      --green: #2a9d8f;
+      --muted: #6c757d;
+      --border: #dee2e6;
+      --card: #f8f9fa;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background: #e9ecef;
+      line-height: 1.38;
+      font-size: 10.5pt;
+    }
+
+    .sheet {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 1rem;
+      background: var(--paper);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+      padding: 11mm 13mm 14mm;
+    }
+
+    @page { size: A4; margin: 11mm; }
+
+    @media print {
+      body { background: #fff; }
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .sheet {
+        box-shadow: none;
+        margin: 0;
+        max-width: none;
+        min-height: auto;
+        padding: 0;
+      }
+      .no-print { display: none !important; }
+      a[href]:after { content: ""; }
+      .page-break { page-break-before: always; break-before: page; }
+      .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+      main.sheet > section { break-inside: auto; page-break-inside: auto; }
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #343a40;
+      color: #fff;
+      padding: 10px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .toolbar button:hover { filter: brightness(1.08); }
+    .toolbar span { font-size: 13px; opacity: 0.9; }
+
+    h1 {
+      font-size: 1.42rem;
+      margin: 0 0 4px;
+      color: var(--accent);
+      text-align: center;
+      line-height: 1.2;
+    }
+    .subtitle {
+      text-align: center;
+      font-weight: 600;
+      color: var(--blue);
+      margin: 0 0 2px;
+      font-size: 0.98rem;
+    }
+    .scope {
+      text-align: center;
+      color: var(--muted);
+      font-size: 9.5pt;
+      margin: 0 0 10px;
+    }
+
+    .header-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding: 8px 10px;
+      background: linear-gradient(135deg, #e7f6f4, #e8f1fb);
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+    }
+    .header-line label {
+      flex: 1;
+      min-width: 140px;
+      font-weight: 600;
+      font-size: 10pt;
+    }
+    .header-line input {
+      border: none;
+      border-bottom: 2px solid var(--blue);
+      background: transparent;
+      width: 100%;
+      min-height: 22px;
+      font: inherit;
+    }
+
+    .intro-box {
+      background: var(--card);
+      border-left: 5px solid var(--green);
+      padding: 8px 12px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 10px;
+      font-size: 10.5pt;
+    }
+    .intro-box p { margin: 4px 0; }
+
+    h2 {
+      font-size: 1.02rem;
+      margin: 14px 0 8px;
+      padding: 6px 12px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 8px;
+      display: block;
+      width: fit-content;
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+    h3 {
+      font-size: 0.95rem;
+      color: var(--blue);
+      margin: 10px 0 4px;
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+
+    .concept {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin: 6px 0 8px;
+    }
+    .concept p, .read-box p, .q p, .bilhete p { margin: 4px 0; }
+
+    .read-box {
+      background: linear-gradient(180deg, #e3f2fd 0%, #fff 100%);
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      padding: 8px 12px;
+      margin: 8px 0;
+    }
+    .read-box strong { color: var(--blue); }
+    .read-box .fala { margin: 2px 0 2px 8px; }
+
+    .q {
+      margin: 9px 0;
+      padding: 8px 10px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .q-num {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+    .tag {
+      font-size: 9pt;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .tag-mc { background: #cfe2ff; color: #084298; }
+    .tag-w { background: #d1e7dd; color: #0f5132; }
+    .star { color: #c4493a; font-weight: 800; }
+
+    .mc { margin: 6px 0 2px; padding-left: 0; list-style: none; }
+    .mc li { margin: 3px 0; padding: 2px 6px; border-radius: 6px; }
+
+    .line {
+      border-bottom: 1.5px dotted var(--muted);
+      min-height: 1.35em;
+      display: inline-block;
+      min-width: 140px;
+    }
+    .line.short { min-width: 70px; }
+    .line.mid { min-width: 180px; }
+
+    .hint {
+      font-size: 8.5pt;
+      color: var(--muted);
+      margin: 0 0 1px;
+      line-height: 1.2;
+    }
+
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 6px 0;
+      font-size: 10pt;
+    }
+    table.data th, table.data td {
+      border: 1px solid var(--border);
+      padding: 5px 7px;
+      vertical-align: top;
+      text-align: left;
+    }
+    table.data th { background: #e9ecef; }
+    table.data .grp {
+      font-weight: 700;
+      background: #f3f7f6;
+      width: 28%;
+    }
+
+    .bilhete {
+      background: #fffdf3;
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 6px 10px 4px;
+      margin: 4px 0 0;
+    }
+    .bilhete .item { margin: 7px 0 0; }
+    .bilhete .item p { margin: 0; }
+    .bilhete .item .line {
+      display: block;
+      width: 100%;
+      min-height: 1.55em;
+      margin-top: 1px;
+    }
+    .q-letter { padding: 6px 8px; margin-top: 6px; }
+    .bilhete .assinatura {
+      text-align: right;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .gabarito {
+      background: #fff8e7;
+      border: 2px solid var(--yellow);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 9.5pt;
+    }
+    .gabarito h2 { background: #856404; }
+    .gabarito h3 { color: #856404; }
+    .gabarito table { font-size: 8.6pt; }
+    .gabarito td, .gabarito th { text-align: left; vertical-align: top; }
+    .gabarito table.answers td:first-child,
+    .gabarito table.answers th:first-child {
+      width: 3.4em;
+      text-align: center;
+      font-weight: 700;
+    }
+    .gabarito tr { break-inside: avoid; page-break-inside: avoid; }
+    thead { display: table-header-group; }
+    .gabarito td.niveis { white-space: nowrap; }
+    .gabarito .levels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin: 6px 0 10px;
+    }
+    .gabarito .levels div {
+      background: #fff;
+      border: 1px solid #e0c36a;
+      border-radius: 8px;
+      padding: 6px 8px;
+    }
+
+    footer.print-note {
+      margin-top: 14px;
+      font-size: 9pt;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .avoid-break, .q, .concept, .read-box, .bilhete, .intro-box, .header-line {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">Imprimir / Salvar em PDF</button>
+    <span>Use Ctrl+P → “Salvar como PDF”. Formato A4. O gabarito começa em página nova: dá para não imprimir essa parte.</span>
+  </div>
+
+  <main class="sheet">
+    <header>
+      <h1>O pássaro do nosso quintal</h1>
+      <p class="subtitle">Língua Portuguesa — Revisão e aprofundamento | 2º ano do Ensino Fundamental</p>
+      <p class="scope">Avaliação de final de ano · sinônimos e antônimos · singular e plural · diminutivo · S e SS</p>
+      <div class="header-line">
+        <label>Nome: <input type="text" aria-label="Nome do aluno" /></label>
+        <label>Data: <input type="text" aria-label="Data" /></label>
+        <label>Turma: <input type="text" aria-label="Turma" /></label>
+      </div>
+      <div class="intro-box">
+        <p><strong>Como usar esta atividade:</strong> leia o texto uma vez inteiro. As perguntas usam as palavras dessa história. Marque <strong>X</strong> em uma opção só. Escreva com letra de forma.</p>
+        <p>Pode fazer em dois dias: primeiro as Partes 1 e 2; depois as Partes 3, 4 e o bilhete. O <span class="star">★</span> é um pouquinho mais difícil. A parte do <strong>S</strong> e do <strong>SS</strong> é um ensaio do 3º ano: acertar uma parte já mostra o que você sabe.</p>
+        <p>O gabarito fica no final, para um adulto. Cada erro indica qual regra revisar.</p>
+      </div>
+    </header>
+
+    <section>
+      <div class="read-box">
+        <strong>Leia com atenção — O pássaro do nosso quintal</strong>
+        <p>No sábado, a casa da Laura estava cheia de sol. A Mamãe Gilmara olhou o céu e disse:</p>
+        <p class="fala">— Que dia bonito!</p>
+        <p>O Papai Joel sorriu:</p>
+        <p class="fala">— É um dia lindo para um passeio.</p>
+        <p>No gramado, perto da casinha de ferramentas, a Laura achou um pássaro. O passarinho era pequeno e a asa doía. Parecia ter machucado um osso. Uma formiguinha passava ao lado, bem devagar.</p>
+        <p class="fala">— Ele está triste — disse a Laura. — Eu queria que ele ficasse feliz.</p>
+        <p>A Gilmara falou com carinho:</p>
+        <p class="fala">— Vamos levar o pássaro para o seu quartinho. Lá tem uma caminha e um prato com massa de bolo. Sozinha, seria impossível cuidar dele. Juntos, é possível.</p>
+        <p>A Laura entrou devagar. No quartinho, ajeitou o pezinho do pássaro com um paninho. O Joel trouxe um barquinho de brinquedo e explicou:</p>
+        <p class="fala">— O barco grande fica no rio. O barquinho é menor e não faz barulho.</p>
+        <p>Antes, a Laura tinha ficado infeliz. Agora estava feliz. O pássaro também parecia alegre.</p>
+        <p>Na mesa havia pão, suco e bolo. A Laura pediu dois pães e olhou o vaso com três flores. O cheiro chegou ao nariz. Depois, soltou dois balões. Um subiu alto. O outro ficou baixo, preso num galho. No chão havia bolas coloridas e fitas.</p>
+        <p>No fim da tarde, o pássaro voou. A Laura acenou da janela da casa. O nosso quintal ficou em festa.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Parte 1 — Sinônimos e antônimos</h2>
+      <div class="concept">
+        <p><strong>Sinônimo</strong> é palavra de sentido parecido. <em>Bom</em> e <em>ótimo</em> se parecem, mas <em>ótimo</em> é mais forte.</p>
+        <p><strong>Antônimo</strong> é palavra de sentido contrário. Há dois jeitos:</p>
+        <p>• outra palavra: <em>quente</em> / <em>frio</em>;</p>
+        <p>• um pedacinho no começo: <strong>in-</strong> ou <strong>im-</strong>. <em>Justo</em> vira <em>injusto</em>. Antes de <strong>p</strong> ou <strong>b</strong>, usamos <strong>im-</strong>: <em>paciente</em> / <em>impaciente</em>.</p>
+        <p>Som parecido não basta. <em>Paciente</em> e <em>impaciente</em> soam perto e são contrárias.</p>
+      </div>
+
+      <div class="q">
+        <span class="q-num">1</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A Gilmara disse: “Que dia <strong>bonito</strong>!” O Joel trocou <strong>bonito</strong> por uma palavra da história. Qual foi?</p>
+        <ul class="mc">
+          <li>( ) A) feio</li>
+          <li>( ) B) bonitinho</li>
+          <li>( ) C) lindo</li>
+          <li>( ) D) maravilhoso</li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-num">2</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p><strong>Bonito</strong> e <strong>lindo</strong> são sinônimos. Qual é a diferença?</p>
+        <ul class="mc">
+          <li>( ) A) Lindo é o contrário de bonito.</li>
+          <li>( ) B) Lindo é um pouco mais forte do que bonito.</li>
+          <li>( ) C) Lindo e bonito são a mesma palavra.</li>
+          <li>( ) D) Lindo quer dizer pequeno.</li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-num">3</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>No fim do texto, a Laura estava <strong>feliz</strong> e o pássaro parecia <strong>alegre</strong>. Feliz e alegre são:</p>
+        <ul class="mc">
+          <li>( ) A) sinônimos.</li>
+          <li>( ) B) antônimos, porque são palavras diferentes.</li>
+          <li>( ) C) diminutivo e aumentativo.</li>
+          <li>( ) D) singular e plural.</li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-num">4</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A Laura ficou <strong>infeliz</strong> e depois ficou <strong>feliz</strong>. Feliz e infeliz são:</p>
+        <ul class="mc">
+          <li>( ) A) sinônimos, porque soam parecido.</li>
+          <li>( ) B) diminutivo e aumentativo.</li>
+          <li>( ) C) singular e plural.</li>
+          <li>( ) D) antônimos: o <strong>in-</strong> vira o sentido ao contrário.</li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-num">5</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A Gilmara disse: “Sozinha, seria <strong>impossível</strong>. Juntos, é <strong>possível</strong>.” O pedacinho <strong>im-</strong> serve para:</p>
+        <ul class="mc">
+          <li>( ) A) mostrar que a palavra está no plural.</li>
+          <li>( ) B) formar o antônimo de possível.</li>
+          <li>( ) C) formar o diminutivo.</li>
+          <li>( ) D) avisar que a palavra leva SS.</li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-num">6</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Escreva o antônimo com <strong>outra palavra</strong>.</p>
+        <p>a) alto → <span class="line short"></span></p>
+        <p>b) grande → <span class="line short"></span></p>
+        <p>c) triste → <span class="line short"></span></p>
+      </div>
+
+      <div class="q">
+        <span class="q-num">7</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Escreva o antônimo com <strong>in-</strong> ou <strong>im-</strong>. Lembre: antes de <strong>p</strong>, usamos <strong>im-</strong>.</p>
+        <p>a) feliz → <span class="line mid"></span></p>
+        <p>b) possível → <span class="line mid"></span></p>
+      </div>
+
+      <div class="q">
+        <span class="q-num">8</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>A Laura é alegre e cuida do pássaro. Invente dois amigos.</p>
+        <p>a) Amigo <strong>parecido</strong> com ela. Nome: <span class="line short"></span> Qualidade: <span class="line mid"></span></p>
+        <p>b) Amigo <strong>contrário</strong>. Nome: <span class="line short"></span> Qualidade: <span class="line mid"></span></p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Parte 2 — Singular e plural</h2>
+      <div class="concept">
+        <p>O plural muda a palavra e também o artigo: <strong>a bola / as bolas</strong>, <strong>o menino / os meninos</strong>. “As bola” e “os menino” ficam pela metade.</p>
+        <table class="data">
+          <tr><th>Quando</th><th>O que fazer</th><th>Exemplo</th></tr>
+          <tr><td>Termina com vogal</td><td>soma <strong>-s</strong></td><td>gato → gatos</td></tr>
+          <tr><td>Termina com <strong>r</strong> ou <strong>z</strong></td><td>soma <strong>-es</strong></td><td>mar → mares &nbsp; luz → luzes</td></tr>
+          <tr><td>Termina com <strong>ão</strong> <span class="star">★</span></td><td>o final muda. Há três jeitos.</td><td>limão → limões &nbsp; cão → cães &nbsp; mão → mãos</td></tr>
+        </table>
+      </div>
+
+      <div class="q">
+        <span class="q-num">9</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Volte ao texto e copie as palavras no plural. O exemplo só mostra a regra: não copie o exemplo.</p>
+        <p>a) Duas que ganharam só <strong>-s</strong> (como gato → gatos): <span class="line mid"></span> e <span class="line mid"></span></p>
+        <p>b) A que, no singular, termina com <strong>r</strong> (como mar → mares): <span class="line mid"></span></p>
+        <p>c) As duas que, no singular, terminam com <strong>ão</strong>: <span class="line mid"></span> e <span class="line mid"></span></p>
+      </div>
+
+      <div class="q">
+        <span class="q-num">10</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Passe a frase para o <strong>singular</strong>. Mude o que precisar para ela ficar certa.</p>
+        <p>As bolas coloridas estavam no chão.</p>
+        <p><span class="line" style="min-width: 92%;"></span></p>
+      </div>
+
+      <div class="q">
+        <span class="q-num">11</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Escreva o plural de cada palavra no grupo certo.</p>
+        <table class="data">
+          <tr><th>Grupo</th><th>Singular</th><th>Plural</th></tr>
+          <tr><td class="grp" rowspan="3">Só <strong>-s</strong></td><td>bola</td><td><span class="line mid"></span></td></tr>
+          <tr><td>casa</td><td><span class="line mid"></span></td></tr>
+          <tr><td>pássaro</td><td><span class="line mid"></span></td></tr>
+          <tr><td class="grp" rowspan="2"><strong>-es</strong> depois de r ou z</td><td>flor</td><td><span class="line mid"></span></td></tr>
+          <tr><td>nariz</td><td><span class="line mid"></span></td></tr>
+          <tr><td class="grp" rowspan="3"><span class="star">★</span> Termina em <strong>ão</strong></td><td>balão</td><td><span class="line mid"></span></td></tr>
+          <tr><td>pão</td><td><span class="line mid"></span></td></tr>
+          <tr><td>irmão</td><td><span class="line mid"></span></td></tr>
+        </table>
+      </div>
+
+      <div class="q">
+        <span class="q-num">12</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual frase está certa?</p>
+        <ul class="mc">
+          <li>( ) A) As bola estão no quintal.</li>
+          <li>( ) B) Os menino acharam o pássaro.</li>
+          <li>( ) C) As flores estão no vaso.</li>
+          <li>( ) D) O flores está no vaso.</li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-num">13</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Reescreva cada frase com o plural certo no nome.</p>
+        <p>a) As bola rolaram no gramado.</p>
+        <p><span class="line" style="min-width: 92%;"></span></p>
+        <p>b) Os menino cuidaram do pássaro.</p>
+        <p><span class="line" style="min-width: 92%;"></span></p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Parte 3 — Diminutivo e diminutivo de carinho</h2>
+      <div class="concept">
+        <p>O diminutivo pode dizer que algo é <strong>pequeno</strong> ou que a gente fala com <strong>carinho</strong>. A palavra muda com um final.</p>
+        <table class="data">
+          <tr><th>Quando</th><th>Final</th><th>Exemplo</th></tr>
+          <tr><td>Termina com vogal</td><td><strong>-inho</strong></td><td>gato → gatinho</td></tr>
+          <tr><td>Termina com consoante, ou a vogal é forte</td><td><strong>-zinho</strong></td><td>mar → marzinho &nbsp; chá → chazinho</td></tr>
+          <tr><td>Tem <strong>c</strong> ou <strong>g</strong> antes do final novo</td><td><strong>c → qu</strong> e <strong>g → gu</strong></td><td>porco → porquinho &nbsp; amigo → amiguinho</td></tr>
+        </table>
+      </div>
+
+      <div class="q">
+        <span class="q-num">14</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Em qual frase a palavra em negrito está no diminutivo?</p>
+        <ul class="mc">
+          <li>( ) A) A Laura achou um <strong>pássaro</strong>.</li>
+          <li>( ) B) A Laura achou um <strong>passarinho</strong>.</li>
+          <li>( ) C) Os <strong>pássaros</strong> voaram juntos.</li>
+          <li>( ) D) Havia um <strong>casarão</strong> no fim da rua.</li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-num">15</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Escreva o diminutivo. Escolha <strong>-inho</strong> ou <strong>-zinho</strong>.</p>
+        <p>a) casa → <span class="line mid"></span></p>
+        <p>b) pé → <span class="line mid"></span></p>
+        <p>c) flor → <span class="line mid"></span></p>
+        <p>d) pássaro → <span class="line mid"></span></p>
+      </div>
+
+      <div class="q">
+        <span class="q-num">16</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual é o diminutivo de <strong>barco</strong>?</p>
+        <ul class="mc">
+          <li>( ) A) barcinho</li>
+          <li>( ) B) barcozinho</li>
+          <li>( ) C) barcos</li>
+          <li>( ) D) barquinho</li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-num">17</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Escreva o diminutivo de <strong>formiga</strong>: <span class="line mid"></span></p>
+      </div>
+
+      <div class="q">
+        <span class="q-num">18</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>A mesma ideia de diminutivo pode ser tamanho ou carinho. Marque <strong>um</strong> em cada linha. Olhe a palavra em negrito.</p>
+        <table class="data">
+          <tr><th>Frase</th><th>Tamanho</th><th>Carinho</th></tr>
+          <tr>
+            <td>A <strong>casinha</strong> de ferramentas cabe só um regador.</td>
+            <td>( )</td>
+            <td>( )</td>
+          </tr>
+          <tr>
+            <td>A mamãe falou: “Dorme no seu <strong>quartinho</strong>, meu bem.”</td>
+            <td>( )</td>
+            <td>( )</td>
+          </tr>
+          <tr>
+            <td>O <strong>barquinho</strong> de brinquedo é menor do que o barco.</td>
+            <td>( )</td>
+            <td>( )</td>
+          </tr>
+          <tr>
+            <td>“Meu <strong>passarinho</strong> querido, fica bom logo.”</td>
+            <td>( )</td>
+            <td>( )</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="q">
+        <span class="q-num">19</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Escreva uma frase chamando o pássaro com carinho. Use um diminutivo.</p>
+        <p><span class="line" style="min-width: 92%;"></span></p>
+        <p><span class="line" style="min-width: 92%;"></span></p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Parte 4 — O S e o SS</h2>
+      <div class="concept">
+        <p>O som de <strong>S</strong> não se escreve sempre do mesmo jeito. Esta parte é um ensaio: a regra completa vem com mais calma no 3º ano.</p>
+        <table class="data">
+          <tr><th>Onde está o som</th><th>Como se escreve</th><th>Exemplo</th></tr>
+          <tr><td>No começo da palavra</td><td>uma letra <strong>S</strong>. Nunca SS.</td><td>sol</td></tr>
+          <tr><td>Entre vogais, com som de S</td><td><strong>SS</strong></td><td>pêssego</td></tr>
+          <tr><td>Entre vogais, com som de Z</td><td>uma letra <strong>S</strong></td><td>rosa</td></tr>
+          <tr><td>Depois de consoante</td><td>uma letra <strong>S</strong>. Nunca SS.</td><td>urso</td></tr>
+        </table>
+      </div>
+
+      <div class="q">
+        <span class="q-num">20</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Qual é a escrita certa do bicho que pula e gosta de lago?</p>
+        <ul class="mc">
+          <li>( ) A) ssapo</li>
+          <li>( ) B) çapo</li>
+          <li>( ) C) sapo</li>
+          <li>( ) D) zapo</li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-num">21</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>No texto, o pássaro pequeno está escrito assim:</p>
+        <ul class="mc">
+          <li>( ) A) pasarinho</li>
+          <li>( ) B) passarinio</li>
+          <li>( ) C) paçarinho</li>
+          <li>( ) D) passarinho</li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-num">22</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A Laura pode guardar as fitas numa:</p>
+        <ul class="mc">
+          <li>( ) A) bolssa</li>
+          <li>( ) B) bolsa</li>
+          <li>( ) C) bolça</li>
+          <li>( ) D) bolzza</li>
+        </ul>
+      </div>
+
+      <div class="q">
+        <span class="q-num">23</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Marque a palavra certa de cada par. Um <strong>S</strong> entre vogais soa como <strong>Z</strong>. Dois <strong>S</strong> soam como <strong>S</strong>.</p>
+        <p>a) A ( ) asa &nbsp; ( ) assa &nbsp; do pássaro doía.</p>
+        <p>b) A mamãe ( ) asa &nbsp; ( ) assa &nbsp; o pão no forno.</p>
+        <p>c) A Laura voltou para ( ) casa &nbsp; ( ) cassa.</p>
+      </div>
+
+      <div class="q">
+        <span class="q-num">24</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Escreva a palavra. O som de S está entre vogais, então pense no <strong>SS</strong>.</p>
+        <p>a) Ave que a Laura achou no gramado:</p>
+        <p><span class="line" style="min-width: 78%;"></span></p>
+        <p>b) Palavra que quer dizer “de nós”:</p>
+        <p><span class="line" style="min-width: 78%;"></span></p>
+        <p>c) Parte dura do corpo. No texto, o pássaro machucou um:</p>
+        <p><span class="line" style="min-width: 78%;"></span></p>
+        <p>d) Caminhada para aproveitar o dia. O Joel falou em um:</p>
+        <p><span class="line" style="min-width: 78%;"></span></p>
+        <p>e) A mistura do bolo, com som de S no meio:</p>
+        <p><span class="line" style="min-width: 78%;"></span></p>
+      </div>
+
+      <div class="q">
+        <span class="q-num">25</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Cada palavra abaixo está errada. Escreva do jeito certo.</p>
+        <p>a) ssapo → <span class="line" style="min-width: 55%;"></span></p>
+        <p>b) pensso → <span class="line" style="min-width: 55%;"></span></p>
+        <p>c) messa (o móvel onde estava o pão) → <span class="line" style="min-width: 42%;"></span></p>
+      </div>
+
+      <div class="q">
+        <span class="q-num">26</span> <span class="tag tag-w">Resposta escrita</span>
+        <p><span class="star">★</span> Por que <strong>pássaro</strong> tem dois S? Escreva com suas palavras. Se ficar mais fácil, explique em voz alta e peça para um adulto anotar.</p>
+        <p><span class="line" style="min-width: 92%;"></span></p>
+        <p><span class="line" style="min-width: 92%;"></span></p>
+        <p><span class="line" style="min-width: 92%;"></span></p>
+      </div>
+
+      <div class="concept">
+        <p><strong>Antes do bilhete, guarde a regra:</strong> SS nunca começa a palavra. Entre vogais, som de S pede SS. Um S entre vogais soa Z. Depois de consoante, um S só.</p>
+        <p>Escreva cada palavra na coluna certa: <strong>sapo</strong>, <strong>pássaro</strong>, <strong>casa</strong>, <strong>bolsa</strong>, <strong>osso</strong>, <strong>mesa</strong>.</p>
+        <table class="data">
+          <tr><th>Um S só</th><th>SS</th></tr>
+          <tr><td><span class="line" style="min-width: 70%;"></span></td><td><span class="line" style="min-width: 70%;"></span></td></tr>
+          <tr><td><span class="line" style="min-width: 70%;"></span></td><td><span class="line" style="min-width: 70%;"></span></td></tr>
+          <tr><td><span class="line" style="min-width: 70%;"></span></td><td></td></tr>
+          <tr><td><span class="line" style="min-width: 70%;"></span></td><td></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="page-break">
+      <h2>Parte 5 — Desafio final: o bilhete da Laura</h2>
+      <div class="concept">
+        <p>O bilhete junta os quatro temas. Cada espaço pede <strong>uma coisa só</strong>. Leia a pista da letra antes de escrever.</p>
+      </div>
+
+      <div class="q q-letter">
+        <span class="q-num">27</span> <span class="tag tag-w">Resposta escrita</span>
+        <div class="bilhete">
+          <p>Querido passarinho,</p>
+          <div class="item">
+            <p>Hoje eu estou muito</p>
+            <p class="hint">a) uma palavra com sentido parecido com <em>feliz</em></p>
+            <span class="line"></span>
+          </div>
+          <div class="item">
+            <p>Você voou</p>
+            <p class="hint">b) o contrário de <em>baixo</em></p>
+            <span class="line"></span>
+          </div>
+          <div class="item">
+            <p>Na mesa ficaram dois ______ e três ______.</p>
+            <p class="hint">c) plural de <em>pão</em> &nbsp;&nbsp; d) plural de <em>flor</em>. Escreva as duas palavras, nesta ordem.</p>
+            <span class="line"></span>
+          </div>
+          <div class="item">
+            <p>Os ______ da rua também viram você.</p>
+            <p class="hint">e) plural de <em>menino</em>. Escreva a palavra que falta.</p>
+            <span class="line"></span>
+          </div>
+          <div class="item">
+            <p>No meu quartinho, cuidei do seu ______ com carinho.</p>
+            <p class="hint">f) diminutivo de <em>pé</em></p>
+            <span class="line"></span>
+          </div>
+          <div class="item">
+            <p>Também deixei perto um ______ de brinquedo.</p>
+            <p class="hint">g) diminutivo de <em>barco</em></p>
+            <span class="line"></span>
+          </div>
+          <div class="item">
+            <p>Foi ______ te deixar no chão.</p>
+            <p class="hint">h) antônimo de <em>possível</em>, com <em>im-</em></p>
+            <span class="line"></span>
+          </div>
+          <div class="item">
+            <p>Um beijo. Volta logo para a nossa ______.</p>
+            <p class="hint">i) lugar onde a gente mora; o S do meio soa como Z</p>
+            <span class="line"></span>
+          </div>
+          <p class="assinatura">Laura</p>
+        </div>
+      </div>
+      <div class="concept">
+        <p><strong>Confira antes de entregar.</strong> Marque quando estiver certo.</p>
+        <p>( ) No a), a palavra tem sentido parecido com <em>feliz</em> e não é a própria palavra <em>feliz</em>.</p>
+        <p>( ) O plural de <em>pão</em> não ficou com “ões”.</p>
+        <p>( ) No diminutivo de barco, o <strong>c</strong> virou <strong>qu</strong>.</p>
+        <p>( ) No último espaço, o S do meio soa como Z, então ficou um S só.</p>
+      </div>
+    </section>
+
+    <section class="gabarito page-break">
+      <h2>Gabarito e grade de diagnóstico</h2>
+      <p>Correção para o adulto. Cada item testa <strong>um mecanismo</strong>. A alternativa errada, ou o jeito da escrita, já diz qual regra falhou. Acertar o item isolado e errar o mesmo ponto no bilhete (questão 27) fica como <strong>parcial</strong>: a regra aparece no exercício e ainda oscila na produção.</p>
+      <p>O <strong>S/SS</strong> antecipa a EF03LP01. Use como diagnóstico da revisão, não como nota fechada de 2º ano. Resposta falada na questão 26 conta.</p>
+
+      <h3>Respostas etiquetadas</h3>
+      <table class="data answers">
+        <thead>
+          <tr><th>Item</th><th>Etiqueta</th><th>Resposta</th><th>O que o erro mostra</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>1</td>
+          <td>1a · sinônimo no texto</td>
+          <td>C) lindo</td>
+          <td>A = trocou por antônimo. B = aceitou palavra que só soa parecido. D = sentido próximo, porém mais forte, e não é a palavra do Joel.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>1b · diferença entre sinônimos</td>
+          <td>B) Lindo é um pouco mais forte.</td>
+          <td>A = tratou sinônimo como antônimo. C = não vê diferença de sentido. D = trocou o sentido.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>1c · sinônimo × “palavra diferente”</td>
+          <td>A) sinônimos</td>
+          <td>B = o erro de achar que palavras diferentes são antônimos (como bom/ótimo). C ou D = trocou de tema.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>1d · antônimo com in-</td>
+          <td>D</td>
+          <td>A = o erro de achar que feliz/infeliz são sinônimos porque soam parecido. B ou C = trocou de tema.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>1e · função do im-</td>
+          <td>B) antônimo de possível</td>
+          <td>A = acha que prefixo marca plural. C = confunde com diminutivo. D = confunde o prefixo com a regra do SS. <em>Impossível</em> tem SS, mas a pergunta é sobre o <em>im-</em>.</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>1f · antônimo de outra palavra</td>
+          <td>a) baixo &nbsp; b) pequeno &nbsp; c) feliz. Em c), também valem alegre e contente.</td>
+          <td>Baixinho, pequenininho ou tristinho: misturou com diminutivo. Um sinônimo no lugar do antônimo: inverteu os dois mecanismos.</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>1g · antônimo com in-/im-</td>
+          <td>a) infeliz &nbsp; b) impossível</td>
+          <td><em>Inpossível</em> é parcial: a ideia do prefixo está certa e falta o <em>im-</em> antes de p. <em>Imfeliz</em> aplica o im- fora da hora. Triste ou alegre no lugar de infeliz: usou outra palavra, não o prefixo.</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>1h · produzir parecido e contrário</td>
+          <td>Nome livre. a) Qualidade de sentido próximo: alegre, feliz, contente, cuidadosa. b) Qualidade contrária: triste, infeliz, brava, egoísta.</td>
+          <td>Se o amigo “parecido” recebe infeliz, o prefixo foi lido como sinônimo. Se os dois amigos ficam iguais, a oposição ainda não aparece.</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>2a · achar o plural no texto</td>
+          <td>a) duas entre: bolas, fitas, ferramentas, coloridas. b) flores. c) pães e balões.</td>
+          <td>Flores no grupo -s: não viu o -es. Balões ou pães no grupo -s ou -es: tratou o plural de -ão como se fosse só acrescentar letra. Faltou uma palavra em c): parcial.</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>2b · frase para o singular</td>
+          <td>A bola colorida estava no chão.</td>
+          <td>Mudou só “bolas” e deixou “as”, “coloridas” ou “estavam”: o plural do nome começou a aparecer e a concordância da frase ainda não.</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>2c · formar o plural por regra</td>
+          <td>bolas, casas, pássaros; flores, narizes; balões, pães, irmãos.</td>
+          <td>-s: esqueceu o s (casa, bola) ou inventou outro final. -es: flors, floris, narizs, narises. -ão: os três com -ões (pões, irmões) = usa um final só. Pãos ou irmãoes = chute do final. Sem acento em pássaros: parcial, se o -s e o SS estão certos.</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>2d · concordância, reconhecer</td>
+          <td>C) As flores estão no vaso.</td>
+          <td>A ou B = o artigo vai ao plural e o nome fica no singular (“as bola”, “os menino”). D = o artigo fica no singular e o nome vai ao plural.</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>2e · concordância, produzir</td>
+          <td>a) As bolas rolaram no gramado. b) Os meninos cuidaram do pássaro.</td>
+          <td>Repetiu “as bola” ou “os menino”: o erro de oralidade não foi revisto na escrita. Mexeu no verbo e esqueceu o nome: olhou outro ponto da frase.</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>3a · reconhecer o diminutivo</td>
+          <td>B) passarinho</td>
+          <td>A = forma de base. C = plural. D = aumentativo (casarão).</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>3b · -inho ou -zinho</td>
+          <td>casinha; pezinho; florzinha; passarinho (sem acento).</td>
+          <td>Casazinha, peinho, florinha, passarozinho ou pássarozinho: um sufixo só para tudo. Pássarinho: o sufixo está certo e o acento sobrou (parcial).</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td>3c · c vira qu</td>
+          <td>D) barquinho</td>
+          <td>A barcinho = não fez c → qu. B barcozinho = usou -zinho (marque no grupo 3b, não como erro de qu). C barcos = plural.</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td>3d · g vira gu</td>
+          <td>formiguinha</td>
+          <td>Formiginha = g não virou gu. Formigazinha = sufixo -zinho (grupo 3b). Formigas = plural. Formiga = não formou o diminutivo.</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td>3e · tamanho ou carinho</td>
+          <td>Tamanho; carinho; tamanho; carinho.</td>
+          <td>Inverteu os dois: o sufixo está conhecido e o sentido, não. Marcou os dois na mesma linha: ainda não separa.</td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td>3f · produzir carinho</td>
+          <td>Frase com diminutivo em tom de afeto. Exemplo: “Meu passarinho querido, volta logo.”</td>
+          <td>Diminutivo só de tamanho, sem afeto: parcial do sentido. Sem diminutivo: a produção ainda não usa o sufixo. Barcinho ou formiginha aqui também alimentam o grupo 3c/3d.</td>
+        </tr>
+        <tr>
+          <td>20</td>
+          <td>4a · SS não começa palavra</td>
+          <td>C) sapo</td>
+          <td>A ssapo = SS no início. B çapo = ç no começo. D zapo = Z no lugar do S inicial.</td>
+        </tr>
+        <tr>
+          <td>21</td>
+          <td>4b · SS entre vogais</td>
+          <td>D) passarinho</td>
+          <td>A pasarinho = faltou o SS. C paçarinho = ç no lugar do SS. B passarinio = o SS apareceu e o final -inho, não (parcial do grupo 4b; o sufixo volta ao grupo 3b).</td>
+        </tr>
+        <tr>
+          <td>22</td>
+          <td>4c · SS não vai depois de consoante</td>
+          <td>B) bolsa</td>
+          <td>A bolssa = SS depois de consoante. C bolça = ç. D bolzza = junta Z e SS.</td>
+        </tr>
+        <tr>
+          <td>23</td>
+          <td>4d · um S entre vogais soa Z</td>
+          <td>a) asa &nbsp; b) assa &nbsp; c) casa</td>
+          <td>Assa na asa, ou asa na frase do pão: não separa o som /z/ do som /s/. Cassa: pôs SS numa palavra em que o S soa Z.</td>
+        </tr>
+        <tr>
+          <td>24</td>
+          <td>4e · produzir o SS entre vogais</td>
+          <td>pássaro; nosso; osso; passeio; massa.</td>
+          <td>Pasaro, noso, oso, paseio, masa = falta o SS. Com ç (paçaro, maça) = outra letra para o som de S. Sem acento em pássaro, com SS certo: parcial de acento.</td>
+        </tr>
+        <tr>
+          <td>25</td>
+          <td>4f · corrigir três erros diferentes</td>
+          <td>a) sapo &nbsp; b) penso &nbsp; c) mesa</td>
+          <td>a) se continuar ssapo: SS no começo. b) se continuar pensso: SS depois de consoante. c) se sair messa ou meça: não devolveu o S simples do som de Z. Cada letra é um grupo: 4a, 4c e 4d.</td>
+        </tr>
+        <tr>
+          <td>26</td>
+          <td>4g · explicar a regra ★</td>
+          <td>Porque o som de S está entre vogais. Com um S só, a leitura seria com som de Z, como em casa. Fala do adulto anotada vale. No quadro sem número, no fim da Parte 4: Um S = sapo, casa, bolsa, mesa. SS = pássaro, osso.</td>
+          <td>Completa: diz o lugar (entre vogais) e o efeito de um S só. Parcial: só “está no meio” ou só “o som é de S”. Ainda não: “porque sim” ou “porque é nome de bicho”.</td>
+        </tr>
+        <tr>
+          <td>27</td>
+          <td>5 · bilhete, um mecanismo por lacuna</td>
+          <td>a) alegre ou contente &nbsp; b) alto &nbsp; c) pães &nbsp; d) flores &nbsp; e) meninos &nbsp; f) pezinho &nbsp; g) barquinho &nbsp; h) impossível &nbsp; i) casa</td>
+          <td>a) feliz copia a pista; infeliz inverte. c) pões ou pãos = final de -ão. d) flors = -es. e) menino = concordância (“os menino”). f) peinho = sufixo. g) barcinho = c/qu. h) inpossível = im- antes de p. i) cassa, ao lado de “nossa”, copia SS sem olhar o som de Z.</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <h3>Grade por grupo</h3>
+      <p>Marque um quadro por grupo. <strong>Parcial</strong> conta como grupo a revisar: não entra no nível A. Se o exercício isolado está certo e a lacuna 27 do mesmo grupo está errada, marque parcial.</p>
+      <table class="data">
+        <thead>
+          <tr>
+            <th>Grupo</th>
+            <th>Onde olhar</th>
+            <th>Acertou</th>
+            <th>Parcial</th>
+            <th>Ainda não</th>
+            <th>Primeiro passo da revisão</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Sinônimo no texto, com diferença de sentido</td>
+          <td>1, 2, 3, 8a, 27a</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Trocar bonito/lindo e feliz/alegre dentro de uma frase. Dizer qual dos dois é mais forte.</td>
+        </tr>
+        <tr>
+          <td>Antônimo com outra palavra</td>
+          <td>6, 8b, 27b</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Pares em frase: alto/baixo, grande/pequeno, triste/feliz. Separar de “palavra diferente”.</td>
+        </tr>
+        <tr>
+          <td>Antônimo com in- / im-</td>
+          <td>4, 5, 7, 27h</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Feliz/infeliz e possível/impossível. Antes de p e b, im-. Oral: inpossível ainda não fecha.</td>
+        </tr>
+        <tr>
+          <td>Plural só com -s</td>
+          <td>9a, 11 (bola, casa, pássaro), 27e</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Lista curta de vogal no fim: bola, casa, fita, menino. Ler “as bolas”, “os meninos”.</td>
+        </tr>
+        <tr>
+          <td>Plural com -es</td>
+          <td>9b, 11 (flor, nariz), 27d</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Só palavras com r ou z: flor, mar, nariz, luz. Dizer o singular antes de escrever.</td>
+        </tr>
+        <tr>
+          <td>Plural de -ão ★</td>
+          <td>9c, 11 (balão, pão, irmão), 27c</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Três modelos na parede: limão/limões, cão/cães, mão/mãos. Balão segue limão; pão segue cão; irmão segue mão.</td>
+        </tr>
+        <tr>
+          <td>Concordância do artigo com o nome</td>
+          <td>10, 12, 13, 27e</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Corrigir em voz alta “as bola” e “os menino”. Escrever a frase inteira, não só a palavra.</td>
+        </tr>
+        <tr>
+          <td>-inho ou -zinho</td>
+          <td>14, 15, 27f</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Dois montes: casa/gato/pássaro com -inho; pé/flor/mar com -zinho. Não misturar os montes.</td>
+        </tr>
+        <tr>
+          <td>c → qu e g → gu</td>
+          <td>16, 17, 27g</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Barco/barquinho e formiga/formiguinha no papel, em duas cores. Dizer: “antes de e ou i, c vira qu e g vira gu”.</td>
+        </tr>
+        <tr>
+          <td>Tamanho ou carinho</td>
+          <td>18, 19</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>As duas frases do quartinho, lado a lado. Uma cabe pouco; a outra é a voz da mãe.</td>
+        </tr>
+        <tr>
+          <td>SS não começa a palavra</td>
+          <td>20, 25a</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Sapo, sol, sala, suco. Riscar o S dobrado no começo sempre que aparecer.</td>
+        </tr>
+        <tr>
+          <td>SS entre vogais, som de S</td>
+          <td>21, 24</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Pássaro, passarinho, nosso, osso, passeio, massa. A criança diz a regra e só depois escreve.</td>
+        </tr>
+        <tr>
+          <td>SS não fica depois de consoante</td>
+          <td>22, 25b</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Bolsa, penso, urso. Marcar a consoante de antes: depois dela, um S só.</td>
+        </tr>
+        <tr>
+          <td>Um S entre vogais soa Z</td>
+          <td>23, 25c, 27i</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Ler asa/assa e casa/cassa em voz alta. Casa, mesa, rosa, asa ficam com um S.</td>
+        </tr>
+        <tr>
+          <td>Explica por que há dois S ★</td>
+          <td>26</td>
+          <td>( )</td><td>( )</td><td>( )</td>
+          <td>Pergunta oral, com o pássaro escrito: “se eu apagar um S, que som fica?” Anotar a fala.</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <h3>Nível de cada tema</h3>
+      <div class="levels">
+        <div><strong>A</strong> — todos os grupos do tema acertados.</div>
+        <div><strong>B</strong> — erro ou parcial em um grupo.</div>
+        <div><strong>C</strong> — erro ou parcial em dois grupos.</div>
+        <div><strong>D</strong> — erro ou parcial em três ou mais grupos.</div>
+      </div>
+      <p>Conte os grupos do tema, não as questões uma a uma. O nível do S/SS não vira nota de 2º ano.</p>
+      <table class="data">
+        <thead>
+          <tr><th>Tema</th><th>Grupos que entram na conta</th><th>Nível</th><th>O que revisar primeiro</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>1. Sinônimos e antônimos</td>
+          <td>sinônimo · outra palavra · in-/im- (3)</td>
+          <td class="niveis">( ) A &nbsp; ( ) B<br />( ) C &nbsp; ( ) D</td>
+          <td><span class="line" style="min-width: 95%;"></span></td>
+        </tr>
+        <tr>
+          <td>2. Singular e plural</td>
+          <td>-s · -es · -ão · concordância (4)</td>
+          <td class="niveis">( ) A &nbsp; ( ) B<br />( ) C &nbsp; ( ) D</td>
+          <td><span class="line" style="min-width: 95%;"></span></td>
+        </tr>
+        <tr>
+          <td>3. Diminutivo</td>
+          <td>-inho/-zinho · c/qu e g/gu · tamanho ou carinho (3)</td>
+          <td class="niveis">( ) A &nbsp; ( ) B<br />( ) C &nbsp; ( ) D</td>
+          <td><span class="line" style="min-width: 95%;"></span></td>
+        </tr>
+        <tr>
+          <td>4. S/SS, diagnóstico</td>
+          <td>início · entre vogais · depois de consoante · S com som de Z · explica (5)</td>
+          <td class="niveis">( ) A &nbsp; ( ) B<br />( ) C &nbsp; ( ) D</td>
+          <td><span class="line" style="min-width: 95%;"></span></td>
+        </tr>
+        </tbody>
+      </table>
+      <p>Observação livre: <span class="line" style="min-width: 78%;"></span></p>
+      <p><span class="line" style="min-width: 100%;"></span></p>
+
+      <h3>Habilidades</h3>
+      <p><strong>EF02LP10</strong> — Identificar sinônimos de palavras de texto lido, determinando a diferença de sentido entre eles, e formar antônimos pelo prefixo de negação in-/im-. Itens 1 a 8 e as lacunas 27a, 27b e 27h.</p>
+      <p><strong>EF02LP11</strong> — Formar o diminutivo com -inho/-zinho. O aumentativo entra só como distrator (casarão), porque as páginas pedidas são as do diminutivo e do diminutivo afetivo. Itens 14 a 19 e as lacunas 27f e 27g.</p>
+      <p><strong>Singular e plural</strong> — conteúdo do livro (págs. 86–89), ligado à concordância nominal. Não há código EF02 só para o plural. Itens 9 a 13 e as lacunas 27c, 27d e 27e.</p>
+      <p><strong>EF03LP01</strong> — antecipação. O S/SS é regularidade contextual do 3º ano. Itens 20 a 26 e a lacuna 27i. Caça/casa ficou de fora: <em>caça</em> usa Ç, e as páginas 118–119 deste roteiro são de S/SS.</p>
+      <p>A grade segue a correção por grupo de erro, no espírito do quadro de análise ortográfica, e a avaliação formativa: o resultado serve para regular a revisão, não para encerrar o tema.</p>
+    </section>
+
+    <footer class="print-note">
+      Atividades da Laura — Língua Portuguesa, avaliação de final de ano, 2º ano. Texto com a Laura, a Mamãe Gilmara e o Papai Joel.
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Esquadrão dos Números — Treino Final de Matemática | 2º ano</title>
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --paper: #fffef8;
+      --accent: #e63946;
+      --blue: #457b9d;
+      --yellow: #f4d35e;
+      --green: #2a9d8f;
+      --purple: #7b68ee;
+      --muted: #6c757d;
+      --border: #dee2e6;
+      --card: #f8f9fa;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background: #e9ecef;
+      line-height: 1.32;
+      font-size: 10.5pt;
+    }
+
+    .sheet {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 1rem;
+      background: var(--paper);
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      padding: 12mm 14mm;
+    }
+
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+
+    @media print {
+      body { background: #fff; }
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .sheet {
+        box-shadow: none;
+        margin: 0;
+        max-width: none;
+        min-height: auto;
+        padding: 0;
+      }
+      .no-print { display: none !important; }
+      a[href]:after { content: ""; }
+      .page-break { page-break-before: always; }
+      .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+      main.sheet > section {
+        break-inside: auto;
+        page-break-inside: auto;
+      }
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #343a40;
+      color: #fff;
+      padding: 10px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .toolbar button:hover { filter: brightness(1.08); }
+    .toolbar span { font-size: 13px; opacity: .9; }
+
+    h1 {
+      font-size: 1.35rem;
+      margin: 0 0 4px;
+      color: var(--accent);
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+      font-weight: 600;
+      color: var(--blue);
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .header-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      background: linear-gradient(135deg, #fff9e6, #e8f4fc);
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+    }
+    .header-line label {
+      flex: 1;
+      min-width: 140px;
+      font-weight: 600;
+      font-size: 10pt;
+    }
+    .header-line input {
+      border: none;
+      border-bottom: 2px solid var(--blue);
+      background: transparent;
+      width: 100%;
+      min-height: 22px;
+    }
+
+    .intro-box {
+      background: var(--card);
+      border-left: 5px solid var(--green);
+      padding: 8px 12px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 12px;
+      font-size: 10.5pt;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin: 13px 0 7px;
+      padding: 6px 12px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      color: var(--blue);
+      margin: 9px 0 4px;
+    }
+
+    .concept {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin: 6px 0;
+    }
+    .q p { margin: 4px 0; }
+    .concept p, .read-box p { margin: 5px 0; }
+    /* conta armada ao lado do enunciado, nao embaixo */
+    .q .vm-grid.side { float: right; margin: 0 0 4px 18px; }
+    .strategy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    @media (max-width: 600px) { .strategy-grid { grid-template-columns: 1fr; } }
+    .strategy-grid .strategy { margin: 0; }
+
+    .read-box {
+      background: linear-gradient(180deg, #e3f2fd 0%, #fff 100%);
+      border: 2px solid var(--blue);
+      border-radius: 12px;
+      padding: 9px 11px;
+      margin: 8px 0;
+    }
+    .read-box strong { color: var(--blue); }
+
+    .tip-box {
+      background: linear-gradient(135deg, #fff9e6, #fff3cd);
+      border: 2px solid var(--yellow);
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin: 8px 0;
+      font-size: 10pt;
+    }
+    .tip-box strong { color: #856404; }
+
+    .use-cases {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin: 8px 0;
+    }
+    @media (max-width: 600px) {
+      .use-cases { grid-template-columns: 1fr; }
+    }
+    .use-case {
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-size: 10pt;
+    }
+    .use-case .icon {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .use-case strong { color: var(--accent); display: block; margin-bottom: 4px; }
+
+    .steps-list {
+      margin: 8px 0;
+      padding-left: 1.2rem;
+    }
+    .steps-list li { margin: 2px 0; }
+
+    .example-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: flex-start;
+      margin: 8px 0;
+    }
+    .example-notes {
+      flex: 1;
+      min-width: 200px;
+      font-size: 10pt;
+    }
+    .example-notes p { margin: 4px 0; }
+    .note-borrow { color: var(--blue); font-weight: 600; }
+    .note-result { color: var(--green); font-weight: 600; }
+
+    .mc {
+      margin: 6px 0 2px;
+      padding-left: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px 10px;
+    }
+    @media (max-width: 600px) { .mc { grid-template-columns: 1fr; } }
+    .mc li {
+      margin: 1px 0;
+      padding: 3px 6px;
+      border-radius: 6px;
+    }
+    .mc li:hover { background: #f1f3f5; }
+
+    .q {
+      margin: 10px 0;
+      padding: 8px 10px;
+      overflow: hidden;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .q-num {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+    .tag {
+      font-size: 9pt;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .tag-mc { background: #cfe2ff; color: #084298; }
+    .tag-w { background: #d1e7dd; color: #0f5132; }
+
+    .line {
+      border-bottom: 1px dotted var(--muted);
+      min-height: 1.4em;
+      display: inline-block;
+      min-width: 120px;
+    }
+    .line.short { min-width: 60px; }
+
+    .inline-sub {
+      font-family: "Consolas", "Courier New", monospace;
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: #f8f9fa;
+      padding: 4px 12px;
+      border-radius: 8px;
+      border: 1px dashed var(--border);
+      display: inline-block;
+      margin: 4px 8px 4px 0;
+    }
+
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 10pt;
+    }
+    table.data th, table.data td {
+      border: 1px solid var(--border);
+      padding: 4px 6px;
+    }
+    table.data th { background: #e9ecef; }
+
+    .vm-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      justify-content: flex-start;
+      margin: 8px 0;
+    }
+    .vm {
+      display: inline-block;
+      vertical-align: top;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .vm table {
+      border-collapse: collapse;
+      margin: 0;
+    }
+    .vm td {
+      min-width: 1em;
+      height: 1.25em;
+      text-align: center;
+      vertical-align: middle;
+      padding: 2px 3px;
+    }
+    .vm td.vm-op {
+      width: 1.15em;
+      font-weight: 800;
+      text-align: center;
+      vertical-align: middle;
+      padding-right: 3px;
+      line-height: 1;
+      font-size: 1.05em;
+    }
+    /* o risco da conta nao precisa ocupar uma celula inteira */
+    .vm tr:has(> td.vm-line) > td { height: 0; padding-bottom: 0; }
+    .vm td.vm-line {
+      border-top: 2px solid var(--ink);
+      padding-top: 4px;
+      height: 0;
+      line-height: 0;
+    }
+    .vm .lbl {
+      font-size: 0.45rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      height: 0.9em;
+      line-height: 1;
+    }
+    .vm .ans td.vm-ans {
+      border-bottom: 2px dotted var(--muted);
+      min-height: 1.35em;
+    }
+    .vm-sub .borrow {
+      font-size: 0.55rem;
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .vm-sub .borrow-box {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      min-width: 0.9em;
+      min-height: 0.85em;
+      display: inline-block;
+    }
+    .vm-solved .strike {
+      text-decoration: line-through;
+      color: var(--muted);
+      font-size: 0.85em;
+    }
+    .vm-solved .new-digit {
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .vm-solved td.vm-ans {
+      border-bottom: none;
+      color: var(--green);
+    }
+
+    .gabarito {
+      background: #fff8e7;
+      border: 2px solid var(--yellow);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 9.5pt;
+    }
+    .gabarito table { font-size: 9pt; }
+    .gabarito h2 { background: #856404; }
+
+    footer.print-note {
+      margin-top: 16px;
+      font-size: 9pt;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* --- Adição armada: quadradinho do "vai 1" (do modelo canônico) --- */
+    .vm .carry {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--accent);
+      height: 0.85em;
+    }
+    .vm .carry-box {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      min-width: 0.9em;
+      min-height: 0.85em;
+      display: inline-block;
+    }
+
+    /* --- Comparações lado a lado (do modelo canônico) --- */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    /* --- Grades de contas rápidas (de atividade-taboada.html) --- */
+    .exercises-grid {
+      display: grid;
+      gap: 6px 8px;
+      margin: 7px 0;
+    }
+    .exercises-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .exercises-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .exercises-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .ex-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      padding: 4px 6px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .ex-item .ex-ans {
+      display: inline-block;
+      min-width: 2.1em;
+      border-bottom: 1.5px dotted var(--muted);
+    }
+
+    /* --- Cadeia de cálculo mental: 15 → +10 → −8 → ... --- */
+    .chain {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin: 7px 0;
+      font-family: "Consolas", "Courier New", monospace;
+      font-weight: 700;
+    }
+    .chain-start {
+      background: var(--yellow);
+      border-radius: 8px;
+      padding: 5px 11px;
+      font-size: 1.05rem;
+    }
+    .chain-op {
+      color: var(--accent);
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+    .chain-box {
+      border: 1.5px dashed var(--blue);
+      border-radius: 6px;
+      min-width: 2.6em;
+      height: 1.9em;
+      display: inline-block;
+    }
+
+    /* --- Faixa de estratégia de cálculo mental --- */
+    .strategy {
+      background: #fff;
+      border: 2px solid var(--purple);
+      border-radius: 10px;
+      padding: 6px 9px;
+      margin: 6px 0;
+      font-size: 10pt;
+    }
+    .strategy strong { color: var(--purple); }
+    .strategy .mental {
+      font-family: "Consolas", "Courier New", monospace;
+      font-weight: 700;
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <button type="button" onclick="window.print()">Imprimir / Salvar em PDF</button>
+    <span>Use Ctrl+P → "Salvar como PDF" para gerar o arquivo. Formato A4.</span>
+  </div>
+
+  <main class="sheet">
+
+    <header>
+      <h1>Esquadrão dos Números — Treino Final</h1>
+      <p class="subtitle">Matemática — Revisão e aprofundamento | 2º ano do Ensino Fundamental</p>
+      <div class="header-line">
+        <label>Nome: <input type="text" aria-label="Nome do aluno" /></label>
+        <label>Data: <input type="text" aria-label="Data" /></label>
+        <label>Turma: <input type="text" aria-label="Turma" /></label>
+      </div>
+      <div class="intro-box">
+        <strong>Como usar esta atividade:</strong> Amanhã é dia de missão! Antes de responder, leia
+        as <strong>Partes 1 e 2</strong> — elas relembram tudo o que você já aprendeu. Depois treine
+        as contas, os problemas e o cálculo mental. Nas questões de múltipla escolha, marque com
+        <strong>X</strong>. Nas de resposta escrita, arme a conta no espaço e escreva o resultado.
+        Você consegue!
+      </div>
+    </header>
+
+    <!-- ================= PARTE 1 — REVISÃO: OS NÚMEROS ================= -->
+    <section>
+      <h2>Parte 1 — Relembrando os números</h2>
+
+      <div class="concept">
+        <p><strong>Valor posicional:</strong> em um número, cada algarismo vale uma coisa diferente
+        dependendo do <em>lugar</em> onde ele está. Da direita para a esquerda temos
+        <strong>Unidade (U)</strong>, <strong>Dezena (D)</strong> e <strong>Centena (C)</strong>.</p>
+        <p>1 dezena = <strong>10</strong> unidades &nbsp;•&nbsp; 1 centena = <strong>10</strong>
+        dezenas = <strong>100</strong> unidades</p>
+      </div>
+
+      <div class="read-box avoid-break">
+        <strong>Exemplo: o número 347</strong>
+        <table class="data">
+          <tr><th>Centena (C)</th><th>Dezena (D)</th><th>Unidade (U)</th></tr>
+          <tr><td>3</td><td>4</td><td>7</td></tr>
+          <tr><td>vale 300</td><td>vale 40</td><td>vale 7</td></tr>
+        </table>
+        <p style="margin-bottom:0;"><strong>347 = 300 + 40 + 7</strong> — isso se chama
+        <em>decompor</em> o número. Decompor ajuda muito a calcular de cabeça!</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">1</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Decomponha os números, como no exemplo:</p>
+        <table class="data">
+          <tr><th>Número</th><th>Decomposição</th></tr>
+          <tr><td>562</td><td>500 + 60 + 2</td></tr>
+          <tr><td>478</td><td><span class="line"></span></td></tr>
+          <tr><td>805</td><td><span class="line"></span></td></tr>
+          <tr><td>230</td><td><span class="line"></span></td></tr>
+        </table>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">2</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>No número <strong>629</strong>, quanto vale o algarismo <strong>6</strong>?</p>
+        <ul class="mc">
+          <li>( ) A) 6 unidades</li>
+          <li>( ) B) 6 dezenas</li>
+          <li>( ) C) 6 centenas</li>
+          <li>( ) D) 6 milhares</li>
+        </ul>
+      </div>
+
+      <h3>Subtrair serve para 3 coisas</h3>
+      <div class="use-cases avoid-break">
+        <div class="use-case">
+          <span class="icon">🍪</span>
+          <strong>TIRAR</strong>
+          Tinha 10 e comi 4. Sobraram 6.
+        </div>
+        <div class="use-case">
+          <span class="icon">⚖️</span>
+          <strong>COMPARAR</strong>
+          Ana tem 15, Bia tem 9. Ana tem 6 a mais.
+        </div>
+        <div class="use-case">
+          <span class="icon">🎯</span>
+          <strong>COMPLETAR</strong>
+          Tenho 7 e quero 10. Faltam 3.
+        </div>
+      </div>
+
+      <div class="tip-box avoid-break">
+        <strong>Palavras-pista nos problemas:</strong> quando você ler
+        <em>“sobrou”</em>, <em>“perdeu”</em>, <em>“gastou”</em>, <em>“deu”</em>,
+        <em>“a mais que”</em>, <em>“a menos que”</em>, <em>“diferença”</em>,
+        <em>“quanto falta”</em> ou <em>“troco”</em> — pense em <strong>subtração</strong>.<br />
+        Quando ler <em>“juntou”</em>, <em>“ganhou”</em>, <em>“ao todo”</em>, <em>“no total”</em>,
+        <em>“acrescentou”</em> ou <em>“a mais”</em> (para <u>aumentar</u>) — pense em
+        <strong>adição</strong>.
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">3</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Escreva <strong>+</strong> ou <strong>−</strong> para dizer qual conta cada frase pede
+        (não precisa calcular):</p>
+        <p>a) “Marina gastou 12 reais do seu cofrinho.” _______</p>
+        <p>b) “O time fez 3 gols no 1º tempo e 2 no 2º tempo. Quantos ao todo?” _______</p>
+        <p>c) “Quantos anos Léo tem a mais que a irmã?” _______</p>
+        <p>d) “Faltam quantas figurinhas para completar o álbum?” _______</p>
+      </div>
+    </section>
+
+    <!-- ================= PARTE 2 — A REGRA DO EMPRESTAR ================= -->
+    <section>
+      <h2>Parte 2 — A regra do “tomar emprestado”</h2>
+
+      <div class="concept">
+        <p>Para armar uma subtração, escreva o número <strong>maior em cima</strong> e o
+        <strong>menor embaixo</strong>, sempre <em>unidade debaixo de unidade</em>,
+        <em>dezena debaixo de dezena</em> e <em>centena debaixo de centena</em>.</p>
+        <p>Comece <strong>sempre pelas unidades</strong> (a coluna da direita) e vá andando para a
+        esquerda.</p>
+      </div>
+
+      <div class="concept two-col avoid-break">
+        <div>
+          <strong>Quando NÃO precisa emprestar</strong>
+          <p style="margin-bottom:0;">O número de cima é <em>maior ou igual</em> ao de baixo em
+          todas as colunas. É só subtrair coluna por coluna.<br />
+          <span class="inline-sub">68 − 25</span></p>
+        </div>
+        <div>
+          <strong>Quando PRECISA emprestar</strong>
+          <p style="margin-bottom:0;">Em alguma coluna o número de cima é <em>menor</em> que o de
+          baixo. Aí pedimos 1 emprestado para o vizinho da esquerda.<br />
+          <span class="inline-sub">53 − 28</span></p>
+        </div>
+      </div>
+
+      <div class="concept">
+        <strong>Passo a passo do empréstimo</strong>
+        <ol class="steps-list">
+          <li>Olhe a coluna: o número de cima é <strong>menor</strong> que o de baixo?</li>
+          <li>Se sim, vá ao <strong>vizinho da esquerda</strong> e pegue <strong>1</strong>
+            emprestado: ele <strong>diminui 1</strong>.</li>
+          <li>Esse 1 vale <strong>10</strong> aqui: escreva um <strong>1 na frente</strong> do
+            número de cima (o 3 vira 13, o 2 vira 12, o 0 vira 10…).</li>
+          <li>Agora dá para subtrair. Passe para a próxima coluna à esquerda e repita.</li>
+        </ol>
+      </div>
+
+      <div class="read-box avoid-break">
+        <strong>Exemplo 1 — dois algarismos: 42 − 17 = 25</strong>
+        <div class="example-wrap">
+          <div class="vm vm-sub vm-solved" aria-label="Exemplo 42 menos 17 igual a 25">
+            <table>
+              <tr><td></td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+              <tr><td></td><td class="borrow">3</td><td class="borrow">12</td></tr>
+              <tr><td></td><td><span class="strike">4</span> <span class="new-digit">3</span></td><td><span class="strike">2</span> <span class="new-digit">12</span></td></tr>
+              <tr><td class="vm-op">−</td><td>1</td><td>7</td></tr>
+              <tr><td></td><td colspan="2" class="vm-line"></td></tr>
+              <tr class="ans"><td></td><td class="vm-ans">2</td><td class="vm-ans">5</td></tr>
+            </table>
+          </div>
+          <div class="example-notes">
+            <p><span class="note-borrow">① Unidades:</span> 2 é menor que 7. Emprestamos 1 dezena:
+              o 4 vira <strong>3</strong> e o 2 vira <strong>12</strong>.</p>
+            <p><span class="note-borrow">② Agora:</span> 12 − 7 = <strong>5</strong>.</p>
+            <p><span class="note-borrow">③ Dezenas:</span> 3 − 1 = <strong>2</strong>.</p>
+            <p><span class="note-result">Resposta: 25</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="read-box avoid-break">
+        <strong>Exemplo 2 — três algarismos, emprestando duas vezes: 523 − 178 = 345</strong>
+        <div class="example-wrap">
+          <div class="vm vm-sub vm-solved" aria-label="Exemplo 523 menos 178 igual a 345">
+            <table>
+              <tr><td></td><td class="lbl">Cen.</td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+              <tr><td></td><td class="borrow">4</td><td class="borrow">11</td><td class="borrow">13</td></tr>
+              <tr><td></td><td><span class="strike">5</span> <span class="new-digit">4</span></td><td><span class="strike">2</span> <span class="new-digit">11</span></td><td><span class="strike">3</span> <span class="new-digit">13</span></td></tr>
+              <tr><td class="vm-op">−</td><td>1</td><td>7</td><td>8</td></tr>
+              <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+              <tr class="ans"><td></td><td class="vm-ans">3</td><td class="vm-ans">4</td><td class="vm-ans">5</td></tr>
+            </table>
+          </div>
+          <div class="example-notes">
+            <p><span class="note-borrow">① Unidades:</span> 3 é menor que 8. A dezena empresta:
+              o 2 vira <strong>1</strong> e o 3 vira <strong>13</strong>. Então 13 − 8 = <strong>5</strong>.</p>
+            <p><span class="note-borrow">② Dezenas:</span> agora sobrou 1, que é menor que 7. A
+              centena empresta: o 5 vira <strong>4</strong> e o 1 vira <strong>11</strong>.
+              Então 11 − 7 = <strong>4</strong>.</p>
+            <p><span class="note-borrow">③ Centenas:</span> 4 − 1 = <strong>3</strong>.</p>
+            <p><span class="note-result">Resposta: 345</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="read-box avoid-break">
+        <strong>Exemplo 3 — o mais difícil: tem ZERO no meio! 400 − 265 = 135</strong>
+        <div class="example-wrap">
+          <div class="vm vm-sub vm-solved" aria-label="Exemplo 400 menos 265 igual a 135">
+            <table>
+              <tr><td></td><td class="lbl">Cen.</td><td class="lbl">Dez.</td><td class="lbl">Un.</td></tr>
+              <tr><td></td><td class="borrow">3</td><td class="borrow">9</td><td class="borrow">10</td></tr>
+              <tr><td></td><td><span class="strike">4</span> <span class="new-digit">3</span></td><td><span class="strike">0</span> <span class="new-digit">9</span></td><td><span class="strike">0</span> <span class="new-digit">10</span></td></tr>
+              <tr><td class="vm-op">−</td><td>2</td><td>6</td><td>5</td></tr>
+              <tr><td></td><td colspan="3" class="vm-line"></td></tr>
+              <tr class="ans"><td></td><td class="vm-ans">1</td><td class="vm-ans">3</td><td class="vm-ans">5</td></tr>
+            </table>
+          </div>
+          <div class="example-notes">
+            <p><span class="note-borrow">① Unidades:</span> 0 é menor que 5, mas o vizinho também é
+              <strong>0</strong> — ele não tem para emprestar!</p>
+            <p><span class="note-borrow">② Pule para a centena:</span> o 4 vira <strong>3</strong> e
+              o 0 das dezenas vira <strong>10</strong>.</p>
+            <p><span class="note-borrow">③ Agora a dezena empresta:</span> o 10 vira
+              <strong>9</strong> e o 0 das unidades vira <strong>10</strong>.</p>
+            <p><span class="note-borrow">④ Subtraia:</span> 10 − 5 = <strong>5</strong>;
+              9 − 6 = <strong>3</strong>; 3 − 2 = <strong>1</strong>.</p>
+            <p><span class="note-result">Resposta: 135</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box avoid-break">
+        <strong>Prova real — confira sozinha se acertou!</strong> Some o
+        <em>resultado</em> com o <em>número de baixo</em>. Se der o <em>número de cima</em>, a conta
+        está certa. Veja: <span class="inline-sub">25 + 17 = 42</span> ✔
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">4</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Em qual destas contas você vai <strong>precisar tomar emprestado</strong>?</p>
+        <ul class="mc">
+          <li>( ) A) 78 − 35</li>
+          <li>( ) B) 96 − 42</li>
+          <li>( ) C) 61 − 27</li>
+          <li>( ) D) 59 − 18</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">5</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>O Ricardo resolveu <span class="inline-sub">64 − 29</span> e escreveu
+          <strong>45</strong>. Ele esqueceu de tomar emprestado e fez 9 − 4 nas unidades.</p>
+        <p>Explique com suas palavras o que ele deveria ter feito:</p>
+        <p><span class="line" style="min-width:100%;"></span></p>
+        <p><span class="line" style="min-width:100%;"></span></p>
+        <p>Resposta certa: <span class="line short"></span></p>
+      </div>
+    </section>
+
+    <!-- ================= PARTE 3 — CONTAS PURAS ================= -->
+    <script>
+      /* Gerador de contas armadas. Edite os arrays de cada bloco para trocar as questões. */
+      function vmHTML(a, b, op, cols) {
+        var n = cols || Math.max(String(a).length, String(b).length);
+        var lbls = n === 3 ? ['Cen.', 'Dez.', 'Un.'] : ['Dez.', 'Un.'];
+        var pad = function (x) {
+          var s = String(x);
+          while (s.length < n) { s = ' ' + s; }
+          return s.split('');
+        };
+        var A = pad(a), B = pad(b);
+        var cell = function (d) { return '<td>' + (d === ' ' ? '' : d) + '</td>'; };
+        var mark = op === '+'
+          ? '<td class="carry"><span class="carry-box"></span></td>'
+          : '<td class="borrow"><span class="borrow-box"></span></td>';
+        var h = '<div class="vm ' + (op === '+' ? 'vm-add' : 'vm-sub') +
+                '" aria-label="' + a + (op === '+' ? ' mais ' : ' menos ') + b + '"><table>';
+        h += '<tr><td></td>' + lbls.map(function (l) { return '<td class="lbl">' + l + '</td>'; }).join('') + '</tr>';
+        h += '<tr><td></td>' + lbls.map(function () { return mark; }).join('') + '</tr>';
+        h += '<tr><td></td>' + A.map(cell).join('') + '</tr>';
+        h += '<tr><td class="vm-op">' + op + '</td>' + B.map(cell).join('') + '</tr>';
+        h += '<tr><td></td><td colspan="' + n + '" class="vm-line"></td></tr>';
+        h += '<tr class="ans"><td></td>' + lbls.map(function () { return '<td class="vm-ans">&nbsp;</td>'; }).join('') + '</tr>';
+        return h + '</table></div>';
+      }
+      function armar(lista, op, cols) {
+        document.write(lista.map(function (par) { return vmHTML(par[0], par[1], op || "\u2212", cols); }).join(""));
+      }
+      var LETRAS = 'abcdefghijklmnopqrstuvwxyz';
+      function contasRapidas(lista, op) {
+        document.write(lista.map(function (par, i) {
+          return '<div class="ex-item">' + LETRAS[i] + ') ' + par[0] + ' ' + (op || '−') + ' ' +
+                 par[1] + ' = <span class="ex-ans"></span></div>';
+        }).join(''));
+      }
+      /* Contas rápidas com sinais misturados: [a, sinal, b] */
+      function contasMistas(lista) {
+        document.write(lista.map(function (t, i) {
+          return '<div class="ex-item">' + LETRAS[i] + ') ' + t[0] + ' ' + t[1] + ' ' + t[2] +
+                 ' = <span class="ex-ans"></span></div>';
+        }).join(''));
+      }
+    </script>
+
+    <section>
+      <h2>Parte 3 — Treino de subtração</h2>
+
+      <div class="concept">
+        <p>Agora é hora de treinar as contas. Faça com calma e, se der tempo, confira cada uma com
+        a <strong>prova real</strong>.</p>
+      </div>
+
+      <h3>Bloco A — Fatos básicos (faça de cabeça!)</h3>
+      <div class="q avoid-break">
+        <span class="q-num">6</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Calcule mentalmente e escreva o resultado:</p>
+        <div class="exercises-grid cols-4">
+          <script>
+            contasRapidas([[9,4],[8,3],[7,5],[10,6],[12,5],[15,8],[13,7],[11,4],
+                           [14,6],[16,9],[17,8],[18,9],[10,7],[12,9],[15,6],[13,8]], '−');
+          </script>
+        </div>
+      </div>
+
+      <h3>Bloco B — Dois algarismos, <em>sem</em> tomar emprestado</h3>
+      <div class="q avoid-break">
+        <span class="q-num">7</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Resolva as contas armadas:</p>
+        <div class="vm-grid">
+          <script>armar([[68,25],[79,34],[57,16],[94,72],[86,53],[48,27]]);</script>
+        </div>
+      </div>
+
+      <h3>Bloco C — Dois algarismos, <em>com</em> tomar emprestado</h3>
+      <div class="q avoid-break">
+        <span class="q-num">8</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Atenção! Em todas estas você vai precisar emprestar. Use os quadradinhos de cima para
+        anotar o que sobrou depois do empréstimo.</p>
+        <div class="vm-grid">
+          <script>armar([[53,28],[71,38],[62,39],[84,57],[40,18],[95,58],[30,14],[73,49]]);</script>
+        </div>
+      </div>
+
+      <h3>Bloco D — Três algarismos, <em>sem</em> tomar emprestado</h3>
+      <div class="q avoid-break">
+        <span class="q-num">9</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Resolva. Lembre: comece sempre pelas unidades.</p>
+        <div class="vm-grid">
+          <script>armar([[586,243],[749,318],[968,425],[457,236]]);</script>
+        </div>
+      </div>
+
+      <h3>Bloco E — Três algarismos, <em>com</em> tomar emprestado</h3>
+      <div class="q avoid-break">
+        <span class="q-num">10</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>As duas últimas têm <strong>zero</strong> — cuidado, é a pegadinha do Exemplo 3!</p>
+        <div class="vm-grid">
+          <script>armar([[342,128],[635,287],[814,396],[703,158],[500,236],[900,475]]);</script>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">11</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Use a <strong>prova real</strong> para descobrir quais contas estão certas. Escreva
+        <strong>C</strong> para certa ou <strong>E</strong> para errada — e, se estiver errada,
+        escreva o resultado correto.</p>
+        <table class="data">
+          <tr><th>Conta</th><th>Prova real</th><th>C ou E?</th><th>Resultado correto</th></tr>
+          <tr><td>72 − 35 = 37</td><td>37 + 35 = <span class="line short"></span></td><td><span class="line short"></span></td><td><span class="line short"></span></td></tr>
+          <tr><td>84 − 46 = 42</td><td>42 + 46 = <span class="line short"></span></td><td><span class="line short"></span></td><td><span class="line short"></span></td></tr>
+          <tr><td>91 − 27 = 64</td><td>64 + 27 = <span class="line short"></span></td><td><span class="line short"></span></td><td><span class="line short"></span></td></tr>
+          <tr><td>60 − 23 = 47</td><td>47 + 23 = <span class="line short"></span></td><td><span class="line short"></span></td><td><span class="line short"></span></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= PARTE 4 — PROBLEMAS ================= -->
+    <section>
+      <h2>Parte 4 — Problemas de adição e subtração</h2>
+
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>O <strong>Esquadrão dos Números</strong> tem quatro heróis: Capitão Trovão, Lia
+        Relâmpago, Nina Estrela e Téo Sombra. Eles moram numa cidade onde todo problema só é
+        resolvido com matemática. Ajude o esquadrão em cada missão!</p>
+        <p style="margin-bottom:0;"><strong>Como resolver um problema em 3 passos:</strong>
+        ① leia e descubra o que a pergunta quer; ② escolha a conta (+ ou −) e arme;
+        ③ escreva a resposta em uma frase completa.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">12</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A banca de gibis tinha <strong>245</strong> revistas e vendeu <strong>118</strong>.
+        Quantas revistas sobraram?</p>
+        <ul class="mc">
+          <li>( ) A) 137</li>
+          <li>( ) B) 127</li>
+          <li>( ) C) 133</li>
+          <li>( ) D) 363</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">13</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Capitão Trovão treinou <strong>67</strong> minutos de manhã e <strong>25</strong> minutos
+        à tarde. Quantos minutos ele treinou no dia todo?</p>
+        <ul class="mc">
+          <li>( ) A) 82</li>
+          <li>( ) B) 92</li>
+          <li>( ) C) 88</li>
+          <li>( ) D) 42</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">14</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Lia tem <strong>84</strong> figurinhas e Téo tem <strong>57</strong>. Quantas figurinhas
+        Lia tem <strong>a mais</strong> que Téo?</p>
+        <ul class="mc">
+          <li>( ) A) 37</li>
+          <li>( ) B) 33</li>
+          <li>( ) C) 27</li>
+          <li>( ) D) 141</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">15</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Para entrar na Academia dos Heróis são necessários <strong>80</strong> pontos. Nina já
+        tem <strong>36</strong>. Quantos pontos <strong>faltam</strong> para ela?</p>
+        <ul class="mc">
+          <li>( ) A) 44</li>
+          <li>( ) B) 54</li>
+          <li>( ) C) 46</li>
+          <li>( ) D) 116</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">16</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>A biblioteca do esquadrão tinha <strong>236</strong> livros e recebeu
+        <strong>147</strong> livros novos. Quantos livros há <strong>ao todo</strong>?</p>
+        <ul class="mc">
+          <li>( ) A) 373</li>
+          <li>( ) B) 383</li>
+          <li>( ) C) 389</li>
+          <li>( ) D) 89</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">17</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>“O ônibus saiu do ponto com <strong>42</strong> pessoas. Na primeira parada desceram
+        <strong>15</strong>. Quantas pessoas continuaram no ônibus?”<br />
+        Qual conta resolve esse problema? <em>(não precisa calcular)</em></p>
+        <ul class="mc">
+          <li>( ) A) 42 + 15</li>
+          <li>( ) B) 42 − 15</li>
+          <li>( ) C) 15 − 42</li>
+          <li>( ) D) 42 + 42</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">18</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Laura tinha <strong>150</strong> reais. Gastou <strong>62</strong> reais num presente e
+        <strong>38</strong> reais num livro. Quanto sobrou?</p>
+        <p>① Primeiro descubra quanto ela gastou <strong>ao todo</strong>:</p>
+        <div class="vm-grid">
+          <script>armar([[62,38]], '+', 3);</script>
+        </div>
+        <p>② Agora tire esse total dos 150 reais:</p>
+        <div class="vm-grid">
+          <script>armar([[150,100]]);</script>
+        </div>
+        <p>Resposta: sobraram <span class="line short"></span> reais.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">19</span> <span class="tag tag-w">Resposta escrita</span>
+        <div class="vm-grid side">
+          <script>armar([[175,128]], '+');</script>
+        </div>
+        <p>O esquadrão plantou <strong>175</strong> mudas de árvore no sábado e <strong>128</strong>
+        no domingo. Quantas mudas plantaram ao todo?</p>
+        <p>Resposta: plantaram <span class="line short"></span> mudas.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">20</span> <span class="tag tag-w">Resposta escrita</span>
+        <div class="vm-grid side">
+          <script>armar([[100,73]]);</script>
+        </div>
+        <p>Nina comprou um lanche de <strong>73</strong> reais e pagou com uma nota de
+        <strong>100</strong> reais. Quanto ela recebeu de <strong>troco</strong>?</p>
+        <p>Resposta: o troco foi de <span class="line short"></span> reais.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">21</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>A caixa de medalhas tinha <strong>45</strong> medalhas. O esquadrão ganhou mais
+        <strong>28</strong> e depois entregou <strong>19</strong> para os novos heróis. Quantas
+        medalhas ficaram na caixa?</p>
+        <p>① Some as que ganharam:</p>
+        <div class="vm-grid">
+          <script>armar([[45,28]], '+');</script>
+        </div>
+        <p>② O total virou <strong>73</strong>. Agora tire as 19 entregues:</p>
+        <div class="vm-grid">
+          <script>armar([[73,19]]);</script>
+        </div>
+        <p>Resposta: ficaram <span class="line short"></span> medalhas.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">22</span> <span class="tag tag-w">Resposta escrita</span>
+        <div class="vm-grid side">
+          <script>armar([[400,265]]);</script>
+        </div>
+        <p>O cofre secreto guardava <strong>400</strong> moedas de ouro. Téo Sombra levou
+        <strong>265</strong>. Quantas moedas restaram no cofre?</p>
+        <p>Resposta: restaram <span class="line short"></span> moedas.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">23</span> <span class="tag tag-w">Resposta escrita</span>
+        <div class="vm-grid side">
+          <script>armar([[45,27]], '+');</script>
+        </div>
+        <p><strong>Problema ao contrário!</strong> Pensei em um número secreto. Tirei
+        <strong>27</strong> dele e sobrou <strong>45</strong>. Qual era o número secreto?</p>
+        <p><em>Dica: para voltar, faça a conta contrária da subtração — some!</em></p>
+        <p>Resposta: o número secreto era <span class="line short"></span>.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">24</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Na festa do esquadrão havia <strong>38</strong> crianças, <strong>12</strong> adultos e
+        <strong>5</strong> cachorros. No meio da festa, <strong>19</strong> crianças foram embora.
+        Quantas crianças ficaram?</p>
+        <p>a) Qual conta resolve? <span class="line" style="min-width:150px;"></span></p>
+        <p>b) Resposta: ficaram <span class="line short"></span> crianças.</p>
+        <p>c) Qual informação do problema você <strong>não</strong> precisou usar?
+          <span class="line" style="min-width:180px;"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">25</span> <span class="tag tag-w">Resposta escrita</span>
+        <p><strong>Agora é você quem inventa!</strong> Escreva um problema divertido que seja
+        resolvido pela conta <span class="inline-sub">96 − 48 = 48</span>. Use os heróis do
+        esquadrão se quiser.</p>
+        <p><span class="line" style="min-width:100%;"></span></p>
+        <p><span class="line" style="min-width:100%;"></span></p>
+        <p><span class="line" style="min-width:100%;"></span></p>
+        <p><span class="line" style="min-width:100%;"></span></p>
+      </div>
+    </section>
+
+    <!-- ================= PARTE 5 — CÁLCULO MENTAL ================= -->
+    <section>
+      <h2>Parte 5 — Cálculo mental (contas de cabeça)</h2>
+
+      <div class="concept">
+        <p><strong>Calcular de cabeça</strong> é resolver sem armar a conta no papel. Não é
+        adivinhar: é usar um <em>truque esperto</em> para deixar a conta mais fácil. Quem treina
+        cálculo mental resolve a prova mais rápido e ainda confere se a conta armada deu certo.</p>
+      </div>
+
+      <div class="strategy-grid">
+      <div class="strategy avoid-break">
+        <strong>Truque 1 — Somar e tirar 10 ou 100</strong><br />
+        Só muda a dezena (ou a centena), a unidade fica igual!<br />
+        <span class="mental">47 + 10 = 57 &nbsp;•&nbsp; 68 − 10 = 58 &nbsp;•&nbsp; 253 − 100 = 153</span>
+      </div>
+
+      <div class="strategy avoid-break">
+        <strong>Truque 2 — Arredondar e ajustar</strong><br />
+        Somar 9 é quase somar 10. Some 10 e depois devolva 1.<br />
+        <span class="mental">48 + 9 = 48 + 10 − 1 = 57</span><br />
+        Tirar 19 é quase tirar 20. Tire 20 e depois devolva 1.<br />
+        <span class="mental">63 − 19 = 63 − 20 + 1 = 44</span>
+      </div>
+
+      <div class="strategy avoid-break">
+        <strong>Truque 3 — Decompor (quebrar o número)</strong><br />
+        Primeiro some as dezenas, depois as unidades.<br />
+        <span class="mental">35 + 27 = 35 + 20 + 7 = 55 + 7 = 62</span>
+      </div>
+
+      <div class="strategy avoid-break">
+        <strong>Truque 4 — Amigos do 10 e do 100</strong><br />
+        São os pares que fecham certinho. Decore!<br />
+        <span class="mental">1+9 &nbsp; 2+8 &nbsp; 3+7 &nbsp; 4+6 &nbsp; 5+5</span> &nbsp;→ 10<br />
+        <span class="mental">10+90 &nbsp; 20+80 &nbsp; 30+70 &nbsp; 40+60 &nbsp; 50+50</span> &nbsp;→ 100
+      </div>
+
+      <div class="strategy avoid-break">
+        <strong>Truque 5 — Dobros e quase-dobros</strong><br />
+        Se você sabe o dobro, sabe o vizinho dele.<br />
+        <span class="mental">6 + 6 = 12</span>, então <span class="mental">6 + 7 = 13</span>
+        &nbsp;•&nbsp; <span class="mental">25 + 25 = 50</span>, então
+        <span class="mental">25 + 26 = 51</span>
+      </div>
+
+      <div class="strategy avoid-break">
+        <strong>Truque 6 — Contar para frente</strong><br />
+        Para achar a diferença entre dois números perto um do outro, conte do menor até o maior.<br />
+        <span class="mental">72 − 68</span> → de 68 até 72 eu conto 4 &nbsp;→&nbsp;
+        <span class="mental">a diferença é 4</span>
+      </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">26</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Use o <strong>Truque 2</strong> (arredondar e ajustar). Complete:</p>
+        <p>a) 48 + 9 = 48 + 10 − 1 = <span class="line short"></span></p>
+        <p>b) 36 + 19 = 36 + 20 − 1 = <span class="line short"></span></p>
+        <p>c) 55 + 29 = 55 + 30 − 1 = <span class="line short"></span></p>
+        <p>d) 74 − 9 = 74 − 10 + 1 = <span class="line short"></span></p>
+        <p>e) 63 − 19 = 63 − 20 + 1 = <span class="line short"></span></p>
+        <p>f) 82 − 39 = 82 − 40 + 1 = <span class="line short"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">27</span> <span class="tag tag-w">Resposta escrita</span>
+        <p><strong>Cadeia de cálculo!</strong> Comece no número amarelo e vá fazendo as contas de
+        cabeça, escrevendo cada resultado na caixinha.</p>
+        <p style="margin-bottom:2px;">Cadeia 1:</p>
+        <div class="chain">
+          <span class="chain-start">15</span>
+          <span class="chain-op">+10 →</span><span class="chain-box"></span>
+          <span class="chain-op">−8 →</span><span class="chain-box"></span>
+          <span class="chain-op">+20 →</span><span class="chain-box"></span>
+          <span class="chain-op">−5 →</span><span class="chain-box"></span>
+          <span class="chain-op">+50 →</span><span class="chain-box"></span>
+          <span class="chain-op">−40 →</span><span class="chain-box"></span>
+        </div>
+        <p style="margin-bottom:2px;">Cadeia 2:</p>
+        <div class="chain">
+          <span class="chain-start">60</span>
+          <span class="chain-op">−20 →</span><span class="chain-box"></span>
+          <span class="chain-op">+9 →</span><span class="chain-box"></span>
+          <span class="chain-op">+100 →</span><span class="chain-box"></span>
+          <span class="chain-op">−49 →</span><span class="chain-box"></span>
+          <span class="chain-op">+25 →</span><span class="chain-box"></span>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">28</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Complete os <strong>amigos do 100</strong>:</p>
+        <table class="data">
+          <tr><th>Conta</th><th>Falta quanto?</th><th>Conta</th><th>Falta quanto?</th></tr>
+          <tr><td>30 + ___ = 100</td><td><span class="line short"></span></td><td>65 + ___ = 100</td><td><span class="line short"></span></td></tr>
+          <tr><td>45 + ___ = 100</td><td><span class="line short"></span></td><td>90 + ___ = 100</td><td><span class="line short"></span></td></tr>
+          <tr><td>80 + ___ = 100</td><td><span class="line short"></span></td><td>25 + ___ = 100</td><td><span class="line short"></span></td></tr>
+        </table>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">29</span> <span class="tag tag-w">Resposta escrita</span>
+        <p><strong>Treino relâmpago!</strong> Sem armar no papel — resolva tudo de cabeça. Peça
+        para alguém marcar o tempo e tente bater seu recorde.</p>
+        <div class="exercises-grid cols-4">
+          <script>
+            contasMistas([
+              [30,'+',40], [50,'+',50], [25,'+',10], [68,'−',10],
+              [100,'−',30], [47,'+',20], [90,'−',45], [33,'+',7],
+              [56,'−',6], [200,'+',150], [300,'−',100], [74,'+',10],
+              [19,'+',19], [25,'+',25], [99,'+',1], [55,'−',5],
+              [120,'−',20], [88,'−',8], [43,'+',30], [66,'−',30],
+              [150,'+',50], [250,'−',50], [12,'+',13], [40,'−',15]
+            ]);
+          </script>
+        </div>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">30</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Use o <strong>Truque 5</strong>: primeiro o dobro, depois o quase-dobro.</p>
+        <table class="data">
+          <tr><th>Dobro</th><th>Resultado</th><th>Quase-dobro</th><th>Resultado</th></tr>
+          <tr><td>6 + 6</td><td><span class="line short"></span></td><td>6 + 7</td><td><span class="line short"></span></td></tr>
+          <tr><td>8 + 8</td><td><span class="line short"></span></td><td>8 + 9</td><td><span class="line short"></span></td></tr>
+          <tr><td>9 + 9</td><td><span class="line short"></span></td><td>9 + 10</td><td><span class="line short"></span></td></tr>
+          <tr><td>20 + 20</td><td><span class="line short"></span></td><td>20 + 21</td><td><span class="line short"></span></td></tr>
+          <tr><td>30 + 30</td><td><span class="line short"></span></td><td>30 + 31</td><td><span class="line short"></span></td></tr>
+          <tr><td>25 + 25</td><td><span class="line short"></span></td><td>25 + 26</td><td><span class="line short"></span></td></tr>
+        </table>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">31</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Resolva de cabeça e <strong>explique qual truque você usou</strong> (pode ser o 1, 2, 3,
+        4, 5 ou 6):</p>
+        <p>a) 57 + 8 = <span class="line short"></span> &nbsp; Truque:
+          <span class="line" style="min-width:200px;"></span></p>
+        <p>b) 91 − 29 = <span class="line short"></span> &nbsp; Truque:
+          <span class="line" style="min-width:200px;"></span></p>
+        <p>c) 100 − 65 = <span class="line short"></span> &nbsp; Truque:
+          <span class="line" style="min-width:200px;"></span></p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">32</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Téo calculou <strong>46 + 39</strong> de cabeça usando o <strong>Truque 2</strong>
+        (arredondar e ajustar). Qual foi a conta que ele fez?</p>
+        <ul class="mc">
+          <li>( ) A) 46 + 30 + 9</li>
+          <li>( ) B) 46 + 40 − 1</li>
+          <li>( ) C) 46 + 39 contando de 1 em 1</li>
+          <li>( ) D) 46 − 40 + 1</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= PARTE 6 — DESAFIO FINAL ================= -->
+    <section>
+      <h2>Desafio final — Use tudo o que você treinou!</h2>
+
+      <div class="read-box avoid-break">
+        <strong>Leia com atenção</strong>
+        <p>Terminou o campeonato do Esquadrão dos Números! Cada herói ganhou pontos salvando a
+        cidade. Veja o placar final:</p>
+        <table class="data">
+          <tr><th>Herói</th><th>Pontos</th></tr>
+          <tr><td>Capitão Trovão</td><td>245</td></tr>
+          <tr><td>Lia Relâmpago</td><td>178</td></tr>
+          <tr><td>Nina Estrela</td><td>306</td></tr>
+          <tr><td>Téo Sombra</td><td>189</td></tr>
+        </table>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">33</span> <span class="tag tag-mc">Múltipla escolha</span>
+        <p>Quem foi o <strong>campeão</strong> (o herói com mais pontos)?</p>
+        <ul class="mc">
+          <li>( ) A) Capitão Trovão</li>
+          <li>( ) B) Lia Relâmpago</li>
+          <li>( ) C) Nina Estrela</li>
+          <li>( ) D) Téo Sombra</li>
+        </ul>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">34</span> <span class="tag tag-w">Resposta escrita</span>
+        <div class="vm-grid side">
+          <script>armar([[245,178]], '+');</script>
+        </div>
+        <p>Capitão Trovão e Lia Relâmpago vão formar uma dupla. Quantos pontos a dupla tem
+        <strong>ao todo</strong>?</p>
+        <p>Resposta: <span class="line short"></span> pontos.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">35</span> <span class="tag tag-w">Resposta escrita</span>
+        <div class="vm-grid side">
+          <script>armar([[306,189]]);</script>
+        </div>
+        <p>Quantos pontos Nina Estrela fez <strong>a mais</strong> que Téo Sombra?</p>
+        <p>Resposta: <span class="line short"></span> pontos a mais.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">36</span> <span class="tag tag-w">Resposta escrita</span>
+        <div class="vm-grid side">
+          <script>armar([[306,178]]);</script>
+        </div>
+        <p>Qual é a <strong>diferença</strong> entre o herói que fez mais pontos e o que fez menos
+        pontos?</p>
+        <p>a) Quem fez mais? <span class="line" style="min-width:160px;"></span></p>
+        <p>b) Quem fez menos? <span class="line" style="min-width:160px;"></span></p>
+        <p>c) Resposta: a diferença é de <span class="line short"></span> pontos.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">37</span> <span class="tag tag-w">Resposta escrita</span>
+        <p><strong>De cabeça!</strong> Téo Sombra quer chegar a <strong>200</strong> pontos.
+        Quantos pontos faltam para ele? <em>(dica: use o Truque 6 — conte para frente)</em></p>
+        <p>Resposta: faltam <span class="line short"></span> pontos.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">38</span> <span class="tag tag-w">Resposta escrita</span>
+        <p><strong>Missão bônus:</strong> some os pontos dos <strong>quatro</strong> heróis. Arme as
+        contas no espaço abaixo.</p>
+        <p><span class="line" style="min-width:100%;"></span></p>
+        <p><span class="line" style="min-width:100%;"></span></p>
+        <p>Resposta: o esquadrão fez <span class="line short"></span> pontos no total.</p>
+      </div>
+
+      <div class="q avoid-break">
+        <span class="q-num">39</span> <span class="tag tag-w">Resposta escrita</span>
+        <p>Para terminar: escreva em <strong>duas frases</strong> qual foi a parte mais fácil e
+        qual foi a mais difícil desta atividade — e um truque que você quer lembrar na prova.</p>
+        <p><span class="line" style="min-width:100%;"></span></p>
+        <p><span class="line" style="min-width:100%;"></span></p>
+        <p><span class="line" style="min-width:100%;"></span></p>
+      </div>
+    </section>
+
+    <!-- ================= GABARITO ================= -->
+    <section class="gabarito page-break">
+      <h2>Gabarito (professor)</h2>
+      <p style="font-size:9pt;margin-top:0;">
+        Referências de habilidades BNCC (2º ano):
+        <strong>EF02MA01</strong> (comparar e ordenar números até a ordem de centenas — valor
+        posicional e função do zero),
+        <strong>EF02MA04</strong> (compor e decompor números naturais de até três ordens),
+        <strong>EF02MA05</strong> (construir fatos básicos da adição e da subtração e usá-los no
+        <em>cálculo mental</em> ou escrito),
+        <strong>EF02MA06</strong> (resolver <em>e elaborar</em> problemas de adição e de subtração
+        com números de até três ordens),
+        <strong>EF02MA22</strong> (ler e comparar informações apresentadas em tabela — desafio final).
+      </p>
+
+      <table class="data">
+        <tr><th>Q.</th><th>Resposta</th><th>Observação</th></tr>
+        <tr><td>1</td><td>478 = 400 + 70 + 8 &nbsp;|&nbsp; 805 = 800 + 5 &nbsp;|&nbsp; 230 = 200 + 30</td><td>Aceitar 800 + 0 + 5 e 200 + 30 + 0.</td></tr>
+        <tr><td>2</td><td>C) 6 centenas</td><td>Em 629 o 6 vale 600.</td></tr>
+        <tr><td>3</td><td>a) − &nbsp; b) + &nbsp; c) − &nbsp; d) −</td><td>a) gastou; c) a mais que (comparar); d) quanto falta (completar).</td></tr>
+        <tr><td>4</td><td>C) 61 − 27</td><td>Única em que a unidade de cima (1) é menor que a de baixo (7).</td></tr>
+        <tr><td>5</td><td>Resposta certa: <strong>35</strong></td><td>Ele fez 9 − 4 em vez de emprestar. Certo: 14 − 9 = 5 e 5 − 2 = 3 → 35.</td></tr>
+        <tr><td>6</td><td>a)5 b)5 c)2 d)4 e)7 f)7 g)6 h)7 i)8 j)7 k)9 l)9 m)3 n)3 o)9 p)5</td><td>Fatos básicos — devem sair de cabeça.</td></tr>
+        <tr><td>7</td><td>43 &nbsp; 45 &nbsp; 41 &nbsp; 22 &nbsp; 33 &nbsp; 21</td><td>68−25, 79−34, 57−16, 94−72, 86−53, 48−27 — nenhuma precisa emprestar.</td></tr>
+        <tr><td>8</td><td>25 &nbsp; 33 &nbsp; 23 &nbsp; 27 &nbsp; 22 &nbsp; 37 &nbsp; 16 &nbsp; 24</td><td>53−28, 71−38, 62−39, 84−57, 40−18, 95−58, 30−14, 73−49 — <strong>todas com empréstimo</strong>.</td></tr>
+        <tr><td>9</td><td>343 &nbsp; 431 &nbsp; 543 &nbsp; 221</td><td>586−243, 749−318, 968−425, 457−236 — sem empréstimo.</td></tr>
+        <tr><td>10</td><td>214 &nbsp; 348 &nbsp; 418 &nbsp; 545 &nbsp; 264 &nbsp; 425</td><td>342−128 (1 empréstimo); 635−287 e 703−158 (2); 814−396 (2, com 0 nas dezenas de cima); 500−236 e 900−475 (zero duplo — Exemplo 3).</td></tr>
+        <tr><td>11</td><td>72−35=37 → <strong>C</strong> (37+35=72)<br />84−46=42 → <strong>E</strong>, correto <strong>38</strong> (42+46=88)<br />91−27=64 → <strong>C</strong> (64+27=91)<br />60−23=47 → <strong>E</strong>, correto <strong>37</strong> (47+23=70)</td><td>A prova real é a maneira de a criança conferir sozinha.</td></tr>
+        <tr><td>12</td><td>B) 127</td><td>245 − 118 (tirar; com empréstimo).</td></tr>
+        <tr><td>13</td><td>B) 92</td><td>67 + 25 (juntar; com “vai 1”).</td></tr>
+        <tr><td>14</td><td>C) 27</td><td>84 − 57 (comparar; com empréstimo).</td></tr>
+        <tr><td>15</td><td>A) 44</td><td>80 − 36 (completar; com empréstimo).</td></tr>
+        <tr><td>16</td><td>B) 383</td><td>236 + 147 (juntar; com “vai 1”).</td></tr>
+        <tr><td>17</td><td>B) 42 − 15</td><td>Só identificar a operação — não precisa calcular.</td></tr>
+        <tr><td>18</td><td><strong>50 reais</strong></td><td>Duas etapas: 62 + 38 = 100 e 150 − 100 = 50. Também vale 150 − 62 = 88 e 88 − 38 = 50.</td></tr>
+      </table>
+
+      <table class="data">
+        <tr><th>Q.</th><th>Resposta</th><th>Observação</th></tr>
+        <tr><td>19</td><td>303 mudas</td><td>175 + 128 (com “vai 1” nas unidades e nas dezenas).</td></tr>
+        <tr><td>20</td><td>27 reais de troco</td><td>100 − 73 (zero duplo — precisa emprestar duas vezes).</td></tr>
+        <tr><td>21</td><td>54 medalhas</td><td>45 + 28 = 73; depois 73 − 19 = 54 (com empréstimo).</td></tr>
+        <tr><td>22</td><td>135 moedas</td><td>400 − 265 — o caso do zero no meio.</td></tr>
+        <tr><td>23</td><td>72</td><td>Problema inverso: 45 + 27 = 72. Conferir: 72 − 27 = 45.</td></tr>
+        <tr><td>24</td><td>a) 38 − 19 &nbsp; b) 19 crianças &nbsp; c) os 12 adultos e os 5 cachorros</td><td>Treina descartar informação que sobra no enunciado.</td></tr>
+        <tr><td>25</td><td>Resposta pessoal</td><td>Exemplo: “Lia tinha 96 figurinhas e deu 48 para o Téo. Com quantas ficou?” Verificar se a história combina com 96 − 48 = 48.</td></tr>
+        <tr><td>26</td><td>a) 57 &nbsp; b) 55 &nbsp; c) 84 &nbsp; d) 65 &nbsp; e) 44 &nbsp; f) 43</td><td>Arredondar e ajustar (Truque 2).</td></tr>
+        <tr><td>27</td><td>Cadeia 1: <strong>25, 17, 37, 32, 82, 42</strong><br />Cadeia 2: <strong>40, 49, 149, 100, 125</strong></td><td>Tudo de cabeça. Se errar uma caixa, as seguintes ficam erradas — vale conferir passo a passo.</td></tr>
+        <tr><td>28</td><td>30+<strong>70</strong> &nbsp; 65+<strong>35</strong> &nbsp; 45+<strong>55</strong> &nbsp; 90+<strong>10</strong> &nbsp; 80+<strong>20</strong> &nbsp; 25+<strong>75</strong></td><td>Amigos do 100 (Truque 4).</td></tr>
+        <tr><td>29</td><td>a)70 b)100 c)35 d)58 e)70 f)67 g)45 h)40 i)50 j)350 k)200 l)84<br />m)38 n)50 o)100 p)50 q)100 r)80 s)73 t)36 u)200 v)200 w)25 x)25</td><td>Treino relâmpago — sem armar. m) e n) são dobros; o) e q) são amigos do 100/da centena.</td></tr>
+        <tr><td>30</td><td>12 / 13 &nbsp;•&nbsp; 16 / 17 &nbsp;•&nbsp; 18 / 19 &nbsp;•&nbsp; 40 / 41 &nbsp;•&nbsp; 60 / 61 &nbsp;•&nbsp; 50 / 51</td><td>O quase-dobro é sempre o dobro + 1.</td></tr>
+        <tr><td>31</td><td>a) 65 &nbsp; b) 62 &nbsp; c) 35</td><td>a) Truque 2 (57+10−2) ou Truque 3 (57+3+5); b) Truque 2 (91−30+1); c) Truque 4 (amigos do 100). Aceitar qualquer explicação coerente.</td></tr>
+        <tr><td>32</td><td>B) 46 + 40 − 1</td><td>= 85. A alternativa A também dá 85, mas usa o Truque 3 (decompor), não o 2.</td></tr>
+        <tr><td>33</td><td>C) Nina Estrela</td><td>306 é o maior. Comparar centenas primeiro.</td></tr>
+        <tr><td>34</td><td>423 pontos</td><td>245 + 178 (com “vai 1” nas unidades e nas dezenas).</td></tr>
+        <tr><td>35</td><td>117 pontos a mais</td><td>306 − 189 (comparar; com dois empréstimos).</td></tr>
+        <tr><td>36</td><td>a) Nina Estrela (306) &nbsp; b) Lia Relâmpago (178) &nbsp; c) 128 pontos</td><td>306 − 178.</td></tr>
+        <tr><td>37</td><td>Faltam 11 pontos</td><td>200 − 189, de cabeça: de 189 conto até 200 → 11 (Truque 6).</td></tr>
+        <tr><td>38</td><td>918 pontos</td><td>245 + 178 = 423; 306 + 189 = 495; 423 + 495 = 918.</td></tr>
+        <tr><td>39</td><td>Resposta pessoal</td><td>Ler junto: o truque que ela escolher é o que vale reforçar antes da prova.</td></tr>
+      </table>
+    </section>
+
+    <footer class="print-note">Atividades da Laura — material de estudo (revisão e aprofundamento).</footer>
+
+  </main>
+
+</body>
+</html>
